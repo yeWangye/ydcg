@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>感动自己,一定成功</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+		<!-- CSS Libs -->
+
+		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-switch.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/checkbox3.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../lib/css/select2.min.css">
+		<!-- CSS App -->
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/themes/flat-blue.css">
+		<link rel="stylesheet" type="text/css" href="../css/themes/flat-green.css">
+	</head>
+
+	<body class="flat-blue">
+		<div class="app-container">
+			<div class="row content-container">
+				<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+					<div class="container-fluid" style="text-align: center;">
+						<div class="navbar-header">
+							<button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+							<ol class="breadcrumb navbar-breadcrumb">
+								<li class="active">一定成功</li>
+							</ol>
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+						</div>
+						<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+						<ul class="nav navbar-nav navbar-right">
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="title">
+										通知 <span class="badge pull-right">0</span>
+									</li>
+									<li class="message">
+										没有新的通知
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown danger">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right">0</span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown profile">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="profile-img">
+										<img src="../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+									</li>
+									<li>
+										<div class="profile-info">
+											<h4 class="username"></h4>
+											<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+											<div class="btn-group margin-bottom-2x" role="group">
+												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+												<input type="file"  style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div id="sidebar" class="side-menu sidebar-inverse">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="side-menu-container">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="#">
+									<div class="icon fa fa-paper-plane"></div>
+									<div class="title">感动自己,一定成功</div>
+								</a>
+								<button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active">
+									<a href="index.html">
+										<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
+									</a>
+								</li>
+								<li>
+									<a href="xinxi_guanli/tianjiayeji.html">
+										<span class="icon fa fa-plus-square-o"></span><span class="title">添加信息</span>
+									</a>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-table">
+										<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-table" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="table/datatable.html">患者数据库</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
+										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="xinxi_guanli/wode_xinxi.html">我的信息</a>
+												</li>
+												<li>
+													<a href="xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
+												</li>
+												<li>
+													<a href="xinxi_guanli/daishen_xinxi.html">待审信息</a>
+												</li>
+												<li>
+													<a href="xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
+												</li>
+												<li>
+													<a href="xinxi_guanli/lizhi_xinxi.html">离职信息</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
+										<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="xinxi_shenhe/dai_shenhe.html">待审核</a>
+												</li>
+												<li>
+													<a href="xinxi_shenhe/tongguo.html">通过</a>
+												</li>
+												<li>
+													<a href="xinxi_shenhe/wei_tonguo.html">未通过</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+								</li>
+
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#component-example">
+										<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="component-example" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="yeji_guanli/yeji_dai_shenhe.html">待审核</a>
+												</li>
+												<li>
+													<a href="yeji_guanli/zuyuan_yeji.html">组员业绩</a>
+												</li>
+												<li>
+													<a href="yeji_guanli/yeji.html">业绩信息</a>
+												</li>
+												
+											</ul>
+										</div>
+									</div>
+									
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#tianjiayeji">
+										<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="tianjiayeji" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="tianjia_yeji/guahao.html">挂号费</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/goutong.html">沟通费</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/yizhu.html">医助</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/yuan_chu.html">远程(初诊)</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/yuan_fu.html">远程(复诊)</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/lai_chu.html">来院(初诊)</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/lai_fu.html">来院(复诊)</a>
+												</li>
+												<li>
+													<a href="tianjia_yeji/you_fu.html">邮寄复诊</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+									
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-element">
+										<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-element" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="ui-kits/theming.html">主题</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-example">
+										<span class="icon fa fa-slack"></span><span class="title">更多</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-example" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="login.html">注销登陆</a>
+												</li>
+												<li>
+													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+
+				<!-- Main Content -->
+				<div class="container-fluid">
+					<div class="side-body padding-top">
+						<div class="row">
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+								<a href="xinxi_guanli/wode_xinxi.html">
+									<div class="card red summary-inline">
+										<div class="card-body">
+											<i class="icon fa fa-inbox fa-4x"></i>
+											<div class="content">
+												<div class="title myMsg"></div>
+												<div class="sub-title">我的信息</div>
+											</div>
+											<div class="clear-both"></div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+								<a href="xinxi_shenhe/dai_shenhe.html">
+									<div class="card yellow summary-inline">
+										<div class="card-body">
+											<i class="icon fa fa-comments fa-4x"></i>
+											<div class="content">
+												<div class="title daishenMsg"></div>
+												<div class="sub-title">待审信息</div>
+											</div>
+											<div class="clear-both"></div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+								<a href="xinxi_guanli/fangqi_xinxi.html">
+									<div class="card green summary-inline">
+										<div class="card-body">
+											<i class="icon fa fa-tags fa-4x"></i>
+											<div class="content">
+												<div class="title fangqiMsg"></div>
+												<div class="sub-title">放弃信息</div>
+											</div>
+											<div class="clear-both"></div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+								<a href="xinxi_guanli/lizhi_xinxi.html">
+									<div class="card blue summary-inline">
+										<div class="card-body">
+											<i class="icon fa fa-share-alt fa-4x"></i>
+											<div class="content">
+												<div class="title lizhiMsg"></div>
+												<div class="sub-title">离职信息</div>
+											</div>
+											<div class="clear-both"></div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="row  no-margin-bottom">
+							<div class="col-sm-6 col-xs-12">
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="card primary">
+											<div class="card-jumbotron no-padding">
+												<canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
+											</div>
+											<div class="card-body half-padding">
+												<h4 class="float-left no-margin font-weight-300">业绩曲线</h4>
+												<h2 class="float-right no-margin font-weight-300">¥3200</h2>
+												<div class="clear-both"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="thumbnail no-margin-bottom">
+											<img src="../img/thumbnails/picjumbo.com_IMG_4566.jpg" class="img-responsive">
+											<div class="caption">
+												<h3 id="thumbnail-label">感动自己<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
+												<p>每天一句名言</p>
+												<p>
+													<a href="#" class="btn btn-primary" role="button">查看</a>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="thumbnail no-margin-bottom">
+											<img src="../img/thumbnails/picjumbo.com_IMG_3241.jpg" class="img-responsive">
+											<div class="caption">
+												<h3 id="thumbnail-label">一定成功<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
+												<p>做更好的自己</p>
+												<p>
+													<a href="#" class="btn btn-success" role="button">查看</a>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6 col-xs-12">
+								<div class="row">
+									<div class="col-md-6 col-sm-12">
+										<div class="card primary">
+											<div class="card-jumbotron no-padding">
+												<canvas id="jumbotron-bar-chart" class="chart no-padding"></canvas>
+											</div>
+											<div class="card-body half-padding">
+												<h4 class="float-left no-margin font-weight-300">业绩图表</h4>
+												<div class="clear-both"></div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-sm-12">
+										<div class="card primary">
+											<div class="card-jumbotron no-padding">
+												<canvas id="jumbotron-line-2-chart" class="chart no-padding"></canvas>
+											</div>
+											<div class="card-body half-padding">
+												<h4 class="float-left no-margin font-weight-300">科室业绩曲线</h4>
+												<div class="clear-both"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card card-success">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title"><i class="fa fa-comments-o"></i>通知消息</div>
+										</div>
+										<div class="clear-both"></div>
+									</div>
+									<div class="card-body no-padding">
+										<ul class="message-list">
+											<a href="#">
+												<li>
+													<img src="../img/profile/profile-1.jpg" class="profile-img pull-left">
+													<div class="message-block">
+														<div><span class="username"></span> <span class="message-datetime">12 分钟前</span>
+														</div>
+														<div class="message">测试测试,正在测试</div>
+													</div>
+												</li>
+											</a>
+											<a href="#">
+												<li>
+													<img src="../img/profile/profile-1.jpg" class="profile-img pull-left">
+													<div class="message-block">
+														<div><span class="username"></span> <span class="message-datetime">15 天前</span>
+														</div>
+														<div class="message">三亚三亚三亚</div>
+													</div>
+												</li>
+											</a>
+											
+											<a href="#" id="message-load-more">
+												<li class="text-center load-more">
+													<i class="fa fa-refresh"></i> 加载更多
+												</li>
+											</a>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="app-footer">
+				<div class="wrapper">
+					<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+					<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+					<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+				</div>
+			</footer>
+
+			<!-- Javascript Libs -->
+			<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="../lib/js/Chart.min.js"></script>
+			<script type="text/javascript" src="../lib/js/bootstrap-switch.min.js"></script>
+			<script type="text/javascript" src="../lib/js/jquery.matchHeight-min.js"></script>
+			<script type="text/javascript" src="../lib/js/jquery.dataTables.min.js"></script>
+			<script type="text/javascript" src="../lib/js/dataTables.bootstrap.min.js"></script>
+			<script type="text/javascript" src="../lib/js/select2.full.min.js"></script>
+			<script type="text/javascript" src="../lib/js/ace/ace.js"></script>
+			<script type="text/javascript" src="../lib/js/ace/mode-html.js"></script>
+			<script type="text/javascript" src="../lib/js/ace/theme-github.js"></script>
+			<!--<script type="text/javascript" src="../lib/js/echarts.min.js"></script>-->
+			<!-- Javascript -->
+			<script>
+				var expireTime = 7 * 24 * 60 * 60 * 1000; //过期时间7天
+				if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+					var session_login = JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+					if(new Date().getTime() - session_login.timstamp > expireTime) {
+						localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+
+						window.location.href = "login.html";
+					}
+				} else {
+					window.location.href = "login.html";
+				}
+			</script>
+			<script type="text/javascript" src="../js/app.js"></script>
+			<script type="text/javascript" src="../js/config.js"></script>
+			<script type="text/javascript" src="../js/index.js"></script>
+			<!--<script type="text/javascript" src="../js/personal_msg.js"></script>-->
+			<script type="text/javascript" src="../js/themings.js"></script>
+			<script type="text/javascript">
+				$(function() {
+					//退出
+					$(".logout").on("click", function() {
+						$.ajax({
+							type: "post",
+							url: config.rootUrl + "scss/user/logout.do",
+							async: true,
+							data: {
+								userId: session_login.info.userId
+							},
+							success: function(data) {
+								if(window.location.pathname == "/ydcg/html/index.html") {
+									window.location.href = "login.html";
+
+								} else {
+									window.location.href = "../login.html";
+
+								}
+
+								localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+							},
+							error: function(data) {
+								alert(data);
+							}
+
+						});
+
+					})
+					//个人信息
+					var username = session_login.info.realName;
+					$(".username").text(username);
+					var grade = session_login.info.grade;
+					var roleId = session_login.info.roleId;
+					switch(roleId) {
+						case 1:
+							$(".role").text("组员");
+							break;
+						case 2:
+							$(".role").text("经理");
+							break;
+						case 3:
+							$(".role").text("总经理");
+							break;
+						case 4:
+							$(".role").text("行政");
+							break;
+						case 5:
+							$(".role").text("会计");
+							break;
+						case 6:
+							$(".role").text("人事");
+							break;
+					}
+
+					var teamName = session_login.info.teamName;
+					$(".teamName").text(teamName);
+					var headimg = session_login.info.headImage;
+					$(".profile-img").attr("src", headimg);
+					$(".headimg_exchange").on("click", function(e) {
+						e.preventDefault();
+						$("#headimg_exchange").trigger("click");
+					})
+					//头像上传开始
+					var input = document.getElementById("headimg_exchange"); //获取选择图片的input元素 
+					//这边是判断本浏览器是否支持这个API。 
+					if(typeof FileReader === 'undefined') {
+						alert("浏览器版本过低，请先更新您的浏览器~");
+						input.setAttribute('disabled', 'disabled');
+					} else {
+						input.addEventListener('change', readFile, false);
+
+						//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
+					}
+
+					function readFile() {
+						var file = this.files[0]; //获取file对象 
+						//判断file的类型是不是图片类型。 
+						if(!/image\/\w+/.test(file.type)) {
+							alert("请上传一张图片~");
+							return false;
+						}
+
+						var reader = new FileReader(); //声明一个FileReader实例 
+						reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
+						//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
+						reader.onload = function(e) {
+							// 创建一个新增的图片和文字input 
+							$(".profile-img img").attr("src", this.result);
+							uploadHead(this.result);
+						}
+					}
+					//上传头像图片 
+					function uploadHead(imgPath) {
+						var image = new Image();
+						image.src = imgPath;
+						image.onload = function() {
+							console.log('开始上传...');
+							var imgData = getBase64Image(image);
+							//						imgPath.replace("data:image/png;base64,", "");
+							/*在这里调用上传接口*/
+							$.ajax({
+								url: config.rootUrl + "scss/user/saveImageUrl.do",
+								data: {
+									headImage: imgData
+								},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									console.log(data);
+									$.ajax({
+										url: config.rootUrl + "scss/user/uploadUserHead.do",
+										data: {
+											userId: session_login.info.userId,
+											deviceToken: "html5",
+											deviceType: "html5",
+											userHead: data.absolutePath,
+										},
+										async: true,
+										type: 'post',
+										success: function(data) {
+//											alert(data.msg);
+											alert('上传成功,请退出登录查看');
+										},
+										error: function(xhr, type, errorThrown) {
+											alert('网络异常，请稍后再试！');
+										}
+									});
+									
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
+								}
+							});
+						}
+					}
+					//将图片压缩转成base64 
+					function getBase64Image(img) {
+						var canvas = document.createElement("canvas");
+						var width = img.width;
+						var height = img.height;
+						// 计算宽高
+						if(width > height) {
+							if(width > 300) {
+								height = Math.round(height *= 300 / width);
+								width = 300;
+							}
+						} else {
+							if(height > 300) {
+								width = Math.round(width *= 300 / height);
+								height = 300;
+							}
+						}
+						canvas.width = width; /*设置新的图片的宽度*/
+						canvas.height = height; /*设置新的图片的长度*/
+						var ctx = canvas.getContext("2d");
+						ctx.drawImage(img, 0, 0, width, height); /*绘图*/
+						var dataURL = canvas.toDataURL("image/png", 0.8);
+						return dataURL.replace("data:image/png;base64,", "");
+					}
+					//获取通知内容
+					$.ajax({
+						url: config.rootUrl + "scss/user/getListMessage.do",
+						data: {
+							userId: session_login.info.userId,
+							deviceToken: "html5",
+							deviceType: "html5",
+							page: "1",
+							rows: "8",
+						},
+						async: true,
+						type: 'post',
+						success: function(data) {
+							$("marquee").text(data.info[0].theme);
+
+						},
+						error: function(xhr, type, errorThrown) {
+							alert('网络异常，请稍后再试！');
+						}
+					});
+					//我的信息					
+					$.ajax({
+						url: config.rootUrl + "scss/user/getSelfAppoint.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							userId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							var info = data.patCount || 0;
+							$(".myMsg").text(info);
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+					//待审信息
+					$.ajax({
+						url: config.rootUrl + "scss/user/getVerifyAppoint.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							status: "verify",
+							userId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							var info = data.patCount || 0;
+							$(".daishenMsg").text(info);
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+					//放弃信息fangqiMsg
+					$.ajax({
+						url: config.rootUrl + "scss/user/quitListAppoint.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							userId: session_login.info.userId,
+							memberId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							var info = data.pageCount || 0;
+							$(".fangqiMsg").text(info);
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+					//离职信息lizhiMsg
+					$.ajax({
+						url: config.rootUrl + "scss/user/leaveMemberAppoint.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							userId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							var info = data.pageCount || 0;
+							$(".lizhiMsg").text(info);
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+				});
+			</script>
+	</body>
+
+</html>

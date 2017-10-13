@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>一定成功业绩管理</title>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+		<!-- CSS Libs -->
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+
+		<!-- CSS App -->
+		<link rel="stylesheet" type="text/css" href="../../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+	</head>
+
+	<body class="flat-blue">
+		<div class="app-container">
+			<div class="row content-container">
+				<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+					<div class="container-fluid" style="text-align: center;">
+						<div class="navbar-header">
+							<button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+							<ol class="breadcrumb navbar-breadcrumb">
+								<li>添加业绩</li>
+								<li class="active">来院(初诊)</li>
+							</ol>
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+						</div>
+						<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+						<ul class="nav navbar-nav navbar-right">
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="title">
+										通知 <span class="badge pull-right">0</span>
+									</li>
+									<li class="message">
+										没有新的通知
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown danger">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right">0</span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item">
+													<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown profile">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="profile-img">
+										<img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+									</li>
+									<li>
+										<div class="profile-info">
+											<h4 class="username"></h4>
+											<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+											<div class="btn-group margin-bottom-2x" role="group">
+												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+												<input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div id="sidebar" class="side-menu sidebar-inverse">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="side-menu-container">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="#">
+									<div class="icon fa fa-paper-plane"></div>
+									<div class="title">感动自己,一定成功</div>
+								</a>
+								<button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active">
+									<a href="../index.html">
+										<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
+									</a>
+								</li>
+								<li>
+									<a href="../xinxi_guanli/tianjiayeji.html">
+										<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
+									</a>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-table">
+										<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-table" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="table/datatable.html">患者数据库</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
+										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
+												</li>
+												<li>
+													<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
+												</li>
+												<li>
+													<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
+												</li>
+												<li>
+													<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
+												</li>
+												<li>
+													<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
+										<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../xinxi_shenhe/dai_shenhe.html">待审核</a>
+												</li>
+												<li>
+													<a href="../xinxi_shenhe/tongguo.html">通过</a>
+												</li>
+												<li>
+													<a href="../xinxi_shenhe/wei_tonguo.html">未通过</a>
+												</li>
+
+											</ul>
+										</div>
+									</div>
+								</li>
+
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#component-example">
+										<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="component-example" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+													<li>
+														<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
+													</li>
+													<li>
+														<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
+													</li>
+													<li>
+														<a href="../yeji_guanli/yeji.html">业绩信息</a>
+													</li>
+
+											</ul>
+										</div>
+									</div>
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#tianjiayeji">
+										<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="tianjiayeji" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../tianjia_yeji/guahao.html">挂号费</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/goutong.html">沟通费</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/yizhu.html">医助</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/yuan_chu.html">远程(初诊)</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/yuan_fu.html">远程(复诊)</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/lai_chu.html">来院(初诊)</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/lai_fu.html">来院(复诊)</a>
+												</li>
+												<li>
+													<a href="../tianjia_yeji/you_fu.html">邮寄复诊</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-element">
+										<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-element" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../ui-kits/theming.html">主题</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+								<!-- Dropdown-->
+								<li class="panel panel-default dropdown">
+									<a data-toggle="collapse" href="#dropdown-example">
+										<span class="icon fa fa-slack"></span><span class="title">更多</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="dropdown-example" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../login.html">注销登陆</a>
+												</li>
+												<li>
+													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+				<div class="container-fluid">
+					<div class="side-body">
+						<div class="page-title">
+							<span class="title">来院(初诊)</span>
+							<div class="description" style="font-size:24px;color:red;">请仔细阅读下面的注意事项:</div>
+
+							<div class="description" style="font-size:20px;color:red;"> 1:拥有信息者(本页患者姓名直接带过来的,不可编辑的)提交个人业绩的同时提交科室业绩.</div>
+							<div class="description" style="font-size:20px;color:red;"> 2:只提交科室业绩不提交个人业绩(个人提成填0,年终填0,例如病人自己去门诊的,和个人业绩没有关系,只能算科室的业绩).</div>
+
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title">预约信息添加</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="name" class="col-sm-2 control-label">患者姓名</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" ><i>*</i>必填项</span>
+														<input type="text" style="width:30%" id="name" class="form-control" placeholder="请输入患者姓名" aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="liaocheng" class="col-sm-2 control-label">疗程</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" ><i>*</i>必填项</span>
+														<input type="text" style="width:30%" id="liaocheng" class="form-control" placeholder="疗程" aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="shoukuan" class="col-sm-2 control-label">收款账户</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i>*</i>必选项</span>
+													<div>
+														<select id="shoukuan" style="width:30%" title="收款账户" aria-describedby="basic-addon1">
+															<optgroup label="请选择收款账户" class="shoukuan">
+															</optgroup>
+														</select>
+													</div>
+
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="heji" class="col-sm-2 control-label">当月合计</label>
+												<div class="col-sm-10">
+													<div class="form-group">
+														<div class="col-sm-2">
+															<input type="text" id="yingfu" class="form-control" placeholder="应付款">
+
+														</div>
+														<div class="col-sm-3">
+															<input type="number" id="shifu" class="form-control" placeholder="实付款">
+														</div>
+														<div class="col-sm-2">
+															<input type="number" id="ticheng" class="form-control" placeholder="提成">
+														</div>
+														<div class="col-sm-2">
+															<input type="number" id="nianzhong" class="form-control" placeholder="年终">
+														</div>
+														<div class="col-sm-2">
+															<input type="number" id="waitui" class="form-control" placeholder="外推">
+														</div>
+														<div class="col-sm-3">
+															<input type="number" id="zhuijia" class="form-control" placeholder="追加挂号费">
+														</div>
+														<div class="col-sm-2">
+															<input type="number" id="yizhu" class="form-control" placeholder="医助">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="doctor" class="col-sm-2 control-label">医生</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i>*</i>必选项</span>
+													<div>
+														<select id="doctor" style="width:30%" title="医生" aria-describedby="basic-addon1">
+															<optgroup label="请选择医生" class="doctor">
+															</optgroup>
+														</select>
+													</div>
+
+												</div>
+											</div>
+											<div class="form-group" id="keshiBox">
+												<label class="col-sm-2 control-label">科室1</label>
+												<div class="input-group col-sm-10">
+													<div class="col-sm-3">
+														<select id="keshi1" style="width:100%" title="科室">
+															<optgroup label="请选择科室" class="keshi1">
+															</optgroup>
+														</select>
+													</div>
+													<div class="col-sm-3">
+														<input type="number" id="jine1" class="form-control" placeholder="金额">
+
+													</div>
+													<div class="col-sm-1">
+														<div class="btn btn-primary tianjia"><span class="icon fa fa-plus-circle"> </span> 添加</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="supplement" class="col-sm-2 control-label">备注</label>
+												<div class="col-sm-10">
+													<textarea class="form-control" id="supplement" placeholder="请输入备注信息	" rows="3"></textarea>
+												</div>
+
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-2 control-label">提交</label>
+												<div class="col-sm-10">
+													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">提交</button>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<footer class="app-footer">
+				<div class="wrapper">
+					<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+					<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+					<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+				</div>
+			</footer>
+			<div>
+				<!-- Javascript Libs -->
+				<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+				<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<!-- Javascript -->
+				<script type="text/javascript" src="../../js/app.js"></script>
+				<script type="text/javascript" src="../../js/theming.js"></script>
+				<script type="text/javascript" src="../../js/themings.js"></script>
+
+				<script src="../../js/config.js"></script>
+				<script src="../../js/uploadImg.js"></script>
+				<script src="../../js/session_expire.js"></script>
+				<script type="text/javascript" src="../../js/personal_msg.js"></script>
+				<script src="js/getFuns.js"></script>
+				<!-- Javascript -->
+				<script type="text/javascript">
+					$(function() {
+						getDoctor();
+						getAccount();
+						getDepart("keshi1");
+						var _counter = 2;
+						$("#keshiBox").delegate(".tianjia", "click", function() {
+							var _html = '<label  class="col-sm-2 control-label">科室' + _counter + '</label>' +
+								'<div class="input-group col-sm-10">' +
+								'<div class="col-sm-3">' +
+								'<select id="keshi' + _counter + '" style="width:100%" title="科室">' +
+								'<optgroup label="请选择科室" class="keshi' + _counter + '">' +
+								'</optgroup>' +
+								'</select>' +
+								'</div>' +
+								'<div class="col-sm-3">' +
+								'<input type="number" id="jine' + _counter + '" class="form-control" placeholder="金额">' +
+								'</div>' +
+								'<div class="col-sm-1">' +
+								'<div class="btn btn-primary tianjia"><span class="icon fa fa-plus-circle"> </span> 添加</div>' +
+								'</div>' +
+								'</div>';
+							$("#keshiBox").append(_html);
+							getDepart("keshi" + _counter);
+							_counter++;
+
+						})
+
+						$(".save").on("click", function() {
+							//1患者姓名
+							var patientName = $("#name").val();
+							if(patientName==""){
+								alert("请输入患者姓名!");return;
+							}
+							//2收款账户
+							var accountId = $("#shoukuan").val();
+							//3应付款
+							var yingfu = $("#yingfu").val();
+							if(yingfu==""){
+								alert("请输入应付款!");return;
+							}
+							//4实付款
+							var shifu = $("#shifu").val();
+							if(shifu==""){
+								alert("请输入实际付款金额!");return;
+							}
+							//5提成
+							var ticheng = $("#ticheng").val();
+							if(ticheng==""){
+								alert("请输入你的提成!");return;
+							}
+							//6医生
+							var doctor = $("#doctor").val();
+							//7备注
+							var supplement = $("#supplement").val();
+							//8科室
+							var deparTreat = [];
+							for(var i = 1; i < _counter; i++) {
+								deparTreat.push({
+									"deptId": $("#keshi" + i).val(),
+									"deptMoney": $("#jine" + i).val(),
+								})
+							}
+							//疗程
+							var treatCourse=$("#liaocheng").val();
+							
+							//年终
+							var yearAward=$("#nianzhong").val();
+							//追加挂号费
+							var appointAward =$("#zhuijia").val();
+							//外推
+							var extenAward=$("#waitui").val();
+							//医助
+							var doctHelpAward=$("#yizhu").val();
+							/*在这里调用上传接口*/
+							$.ajax({
+								url: config.rootUrl + "scss/user/addTreatRecord.do",
+								data: {
+									deviceToken: "html5",
+									deviceType: "html5",
+									userId: session_login.info.userId,
+									
+									treatId:"3",
+									doctorId: doctor,
+									accountId: accountId,
+									totalMoney: yingfu,
+									paidMoney: shifu,
+									treatAward: ticheng,
+									patientName: "王孝政",
+									remarks:supplement,
+									deparTreat:deparTreat,
+									
+									patientId:"15426",
+									yearAward :yearAward,
+									treatCourse:treatCourse,
+									extenAward:extenAward,
+									appointAward :appointAward,
+									doctHelpAward:doctHelpAward,
+								},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									alert("添加业绩成功,等待战区经理审核!");
+									console.log(data);
+//									window.location.reload();
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
+									console.log(xhr + errorThrown);
+								}
+							});
+						})
+
+					})
+				</script>
+	</body>
+
+</html>
