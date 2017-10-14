@@ -1,6 +1,6 @@
 function getAccount() {
 	$.ajax({
-		url: config.rootUrl + "scss/user/getAccount.do",
+		url: config.rootUrl + "user/getAccount.do",
 		data: {
 			deviceToken: "html5",
 			deviceType: "html5",
@@ -34,7 +34,7 @@ function getAccount() {
 
 function getDoctor() {
 	$.ajax({
-		url: config.rootUrl + "scss/user/getDoctor.do",
+		url: config.rootUrl + "user/getDoctor.do",
 		data: {
 			deviceToken: "html5",
 			deviceType: "html5",
@@ -67,7 +67,7 @@ function getDoctor() {
 }
 function getDepart(ele) {
 	$.ajax({
-		url: config.rootUrl + "scss/user/getDepart.do",
+		url: config.rootUrl + "user/getDepart.do",
 		data: {
 			deviceToken: "html5",
 			deviceType: "html5",

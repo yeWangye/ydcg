@@ -9,7 +9,8 @@ body {
 
 * {
   outline: none; }
-
+.tips{
+	color:red;font-size: 20px;font-weight: 800;}
 .row > [class*="col-"] {
   margin-bottom: 25px; }
 

@@ -61,26 +61,26 @@
 									</ul>
 								</li>
 								<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
 									<ul class="dropdown-menu danger  animated fadeInDown">
 										<li class="title">
-											提示 <span class="badge pull-right">0</span>
+											提示 <span class="badge pull-right totalMsg"></span>
 										</li>
 										<li>
 											<ul class="list-group notifications">
-												<a href="#">
+												<a href="../yeji_guanli/yeji_dai_shenhe.html">
 													<li class="list-group-item">
-														<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/zuyuan_yeji.html">
 													<li class="list-group-item">
-														<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/yeji.html">
 													<li class="list-group-item">
-														<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
 													</li>
 												</a>
 												<a href="#">
@@ -116,201 +116,201 @@
 						</div>
 					</nav>
 					<div id="sidebar" class="side-menu sidebar-inverse">
-					<nav class="navbar navbar-default" role="navigation">
-						<div class="side-menu-container">
-							<div class="navbar-header">
-								<a class="navbar-brand" href="#">
-									<div class="icon fa fa-paper-plane"></div>
-									<div class="title">感动自己,一定成功</div>
-								</a>
-								<button type="button" class="navbar-expand-toggle pull-right visible-xs">
+						<nav class="navbar navbar-default" role="navigation">
+							<div class="side-menu-container">
+								<div class="navbar-header">
+									<a class="navbar-brand" href="#">
+										<div class="icon fa fa-paper-plane"></div>
+										<div class="title">感动自己,一定成功</div>
+									</a>
+									<button type="button" class="navbar-expand-toggle pull-right visible-xs">
                                 <i class="fa fa-times icon"></i>
                             </button>
+								</div>
+								<ul class="nav navbar-nav">
+									<li class="active">
+										<a href="../index.html">
+											<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
+										</a>
+									</li>
+									<li>
+										<a href="../xinxi_guanli/tianjiayeji.html">
+											<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
+										</a>
+									</li>
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#dropdown-table">
+											<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-table" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../table/datatable.html">患者数据库</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
+											<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
+													</li>
+													<li>
+														<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
+													</li>
+													<li>
+														<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
+													</li>
+													<li>
+														<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
+													</li>
+													<li>
+														<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
+											<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../xinxi_shenhe/dai_shenhe.html">待审核</a>
+													</li>
+													<li>
+														<a href="../xinxi_shenhe/tongguo.html">通过</a>
+													</li>
+													<li>
+														<a href="../xinxi_shenhe/wei_tonguo.html">未通过</a>
+													</li>
+
+												</ul>
+											</div>
+										</div>
+									</li>
+
+									<!-- Dropdown-->
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#component-example">
+											<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="component-example" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
+													</li>
+													<li>
+														<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
+													</li>
+													<li>
+														<a href="../yeji_guanli/yeji.html">业绩信息</a>
+													</li>
+
+												</ul>
+											</div>
+										</div>
+									</li>
+									<!-- Dropdown-->
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#tianjiayeji">
+											<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="tianjiayeji" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../tianjia_yeji/guahao.html">挂号费</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/goutong.html">沟通费</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/yizhu.html">医助</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/yuan_chu.html">远程(初诊)</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/yuan_fu.html">远程(复诊)</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/lai_chu.html">来院(初诊)</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/lai_fu.html">来院(复诊)</a>
+													</li>
+													<li>
+														<a href="../tianjia_yeji/you_fu.html">邮寄复诊</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+
+									</li>
+									<!-- Dropdown-->
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#dropdown-element">
+											<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-element" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../ui-kits/theming.html">主题</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<!-- Dropdown-->
+									<li class="panel panel-default dropdown">
+										<a data-toggle="collapse" href="#dropdown-example">
+											<span class="icon fa fa-slack"></span><span class="title">更多</span>
+										</a>
+										<!-- Dropdown level 1 -->
+										<div id="dropdown-example" class="panel-collapse collapse">
+											<div class="panel-body">
+												<ul class="nav navbar-nav">
+													<li>
+														<a href="../login.html">注销登陆</a>
+													</li>
+													<li>
+														<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</li>
+								</ul>
 							</div>
-							<ul class="nav navbar-nav">
-								<li class="active">
-									<a href="../index.html">
-										<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
-									</a>
-								</li>
-								<li>
-									<a href="../xinxi_guanli/tianjiayeji.html">
-										<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
-									</a>
-								</li>
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-table">
-										<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-table" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="table/datatable.html">患者数据库</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
-										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
-												</li>
-												<li>
-													<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
-												</li>
-												<li>
-													<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
-												</li>
-												<li>
-													<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
-												</li>
-												<li>
-													<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
-										<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../xinxi_shenhe/dai_shenhe.html">待审核</a>
-												</li>
-												<li>
-													<a href="../xinxi_shenhe/tongguo.html">通过</a>
-												</li>
-												<li>
-													<a href="../xinxi_shenhe/wei_tonguo.html">未通过</a>
-												</li>
-
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#component-example">
-										<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="component-example" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
-												</li>
-												<li>
-													<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
-												</li>
-												<li>
-													<a href="../yeji_guanli/yeji.html">业绩信息</a>
-												</li>
-
-											</ul>
-										</div>
-									</div>
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#tianjiayeji">
-										<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="tianjiayeji" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../tianjia_yeji/guahao.html">挂号费</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/goutong.html">沟通费</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/yizhu.html">医助</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/yuan_chu.html">远程(初诊)</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/yuan_fu.html">远程(复诊)</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/lai_chu.html">来院(初诊)</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/lai_fu.html">来院(复诊)</a>
-												</li>
-												<li>
-													<a href="../tianjia_yeji/you_fu.html">邮寄复诊</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-element">
-										<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-element" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../ui-kits/theming.html">主题</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-example">
-										<span class="icon fa fa-slack"></span><span class="title">更多</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-example" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="../login.html">注销登陆</a>
-												</li>
-												<li>
-													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<!-- /.navbar-collapse -->
-					</nav>
-				</div>
+							<!-- /.navbar-collapse -->
+						</nav>
+					</div>
 					<!-- Main Content -->
 					<div class="container-fluid">
 						<div class="side-body">
 							<div class="page-title">
 								<span class="title">查看<span style="color:red;">我的</span>患者预约信息</span>
-								<div class="description" style="color:red;">
-									<sapn style="color:red;">操作提示:</sapn>仅支持查看自己添加的预约信息,经理以上可以进入业绩审核查看组员预约信息并且进行审核!</div>
+								<div class="description">
+									<sapn class="tips">操作提示:</sapn>仅支持查看<span class="tips">自己</span>添加的预约信息,<span class="tips">经理以上</span>可以进入业绩审核查看组员预约信息并且进行审核!</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
@@ -330,7 +330,7 @@
 														<th>来源</th>
 														<th>状态</th>
 														<th>创建时间</th>
-
+														<th>操作</th>
 													</tr>
 												</thead>
 
@@ -341,6 +341,28 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="choose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">选择你需要提交的业绩类型</h4>
+							</div>
+							<div class="modal-body">
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="guahao.html">挂号费</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="goutong.html">沟通费</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yizhu.html">医助</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_chu.html">远程(初诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_fu.html">远程(复诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_chu.html">来院(初诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_fu.html">来院(复诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="you_fu.html">邮寄复诊</button>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 							</div>
 						</div>
 					</div>
@@ -389,7 +411,7 @@
 									var pid = $(this).attr("data-pid");
 									console.log(pid);
 									$.ajax({
-										url: config.rootUrl + "scss/user/giveUpAppoint.do",
+										url: config.rootUrl + "user/giveUpAppoint.do",
 										type: 'POST',
 										dataType: 'json',
 										data: {
@@ -416,6 +438,25 @@
 								}
 
 							});
+							//信息成交
+							$('.table tbody').on('click', 'button.deal', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								$('#choose').modal();								
+								var pid = $(this).attr("data-pid");
+								var title = $(this).parents('tr').attr("data-title");
+								
+								sessionStorage.setItem("pid",pid);
+								sessionStorage.setItem("title",title);
+							});
+							$('#choose').on('click', 'button.target', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var target=$(this).attr("data-target");
+								var pid=sessionStorage.getItem("pid");
+								var title=sessionStorage.getItem("title");
+								window.location.href = "../tianjia_yeji/"+target+"?pid=" + pid+"&title="+title;								
+							});
 							$('.table tbody').on('click', '.goDetail', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
@@ -425,7 +466,7 @@
 
 							});
 							$.ajax({
-								url: config.rootUrl + "scss/user/getSelfAppoint.do",
+								url: config.rootUrl + "user/getSelfAppoint.do",
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",
@@ -467,6 +508,7 @@
 											"<td class='goDetail'>" + status + "</td>" +
 											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 											"<td class='goDetail'>" +
+											" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 											" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +
 											"</td>" +
 											"</tr>";
@@ -483,7 +525,7 @@
 										nextContent: '下页',
 										callback: function(api) {
 											$.ajax({
-												url: config.rootUrl + "scss/user/getSelfAppoint.do",
+												url: config.rootUrl + "user/getSelfAppoint.do",
 												data: {
 													deviceToken: "html5",
 													deviceType: "html5",
@@ -523,6 +565,7 @@
 															"<td class='goDetail'>" + status + "</td>" +
 															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 															"<td class='goDetail'>" +
+															" <button  class='btn btn-success deal' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 															" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +
 															"</td>" +
 															"</tr>";

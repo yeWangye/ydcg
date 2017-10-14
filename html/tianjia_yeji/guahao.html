@@ -59,37 +59,37 @@
 								</ul>
 							</li>
 							<li class="dropdown danger">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
-								<ul class="dropdown-menu danger  animated fadeInDown">
-									<li class="title">
-										提示 <span class="badge pull-right">0</span>
-									</li>
-									<li>
-										<ul class="list-group notifications">
-											<a href="#">
-												<li class="list-group-item">
-													<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
-												</li>
-											</a>
-											<a href="#">
-												<li class="list-group-item">
-													<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
-												</li>
-											</a>
-											<a href="#">
-												<li class="list-group-item">
-													<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
-												</li>
-											</a>
-											<a href="#">
-												<li class="list-group-item message">
-													敬请期待...
-												</li>
-											</a>
-										</ul>
-									</li>
-								</ul>
-							</li>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+									<ul class="dropdown-menu danger  animated fadeInDown">
+										<li class="title">
+											提示 <span class="badge pull-right totalMsg"></span>
+										</li>
+										<li>
+											<ul class="list-group notifications">
+												<a href="../yeji_guanli/yeji_dai_shenhe.html">
+													<li class="list-group-item">
+														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+													</li>
+												</a>
+												<a href="../yeji_guanli/zuyuan_yeji.html">
+													<li class="list-group-item">
+														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+													</li>
+												</a>
+												<a href="../yeji_guanli/yeji.html">
+													<li class="list-group-item">
+														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+													</li>
+												</a>
+												<a href="#">
+													<li class="list-group-item message">
+														敬请期待...
+													</li>
+												</a>
+											</ul>
+										</li>
+									</ul>
+								</li>
 							<li class="dropdown profile">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
 								<ul class="dropdown-menu animated fadeInDown">
@@ -145,7 +145,7 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="table/datatable.html">患者数据库</a>
+													<a href="../table/datatable.html">患者数据库</a>
 												</li>
 											</ul>
 										</div>
@@ -455,6 +455,13 @@
 				<!-- Javascript -->
 				<script type="text/javascript">
 					$(function() {
+						var search=window.location.search;
+						if(search!=""){
+							var patientId = window.location.search.split("pid=")[1].split("&")[0];
+							var patientName = window.location.search.split("title=")[1].split("&")[0];
+							$("#name").val(decodeURI(patientName)).attr("disabled","disabled");
+							
+						}
 						getDoctor();
 						getAccount();
 						getDepart("keshi1");
@@ -517,15 +524,16 @@
 								})
 
 							}
-							console.log(deparTreat);
 							/*在这里调用上传接口*/
 							$.ajax({
-								url: config.rootUrl + "scss/user/addTreatRecord.do",
+								url: config.rootUrl + "user/addTreatRecord.do",
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",
 									userId: session_login.info.userId,
-
+									
+									treatId:"6",
+									patientId:patientId,
 									doctorId: doctor,
 									accountId: accountId,
 									totalMoney: yingfu,
@@ -533,15 +541,13 @@
 									treatAward: ticheng,
 									patientName: patientName,
 									remarks:supplement,
-									deparTreat:deparTreat,
-									appointAward :yingfu,
+									deparTreat:JSON.stringify(deparTreat),
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
 									alert("添加业绩成功,等待战区经理审核!");
-									console.log(data);
-//									window.location.reload();
+									window.history.go(-1);
 								},
 								error: function(xhr, type, errorThrown) {
 									alert('网络异常，请稍后再试！');

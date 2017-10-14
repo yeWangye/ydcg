@@ -18,7 +18,11 @@ $(function() {
 							$(".role").text("组员");
 							break;
 						case 2:
-							$(".role").text("经理");
+							if(grade==2){
+								$(".role").text("科长");
+							}else{
+								$(".role").text("经理");
+							}
 							break;
 						case 3:
 							$(".role").text("总经理");
@@ -79,7 +83,7 @@ $(function() {
 			//						imgPath.replace("data:image/png;base64,", "");
 			/*在这里调用上传接口*/
 			$.ajax({
-				url: config.rootUrl + "scss/user/saveImageUrl.do",
+				url: config.rootUrl + "user/saveImageUrl.do",
 				data: {
 					headImage: imgData
 				},
@@ -88,7 +92,7 @@ $(function() {
 				success: function(data) {
 					console.log(data);
 					$.ajax({
-						url: config.rootUrl + "scss/user/uploadUserHead.do",
+						url: config.rootUrl + "user/uploadUserHead.do",
 						data: {
 							userId: session_login.info.userId,
 							deviceToken: "html5",
@@ -139,7 +143,7 @@ $(function() {
 });
 //获取通知内容
 $.ajax({
-	url: config.rootUrl + "scss/user/getListMessage.do",
+	url: config.rootUrl + "user/getListMessage.do",
 	data: {
 		userId: session_login.info.userId,
 		deviceToken: "html5",

@@ -25,7 +25,7 @@ function uploadHead(imgPath) {
 		//						imgPath.replace("data:image/png;base64,", "");
 		/*在这里调用上传接口*/
 		$.ajax({
-			url: config.rootUrl + "scss/user/saveImageUrl.do",
+			url: config.rootUrl + "user/saveImageUrl.do",
 			data: {
 				headImage: imgData
 			},
@@ -34,7 +34,7 @@ function uploadHead(imgPath) {
 			success: function(data) {
 				console.log(data);
 				$.ajax({
-					url: config.rootUrl + "scss/user/uploadUserHead.do",
+					url: config.rootUrl + "user/uploadUserHead.do",
 					data: {
 						userId: session_login.info.userId,
 						deviceToken: "html5",

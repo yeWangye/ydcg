@@ -57,26 +57,26 @@
 								</ul>
 							</li>
 							<li class="dropdown danger">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
 								<ul class="dropdown-menu danger  animated fadeInDown">
 									<li class="title">
-										提示 <span class="badge pull-right">0</span>
+										提示 <span class="badge pull-right totalMsg"></span>
 									</li>
 									<li>
 										<ul class="list-group notifications">
-											<a href="#">
+											<a href="yeji_guanli/yeji_dai_shenhe.html">
 												<li class="list-group-item">
-													<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
 												</li>
 											</a>
-											<a href="#">
+											<a href="yeji_guanli/zuyuan_yeji.html">
 												<li class="list-group-item">
-													<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
 												</li>
 											</a>
-											<a href="#">
+											<a href="yeji_guanli/yeji.html">
 												<li class="list-group-item">
-													<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
 												</li>
 											</a>
 											<a href="#">
@@ -101,7 +101,7 @@
 											<div class="btn-group margin-bottom-2x" role="group">
 												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
 												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
-												<input type="file"  style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+												<input type="file" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
 
 											</div>
 										</div>
@@ -149,6 +149,8 @@
 										</div>
 									</div>
 								</li>
+								
+
 								<li class="panel panel-default dropdown">
 									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
 										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
@@ -217,11 +219,11 @@
 												<li>
 													<a href="yeji_guanli/yeji.html">业绩信息</a>
 												</li>
-												
+
 											</ul>
 										</div>
 									</div>
-									
+
 								</li>
 								<!-- Dropdown-->
 								<li class="panel panel-default dropdown">
@@ -259,7 +261,7 @@
 											</ul>
 										</div>
 									</div>
-									
+
 								</li>
 								<!-- Dropdown-->
 								<li class="panel panel-default dropdown">
@@ -320,7 +322,7 @@
 									</div>
 								</a>
 							</div>
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" id="daishenMsg">
 								<a href="xinxi_shenhe/dai_shenhe.html">
 									<div class="card yellow summary-inline">
 										<div class="card-body">
@@ -373,7 +375,7 @@
 											</div>
 											<div class="card-body half-padding">
 												<h4 class="float-left no-margin font-weight-300">业绩曲线</h4>
-												<h2 class="float-right no-margin font-weight-300">¥3200</h2>
+												<h2 class="float-right no-margin font-weight-300">¥3200(测试数据)</h2>
 												<div class="clear-both"></div>
 											</div>
 										</div>
@@ -414,7 +416,7 @@
 												<canvas id="jumbotron-bar-chart" class="chart no-padding"></canvas>
 											</div>
 											<div class="card-body half-padding">
-												<h4 class="float-left no-margin font-weight-300">业绩图表</h4>
+												<h4 class="float-left no-margin font-weight-300">业绩图表(测试)</h4>
 												<div class="clear-both"></div>
 											</div>
 										</div>
@@ -425,7 +427,7 @@
 												<canvas id="jumbotron-line-2-chart" class="chart no-padding"></canvas>
 											</div>
 											<div class="card-body half-padding">
-												<h4 class="float-left no-margin font-weight-300">科室业绩曲线</h4>
+												<h4 class="float-left no-margin font-weight-300">科室业绩曲线(测试)</h4>
 												<div class="clear-both"></div>
 											</div>
 										</div>
@@ -460,7 +462,7 @@
 													</div>
 												</li>
 											</a>
-											
+
 											<a href="#" id="message-load-more">
 												<li class="text-center load-more">
 													<i class="fa fa-refresh"></i> 加载更多
@@ -520,13 +522,13 @@
 					$(".logout").on("click", function() {
 						$.ajax({
 							type: "post",
-							url: config.rootUrl + "scss/user/logout.do",
+							url: config.rootUrl + "user/logout.do",
 							async: true,
 							data: {
 								userId: session_login.info.userId
 							},
 							success: function(data) {
-								if(window.location.pathname == "/ydcg/html/index.html") {
+								if(window.location.pathname == "/ydcgweb/html/index.html") {
 									window.location.href = "login.html";
 
 								} else {
@@ -553,7 +555,11 @@
 							$(".role").text("组员");
 							break;
 						case 2:
-							$(".role").text("经理");
+							if(grade == 2) {
+								$(".role").text("科长");
+							} else {
+								$(".role").text("经理");
+							}
 							break;
 						case 3:
 							$(".role").text("总经理");
@@ -616,7 +622,7 @@
 							//						imgPath.replace("data:image/png;base64,", "");
 							/*在这里调用上传接口*/
 							$.ajax({
-								url: config.rootUrl + "scss/user/saveImageUrl.do",
+								url: config.rootUrl + "user/saveImageUrl.do",
 								data: {
 									headImage: imgData
 								},
@@ -625,7 +631,7 @@
 								success: function(data) {
 									console.log(data);
 									$.ajax({
-										url: config.rootUrl + "scss/user/uploadUserHead.do",
+										url: config.rootUrl + "user/uploadUserHead.do",
 										data: {
 											userId: session_login.info.userId,
 											deviceToken: "html5",
@@ -635,14 +641,14 @@
 										async: true,
 										type: 'post',
 										success: function(data) {
-//											alert(data.msg);
+											//											alert(data.msg);
 											alert('上传成功,请退出登录查看');
 										},
 										error: function(xhr, type, errorThrown) {
 											alert('网络异常，请稍后再试！');
 										}
 									});
-									
+
 								},
 								error: function(xhr, type, errorThrown) {
 									alert('网络异常，请稍后再试！');
@@ -676,7 +682,7 @@
 					}
 					//获取通知内容
 					$.ajax({
-						url: config.rootUrl + "scss/user/getListMessage.do",
+						url: config.rootUrl + "user/getListMessage.do",
 						data: {
 							userId: session_login.info.userId,
 							deviceToken: "html5",
@@ -696,7 +702,7 @@
 					});
 					//我的信息					
 					$.ajax({
-						url: config.rootUrl + "scss/user/getSelfAppoint.do",
+						url: config.rootUrl + "user/getSelfAppoint.do",
 						data: {
 							deviceToken: "html5",
 							deviceType: "html5",
@@ -717,7 +723,7 @@
 					})
 					//待审信息
 					$.ajax({
-						url: config.rootUrl + "scss/user/getVerifyAppoint.do",
+						url: config.rootUrl + "user/getVerifyAppoint.do",
 						data: {
 							deviceToken: "html5",
 							deviceType: "html5",
@@ -729,8 +735,13 @@
 						async: true,
 						type: "post",
 						success: function(data) {
-							var info = data.patCount || 0;
-							$(".daishenMsg").text(info);
+							if(data.code==1){
+								var info = data.info.length == 0 ? 0 : data.pageCount;
+								$(".daishenMsg").text(info);
+							}else{
+								$("#daishenMsg").css("display","none");
+							}
+							
 						},
 						error: function() {
 							alert("网络错误");
@@ -739,7 +750,7 @@
 					})
 					//放弃信息fangqiMsg
 					$.ajax({
-						url: config.rootUrl + "scss/user/quitListAppoint.do",
+						url: config.rootUrl + "user/quitListAppoint.do",
 						data: {
 							deviceToken: "html5",
 							deviceType: "html5",
@@ -751,7 +762,7 @@
 						async: true,
 						type: "post",
 						success: function(data) {
-							var info = data.pageCount || 0;
+							var info = data.info.length == 0 ? 0 : data.pageCount;
 							$(".fangqiMsg").text(info);
 						},
 						error: function() {
@@ -761,7 +772,7 @@
 					})
 					//离职信息lizhiMsg
 					$.ajax({
-						url: config.rootUrl + "scss/user/leaveMemberAppoint.do",
+						url: config.rootUrl + "user/leaveMemberAppoint.do",
 						data: {
 							deviceToken: "html5",
 							deviceType: "html5",
@@ -772,8 +783,99 @@
 						async: true,
 						type: "post",
 						success: function(data) {
-							var info = data.pageCount || 0;
+							var info = data.info.length == 0 ? 0 : data.pageCount;
 							$(".lizhiMsg").text(info);
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+					//提示信息总数totalMsg;
+					$(".totalMsg").text(0);
+					var totalNow = 0;
+					//待审核业绩dai_shen_yeji
+					$.ajax({
+						url: config.rootUrl + "user/getSelfTreat.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							status: "verify",
+							userId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							if(data.code==1){
+								var info = data.info.length == 0 ? 0 : data.pageCount;
+								$(".dai_shen_yeji").text(info);
+								totalNow += info;
+								$(".totalMsg").text(totalNow);
+							}else{
+								$(".dai_shen_yeji").parent().css("display","none");
+							}
+							
+						},
+						error: function() {
+							alert("网络错误");
+
+						}
+					})
+					//组员业绩zuyuan_yeji
+					if(roleId != "1") {
+						$.ajax({
+							url: config.rootUrl + "user/getTreatList.do",
+							data: {
+								deviceToken: "html5",
+								deviceType: "html5",
+								status: "verify",
+								userId: session_login.info.userId,
+								page: "1",
+								rows: "1",
+							},
+							async: true,
+							type: "post",
+							success: function(data) {
+								if(data.code==1){
+									var info = data.info.length == 0 ? 0 : data.pageCount;
+									$(".zuyuan_yeji").text(info);
+									totalNow += info;
+									$(".totalMsg").text(totalNow);
+								}else{
+									$(".zuyuan_yeji").parent().css("display", "none");
+									$("#component-example ul").children("li").eq("1").css("display","none");
+									$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display","none");
+									$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display","none");
+								}
+								
+							},
+							error: function() {
+								alert("网络错误");
+
+							}
+						})
+					}
+
+					//我的业绩wode_yeji
+					$.ajax({
+						url: config.rootUrl + "user/getSelfTreat.do",
+						data: {
+							deviceToken: "html5",
+							deviceType: "html5",
+							status: "notverify",
+							userId: session_login.info.userId,
+							page: "1",
+							rows: "1",
+						},
+						async: true,
+						type: "post",
+						success: function(data) {
+							var info = data.info.length == 0 ? 0 : data.pageCount;
+							$(".wode_yeji").text(info);
+							totalNow += info;
+							$(".totalMsg").text(totalNow);
 						},
 						error: function() {
 							alert("网络错误");

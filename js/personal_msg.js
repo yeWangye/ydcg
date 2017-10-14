@@ -2,13 +2,13 @@
 $(".logout").on("click", function() {
 	$.ajax({
 		type: "post",
-		url: config.rootUrl + "scss/user/logout.do",
+		url: config.rootUrl + "user/logout.do",
 		async: true,
 		data: {
 			userId: session_login.info.userId
 		},
 		success: function(data) {
-			if(window.location.pathname == "/ydcg/html/index.html") {
+			if(window.location.pathname == "/ydcgweb/html/index.html") {
 				window.location.href = "login.html";
 
 			} else {
@@ -27,7 +27,7 @@ $(".logout").on("click", function() {
 })
 $(function() {
 	var username = session_login.info.realName;
-	
+
 	$(".username").text(username);
 	var grade = session_login.info.grade;
 	var roleId = session_login.info.roleId;
@@ -72,4 +72,95 @@ $(function() {
 		//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
 	}
 
+	$(".totalMsg").text(0);
+	var totalNow = 0;
+	//待审核业绩dai_shen_yeji
+	$.ajax({
+		url: config.rootUrl + "user/getSelfTreat.do",
+		data: {
+			deviceToken: "html5",
+			deviceType: "html5",
+			status: "verify",
+			userId: session_login.info.userId,
+			page: "1",
+			rows: "1",
+		},
+		async: true,
+		type: "post",
+		success: function(data) {
+			if(data.code == 1) {
+				var info = data.info.length == 0 ? 0 : data.pageCount;
+				$(".dai_shen_yeji").text(info);
+				totalNow += info;
+				$(".totalMsg").text(totalNow);
+			} else {
+				$(".dai_shen_yeji").parent().css("display", "none");
+			}
+
+		},
+		error: function() {
+			alert("网络错误");
+
+		}
+	})
+	//组员业绩zuyuan_yeji
+
+	$.ajax({
+		url: config.rootUrl + "user/getTreatList.do",
+		data: {
+			deviceToken: "html5",
+			deviceType: "html5",
+			status: "verify",
+			userId: session_login.info.userId,
+			page: "1",
+			rows: "1",
+		},
+		async: true,
+		type: "post",
+		success: function(data) {
+			if(data.code == 1) {
+				var info = data.info.length == 0 ? 0 : data.pageCount;
+				$(".zuyuan_yeji").text(info);
+				totalNow += info;
+				$(".totalMsg").text(totalNow);
+			} else {
+				$(".zuyuan_yeji").parent().css("display", "none");
+				$("#component-example ul").children("li").eq("1").css("display","none");
+				$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display","none");
+				$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display","none");
+			}
+
+		},
+		error: function() {
+			alert("网络错误");
+
+		}
+	})
+
+	//我的业绩wode_yeji
+	$.ajax({
+		url: config.rootUrl + "user/getSelfTreat.do",
+		data: {
+			deviceToken: "html5",
+			deviceType: "html5",
+			status: "notverify",
+			userId: session_login.info.userId,
+			page: "1",
+			rows: "1",
+		},
+		async: true,
+		type: "post",
+		success: function(data) {
+			var info = data.info.length == 0 ? 0 : data.pageCount;
+			$(".wode_yeji").text(info);
+			totalNow += info;
+			$(".totalMsg").text(totalNow);
+		},
+		error: function() {
+			alert("网络错误");
+
+		}
+	})
+
 });
+//提示信息总数totalMsg;

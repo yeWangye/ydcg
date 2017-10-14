@@ -60,26 +60,26 @@
 									</ul>
 								</li>
 								<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
 									<ul class="dropdown-menu danger  animated fadeInDown">
 										<li class="title">
-											提示 <span class="badge pull-right">0</span>
+											提示 <span class="badge pull-right totalMsg"></span>
 										</li>
 										<li>
 											<ul class="list-group notifications">
-												<a href="#">
+												<a href="../yeji_guanli/yeji_dai_shenhe.html">
 													<li class="list-group-item">
-														<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/zuyuan_yeji.html">
 													<li class="list-group-item">
-														<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/yeji.html">
 													<li class="list-group-item">
-														<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
 													</li>
 												</a>
 												<a href="#">
@@ -146,7 +146,7 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="table/datatable.html">患者数据库</a>
+													<a href="../table/datatable.html">患者数据库</a>
 												</li>
 											</ul>
 										</div>
@@ -308,7 +308,7 @@
 						<div class="side-body">
 							<div class="page-title">
 								<span class="title">组员信息详情</span>
-								<div class="description"><sapn  style="color:red;">操作提示:</sapn>当前获取到的是组员具体的预约信息</div>
+								<div class="description"><sapn  class="tips">操作提示:</sapn>当前获取到的是<span class="tips">组员</span>具体的预约信息</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 detail">
@@ -575,10 +575,10 @@
 					<script type="text/javascript">
 						$(document).ready(function() {
 							var patientId = window.location.search.split("pid=")[1].split("&")[0];
-							var cardTitle = window.location.search.split("title=")[1].split("&")[0];;
+							var cardTitle = window.location.search.split("title=")[1].split("&")[0];
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(cardTitle) + "</a>");
 							$.ajax({
-								url: config.rootUrl + "scss/user/getAppointDetail.do",
+								url: config.rootUrl + "user/getAppointDetail.do",
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",

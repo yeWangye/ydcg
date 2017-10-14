@@ -62,26 +62,26 @@
 									</ul>
 								</li>
 								<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 0</a>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
 									<ul class="dropdown-menu danger  animated fadeInDown">
 										<li class="title">
-											提示 <span class="badge pull-right">0</span>
+											提示 <span class="badge pull-right totalMsg"></span>
 										</li>
 										<li>
 											<ul class="list-group notifications">
-												<a href="#">
+												<a href="../yeji_guanli/yeji_dai_shenhe.html">
 													<li class="list-group-item">
-														<span class="badge">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/zuyuan_yeji.html">
 													<li class="list-group-item">
-														<span class="badge success">0</span> <i class="fa fa-check icon"></i> 信息
+														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
 													</li>
 												</a>
-												<a href="#">
+												<a href="../yeji_guanli/yeji.html">
 													<li class="list-group-item">
-														<span class="badge danger">0</span> <i class="fa fa-comments icon"></i> 待办事项
+														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
 													</li>
 												</a>
 												<a href="#">
@@ -148,7 +148,7 @@
 											<div class="panel-body">
 												<ul class="nav navbar-nav">
 													<li>
-														<a href="table/datatable.html">患者数据库</a>
+														<a href="../table/datatable.html">患者数据库</a>
 													</li>
 												</ul>
 											</div>
@@ -311,7 +311,7 @@
 							<div class="page-title">
 								<span class="title">组员业绩</span>
 								<div class="description">
-									<sapn style="color:red;">操作提示:</sapn>当前获取到的是<span style="color:red;font-weight: 800;">组员</span>所有待审核的业绩,点击表格数据可以查看具体业绩信息,也可以进行删除操作(暂不支持)!</div>
+									<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">组员和自己</span>所有待审核的业绩,点击表格数据可以查看具体业绩信息,也可以进行删除操作(暂不支持)!</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 detail">
@@ -334,7 +334,7 @@
 														<th>总金额</th>
 														<th>付款金额</th>
 														<th>总奖励金额</th>
-														
+
 														<th>创建时间</th>
 														<th>删除</th>
 													</tr>
@@ -390,11 +390,10 @@
 							$('.table tbody').on('click', 'button.recive', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
-								if(confirm("确认审核通过这条预约信息?")) {
+								if(confirm("确认审核通过这条业绩信息?")) {
 									var rid = $(this).attr("data-rid");
-									console.log(pid);
 									$.ajax({
-										url: config.rootUrl + "scss/user/verifyTreat.do",
+										url: config.rootUrl + "user/verifyTreat.do",
 										type: 'POST',
 										dataType: 'json',
 										data: {
@@ -402,11 +401,11 @@
 											deviceType: "html5",
 											userId: session_login.info.userId,
 											recordId: rid,
-											isPass:"1",
+											isPass: "1",
 										},
 										success: function(data) {
 											if(data.code == 1) {
-												alert("信息通过!");
+												alert("审核完成!");
 												window.location.reload();
 											} else {
 												alert(data.msg);
@@ -423,34 +422,38 @@
 							$('.table tbody').on('click', 'button.noRecive', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
-								if(confirm("确认审核不通过这条预约信息?")) {
+								if(confirm("确认审核不通过这条业绩信息?")) {
 									var rid = $(this).attr("data-rid");
-									var refuseReason=prompt("请输入不通过的原因!","");
-									$.ajax({
-										url: config.rootUrl + "scss/user/verifyTreat.do",
-										type: 'POST',
-										dataType: 'json',
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
-											recordId: rid,
-											isPass:"2",
-											refuseReason:refuseReason,
-										},
-										success: function(data) {
-											if(data.code == 1) {
-												alert("审核完成!");
-//												window.location.reload();
-											} else {
-												alert(data.msg);
-											}
+									var refuseReason = prompt("请输入不通过的原因!", "");
+									if(refuseReason) {
+										$.ajax({
+											url: config.rootUrl + "user/verifyTreat.do",
+											type: 'POST',
+											dataType: 'json',
+											data: {
+												deviceToken: "html5",
+												deviceType: "html5",
+												userId: session_login.info.userId,
+												recordId: rid,
+												isPass: "2",
+												refuseReason: refuseReason,
+											},
+											success: function(data) {
+												if(data.code == 1) {
+													alert("审核完成!");
+													window.location.reload();
+												} else {
+													alert(data.msg);
+												}
 
-										},
-										error: function() {
-											alert("发生错误了,请检查你的网络!");
-										}
-									})
+											},
+											error: function() {
+												alert("发生错误了,请检查你的网络!");
+											}
+										})
+									}else{
+										alert("请输入原因!")
+									}
 
 								}
 
@@ -461,7 +464,7 @@
 								if(confirm("确认将这条业绩记录删除?务必谨慎选择!!!")) {
 									var rid = $(this).attr("data-rid");
 									$.ajax({
-										url: config.rootUrl + "scss/user/delSelfTreat.do",
+										url: config.rootUrl + "user/delSelfTreat.do",
 										type: 'POST',
 										dataType: 'json',
 										data: {
@@ -472,7 +475,7 @@
 										},
 										success: function(data) {
 											if(data.code == 1) {
-												alert("信息业绩成功!");
+												alert("删除业绩成功!");
 												window.location.reload();
 											} else {
 												alert(data.msg);
@@ -496,7 +499,7 @@
 
 							});
 							$.ajax({
-								url: config.rootUrl + "scss/user/getTreatList.do",
+								url: config.rootUrl + "user/getTreatList.do",
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",
@@ -551,6 +554,9 @@
 											case 9:
 												treatId = "尾款";
 												break;
+											default:
+												treatId = "未设置";
+												break;
 										}
 										tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
 											"<td class='goDetail'>" + info[i].patientName + "</td>" +
@@ -561,7 +567,7 @@
 											"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
 											"<td class='goDetail'>" + info[i].paidMoney + "</td>" +
 											"<td class='goDetail'>" + info[i].rewardMoney + "</td>" +
-											
+
 											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 											"<td class='goDetail'>" +
 											"<button  class='btn btn-success recive' type='button' data-rid=" + info[i].recordId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
@@ -582,7 +588,7 @@
 										nextContent: '下页',
 										callback: function(api) {
 											$.ajax({
-												url: config.rootUrl + "scss/user/getTreatList.do",
+												url: config.rootUrl + "user/getTreatList.do",
 												data: {
 													deviceToken: "html5",
 													deviceType: "html5",
@@ -642,7 +648,7 @@
 															"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
 															"<td class='goDetail'>" + info[i].paidMoney + "</td>" +
 															"<td class='goDetail'>" + info[i].rewardMoney + "</td>" +
-														
+
 															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 															"<td class='goDetail'>" +
 															"<button  class='btn btn-success recive' type='button' data-rid=" + info[i].recordId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
