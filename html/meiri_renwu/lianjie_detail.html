@@ -18,7 +18,6 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
 
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
@@ -36,8 +35,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>界面设置</li>
-								<li class="active">主题</li>
+								<li>每日任务</li>
+								<li class="active">链接类</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -60,37 +59,37 @@
 								</ul>
 							</li>
 							<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
-									<ul class="dropdown-menu danger  animated fadeInDown">
-										<li class="title">
-											提示 <span class="badge pull-right totalMsg"></span>
-										</li>
-										<li>
-											<ul class="list-group notifications">
-												<a href="../yeji_guanli/yeji_dai_shenhe.html">
-													<li class="list-group-item">
-														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/zuyuan_yeji.html">
-													<li class="list-group-item">
-														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/yeji.html">
-													<li class="list-group-item">
-														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
-													</li>
-												</a>
-												<a href="#">
-													<li class="list-group-item message">
-														敬请期待...
-													</li>
-												</a>
-											</ul>
-										</li>
-									</ul>
-								</li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right totalMsg"></span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="../yeji_guanli/yeji_dai_shenhe.html">
+												<li class="list-group-item">
+													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/zuyuan_yeji.html">
+												<li class="list-group-item">
+													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/yeji.html">
+												<li class="list-group-item">
+													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown profile">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
 								<ul class="dropdown-menu animated fadeInDown">
@@ -133,7 +132,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="tianjiayeji.html">
+									<a href="../xinxi_guanli/tianjiayeji.html">
 										<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
 									</a>
 								</li>
@@ -191,19 +190,19 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="wode_xinxi.html">我的信息</a>
+													<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
 												</li>
 												<li>
-													<a href="zuyuan_xinxi.html">组员信息</a>
+													<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
 												</li>
 												<li>
-													<a href="daishen_xinxi.html">待审信息</a>
+													<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
 												</li>
 												<li>
-													<a href="fangqi_xinxi.html">放弃信息</a>
+													<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
 												</li>
 												<li>
-													<a href="lizhi_xinxi.html">离职信息</a>
+													<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
 												</li>
 											</ul>
 										</div>
@@ -242,13 +241,13 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="../yeji_guanli/yeji_xinxi.html">业绩信息</a>
+													<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
 												</li>
 												<li>
-													<a href="../yeji_guanli/keshi_yeji.html">科室业绩</a>
+													<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
 												</li>
 												<li>
-													<a href="../yeji_guanli/dai_shenhe.html">待审核</a>
+													<a href="../yeji_guanli/yeji.html">业绩信息</a>
 												</li>
 											</ul>
 										</div>
@@ -318,7 +317,7 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="login.html">注销登陆</a>
+													<a href="../login.html">注销登陆</a>
 												</li>
 												<li>
 													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
@@ -335,8 +334,44 @@
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title"></span>
-							<div class="description"></div>
+							<span class="title">链接类--记录详情</span>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title">记录查看</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="lianjie" class="col-sm-2 control-label">标题</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
+														<input type="text" style="width:100%" id="lianjie" class="form-control" disabled="disabled" placeholder="" aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="xinxi_laiyuan" class="col-sm-2 control-label">信息来源</label>
+												<div class="input-group">
+
+													<div class="col-sm-10">
+														<div class="input-group">
+															<span class="input-group-addon"><i>*</i>必填项</span>
+															<input type="text"  id="xinxi_laiyuan" class="form-control" disabled="disabled" placeholder="" aria-describedby="basic-addon1">
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
 						</div>
 
 					</div>
@@ -363,15 +398,57 @@
 				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
-				<script src="../../lib/js/jquery.pagination.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
+
 				<script src="../../js/config.js"></script>
+				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
-				<script src="../../js/personal_msg.js"></script>
+				<script type="text/javascript" src="../../js/personal_msg.js"></script>
 				<!-- Javascript -->
+				<script type="text/javascript">
+					$(function() {
+						var sName = window.location.search.split("sName=")[1].split("&")[0];
+						var title = window.location.search.split("title=")[1].split("&")[0];
+						var searchDate = window.location.search.split("searchDate=")[1].split("&")[0];
+						
+						if(window.location.search.split("userId=")[1]) {
+							var memberId = window.location.search.split("userId=")[1].split("&")[0];
+						}
+
+						$(".card-title .title")[0].innerHTML = "<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'></span> " + decodeURI(title) + "</a>";
+
+						$.ajax({
+							type: "post",
+							url: config.rootUrl + "user/socialDetail.do",
+							data: {
+								deviceToken: "html5",
+								deviceType: "html5",
+								userId: session_login.info.userId,
+								memberId: memberId || session_login.info.userId,
+								searchDate: searchDate,
+								channel: decodeURI(sName),
+								type: "link",
+								page: 1,
+								rows: 1,
+							},
+							async: true,
+							success: function(data) {
+								console.log(data)
+								var info = data.info[0];
+								$("#lianjie").val(info.prUrl);
+								$("#xinxi_laiyuan").val(decodeURI(sName));
+								
+							},
+							error: function() {
+								alert("网络错误!")
+							}
+						});
+
+					})
+				</script>
 	</body>
 
 </html>

@@ -18,7 +18,6 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
 
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
@@ -36,8 +35,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>界面设置</li>
-								<li class="active">主题</li>
+								<li>每日任务</li>
+								<li class="active">通讯类</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -60,37 +59,37 @@
 								</ul>
 							</li>
 							<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
-									<ul class="dropdown-menu danger  animated fadeInDown">
-										<li class="title">
-											提示 <span class="badge pull-right totalMsg"></span>
-										</li>
-										<li>
-											<ul class="list-group notifications">
-												<a href="../yeji_guanli/yeji_dai_shenhe.html">
-													<li class="list-group-item">
-														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/zuyuan_yeji.html">
-													<li class="list-group-item">
-														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/yeji.html">
-													<li class="list-group-item">
-														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
-													</li>
-												</a>
-												<a href="#">
-													<li class="list-group-item message">
-														敬请期待...
-													</li>
-												</a>
-											</ul>
-										</li>
-									</ul>
-								</li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right totalMsg"></span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="../yeji_guanli/yeji_dai_shenhe.html">
+												<li class="list-group-item">
+													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/zuyuan_yeji.html">
+												<li class="list-group-item">
+													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/yeji.html">
+												<li class="list-group-item">
+													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown profile">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
 								<ul class="dropdown-menu animated fadeInDown">
@@ -133,7 +132,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="tianjiayeji.html">
+									<a href="../xinxi_guanli/tianjiayeji.html">
 										<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
 									</a>
 								</li>
@@ -191,19 +190,19 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="wode_xinxi.html">我的信息</a>
+													<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
 												</li>
 												<li>
-													<a href="zuyuan_xinxi.html">组员信息</a>
+													<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
 												</li>
 												<li>
-													<a href="daishen_xinxi.html">待审信息</a>
+													<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
 												</li>
 												<li>
-													<a href="fangqi_xinxi.html">放弃信息</a>
+													<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
 												</li>
 												<li>
-													<a href="lizhi_xinxi.html">离职信息</a>
+													<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
 												</li>
 											</ul>
 										</div>
@@ -242,13 +241,13 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="../yeji_guanli/yeji_xinxi.html">业绩信息</a>
+													<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
 												</li>
 												<li>
-													<a href="../yeji_guanli/keshi_yeji.html">科室业绩</a>
+													<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
 												</li>
 												<li>
-													<a href="../yeji_guanli/dai_shenhe.html">待审核</a>
+													<a href="../yeji_guanli/yeji.html">业绩信息</a>
 												</li>
 											</ul>
 										</div>
@@ -318,7 +317,7 @@
 										<div class="panel-body">
 											<ul class="nav navbar-nav">
 												<li>
-													<a href="login.html">注销登陆</a>
+													<a href="../login.html">注销登陆</a>
 												</li>
 												<li>
 													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
@@ -335,8 +334,76 @@
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title"></span>
-							<div class="description"></div>
+							<span class="title">通讯类--工作记录</span>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title">通讯类添加</div>
+										</div>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="biaoti" class="col-sm-2 control-label">标题</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
+														<input type="text" style="width:30%" id="biaoti" class="form-control" placeholder="请输入标题" aria-describedby="basic-addon1">
+													</div>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="xinxi_laiyuan" class="col-sm-2 control-label">信息来源</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i>*</i>必选项</span>
+													<div>
+														<select id="xinxi_laiyuan" style="width:30%" title="信息来源" aria-describedby="basic-addon1">
+															<optgroup label="请选择信息来源">
+																<option value="tel">电话</option>
+																<option value="sms">短信</option>
+																<option value="swt">商务通</option>
+															</optgroup>
+														</select>
+													</div>
+
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-2 control-label">添加截图(<span style="color:red">*必填项</span>)</label>
+												<div class="col-sm-10">
+													<div class="col-sm-3 col-xs-3  col-sm-offset-1 col-xs-offset-1">
+														<input type="file" name="f1" style="display: none;" />
+														<img src="../../img/addphoto.png" class="f1" style="width:100%;cursor: pointer;" />
+													</div>
+													<div class="col-sm-3 col-xs-3 ">
+														<input type="file" name="f2" style="display: none;" />
+														<img src="../../img/addphoto.png" style="width:100%;cursor: pointer;" class="f2" />
+													</div>
+													<div class="col-sm-3 col-xs-3 ">
+														<input type="file" name="f3" style="display: none;" />
+														<img src="../../img/addphoto.png" style="width:100%;cursor: pointer;" class="f3" />
+													</div>
+												</div>
+
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-2 control-label">提交</label>
+												<div class="col-sm-10">
+													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">提交</button>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
 						</div>
 
 					</div>
@@ -363,15 +430,227 @@
 				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
-				<script src="../../lib/js/jquery.pagination.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
+
 				<script src="../../js/config.js"></script>
+				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
-				<script src="../../js/personal_msg.js"></script>
+				<script type="text/javascript" src="../../js/personal_msg.js"></script>
+
 				<!-- Javascript -->
+				<script type="text/javascript">
+					$(function() {
+						//图片获取上传开始
+						$(".f1").on("click", function(e) {
+							e.preventDefault();
+							$("input:file[name=f1]").trigger("click");
+						})
+						$(".f2").on("click", function(e) {
+							e.preventDefault();
+							$("input:file[name=f2]").trigger("click");
+						})
+						$(".f3").on("click", function(e) {
+							e.preventDefault();
+							$("input:file[name=f3]").trigger("click");
+						})
+						var input1 = $("input:file[name=f1]")[0]; //获取选择图片的input元素 
+						//这边是判断本浏览器是否支持这个API。 
+						if(typeof FileReader === 'undefined') {
+							alert("浏览器版本过低，请先更新您的浏览器~");
+							input1.setAttribute('disabled', 'disabled');
+						} else {
+							input1.addEventListener('change', readFile1, false);
+							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
+						}
+						var input2 = $("input:file[name=f2]")[0]; //获取选择图片的input元素 
+						//这边是判断本浏览器是否支持这个API。 
+						if(typeof FileReader === 'undefined') {
+							alert("浏览器版本过低，请先更新您的浏览器~");
+							input2.setAttribute('disabled', 'disabled');
+						} else {
+							input2.addEventListener('change', readFile2, false);
+							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
+						}
+						var input3 = $("input:file[name=f3]")[0]; //获取选择图片的input元素 
+						//这边是判断本浏览器是否支持这个API。 
+						if(typeof FileReader === 'undefined') {
+							alert("浏览器版本过低，请先更新您的浏览器~");
+							input3.setAttribute('disabled', 'disabled');
+						} else {
+							input3.addEventListener('change', readFile3, false);
+							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
+						}
+
+						function readFile1() {
+							var file = this.files[0]; //获取file对象 
+							//判断file的类型是不是图片类型。 
+							if(!/image\/\w+/.test(file.type)) {
+								alert("请上传一张图片~");
+								return false;
+							}
+							var reader = new FileReader(); //声明一个FileReader实例 
+							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
+							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
+							reader.onload = function(e) {
+								$(".f1").attr("src", this.result);
+								$(".f1").attr("data-src", this.result);
+							}
+						}
+
+						function readFile2() {
+							var file = this.files[0]; //获取file对象 
+							//判断file的类型是不是图片类型。 
+							if(!/image\/\w+/.test(file.type)) {
+								alert("请上传一张图片~");
+								return false;
+							}
+							var reader = new FileReader(); //声明一个FileReader实例 
+							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
+							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
+							reader.onload = function(e) {
+								// 创建一个新增的图片和文字input 
+								$(".f2").attr("src", this.result);
+								$(".f2").attr("data-src", this.result);
+
+							}
+						}
+
+						function readFile3() {
+							var file = this.files[0]; //获取file对象 
+							//判断file的类型是不是图片类型。 
+							if(!/image\/\w+/.test(file.type)) {
+								alert("请上传一张图片~");
+								return false;
+							}
+							var reader = new FileReader(); //声明一个FileReader实例 
+							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
+							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
+							reader.onload = function(e) {
+								// 创建一个新增的图片和文字input 
+								$(".f3").attr("src", this.result);
+								$(".f3").attr("data-src", this.result);
+
+							}
+						}
+						//图片上传结束...
+						$(".save").on("click", function() {
+							//标题
+							var biaoti = $("#biaoti").val();
+							if(biaoti == "") {
+								alert("必须添加标题信息!");
+								return;
+							}
+							//10:信息来源
+							var xinxi_laiyuan = $("#xinxi_laiyuan").val();
+
+							//图片上传
+							var _img1_down = false;
+							var _img2_down = false;
+							var _img3_down = false;
+
+							//23:image1
+							var image1;
+							if($(".f1").attr("data-src")) {
+								var dataSrc = $(".f1").attr("data-src");
+								uploadImg(dataSrc, "image1");
+
+							} else {
+								alert("必须添加第一张图");
+								return;
+							}
+							//24:image2
+							var image2;
+							if($(".f2").attr("data-src")) {
+								uploadImg($(".f2").attr("data-src"), "image2");
+							} else {
+								image2 = "";
+								_img2_down = true;
+							}
+							//25:image3
+							var image3;
+							if($(".f3").attr("data-src")) {
+								uploadImg($(".f3").attr("data-src"), "image3");
+							} else {
+								image3 = "";
+								_img3_down = true;
+							}
+
+							//上传图片 
+							function uploadImg(imgPath, ele) {
+								var image = new Image();
+								image.src = imgPath;
+								image.onload = function() {
+									var imgData = getBase64Image(image);
+
+									/*在这里调用上传接口*/
+									$.ajax({
+										url: config.rootUrl + "user/saveImageUrl.do",
+										data: {
+											headImage: imgData
+										},
+										async: true,
+										type: 'post',
+										success: function(data) {
+											switch(ele) {
+												case "image1":
+													_img1_down = true;
+													image1 = data.absolutePath;
+													break;
+												case "image2":
+													_img2_down = true;
+													image2 = data.absolutePath;
+													break;
+												case "image3":
+													_img3_down = true;
+													image3 = data.absolutePath;
+													break;
+											}
+											if(_img1_down && _img2_down && _img3_down) {
+												//最后一步业绩提交
+												$.ajax({
+													url: config.rootUrl + "user/addSocialWork.do",
+													data: {
+														deviceToken: "html5",
+														deviceType: "html5",
+														userId: session_login.info.userId,
+
+														type: xinxi_laiyuan,
+														swTitle: biaoti,
+														image1: image1,
+														image2: image2,
+														image3: image3,
+													},
+													async: true,
+													type: 'post',
+													success: function(data) {
+														console.log(data);
+														if(data.code == "1") {
+															alert("任务完成!");
+															window.location.reload();
+														} else {
+															alert(data.msg);
+														}
+													},
+													error: function(xhr, type, errorThrown) {
+														alert('网络异常，请稍后再试！');
+														console.log(xhr + errorThrown);
+													}
+												});
+											}
+										},
+										error: function(xhr, type, errorThrown) {
+											alert('网络异常，请稍后再试！');
+										}
+									});
+								}
+							}
+						})
+
+					})
+				</script>
 	</body>
 
 </html>

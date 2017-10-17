@@ -153,6 +153,36 @@
 										</div>
 									</div>
 								</li>
+								<li class="panel panel-collapse dropdown">
+									<a data-toggle="collapse" href="#meiri_renwu">
+										<span class="icon fa fa-bell"></span><span class="title">每日任务</span>
+									</a>
+									<!-- Dropdown level 1 -->
+									<div id="meiri_renwu" class="panel-collapse collapse">
+										<div class="panel-body">
+											<ul class="nav navbar-nav">
+												<li>
+													<a href="../meiri_renwu/lianjie.html">链接类</a>
+												</li>
+												<li>
+													<a href="../meiri_renwu/shequ.html">社区类</a>
+												</li>
+												<li>
+													<a href="../meiri_renwu/tongxun.html">通讯类</a>
+												</li>
+												<li>
+													<a href="../meiri_renwu/zuyuan__shequ.html">组员社区</a>
+												</li>
+												<li>
+													<a href="../meiri_renwu/zuyuan__tongxun.html">组员通讯</a>
+												</li>
+												<li>
+													<a href="../meiri_renwu/zuyuan__lianjie.html">组员链接</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
 								<li class="panel panel-default dropdown">
 									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
 										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
@@ -328,7 +358,7 @@
 														<th>患者姓名</th>
 														<th>来源</th>
 														<th>创建时间</th>
-
+														<th>操作</th>
 													</tr>
 												</thead>
 
@@ -339,6 +369,28 @@
 										</div>
 									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="choose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">选择你需要提交的业绩类型</h4>
+							</div>
+							<div class="modal-body">
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="guahao.html">挂号费</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="goutong.html">沟通费</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yizhu.html">医助</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_chu.html">远程(初诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_fu.html">远程(复诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_chu.html">来院(初诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_fu.html">来院(复诊)</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="you_fu.html">邮寄复诊</button>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 							</div>
 						</div>
 					</div>
@@ -378,9 +430,28 @@
 
 					<script type="text/javascript">
 						$(document).ready(function() {
+							//信息成交
+							$('.table tbody').on('click', 'button.deal', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								$('#choose').modal();								
+								var pid = $(this).attr("data-pid");
+								var title = $(this).parents('tr').attr("data-title");
+								
+								sessionStorage.setItem("pid",pid);
+								sessionStorage.setItem("title",title);
+							});
+							$('#choose').on('click', 'button.target', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var target=$(this).attr("data-target");
+								var pid=sessionStorage.getItem("pid");
+								var title=sessionStorage.getItem("title");
+								window.location.href = "../tianjia_yeji/"+target+"?pid=" + pid+"&title="+title;								
+							});
 							if(window.location.search != "") {
 								var memberId = window.location.search.split("mid=")[1].split("&")[0];
-								var cardTitle = window.location.search.split("title=")[1].split("&")[0];;
+								var cardTitle = window.location.search.split("title=")[1].split("&")[0];
 								$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(cardTitle) + "</a>");
 								$(".who").text(decodeURI(cardTitle));
 								$.ajax({
@@ -409,6 +480,7 @@
 												"<td class='goDetail'>" + info[i].sName + "</td>" +
 												"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 												"<td class='goDetail'>" +
+												" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 												"</td>" +
 												"</tr>";
 										}
@@ -446,6 +518,7 @@
 																"<td class='goDetail'>" + info[i].sName + "</td>" +
 																"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 																"<td class='goDetail'>" +
+																" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 																"</td>" +
 																"</tr>";
 														}
@@ -492,7 +565,8 @@
 												"<td class='goDetail'>" + info[i].sName + "</td>" +
 												"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 												"<td class='goDetail'>" +
-
+												" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
+												
 												"</td>" +
 												"</tr>";
 										}
@@ -530,6 +604,7 @@
 																"<td class='goDetail'>" + info[i].sName + "</td>" +
 																"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 																"<td class='goDetail'>" +
+																" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 																"</td>" +
 																"</tr>";
 														}

@@ -38,8 +38,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 								<ol class="breadcrumb navbar-breadcrumb">
-									<li>信息审核</li>
-									<li class="active">待待审</li>
+									<li>每日任务</li>
+									<li class="active">组员链接</li>
 								</ol>
 								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -339,29 +339,31 @@
 					<div class="container-fluid">
 						<div class="side-body">
 							<div class="page-title">
-								<span class="title">待审信息</span>
+								<span class="title">查看<span style="color:red;">组员</span>链接类</span>
 								<div class="description">
-									<sapn class="tips">操作提示:</sapn>当前获取到的是<span  class="tips">组员</span>所有待审核的信息,点击表格数据可以查看具体预约信息,也可以点击<span  class="tips">通过</span>或者<span  class="tips">不通过</span>进行审核!</div>
+									<sapn class="tips">操作提示:经理以上</sapn>级别可以查看组员链接类,点击相应表格数据可以进行链接类信息查看!</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-12 detail">
+								<div class="col-xs-12">
 									<div class="card">
 										<div class="card-header">
 
 											<div class="card-title">
-												<div class="title"></div>
+												<div class="title"><button class="btn btn-success" style="color:white;">组员信息</button></div>
+
 											</div>
+
 										</div>
 										<div class="card-body">
 											<table class="table table-striped" cellspacing="0" width="100%">
 												<thead>
 													<tr>
-														<th>患者姓名</th>
-														<th>来源</th>
-														<th>创建时间</th>
-
+														<th>组员姓名</th>
+														<th>组员用户名</th>
+														<th>头像</th>
 													</tr>
 												</thead>
+
 												<tbody>
 												</tbody>
 											</table>
@@ -395,7 +397,6 @@
 					<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
 					<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
 					<script src="../../lib/js/jquery.pagination.js"></script>
-
 					<!-- Javascript -->
 					<script type="text/javascript" src="../../js/app.js"></script>
 					<script src="../../js/dateFormat.js"></script>
@@ -409,90 +410,31 @@
 
 					<script type="text/javascript">
 						$(document).ready(function() {
-							$('.table tbody').on('click', 'button.recive', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								if(confirm("确认审核通过这条预约信息?")) {
-									var pid = $(this).attr("data-pid");
-									console.log(pid);
-									$.ajax({
-										url: config.rootUrl + "user/verifyAppoint.do",
-										type: 'POST',
-										dataType: 'json',
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
-											patientId: pid,
-											isPass:"1",
-										},
-										success: function(data) {
-											if(data.code == 1) {
-												alert("信息通过!");
-												window.location.reload();
-											} else {
-												alert(data.msg);
-											}
-
-										},
-										error: function() {
-											alert("发生错误了,请检查你的网络!");
-										}
-									})
-
-								}
-
-							});
-							$('.table tbody').on('click', 'button.noRecive', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								if(confirm("确认审核不通过这条预约信息?")) {
-									var pid = $(this).attr("data-pid");
-									$.ajax({
-										url: config.rootUrl + "user/verifyAppoint.do",
-										type: 'POST',
-										dataType: 'json',
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
-											patientId: pid,
-											isPass:"2",
-										},
-										success: function(data) {
-											if(data.code == 1) {
-												alert("信息不通过!");
-												window.location.reload();
-											} else {
-												alert(data.msg);
-											}
-
-										},
-										error: function() {
-											alert("发生错误了,请检查你的网络!");
-										}
-									})
-
-								}
-
-							});
+							
+							if(session_login.info.roleId == "1") {
+								alert("组员没有机会访问本页面,请尽快升职加薪哦,我等你!");
+								window.location.href = "../index.html";
+								return;
+							}
+							
 							$('.table tbody').on('click', '.goDetail', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
-								var pid = $(this).parents('tr').attr("data-pid");
+								var mid = $(this).parents('tr').attr("data-mid");
 								var title = $(this).parents('tr').attr("data-title");
-								window.location.href = "../xinxi_guanli/yuyue_detail.html?pid=" + pid + "&title=" + title + "&fromWhere=daishen_xinxi.html";
+								window.location.href = "../meiri_renwu/lianjie.html?mid=" + mid + "&title=" + title;
 
 							});
+
 							$.ajax({
-								url: config.rootUrl + "user/getVerifyAppoint.do",
+								url: config.rootUrl + "user/getTeamMember.do",
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",
 									userId: session_login.info.userId,
-									status:"verify",
+									teamId:session_login.info.teamId,
 									page: "1",
-									rows: "10"
+									rows: "5"
 								},
 								async: true,
 								type: 'post',
@@ -501,23 +443,15 @@
 									var info = data.info;
 									var pageCount = data.pageCount;
 									var tbody = $(".table tbody")[0];
-									if(info.length == 0) {
-										alert("你当前没有待审核信息!");
-
-									}
-									//添加选项盒子
 									for(var i = 0; i < info.length; i++) {
-										tbody.innerHTML += "<tr data-pid='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
-											"<td class='goDetail'>" + info[i].patientName + "</td>" +
-											"<td class='goDetail'>" + info[i].sName + "</td>" +
-											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-											"<td class='goDetail'>" +
-											"<button  class='btn btn-success recive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
-											" <button  class='btn btn-danger noRecive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-minus-square-o'></i> 不通过 </button>" +
-											"</td>" +
+										tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-title='" + info[i].realName + "' style='cursor:pointer'>" +
+											"<td class='goDetail'>" + info[i].realName + "</td>" +
+											"<td class='goDetail'>" + info[i].userName + "</td>" +
+											"<td class='goDetail'><img style='max-width:50px;' src=" + info[i].headImage + "></td>" +
+
 											"</tr>";
 									}
-									//添加选项盒子
+									//添加选项内容
 									$('.M-box').pagination({
 										pageCount: pageCount,
 										showData: 10,
@@ -529,31 +463,30 @@
 										nextContent: '下页',
 										callback: function(api) {
 											$.ajax({
-												url: config.rootUrl + "user/getVerifyAppoint.do",
+												url: config.rootUrl + "user/getTeamMember.do",
 												data: {
 													deviceToken: "html5",
 													deviceType: "html5",
-													status:"verify",
 													userId: session_login.info.userId,
+													
+													teamId:session_login.info.teamId,
+													
 													page: api.getCurrent(),
-													rows: "10",
+													rows: "5",
 												},
 												async: true,
 												type: "post",
 												success: function(data) {
 													var info = data.info;
+													console.log(data);
 													var tbody = $(".table tbody")[0];
 													tbody.innerHTML = "";
 													//添加选项盒子
 													for(var i = 0; i < info.length; i++) {
-														tbody.innerHTML += "<tr data-pid='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
-															"<td class='goDetail'>" + info[i].patientName + "</td>" +
-															"<td class='goDetail'>" + info[i].sName + "</td>" +
-															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-															"<td class='goDetail'>" +
-															"<button  class='btn btn-success recive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
-															" <button  class='btn btn-danger noRecive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-minus-square-o'></i> 不通过 </button>" +
-															"</td>" +
+														tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-title='" + info[i].realName + "' style='cursor:pointer'>" +
+															"<td class='goDetail'>" + info[i].realName + "</td>" +
+															"<td class='goDetail'>" + info[i].userName + "</td>" +
+															"<td class='goDetail'><img style='max-width:50px;' src=" + info[i].headImage + "></td>" +
 															"</tr>";
 													}
 												},
@@ -565,11 +498,14 @@
 										}
 
 									});
+
 								},
 								error: function(xhr, type, errorThrown) {
 									alert('网络异常，请稍后再试！');
 								},
-
+								complete: function() {
+									$('select').select2();
+								}
 							});
 
 						})
