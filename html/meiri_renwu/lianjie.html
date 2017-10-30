@@ -429,7 +429,7 @@
 							e.stopPropagation();
 							e.preventDefault();
 							if(confirm("确认将这条链接信息?务必谨慎选择!!!")) {
-								$.ajax({
+								/*$.ajax({
 									url: config.rootUrl + "user/delPostRecord.do",
 									type: 'POST',
 									dataType: 'json',
@@ -452,7 +452,8 @@
 									error: function() {
 										alert("发生错误了,请检查你的网络!");
 									}
-								})
+								})*/
+								alert("暂不提供删除!");
 
 							}
 
@@ -500,7 +501,7 @@
 										"<td class='goDetail'>" + info[i].channel + "</td>" +
 										"<td class='goDetail'>" + type + "</td>" +
 										"<td class='goDetail'>" +
-										"<button class='btn btn-danger delrow' type='button' ><i class='fa fa-trash-o'></i></button> " +
+										"<button class='btn btn-danger delrow' type='button'  data-sid=" + info[i].sId + "><i class='fa fa-trash-o'></i></button> " +
 										"</td>" +
 										"</tr>";
 								}
@@ -544,7 +545,7 @@
 														"<td class='goDetail'>" + info[i].channel + "</td>" +
 														"<td class='goDetail'>" + type + "</td>" +
 														"<td class='goDetail'>" +
-														"<button class='btn btn-danger delrow' type='button'><i class='fa fa-trash-o'></i></button> " +
+														"<button class='btn btn-danger delrow' type='button'  data-sid=" + info[i].sId + "><i class='fa fa-trash-o'></i></button> " +
 														"</td>" +
 														"</tr>";
 												}

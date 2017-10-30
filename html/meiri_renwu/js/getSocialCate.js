@@ -73,6 +73,8 @@ if(typeof FileReader === 'undefined') {
 }
 
 function readFile1() {
+	$("body").mLoading("show");//显示loading组件
+	
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -83,12 +85,16 @@ function readFile1() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
+		$("body").mLoading("hide");
+		
 		$(".f1").attr("src", this.result);
 		$(".f1").attr("data-src", this.result);
 	}
 }
 
 function readFile2() {
+	$("body").mLoading("show");//显示loading组件
+	
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -99,6 +105,8 @@ function readFile2() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
+		$("body").mLoading("hide");
+		
 		// 创建一个新增的图片和文字input 
 		$(".f2").attr("src", this.result);
 		$(".f2").attr("data-src", this.result);
@@ -107,6 +115,8 @@ function readFile2() {
 }
 
 function readFile3() {
+	$("body").mLoading("show");//显示loading组件
+	
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -117,6 +127,8 @@ function readFile3() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
+		$("body").mLoading("hide");
+		
 		// 创建一个新增的图片和文字input 
 		$(".f3").attr("src", this.result);
 		$(".f3").attr("data-src", this.result);

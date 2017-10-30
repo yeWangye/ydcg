@@ -38,8 +38,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 								<ol class="breadcrumb navbar-breadcrumb">
-									<li>信息审核</li>
-									<li class="active">待待审</li>
+									<li>我的任务</li>
+									<li class="active">任务列表</li>
 								</ol>
 								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -123,9 +123,9 @@
 					<div class="container-fluid">
 						<div class="side-body">
 							<div class="page-title">
-								<span class="title">待审信息</span>
+								<span class="title">我的任务列表</span>
 								<div class="description">
-									<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">组员</span>所有待审核的信息,点击表格数据可以查看具体预约信息,也可以点击<span class="tips">通过</span>或者<span class="tips">不通过</span>进行审核!</div>
+									<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">组员</span>当天应该完成的任务!,点击表格可以进行相应的任务</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 detail">
@@ -135,15 +135,20 @@
 											<div class="card-title">
 												<div class="title"></div>
 											</div>
+											<div class="card-title" style="float:right;text-align: center;padding-top: 30px;">
+												<div class="">
+													<a class="btn btn-primary add" href="tianjia_renwu.html" style="color:white;">添加任务<span class="fa fa-chevron-circle-right"></span></a>
+												</div>
+											</div>
 										</div>
 										<div class="card-body">
 											<table class="table table-striped" cellspacing="0" width="100%">
 												<thead>
 													<tr>
-														<th>患者姓名</th>
-														<th>来源</th>
-														<th>创建时间</th>
-
+														<th>任务</th>
+														<th>数量</th>
+														
+														<th>操作</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -192,169 +197,155 @@
 					<script type="text/javascript" src="../../js/personal_msg.js"></script>
 
 					<script type="text/javascript">
+						
 						$(document).ready(function() {
-							$('.table tbody').on('click', 'button.recive', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								if(confirm("确认审核通过这条预约信息?")) {
-									var pid = $(this).attr("data-pid");
-									console.log(pid);
-									$.ajax({
-										url: config.rootUrl + "user/verifyAppoint.do",
-										type: 'POST',
-										dataType: 'json',
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
-											patientId: pid,
-											isPass: "1",
-										},
-										success: function(data) {
-											if(data.code == 1) {
-												alert("信息通过!");
-												window.location.reload();
-											} else {
-												alert(data.msg);
-											}
 
-										},
-										error: function() {
-											alert("发生错误了,请检查你的网络!");
-										}
-									})
-
-								}
-
-							});
-							$('.table tbody').on('click', 'button.noRecive', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								if(confirm("确认审核不通过这条预约信息?")) {
-									var pid = $(this).attr("data-pid");
-									$.ajax({
-										url: config.rootUrl + "user/verifyAppoint.do",
-										type: 'POST',
-										dataType: 'json',
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
-											patientId: pid,
-											isPass: "2",
-										},
-										success: function(data) {
-											if(data.code == 1) {
-												alert("信息不通过!");
-												window.location.reload();
-											} else {
-												alert(data.msg);
-											}
-
-										},
-										error: function() {
-											alert("发生错误了,请检查你的网络!");
-										}
-									})
-
-								}
-
-							});
 							$('.table tbody').on('click', '.goDetail', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
-								var pid = $(this).parents('tr').attr("data-pid");
-								var title = $(this).parents('tr').attr("data-title");
-								window.location.href = "../xinxi_guanli/yuyue_detail.html?pid=" + pid + "&title=" + title + "&fromWhere=daishen_xinxi.html";
-
+								var taskName = $(this).parents('tr').attr("data-taskName");
+								var taskId = $(this).parents('tr').attr("data-taskId");
+								var taskNum = $(this).parents('tr').attr("data-taskNum");
+								window.location.href = "tianjia_renwu.html?taskId=" + taskId +  "&taskName=" + taskName + "&taskNum=" + taskNum;
 							});
-							$.ajax({
-								url: config.rootUrl + "user/getVerifyAppoint.do",
-								data: {
-									deviceToken: "html5",
-									deviceType: "html5",
-									userId: session_login.info.userId,
-									status: "verify",
-									page: "1",
-									rows: "10"
-								},
-								async: true,
-								type: 'post',
-								success: function(data) {
-									console.log(data);
-									var info = data.info;
-									var pageCount = data.pageCount;
-									var tbody = $(".table tbody")[0];
-									if(info.length == 0) {
-										alert("你当前没有待审核信息!");
+							$('.table tbody').on('click', '.edit', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var taskName = $(this).parents('tr').attr("data-taskName");
+								var taskId = $(this).attr("data-taskId");
+								var taskNum = $(this).attr("data-taskNum");
+								window.location.href = "tianjia_renwu.html?taskId=" + taskId +  "&taskName=" + taskName + "&taskNum=" + taskNum;
+							});
+							
+							$('.table tbody').on('click', '.delrow', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var taskId = $(this).attr("data-taskId");
+								if(confirm("确认删除当前任务?")) {
+									$.ajax({
+										url: config.rootUrl + "user/delTask.do",
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
 
-									}
-									//添加选项盒子
-									for(var i = 0; i < info.length; i++) {
-										tbody.innerHTML += "<tr data-pid='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
-											"<td class='goDetail'>" + info[i].patientName + "</td>" +
-											"<td class='goDetail'>" + info[i].sName + "</td>" +
-											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-											"<td class='goDetail'>" +
-											"<button  class='btn btn-success recive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
-											" <button  class='btn btn-danger noRecive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-minus-square-o'></i> 不通过 </button>" +
-											"</td>" +
-											"</tr>";
-									}
-									//添加选项盒子
-									$('.M-box').pagination({
-										pageCount: pageCount,
-										showData: 10,
-										jump: true,
-										coping: true,
-										homePage: '首页',
-										endPage: '末页',
-										prevContent: '上页',
-										nextContent: '下页',
-										callback: function(api) {
-											$.ajax({
-												url: config.rootUrl + "user/getVerifyAppoint.do",
-												data: {
-													deviceToken: "html5",
-													deviceType: "html5",
-													status: "verify",
-													userId: session_login.info.userId,
-													page: api.getCurrent(),
-													rows: "10",
-												},
-												async: true,
-												type: "post",
-												success: function(data) {
-													var info = data.info;
-													var tbody = $(".table tbody")[0];
-													tbody.innerHTML = "";
-													//添加选项盒子
-													for(var i = 0; i < info.length; i++) {
-														tbody.innerHTML += "<tr data-pid='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
-															"<td class='goDetail'>" + info[i].patientName + "</td>" +
-															"<td class='goDetail'>" + info[i].sName + "</td>" +
-															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-															"<td class='goDetail'>" +
-															"<button  class='btn btn-success recive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-plus-square-o'></i> 通过 </button> " +
-															" <button  class='btn btn-danger noRecive' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-minus-square-o'></i> 不通过 </button>" +
-															"</td>" +
-															"</tr>";
-													}
-												},
-												error: function() {
-													alert("网络错误");
+											taskId: taskId,
+										},
+										async: true,
+										type: 'post',
+										success: function(data) {
+											if(data.code == 1) {
+												alert("删除任务成功");
+												console.log(data);
+												window.location.reload();
+											} else {
+												alert("请重新登录");
+											}
+										},
+										error: function(xhr, type, errorThrown) {
+											alert('网络异常，请稍后再试！');
+										}
+									});
+								}
+							});
+							doAction();
 
-												}
-											})
+							function doAction() {
+
+								//								$(".table tbody")[0].innerHTML = "";
+								$.ajax({
+									url: config.rootUrl + "user/listTask.do",
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+										teamId:session_login.info.teamId,
+										page: "1",
+										rows: "15",
+
+									},
+									async: true,
+									type: 'post',
+									success: function(data) {
+										console.log(data);
+										var info = data.info;
+										var pageCount = data.pageCount;
+										var tbody = $(".table tbody")[0];
+										if(info.length == 0) {
+											alert("你当前没有任务!");
+
 										}
 
-									});
-								},
-								error: function(xhr, type, errorThrown) {
-									alert('网络异常，请稍后再试！');
-								},
+										//添加选项盒子
+										for(var i = 0; i < info.length; i++) {
+											var info = data.info;
+											var tbody = $(".table tbody")[0];
+											//											tbody.innerHTML = "";
 
-							});
+											tbody.innerHTML += "<tr data-taskName='" + info[i].taskName + "'  data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'  style='cursor:pointer'>" +
+												"<td class='goDetail'>" + info[i].taskName + "</td>" +
+												"<td class='goDetail'>" + info[i].taskNum + "</td>" +
+												"<td class='goDetail'>" +
+												" <button  class='btn btn-primary edit' type='button'   data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'><i class='fa fa-edit'> 修改 </i></button>" +
+												" <button  class='btn btn-danger delrow' type='button'   data-taskId='" + info[i].taskId + "'><i class='fa fa-remove'> 删除 </i></button>" +
+												"</td>" +
+												"</tr>";
+
+										}
+										//添加选项内容
+										$('.M-box').pagination({
+											pageCount: pageCount,
+											showData: 10,
+											jump: true,
+											coping: true,
+											homePage: '首页',
+											endPage: '末页',
+											prevContent: '上页',
+											nextContent: '下页',
+											callback: function(api) {
+												$.ajax({
+													url: config.rootUrl + "user/listTask.do",
+													data: {
+														deviceToken: "html5",
+														deviceType: "html5",
+														userId: session_login.info.userId,
+														teamId:session_login.info.teamId,
+														page: api.getCurrent(),
+														rows: "15",
+													},
+													async: true,
+													type: "post",
+													success: function(data) {
+														var info = data.info;
+														var tbody = $(".table tbody")[0];
+														tbody.innerHTML = "";
+
+														for(var i = 0; i < info.length; i++) {
+															tbody.innerHTML += "<tr data-taskId='" + info[i].taskId + "'  data-title='" + info[i].taskName + "'  style='cursor:pointer'>" +
+																"<td class='goDetail'>" + info[i].taskName + "</td>" +
+																"<td class='goDetail'>" + info[i].taskNum + "</td>" +
+																"<td class='goDetail'>" +
+																" <button  class='btn btn-primary edit' type='button'  data-taskId='" + info[i].taskId + "'><i class='fa fa-edit'> 修改 </i></button>" +
+																" <button  class='btn btn-danger delrow' type='button'   data-taskId='" + info[i].taskId + "'><i class='fa fa-remove'> 删除 </i></button>" +
+																"</td>" +
+																"</tr>";
+														}
+													},
+													error: function() {
+														alert("网络错误");
+
+													}
+												})
+											}
+
+										});
+									},
+									error: function(xhr, type, errorThrown) {
+										alert('网络异常，请稍后再试！');
+									},
+
+								});
+							}
 
 						})
 					</script>

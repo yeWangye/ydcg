@@ -9,34 +9,34 @@ if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
 	window.location.href = "../login.html";
 }
 $(function() {
-	var username = session_login.info.userName;
+	/*var username = session_login.info.userName;
 	$(".username").text(username);
 	var grade = session_login.info.grade;
 	var roleId = session_login.info.roleId;
 	switch(roleId) {
-						case 1:
-							$(".role").text("组员");
-							break;
-						case 2:
-							if(grade==2){
-								$(".role").text("科长");
-							}else{
-								$(".role").text("经理");
-							}
-							break;
-						case 3:
-							$(".role").text("总经理");
-							break;
-						case 4:
-							$(".role").text("行政");
-							break;
-						case 5:
-							$(".role").text("会计");
-							break;
-						case 6:
-							$(".role").text("人事");
-							break;
-					}
+		case 1:
+			$(".role").text("组员");
+			break;
+		case 2:
+			if(grade == 2) {
+				$(".role").text("科长");
+			} else {
+				$(".role").text("经理");
+			}
+			break;
+		case 3:
+			$(".role").text("总经理");
+			break;
+		case 4:
+			$(".role").text("行政");
+			break;
+		case 5:
+			$(".role").text("会计");
+			break;
+		case 6:
+			$(".role").text("人事");
+			break;
+	}*/
 	var teamName = session_login.info.teamName;
 	$(".teamName").text(teamName);
 	var headimg = session_login.info.headImage;
@@ -154,7 +154,14 @@ $.ajax({
 	async: true,
 	type: 'post',
 	success: function(data) {
-		$("marquee").text(data.info[0].theme);
+		if(data.code == 1) {
+			$("marquee").text(data.info[0].theme);
+		} else {
+			alert("请重新登录!");
+			alert(data.msg);
+			/*localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+			window.location.href = "../login.html";*/
+		}
 
 	},
 	error: function(xhr, type, errorThrown) {

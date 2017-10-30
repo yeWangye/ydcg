@@ -342,7 +342,8 @@
 									<div class="card-header">
 										<div class="card-title">
 											<div class="title">链接类添加</div>
-											<a href="../meiri_renwu/duotiao_tiezi.html" class="btn btn-danger">多条链接上传</a>
+											<a href="../meiri_renwu/duotiao_tiezi.html" class="btn btn-danger duotiaoBtn">多条链接上传</a>
+											<a class="btn btn-primary backBtn" onclick="window.history.go(-1)" style="display: none;">返回任务详情</a>
 										</div>
 									</div>
 									<div class="card-body">
@@ -421,6 +422,13 @@
 				<!-- Javascript -->
 				<script type="text/javascript">
 					$(function() {
+						var search = window.location.search;
+						if(search != "") {
+							var tdId = window.location.search.split("tdId=")[1].split("&")[0];
+//							var title = window.location.search.split("title=")[1].split("&")[0];
+							$(".duotiaoBtn").css("display","none");
+							$(".backBtn").css("display","block");
+						}
 						function getSocialCate_link() {
 							$.ajax({
 								url: config.rootUrl + "user/getSocialCate.do",
@@ -475,13 +483,14 @@
 									prUrl: lianjie,
 									channel: xinxi_laiyuan,
 									
+									tdId:tdId||"",
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
 									console.log(data);
 									if(data.code == "1") {
-										alert("任务完成!");
+										alert("添加成功!");
 										window.location.reload();
 									} else {
 										alert(data.msg);

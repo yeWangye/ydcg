@@ -33,13 +33,17 @@ $(function() {
 	var roleId = session_login.info.roleId;
 	switch(roleId) {
 		case 1:
-			$(".role").text("组员");
+			if(grade == 2) {
+				$(".role").text("科长");
+			} else {
+				$(".role").text("组员");
+			}
 			break;
 		case 2:
 			$(".role").text("经理");
 			break;
 		case 3:
-			$(".role").text("总经理");
+			$(".role").text("董事");
 			break;
 		case 4:
 			$(".role").text("行政");
@@ -125,9 +129,9 @@ $(function() {
 				$(".totalMsg").text(totalNow);
 			} else {
 				$(".zuyuan_yeji").parent().css("display", "none");
-				$("#component-example ul").children("li").eq("1").css("display","none");
-				$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display","none");
-				$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display","none");
+				$("#component-example ul").children("li").eq("1").css("display", "none");
+				$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display", "none");
+				$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display", "none");
 			}
 
 		},
@@ -162,5 +166,250 @@ $(function() {
 		}
 	})
 
+	//我的任务
+	$.ajax({
+		url: config.rootUrl + "user/listTeamTask.do",
+		data: {
+			deviceToken: "html5",
+			deviceType: "html5",
+			teamId: session_login.info.teamId,
+			userId: session_login.info.userId,
+			page: "1",
+			rows: "1",
+		},
+		async: true,
+		type: "post",
+		success: function(data) {
+			var info = data.info.length == 0 ? 0 : data.pageCount;
+			//			$(".wode_yeji").text(info);
+			totalNow += info;
+			$(".totalMsg").text(totalNow);
+			var _notification = '<a href="../wode_renwu/renwu_index.html">' +
+				'<li class="list-group-item"><span class="badge wode_ren_notifi">' + info + '</span>' +
+				'<i class="fa fa-bell-o icon"></i> 我的任务' +
+				'</li>' +
+				'</a>';
+			$(".notifications").prepend(_notification);
+		},
+		error: function() {
+			alert("网络错误");
+
+		}
+	})
 });
-//提示信息总数totalMsg;
+//sidebar统一;
+$(function() {
+	var _sideBar = '<nav class="navbar navbar-default" role="navigation">' +
+		'<div class="side-menu-container">' +
+		'<div class="navbar-header">' +
+		'<a class="navbar-brand" href="#">' +
+		'<div class="icon fa fa-paper-plane"></div>' +
+		'<div class="title">感动自己,一定成功</div>' +
+		'</a>' +
+		'<button type="button" class="navbar-expand-toggle pull-right visible-xs">' +
+		'<i class="fa fa-times icon"></i>' +
+		'</button>' +
+		'</div>' +
+		'<ul class="nav navbar-nav">' +
+		'<li class="active">' +
+		'<a href="../index.html">' +
+		'<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>' +
+		'</a>' +
+		'</li>' +
+		'<li class="wode_renwu">' +
+		'<a href="../wode_renwu/renwu_index.html">' +
+		'<span class="icon fa fa-bell-o"></span><span class="title">我的任务</span>' +
+		'</a>' +
+		'</li>' +
+		'<li class="shezhi_renwu">' +
+		'<a href="../shezhi_renwu/renwu_index.html">' +
+		'<span class="icon fa fa-calendar-plus-o"></span><span class="title">设置任务</span>' +
+		'</a>' +
+		'</li>' +
+		'<li>' +
+		'<a href="../xinxi_guanli/tianjiayeji.html">' +
+		'<span class="icon fa fa-plus-square-o"></span><span class="title">添加信息</span>' +
+		'</a>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#dropdown-table">' +
+		'<span class="icon fa fa-table"></span><span class="title">患者数据库</span>' +
+		'</a>' +
+		'<div id="dropdown-table" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li>' +
+		'<a href="../table/datatable.html">患者数据库</a>' +
+		'</li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-collapse dropdown">' +
+		'<a data-toggle="collapse" href="#meiri_renwu">' +
+		'<span class="icon fa fa-bell"></span><span class="title">每日任务</span>' +
+		'</a>' +
+		'<div id="meiri_renwu" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../meiri_renwu/lianjie.html">链接类</a></li>' +
+		'<li><a href="../meiri_renwu/shequ.html">社区类</a></li>' +
+		'<li><a href="../meiri_renwu/tongxun.html">通讯类</a></li>' +
+		'<li><a href="../meiri_renwu/zuyuan__shequ.html">组员社区</a></li>' +
+		'<li><a href="../meiri_renwu/zuyuan__tongxun.html">组员通讯</a></li>' +
+		'<li><a href="../meiri_renwu/zuyuan__lianjie.html">组员链接</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#dropdown-xinxi-guanli">' +
+		'<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>' +
+		'</a>' +
+		'<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../xinxi_guanli/wode_xinxi.html">我的信息</a></li>' +
+		'<li><a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a></li>' +
+		'<li><a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a></li>' +
+		'<li><a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a></li>' +
+		'<li><a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">' +
+		'<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>' +
+		'</a>' +
+		'<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../xinxi_shenhe/dai_shenhe.html">待审核</a></li>' +
+		'<li><a href="../xinxi_shenhe/tongguo.html">通过</a></li>' +
+		'<li><a href="../xinxi_shenhe/wei_tonguo.html">未通过</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#component-example">' +
+		'<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>' +
+		'</a>' +
+		'<div id="component-example" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a></li>' +
+		'<li><a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a></li>' +
+		'<li><a href="../yeji_guanli/yeji.html">业绩信息</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#tianjiayeji">' +
+		'<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>' +
+		'</a>' +
+		'<div id="tianjiayeji" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../tianjia_yeji/guahao.html">挂号费</a></li>' +
+		'<li><a href="../tianjia_yeji/goutong.html">沟通费</a></li>' +
+		'<li><a href="../tianjia_yeji/yizhu.html">医助</a></li>' +
+		'<li><a href="../tianjia_yeji/yuan_chu.html">远程(初诊)</a></li>' +
+		'<li><a href="../tianjia_yeji/yuan_fu.html">远程(复诊)</a></li>' +
+		'<li><a href="../tianjia_yeji/lai_chu.html">来院(初诊)</a></li>' +
+		'<li><a href="../tianjia_yeji/lai_fu.html">来院(复诊)</a></li>' +
+		'<li><a href="../tianjia_yeji/you_fu.html">邮寄复诊</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="jituanjunBox">' +
+		'<a href="../jituanjun/jituanjun.html">' +
+		'<span class="icon fa fa-flag"></span><span class="title">集团军</span>' +
+		'</a>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown tongjiBox">' +
+		'<a data-toggle="collapse" href="#tongji">' +
+		'<span class="icon fa fa-calculator"></span><span class="title">统计</span>' +
+		'</a>' +
+		'<div id="tongji" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../tongji/yeji_shenhe.html">业绩审核</a></li>' +
+		'<li><a href="../tongji/zhanqu_total.html">战区业绩和任务</a></li>' +
+		//		'<li><a href="../tongji/qiandao_tongji.html">考勤统计</a></li>' +
+		//												'<li><a href="../tongji/keshi_yeji.html">科室业绩审核</a></li>'+
+		'<li><a href="../tongji/menzheng.html">门诊业绩</a></li>' +
+		'<li><a href="../tongji/menzheng_total.html">门诊业绩总和</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#dropdown-element">' +
+		'<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>' +
+		'</a>' +
+		'<div id="dropdown-element" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li>' +
+		'<a href="../ui-kits/theming.html">主题</a>' +
+		'</li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'<li class="panel panel-default dropdown">' +
+		'<a data-toggle="collapse" href="#dropdown-example">' +
+		'<span class="icon fa fa-slack"></span><span class="title">更多</span>' +
+		'</a>' +
+		'<div id="dropdown-example" class="panel-collapse collapse">' +
+		'<div class="panel-body">' +
+		'<ul class="nav navbar-nav">' +
+		'<li><a href="../login.html">注销登陆</a></li>' +
+		'<li><a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a></li>' +
+		'</ul>' +
+		'</div>' +
+		'</div>' +
+		'</li>' +
+		'</ul>' +
+		'</div>' +
+		'</nav>';
+	$("#sidebar").html(_sideBar);
+
+	if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+		var _session=JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+		var roleId = _session.info.roleId;
+		if(roleId == "1") {
+			$(".zuyuan_yeji").parent().css("display", "none");
+			$("#component-example ul").children("li").eq("1").css("display", "none");
+			$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display", "none");
+			$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display", "none");
+			$("#meiri_renwu ul").children("li").eq("3").css("display", "none");
+			$("#meiri_renwu ul").children("li").eq("4").css("display", "none");
+			$("#meiri_renwu ul").children("li").eq("5").css("display", "none");
+
+			
+		}
+		if(_session.groupId=="0"||roleId!=2){
+			if(roleId==3){
+				$(".jituanjunBox").css("display", "block");
+			}else{
+				$(".jituanjunBox").css("display", "none");
+			}
+
+		}
+		if(roleId != "5"&&roleId != "3") {
+			$(".tongjiBox").css("display", "none");
+		}
+		if(roleId != "3") {
+			$(".shezhi_renwu").css("display", "none");
+		}
+		if(roleId == "3") {
+			$(".wode_renwu").css("display", "none");
+			$(".jituanjunBox a").attr("href", "../jituanjun/jituanjun_list.html");
+		}
+	}
+})

@@ -1,4 +1,6 @@
 function readFile() {
+	$("body").mLoading("show");//显示loading组件
+	
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -11,6 +13,7 @@ function readFile() {
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
 		// 创建一个新增的图片和文字input 
+		$("body").mLoading("hide");//显示loading组件		
 		$(".profile-img img").attr("src", this.result);
 		uploadHead(this.result);
 	}
