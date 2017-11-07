@@ -69,14 +69,14 @@ function getBase64Image(img) {
 	var height = img.height;
 	// 计算宽高
 	if(width > height) {
-		if(width > 800) {
-			height = Math.round(height *= 800 / width);
-			width = 800;
+		if(width > 2024) {
+			height = Math.round(height *= 2024 / width);
+			width = 2024;
 		}
 	} else {
-		if(height > 800) {
-			width = Math.round(width *= 800 / height);
-			height = 800;
+		if(height > 2024) {
+			width = Math.round(width *= 2024 / height);
+			height = 2024;
 		}
 	}
 	canvas.width = width; /*设置新的图片的宽度*/

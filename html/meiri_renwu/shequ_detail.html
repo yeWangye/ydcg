@@ -23,6 +23,11 @@
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+		<style>
+			.a_blank{
+				display: inline-block;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -271,13 +276,13 @@
 									for(var i = 0; i < info.length; i++) {
 										var images = "";
 										if(info[i].image1) {
-											images = "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image1 + "' class='_blank' style='max-width:50px;'/></a>";
+											images = "<a href='" + info[i].image1 + "' class='a_blank' target='_blank'><img src='" + info[i].image1 + "' class='_blank' style='max-width:50px;'/></a>";
 										}
 										if(info[i].image2) {
-											images = images + "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image2 + "' class='_blank' style='max-width:50px;'/></a>";
+											images = images + "<a href='" + info[i].image2 + "' class='a_blank' target='_blank'><img src='" + info[i].image2 + "' class='_blank' style='max-width:50px;'/></a>";
 										}
 										if(info[i].image3) {
-											images = images + "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
+											images = images + "<a href='" + info[i].image3 + "' class='a_blank' target='_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
 										}
 										tbody.innerHTML += "<tr data-swId='" + info[i].swId + "'>" +
 											"<td class='goDetail'>" + info[i].swTitle + "</td>" +
@@ -325,13 +330,13 @@
 													for(var i = 0; i < info.length; i++) {
 														var images = "";
 														if(info[i].image1) {
-															images = "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image1 + "' class='_blank' style='max-width:50px;'/></a>";
+															images = "<a href='" + info[i].image1 + "' target='_blank' class='a_blank'><img src='" + info[i].image1 + "' class='_blank' style='max-width:50px;'/></a>";
 														}
 														if(info[i].image2) {
-															images = images + "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image2 + "' class='_blank' style='max-width:50px;'/></a>";
+															images = images + "<a href='" + info[i].image2 + "' target='_blank' class='a_blank'><img src='" + info[i].image2 + "' class='_blank' style='max-width:50px;'/></a>";
 														}
 														if(info[i].image3) {
-															images = images + "<a href='" + info[i].image1 + "' target='_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
+															images = images + "<a href='" + info[i].image3 + "' target='_blank' class='a_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
 														}
 														tbody.innerHTML += "<tr data-swId='" + info[i].swId + "'>" +
 															"<td class='goDetail'>" + info[i].swTitle + "</td>" +

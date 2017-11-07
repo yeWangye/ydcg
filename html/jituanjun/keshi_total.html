@@ -342,11 +342,11 @@
 										}
 										//添加选项盒子
 										for(var i = 0; i < info.length; i++) {
-											tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "'  >" +
-												"<td class=''>" + info[i].departName + "</td>" +
-												"<td class=''>" + info[i].costFee + "</td>" +
-												"<td class=''>" + info[i].totalMoney + "</td>" +
-												"<td class='tips'>" + data.allMoney + "</td>" +
+											tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "'  style='cursor:pointer'>" +
+												"<td class='goDetail'>" + info[i].departName + "</td>" +
+												"<td class='goDetail'>" + info[i].costFee + "</td>" +
+												"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
+												"<td class='goDetail tips'>" + data.allMoney + "</td>" +
 												"</tr>";
 										}
 									}
@@ -383,11 +383,11 @@
 													tbody.innerHTML = "";
 													//添加选项盒子
 													for(var i = 0; i < info.length; i++) {
-														tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "'  >" +
-															"<td class=''>" + info[i].departName + "</td>" +
-															"<td class=''>" + info[i].costFee + "</td>" +
-															"<td class=''>" + info[i].totalMoney + "</td>" +
-															"<td class='tips'>" + data.allMoney + "</td>" +
+														tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "'  style='cursor:pointer'>" +
+															"<td class='goDetail'>" + info[i].departName + "</td>" +
+															"<td class='goDetail'>" + info[i].costFee + "</td>" +
+															"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
+															"<td class='goDetail tips'>" + data.allMoney + "</td>" +
 															"</tr>";
 													}
 												},

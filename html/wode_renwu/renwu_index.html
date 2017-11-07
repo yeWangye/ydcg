@@ -159,7 +159,7 @@
 
 											<div class="card-title">
 												<div class="">
-													<a class="btn btn-primary" style="color:white;display: block;"><span class="fa fa-chevron-circle-left"></span><span class="isRest">设置休息</span></a>
+													<a class="btn btn-danger" style="color:white;display: block;"><span class="fa fa-chevron-circle-left"></span><span class="isRest">设置休息</span></a>
 												</div>
 											</div>
 											<div class="card-title" style="float:right;text-align: center;">
@@ -522,7 +522,7 @@
 										for(var i = 0; i < info.length; i++) {
 											if(session_login.info.roleId != "1") {
 												if(info[i].teamTaskId == "0") {
-													var _dom = " <button  class='btn btn-primary set' type='button'  data-starTime='" + info[i].starTime + "'  data-endTime='" + info[i].endTime + "' data-teamTaskId='" + info[i].teamTaskId + "' data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'><i class='fa fa-edit'> 设置 </i></button>";
+													var _dom = " <button  class='btn btn-danger set' type='button'  data-starTime='" + info[i].starTime + "'  data-endTime='" + info[i].endTime + "' data-teamTaskId='" + info[i].teamTaskId + "' data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'><i class='fa fa-edit'> 设置 </i></button>";
 
 												} else if(info[i].taskId == "0") {
 													var _dom = " <button  class='btn btn-primary edit' type='button'  data-starTime='" + info[i].starTime + "'  data-endTime='" + info[i].endTime + "' data-teamTaskId='" + info[i].teamTaskId + "' data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'><i class='fa fa-edit'> 修改 </i></button>" +

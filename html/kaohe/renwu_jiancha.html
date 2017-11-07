@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
-		
+
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
@@ -209,7 +209,10 @@
 
 					<script type="text/javascript">
 						$(document).ready(function() {
-
+							var search = window.location.search;
+							if(search != "") {
+								var groupId = search.split("groupId=")[1].split("&")[0];
+							}
 							var searchTime = new Date().format("yyyy-MM-dd").replace(/\//g, "-");
 							$("#searchDate").val(searchTime);
 
@@ -229,6 +232,7 @@
 
 							function setTable() {
 								var searchTime = $("#searchDate").val();
+
 								$(".table tbody")[0].innerHTML = "";
 								$.ajax({
 									url: config.rootUrl + "user/teamTaskResult.do",
@@ -238,12 +242,14 @@
 										userId: session_login.info.userId,
 										searchTime: searchTime || "",
 										page: "1",
-										rows: "10"
+										rows: "10",
+										groupId: groupId || "",
+
 									},
 									async: true,
 									type: 'post',
 									success: function(data) {
-										
+
 										var info = data.info;
 										var pageCount = data.pageCount;
 										var tbody = $(".table tbody")[0];
@@ -299,6 +305,8 @@
 														searchTime: searchTime || "",
 														page: api.getCurrent(),
 														rows: "10",
+														groupId: groupId || "",
+
 													},
 													async: true,
 													type: "post",
@@ -342,8 +350,8 @@
 														alert("网络错误");
 
 													},
-													complete:function(){
-														$("body").mLoading("hide");//关闭loading组件
+													complete: function() {
+														$("body").mLoading("hide"); //关闭loading组件
 													}
 												})
 											}
@@ -354,8 +362,8 @@
 									error: function(xhr, type, errorThrown) {
 										alert('网络异常，请稍后再试！');
 									},
-									complete:function(){
-											$("body").mLoading("hide");//关闭loading组件
+									complete: function() {
+										$("body").mLoading("hide"); //关闭loading组件
 									}
 								});
 							}

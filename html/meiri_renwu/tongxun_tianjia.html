@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
-
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
@@ -217,9 +217,10 @@
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
+				<!--<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
@@ -282,6 +283,7 @@
 						}
 
 						function readFile1() {
+							$("body").mLoading("show");//显示loading组件
 							var file = this.files[0]; //获取file对象 
 							//判断file的类型是不是图片类型。 
 							if(!/image\/\w+/.test(file.type)) {
@@ -292,12 +294,14 @@
 							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 							reader.onload = function(e) {
+								$("body").mLoading("hide");//
 								$(".f1").attr("src", this.result);
 								$(".f1").attr("data-src", this.result);
 							}
 						}
 
 						function readFile2() {
+							$("body").mLoading("show");//显示loading组件
 							var file = this.files[0]; //获取file对象 
 							//判断file的类型是不是图片类型。 
 							if(!/image\/\w+/.test(file.type)) {
@@ -308,6 +312,7 @@
 							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 							reader.onload = function(e) {
+								$("body").mLoading("hide");//
 								// 创建一个新增的图片和文字input 
 								$(".f2").attr("src", this.result);
 								$(".f2").attr("data-src", this.result);
@@ -316,6 +321,7 @@
 						}
 
 						function readFile3() {
+							$("body").mLoading("show");//显示loading组件
 							var file = this.files[0]; //获取file对象 
 							//判断file的类型是不是图片类型。 
 							if(!/image\/\w+/.test(file.type)) {
@@ -326,6 +332,7 @@
 							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 							reader.onload = function(e) {
+								$("body").mLoading("hide");//显示loading组件	
 								// 创建一个新增的图片和文字input 
 								$(".f3").attr("src", this.result);
 								$(".f3").attr("data-src", this.result);
@@ -334,6 +341,7 @@
 						}
 						//图片上传结束...
 						$(".save").on("click", function() {
+							
 							//标题
 							var biaoti = $("#biaoti").val();
 							if(biaoti == "") {
@@ -377,6 +385,7 @@
 
 							//上传图片 
 							function uploadImg(imgPath, ele) {
+								$("body").mLoading("show");//显示loading组件
 								var image = new Image();
 								image.src = imgPath;
 								image.onload = function() {
@@ -435,6 +444,9 @@
 													error: function(xhr, type, errorThrown) {
 														alert('网络异常，请稍后再试！');
 														console.log(xhr + errorThrown);
+													},
+													complete:function(){
+														$("body").mLoading("hide");
 													}
 												});
 											}

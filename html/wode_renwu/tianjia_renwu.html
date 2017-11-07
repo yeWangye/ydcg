@@ -318,9 +318,27 @@
 							$("#endTime").val("");
 							$("#starTime").val("");
 						}*/
+						function timeToStamp(starTime, endTime) {
+							var minTime = 10;
+							var maxTime = 2 * 60;
+							var startStamp = (starTime.split(":")[0] * 60 - 0) + (starTime.split(":")[1] - 0);
+							var endStamp = (endTime.split(":")[0] * 60 - 0) + (endTime.split(":")[1] - 0);
+							if(startStamp > endStamp) {
+								alert("开始时间不能大于结束时间!");
+								return false;
+							} else if(endStamp - startStamp < minTime) {
+								alert("时间间隔最少为10分钟!");
+								return false;
+							} else if(endStamp - startStamp > maxTime) {
+								alert("时间间隔最多为两小时!");
+								return false;
+							} else {
+								return true;
+							}
 
+						}
 						$(".save").on("click", function() {
-							$("body").mLoading("show");//显示loading组件				
+							$("body").mLoading("show"); //显示loading组件				
 							//数量
 							var num = $("#num").val();
 							if(num == "") {
@@ -346,88 +364,87 @@
 								$("body").mLoading("hide"); //关闭loading组件
 								return;
 							}
-							if(starTime == endTime) {
-								alert("任务开始时间与结束时间相同,请重设!");
-								$("body").mLoading("hide"); //关闭loading组件
-								return;
-							}
+							if(timeToStamp(starTime, endTime)) {
+								/*在这里调用上传接口*/
+								if(taskId == undefined) {
+									//自定义添加任务代码
+									//任务
+									var name = $("#name").val();
+									if(name == "") {
+										alert("请输入任务名字!");
+										return;
+									}
+									//类型
+									var type = $("#diseasesBox").val();
+									$.ajax({
+										url: config.rootUrl + "user/addTeamTask.do",
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
 
-							/*在这里调用上传接口*/
-							if(taskId == undefined) {
-								//自定义添加任务代码
-								//任务
-								var name = $("#name").val();
-								if(name == "") {
-									alert("请输入任务名字!");
-									return;
+											teamId: session_login.info.teamId,
+											starTime: starTime,
+											endTime: endTime,
+											taskName: name,
+											taskNum: num,
+											taskType: type,
+										},
+										async: true,
+										type: 'post',
+										success: function(data) {
+											if(data.code == 1) {
+												alert("添加任务成功");
+												window.history.go(-1);
+											} else {
+												alert(data.msg);
+											}
+										},
+										error: function(xhr, type, errorThrown) {
+											alert('网络异常，请稍后再试！');
+										},
+										complete: function() {
+											$("body").mLoading("hide"); //关闭loading组件
+										}
+									});
+								} else {
+									$.ajax({
+										url: config.rootUrl + "user/addTeamTask.do",
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
+
+											teamId: session_login.info.teamId,
+											starTime: starTime,
+											endTime: endTime,
+											taskNum: num,
+											taskId: taskId,
+											teamTaskId: teamTaskId,
+										},
+										async: true,
+										type: 'post',
+										success: function(data) {
+											if(data.code == 1) {
+												alert(data.msg);
+												window.history.go(-1);
+											} else {
+												alert(data.msg);
+
+											}
+										},
+										error: function(xhr, type, errorThrown) {
+											alert('网络异常，请稍后再试！');
+										},
+										complete: function() {
+											$("body").mLoading("hide"); //关闭loading组件
+										}
+									});
 								}
-								//类型
-								var type = $("#diseasesBox").val();
-								$.ajax({
-									url: config.rootUrl + "user/addTeamTask.do",
-									data: {
-										deviceToken: "html5",
-										deviceType: "html5",
-										userId: session_login.info.userId,
-
-										teamId: session_login.info.teamId,
-										starTime: starTime,
-										endTime: endTime,
-										taskName: name,
-										taskNum: num,
-										taskType: type,
-									},
-									async: true,
-									type: 'post',
-									success: function(data) {
-										if(data.code == 1) {
-											alert("添加任务成功");
-											window.history.go(-1);
-										} else {
-											alert(data.msg);
-										}
-									},
-									error: function(xhr, type, errorThrown) {
-										alert('网络异常，请稍后再试！');
-									},
-									complete: function() {
-										$("body").mLoading("hide"); //关闭loading组件
-									}
-								});
-							} else {
-								$.ajax({
-									url: config.rootUrl + "user/addTeamTask.do",
-									data: {
-										deviceToken: "html5",
-										deviceType: "html5",
-										userId: session_login.info.userId,
-
-										teamId: session_login.info.teamId,
-										starTime: starTime,
-										endTime: endTime,
-										taskNum: num,
-										taskId: taskId,
-										teamTaskId: teamTaskId,
-									},
-									async: true,
-									type: 'post',
-									success: function(data) {
-										if(data.code == 1) {
-											alert(data.msg);
-											window.history.go(-1);
-										} else {
-											alert(data.msg);
-
-										}
-									},
-									error: function(xhr, type, errorThrown) {
-										alert('网络异常，请稍后再试！');
-									},
-									complete: function() {
-										$("body").mLoading("hide"); //关闭loading组件
-									}
-								});
+							}else{
+								$("body").mLoading("hide"); //关闭loading组件
 							}
+
 						})
 
 					})
