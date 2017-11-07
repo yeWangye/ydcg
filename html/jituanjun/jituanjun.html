@@ -191,6 +191,9 @@
 						var search = window.location.search;
 						if(search.split("groupId=")[1]) {
 							var groupId = search.split("groupId=")[1].split("&")[0];
+							var title = search.split("title=")[1].split("&")[0];
+							$(".card-title .title")[0].innerHTML = "<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'></span> " + decodeURI(title) + "</a>";
+							
 							$.ajax({
 							url: config.rootUrl + "user/listGroupTeam.do",
 							data: {
@@ -366,7 +369,7 @@
 							e.preventDefault();
 							var teamId = $(this).parents('tr').attr("data-teamId");
 							var title = $(this).parents('tr').attr("data-title");
-							window.location.href = "renwu.html?teamId=" + teamId + "&title=" + title;
+							window.location.href = "../kaohe/renwu_index.html?teamId=" + teamId;
 						});
 						$('.table tbody').on('click', '.yeji', function(e) {
 							e.stopPropagation();

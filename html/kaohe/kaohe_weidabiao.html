@@ -19,12 +19,17 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
-
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
-
+		<style type="text/css">
+			.select2-results {
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -38,8 +43,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 								<ol class="breadcrumb navbar-breadcrumb">
-									<li>我的任务</li>
-									<li class="active">任务列表</li>
+									<li>考核未达标列表</li>
+
 								</ol>
 								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -123,34 +128,36 @@
 					<div class="container-fluid">
 						<div class="side-body">
 							<div class="page-title">
-								<span class="title">董事列表</span>
+								<span class="title">查看<span style="color:red;">所有考核</span>员工的列表</span>
 								<div class="description">
-									<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">董事</span>当天添加的任务,如果需要添加请点击添加按钮!</div>
+									<sapn class="tips">操作提示:</sapn>点击表格可以进行详情查看,点击<span class="tips">设置考核</span>可以设置对应人员考核!</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-12 detail">
+								<div class="col-xs-12">
 									<div class="card">
 										<div class="card-header">
-
-											<div class="card-title">
-												<div class="title"></div>
-											</div>
-											<div class="card-title" style="float:right;text-align: center;padding-top: 30px;">
-												<div class="">
-													<a class="btn btn-primary add" href="tianjia_renwu.html" style="color:white;">添加任务<span class="fa fa-chevron-circle-right"></span></a>
-												</div>
+											<div class="card-title" style="width:50%;">
+												<select id="zhanqu" style="width:100%" title="战区" aria-describedby="basic-addon1">
+													<optgroup label="请输入战区">
+													</optgroup>
+												</select>
 											</div>
 										</div>
 										<div class="card-body">
 											<table class="table table-striped" cellspacing="0" width="100%">
 												<thead>
 													<tr>
-														<th>任务</th>
-														<th>数量</th>
-														
+														<th>战区</th>
+														<th>职位</th>
+														<th>姓名</th>
+														<th>考核开始时间</th>
+														<th>考核结束时间</th>
+														<th>已完成</th>
+														<th>最低要求</th>
 														<th>操作</th>
 													</tr>
 												</thead>
+
 												<tbody>
 												</tbody>
 											</table>
@@ -184,7 +191,6 @@
 					<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
 					<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
 					<script src="../../lib/js/jquery.pagination.js"></script>
-
 					<!-- Javascript -->
 					<script type="text/javascript" src="../../js/app.js"></script>
 					<script src="../../js/dateFormat.js"></script>
@@ -197,75 +203,81 @@
 					<script type="text/javascript" src="../../js/personal_msg.js"></script>
 
 					<script type="text/javascript">
-						
 						$(document).ready(function() {
-							if(session_login.info.roleId!="3"){
-							alert("你不能设置任务哦!");
-							window.location.href="../login.html";
-						}
+							$("#zhanqu").select2({
+								placeholder: "请选择战区"
+
+							});
+							$.ajax({
+								url: config.rootUrl + "user/getListTeam.do",
+								data: {
+									deviceToken: "html5",
+									deviceType: "html5",
+									userId: session_login.info.userId,
+									page: 1,
+									rows: "200",
+								},
+								async: true,
+								type: "post",
+								success: function(data) {
+									var zhanqu = $("#zhanqu");
+									//添加选项内容
+									var info = data.info;
+									for(var i in info) {
+										var _option = document.createElement("option");
+										_option.value = info[i].teamId;
+										_option.text = info[i].teamName;
+										zhanqu.append(_option);
+									}
+								},
+								error: function() {
+									alert("网络错误");
+								},
+								complete: function() {
+									$('#zhanqu').select2("val", "")
+								}
+							})
+							$("#zhanqu").on("change", function(e) {
+								var teamId = $(this).val();
+								setTable(teamId);
+							});
+
 							$('.table tbody').on('click', '.goDetail', function(e) {
 								e.stopPropagation();
 								e.preventDefault();
-								var taskName = $(this).parents('tr').attr("data-taskName");
-								var taskId = $(this).parents('tr').attr("data-taskId");
-								var taskNum = $(this).parents('tr').attr("data-taskNum");
-								window.location.href = "tianjia_renwu.html?taskId=" + taskId +  "&taskName=" + taskName + "&taskNum=" + taskNum;
-							});
-							$('.table tbody').on('click', '.edit', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								var taskName = $(this).parents('tr').attr("data-taskName");
-								var taskId = $(this).attr("data-taskId");
-								var taskNum = $(this).attr("data-taskNum");
-								window.location.href = "tianjia_renwu.html?taskId=" + taskId +  "&taskName=" + taskName + "&taskNum=" + taskNum;
-							});
-							
-							$('.table tbody').on('click', '.delrow', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								var taskId = $(this).attr("data-taskId");
-								if(confirm("确认删除当前任务?")) {
-									$.ajax({
-										url: config.rootUrl + "user/delTask.do",
-										data: {
-											deviceToken: "html5",
-											deviceType: "html5",
-											userId: session_login.info.userId,
+								var userId = $(this).parents('tr').attr("data-userId");
+								var title = $(this).parents('tr').attr("data-title");
+								var roleId = $(this).parents('tr').attr("data-roleId");
+								if(roleId == "1") {
+									window.location.href = "zuyuan_kaohe_detail.html?userId=" + userId + "&title=" + title;
 
-											taskId: taskId,
-										},
-										async: true,
-										type: 'post',
-										success: function(data) {
-											if(data.code == 1) {
-												alert("删除任务成功");
-												console.log(data);
-												window.location.reload();
-											} else {
-												alert("请重新登录");
-											}
-										},
-										error: function(xhr, type, errorThrown) {
-											alert('网络异常，请稍后再试！');
-										}
-									});
+								} else {
+									window.location.href = "kaohe_detail.html?userId=" + userId + "&title=" + title;
+
 								}
+
 							});
-							doAction();
+							$('.table tbody').on('click', '.set', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var userId = $(this).attr("data-userId");
+								var title = $(this).parents('tr').attr("data-title");
+								window.location.href = "tianjia_kaohe.html?userId=" + userId + "&title=" + title;
 
-							function doAction() {
+							});
+							setTable();
 
-								//								$(".table tbody")[0].innerHTML = "";
+							function setTable(teamId) {
+								$(".table tbody")[0].innerHTML = "";
 								$.ajax({
-									url: config.rootUrl + "user/listTask.do",
+									url: config.rootUrl + "user/listUserAssess.do",
 									data: {
 										deviceToken: "html5",
 										deviceType: "html5",
 										userId: session_login.info.userId,
-										teamId:session_login.info.teamId,
+										teamId: teamId || "",
 										page: "1",
-										rows: "15",
-
+										rows: "10"
 									},
 									async: true,
 									type: 'post',
@@ -274,26 +286,62 @@
 										var info = data.info;
 										var pageCount = data.pageCount;
 										var tbody = $(".table tbody")[0];
-										if(info.length == 0) {
-											alert("当前没有任务,请点击添加!");
-
-										}
-
 										//添加选项盒子
 										for(var i = 0; i < info.length; i++) {
-											var info = data.info;
-											var tbody = $(".table tbody")[0];
-											//											tbody.innerHTML = "";
+											var grade = info[i].grade;
+											var roleId = info[i].roleId;
+											switch(roleId) {
+												case 1:
+													if(grade == 2) {
+														var _dom = "<span style='color:red;'>科长</span>";
+													} else {
+														var _dom = "<span style='color:green;'>组员</span>";
+													}
+													break;
+												case 2:
+													var _dom = "<span style='color:blue;'>经理</span>";
 
-											tbody.innerHTML += "<tr data-taskName='" + info[i].taskName + "'  data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'  style='cursor:pointer'>" +
-												"<td class='goDetail'>" + info[i].taskName + "</td>" +
-												"<td class='goDetail'>" + info[i].taskNum + "</td>" +
+													break;
+												case 3:
+													var _dom = "董事";
+
+													break;
+												case 4:
+													var _dom = "<span style='color:purple;'>行政</span>";
+
+													break;
+												case 5:
+													var _dom = "会计";
+
+													break;
+												case 6:
+													var _dom = "人事";
+
+													break;
+											}
+											if(!info[i].endTime) {
+												var endTime = "结束时间没有设置";
+											} else {
+												var endTime = info[i].endTime;
+											}
+											if(!info[i].starTime) {
+												var starTime = "结束时间没有设置";
+											} else {
+												var starTime = info[i].starTime;
+											}
+											tbody.innerHTML += "<tr data-userId='" + info[i].userId + "' data-roleId='" + roleId + "' data-title='" + info[i].realName + "'   style='cursor:pointer'>" +
+												"<td class='goDetail'>" + info[i].teamName + "</td>" +
+												"<td class='goDetail'>" + _dom + "</td>" +
+												"<td class='goDetail'>" + info[i].realName + "</td>" +
+												"<td class='goDetail'>" + starTime + "</td>" +
+												"<td class='goDetail'>" + endTime + "</td>" +
+												"<td class='goDetail'>" + info[i].finishMoney + "</td>" +
+												"<td class='goDetail'>" + info[i].minMoney + "</td>" +
 												"<td class='goDetail'>" +
-												" <button  class='btn btn-primary edit' type='button'   data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'><i class='fa fa-edit'> 修改 </i></button>" +
-												" <button  class='btn btn-danger delrow' type='button'   data-taskId='" + info[i].taskId + "'><i class='fa fa-remove'> 删除 </i></button>" +
+												" <button  class='btn btn-success set' type='button' data-userId=" + info[i].userId + "> 设置考核 </button>" +
+
 												"</td>" +
 												"</tr>";
-
 										}
 										//添加选项内容
 										$('.M-box').pagination({
@@ -307,14 +355,14 @@
 											nextContent: '下页',
 											callback: function(api) {
 												$.ajax({
-													url: config.rootUrl + "user/listTask.do",
+													url: config.rootUrl + "user/listUserAssess.do",
 													data: {
 														deviceToken: "html5",
 														deviceType: "html5",
 														userId: session_login.info.userId,
-														teamId:session_login.info.teamId,
+														teamId: teamId || "",
 														page: api.getCurrent(),
-														rows: "15",
+														rows: "10",
 													},
 													async: true,
 													type: "post",
@@ -322,14 +370,59 @@
 														var info = data.info;
 														var tbody = $(".table tbody")[0];
 														tbody.innerHTML = "";
-
+														//添加选项盒子
 														for(var i = 0; i < info.length; i++) {
-															tbody.innerHTML += "<tr data-taskId='" + info[i].taskId + "'  data-title='" + info[i].taskName + "'  style='cursor:pointer'>" +
-																"<td class='goDetail'>" + info[i].taskName + "</td>" +
-																"<td class='goDetail'>" + info[i].taskNum + "</td>" +
+															var grade = info[i].grade;
+															var roleId = info[i].roleId;
+															switch(roleId) {
+																case 1:
+																	if(grade == 2) {
+																		var _dom = "<span style='color:red;'>科长</span>";
+																	} else {
+																		var _dom = "<span style='color:green;'>组员</span>";
+																	}
+																	break;
+																case 2:
+																	var _dom = "<span style='color:blue;'>经理</span>";
+
+																	break;
+																case 3:
+																	var _dom = "董事";
+
+																	break;
+																case 4:
+																	var _dom = "<span style='color:purple;'>行政</span>";
+
+																	break;
+																case 5:
+																	var _dom = "会计";
+
+																	break;
+																case 6:
+																	var _dom = "人事";
+
+																	break;
+															}
+															if(!info[i].endTime) {
+																var endTime = "结束时间没有设置";
+															} else {
+																var endTime = info[i].endTime;
+															}
+															if(!info[i].starTime) {
+																var starTime = "结束时间没有设置";
+															} else {
+																var starTime = info[i].starTime;
+															}
+															tbody.innerHTML += "<tr data-userId='" + info[i].userId + "'  data-roleId='" + roleId + "' data-title='" + info[i].realName + "'   style='cursor:pointer'>" +
+																"<td class='goDetail'>" + info[i].teamName + "</td>" +
+																"<td class='goDetail'>" + _dom + "</td>" +
+																"<td class='goDetail'>" + info[i].realName + "</td>" +
+																"<td class='goDetail'>" + starTime + "</td>" +
+																"<td class='goDetail'>" + endTime + "</td>" +
+																"<td class='goDetail'>" + info[i].finishMoney + "</td>" +
+																"<td class='goDetail'>" + info[i].minMoney + "</td>" +
 																"<td class='goDetail'>" +
-																" <button  class='btn btn-primary edit' type='button'  data-taskId='" + info[i].taskId + "'><i class='fa fa-edit'> 修改 </i></button>" +
-																" <button  class='btn btn-danger delrow' type='button'   data-taskId='" + info[i].taskId + "'><i class='fa fa-remove'> 删除 </i></button>" +
+																" <button  class='btn btn-success set' type='button' data-userId=" + info[i].userId + "> 设置考核 </button>" +
 																"</td>" +
 																"</tr>";
 														}
@@ -342,11 +435,11 @@
 											}
 
 										});
+
 									},
 									error: function(xhr, type, errorThrown) {
 										alert('网络异常，请稍后再试！');
 									},
-
 								});
 							}
 

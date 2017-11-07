@@ -237,7 +237,7 @@
 											<div class="form-group">
 												<label for="height" class="col-sm-2 control-label">身高</label>
 												<div class="col-sm-10">
-													<input type="text" id="height" class="form-control" placeholder="身高(厘米)">
+													<input type="number" id="height" class="form-control" placeholder="身高(厘米)">
 
 												</div>
 
@@ -245,7 +245,7 @@
 											<div class="form-group">
 												<label for="weight" class="col-sm-2 control-label">体重</label>
 												<div class="col-sm-10">
-													<input type="text" id="weight" class="form-control" placeholder="体重(公斤)">
+													<input type="number" id="weight" class="form-control" placeholder="体重(公斤)">
 
 												</div>
 
@@ -1000,6 +1000,7 @@
 													},
 													error: function(xhr, type, errorThrown) {
 														alert('网络异常，请稍后再试！');
+														$("body").mLoading("hide");
 														console.log(xhr + errorThrown);
 													}
 												});

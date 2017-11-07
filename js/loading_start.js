@@ -1,0 +1,1 @@
+$("body").mLoading("show");//显示loading组件

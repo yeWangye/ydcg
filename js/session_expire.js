@@ -5,38 +5,12 @@ if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
 		localStorage.clear();
 		window.location.href = "../login.html";
 	}
+} else if(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+	session_login = JSON.parse(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo"));
 } else {
 	window.location.href = "../login.html";
 }
 $(function() {
-	/*var username = session_login.info.userName;
-	$(".username").text(username);
-	var grade = session_login.info.grade;
-	var roleId = session_login.info.roleId;
-	switch(roleId) {
-		case 1:
-			$(".role").text("组员");
-			break;
-		case 2:
-			if(grade == 2) {
-				$(".role").text("科长");
-			} else {
-				$(".role").text("经理");
-			}
-			break;
-		case 3:
-			$(".role").text("总经理");
-			break;
-		case 4:
-			$(".role").text("行政");
-			break;
-		case 5:
-			$(".role").text("会计");
-			break;
-		case 6:
-			$(".role").text("人事");
-			break;
-	}*/
 	var teamName = session_login.info.teamName;
 	$(".teamName").text(teamName);
 	var headimg = session_login.info.headImage;
@@ -123,21 +97,21 @@ $(function() {
 		var height = img.height;
 		// 计算宽高
 		if(width > height) {
-			if(width > 300) {
-				height = Math.round(height *= 300 / width);
-				width = 300;
+			if(width > 800) {
+				height = Math.round(height *= 800 / width);
+				width = 800;
 			}
 		} else {
-			if(height > 300) {
-				width = Math.round(width *= 300 / height);
-				height = 300;
+			if(height > 800) {
+				width = Math.round(width *= 800 / height);
+				height = 800;
 			}
 		}
 		canvas.width = width; /*设置新的图片的宽度*/
 		canvas.height = height; /*设置新的图片的长度*/
 		var ctx = canvas.getContext("2d");
 		ctx.drawImage(img, 0, 0, width, height); /*绘图*/
-		var dataURL = canvas.toDataURL("image/png", 0.8);
+		var dataURL = canvas.toDataURL("image/png", 0.99);
 		return dataURL.replace("data:image/png;base64,", "");
 	}
 });

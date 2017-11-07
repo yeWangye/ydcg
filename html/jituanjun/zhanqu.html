@@ -186,7 +186,7 @@
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
-
+				<script src="../../js/dateFormat.js"></script>
 				<script src="../../js/config.js"></script>
 				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
@@ -201,7 +201,7 @@
 							var title = window.location.search.split("title=")[1].split("&")[0];
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
 						}
-						var searchTime = new Date().toLocaleDateString().replace(/\//g, "-");
+						var searchTime =new Date().format("yyyy-MM-dd").replace(/\//g,"-");
 						$("#searchDate").val(searchTime);
 						$(".dataSearch").on("click", function() {
 							doSearch();

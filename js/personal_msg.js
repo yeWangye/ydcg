@@ -218,7 +218,7 @@ $(function() {
 		'</li>' +
 		'<li class="wode_renwu">' +
 		'<a href="../wode_renwu/renwu_index.html">' +
-		'<span class="icon fa fa-bell-o"></span><span class="title">我的任务</span>' +
+		'<span class="icon fa fa-bell-o"></span><span class="title">日工作表</span>' +
 		'</a>' +
 		'</li>' +
 		'<li class="shezhi_renwu">' +
@@ -226,12 +226,17 @@ $(function() {
 		'<span class="icon fa fa-calendar-plus-o"></span><span class="title">设置任务</span>' +
 		'</a>' +
 		'</li>' +
+		'<li class="renwu_jiancha">' +
+		'<a href="../kaohe/renwu_jiancha.html">' +
+		'<span class="icon fa fa-binoculars"></span><span class="title">任务检查</span>' +
+		'</a>' +
+		'</li>' +
 		'<li>' +
 		'<a href="../xinxi_guanli/tianjiayeji.html">' +
 		'<span class="icon fa fa-plus-square-o"></span><span class="title">添加信息</span>' +
 		'</a>' +
 		'</li>' +
-		'<li class="panel panel-default dropdown">' +
+		/*'<li class="panel panel-default dropdown">' +
 		'<a data-toggle="collapse" href="#dropdown-table">' +
 		'<span class="icon fa fa-table"></span><span class="title">患者数据库</span>' +
 		'</a>' +
@@ -244,8 +249,8 @@ $(function() {
 		'</ul>' +
 		'</div>' +
 		'</div>' +
-		'</li>' +
-		'<li class="panel panel-collapse dropdown">' +
+		'</li>' +*/
+		'<li class="panel panel-collapse dropdown meiri_renwu_box">' +
 		'<a data-toggle="collapse" href="#meiri_renwu">' +
 		'<span class="icon fa fa-bell"></span><span class="title">每日任务</span>' +
 		'</a>' +
@@ -330,6 +335,11 @@ $(function() {
 		'<span class="icon fa fa-flag"></span><span class="title">集团军</span>' +
 		'</a>' +
 		'</li>' +
+		'<li class="kaohe">' +
+		'<a href="../kaohe/kaohe_weidabiao.html">' +
+		'<span class="icon fa fa-exclamation-triangle"></span><span class="title">考核未达标</span>' +
+		'</a>' +
+		'</li>' +
 		'<li class="panel panel-default dropdown tongjiBox">' +
 		'<a data-toggle="collapse" href="#tongji">' +
 		'<span class="icon fa fa-calculator"></span><span class="title">统计</span>' +
@@ -378,10 +388,8 @@ $(function() {
 		'</div>' +
 		'</nav>';
 	$("#sidebar").html(_sideBar);
-
-	if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
-		var _session=JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
-		var roleId = _session.info.roleId;
+//鉴权
+	var roleId = session_login.info.roleId;
 		if(roleId == "1") {
 			$(".zuyuan_yeji").parent().css("display", "none");
 			$("#component-example ul").children("li").eq("1").css("display", "none");
@@ -390,26 +398,35 @@ $(function() {
 			$("#meiri_renwu ul").children("li").eq("3").css("display", "none");
 			$("#meiri_renwu ul").children("li").eq("4").css("display", "none");
 			$("#meiri_renwu ul").children("li").eq("5").css("display", "none");
-
-			
+//			$(".meiri_renwu_box").css("display", "none");
+			$(".jituanjunBox").css("display", "none");
 		}
-		if(_session.groupId=="0"||roleId!=2){
-			if(roleId==3){
-				$(".jituanjunBox").css("display", "block");
-			}else{
-				$(".jituanjunBox").css("display", "none");
-			}
-
+		if(session_login.info.groupId=="0"){		
+			$(".jituanjunBox").css("display", "none");
 		}
-		if(roleId != "5"&&roleId != "3") {
+/*		if(roleId!="1"){
+			$("#meiri_renwu ul").children("li").eq("0").css("display", "none");
+			$("#meiri_renwu ul").children("li").eq("1").css("display", "none");
+			$("#meiri_renwu ul").children("li").eq("2").css("display", "none");
+		}*/
+		if(roleId != "5") {
 			$(".tongjiBox").css("display", "none");
 		}
 		if(roleId != "3") {
 			$(".shezhi_renwu").css("display", "none");
 		}
+		if(roleId != "6") {
+			$(".kaohe").css("display", "none");
+		}
+		if(roleId != "4") {
+			$(".renwu_jiancha").css("display", "none");
+		}
 		if(roleId == "3") {
 			$(".wode_renwu").css("display", "none");
+			$(".jituanjunBox").css("display", "block");
 			$(".jituanjunBox a").attr("href", "../jituanjun/jituanjun_list.html");
+			$(".tongjiBox").css("display", "block");
+			$(".kaohe").css("display", "block");
+			$(".renwu_jiancha").css("display", "block");
 		}
-	}
 })

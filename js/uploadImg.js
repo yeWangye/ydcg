@@ -69,20 +69,20 @@ function getBase64Image(img) {
 	var height = img.height;
 	// 计算宽高
 	if(width > height) {
-		if(width > 300) {
-			height = Math.round(height *= 300 / width);
-			width = 300;
+		if(width > 800) {
+			height = Math.round(height *= 800 / width);
+			width = 800;
 		}
 	} else {
-		if(height > 300) {
-			width = Math.round(width *= 300 / height);
-			height = 300;
+		if(height > 800) {
+			width = Math.round(width *= 800 / height);
+			height = 800;
 		}
 	}
 	canvas.width = width; /*设置新的图片的宽度*/
 	canvas.height = height; /*设置新的图片的长度*/
 	var ctx = canvas.getContext("2d");
 	ctx.drawImage(img, 0, 0, width, height); /*绘图*/
-	var dataURL = canvas.toDataURL("image/png", 0.8);
+	var dataURL = canvas.toDataURL("image/png", 0.99);
 	return dataURL.replace("data:image/png;base64,", "");
 }

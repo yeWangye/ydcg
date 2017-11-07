@@ -343,7 +343,9 @@
 									error: function(xhr, type, errorThrown) {
 										alert('网络异常，请稍后再试！');
 									},
-
+									complete:function(){
+											$("body").mLoading("hide");//关闭loading组件
+									}
 								});
 							}
 

@@ -18,7 +18,9 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/timedropper.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
@@ -35,8 +37,8 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>每日任务</li>
-								<li class="active">社区类</li>
+								<li>我的任务</li>
+								<li class="active">任务详情</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -114,32 +116,29 @@
 					</div>
 				</nav>
 				<div id="sidebar" class="side-menu sidebar-inverse">
-					
+
 				</div>
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title">查看<span style="color:red;">社区类</span>列表</span>
-							<div class="description">
-								<sapn class="tips">操作提示:</sapn>默认展示是<span class="tips">当日</span>数据,如需查看其它日期可点击日期选择框进行选择,<span class="tips">查看详情</span>可以点击表格进行详情查看!</div>
+							<span class="title">任务详情:<span class="taskName tips"></span></span>
+
+							<div><span class="">任务数量:</span><span class="taskNum tips"></span></div>
+
+							<div><span class="">开始时间:</span><span class="starTime tips"></span></div>
+							<div><span class="">结束时间:</span><span class="endTime tips"></span></div>
+
+							<div style="position: fixed;top:150px;right:150px;" class="light"><span class="fa fa-lightbulb-o fa-3x"></span></div>
+
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="card">
 									<div class="card-header">
-
 										<div class="card-title">
 											<div class="title">
-												<!--<a class="btn btn-success" href="../meiri_renwu/shequ_tianjia.html" style="color:white;">添加社区类</a>-->
+												<a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>任务列表</a>
 											</div>
-
-										</div>
-										<div class="card-title" style="float:right;text-align: center;">
-
-											<div class="title"><button class="btn btn-success dataSearch" style="color:white;">根据日期查询</button></div>
-										</div>
-										<div class="card-title" style="float:right;text-align: center;">
-											<input type="date" name="searchDate" id="searchDate" style="width:100%;" />
 										</div>
 
 									</div>
@@ -147,9 +146,17 @@
 										<table class="table table-striped" cellspacing="0" width="100%">
 											<thead>
 												<tr>
-													<th>来源</th>
-													<th>类型</th>
-													<th>数量</th>
+													<th>组员</th>
+													<th>组员用户名</th>
+													<th>头像</th>
+													<th>基本考核任务数</th>
+
+													<th>战区制定任务数</th>
+													<th>完成数</th>
+													<th>超时完成数</th>
+													<th>基本考核情况</th>
+													<th>战区考核情况</th>
+
 												</tr>
 											</thead>
 
@@ -160,6 +167,24 @@
 									</div>
 								</div>
 							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="choose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">选择你需要完成的任务类型</h4>
+						</div>
+						<div class="modal-body">
+							<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="../meiri_renwu/tongxun_tianjia.html">通讯类</button>
+							<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="../meiri_renwu/shequ_tianjia.html">社区类</button>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 						</div>
 					</div>
 				</div>
@@ -177,133 +202,124 @@
 				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/timedropper.js"></script>
 
 				<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
+				<!--<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+				<script src="../../js/loading_start.js"></script>
 				<script src="../../lib/js/jquery.pagination.js"></script>
 
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
-				<script src="../../js/dateFormat.js"></script>
+
 				<script src="../../js/config.js"></script>
 				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
 				<script type="text/javascript" src="../../js/personal_msg.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript">
-					$(function() {
-						if(window.location.search) {
-							var memberId = window.location.search.split("mid=")[1].split("&")[0];
-							if(memberId=="undefined"){
-								alert("你还没有开始任务哦,不能查看!");
-								window.history.go(-1);
-								return;
-							}
-							var cardTitle = window.location.search.split("title=")[1];
-							if(window.location.search.split("tdId=")[1]){
-								var tdId = window.location.search.split("tdId=")[1].split("&")[0];
-								if(tdId!="undefined"){
-									$(".card-title")[1].style.display="none";
-									$(".card-title")[2].style.display="none";
-									
-								}
-							}
-							$(".card-title .title")[0].innerHTML = "<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'></span> " + decodeURI(cardTitle) + "</a>";
+					$(document).ready(function() {
+						var search = window.location.search;
+						if(search != "") {
+							var teamTaskId = window.location.search.split("teamTaskId=")[1].split("&")[0];
+							var teamId = window.location.search.split("teamId=")[1].split("&")[0];
+							var starTime = window.location.search.split("starTime=")[1].split("&")[0];
+							var endTime = window.location.search.split("endTime=")[1].split("&")[0];
+							var taskName = window.location.search.split("taskName=")[1].split("&")[0];
+							var taskNum = window.location.search.split("taskNum=")[1].split("&")[0];
+							var taskType = window.location.search.split("taskType=")[1].split("&")[0];
+							var searchTime = window.location.search.split("searchTime=")[1].split("&")[0];
 
+							$(".taskName").text(decodeURI(taskName));
+							$(".taskNum").text(taskNum);
+
+							$(".starTime").text(decodeURI(starTime));
+							$(".endTime").text(decodeURI(endTime));
 						}
-						else{
-							var cardTitle="你";
-						}
-						var search =new Date().format("yyyy-MM-dd").replace(/\//g,"-");
-						$("#searchDate").val(search);
-						$('.table tbody').on('click', 'button.delrow', function(e) {
-							e.stopPropagation();
-							e.preventDefault();
-							if(confirm("确认将这条社区信息?务必谨慎选择!!!")) {
-								var sid = $(this).attr("data-sid");
-								console.log(sid);
-								$.ajax({
-									url: config.rootUrl + "user/delPostRecord.do",
-									type: 'POST',
-									dataType: 'json',
-									data: {
-										deviceToken: "html5",
-										deviceType: "html5",
-										userId: session_login.info.userId,
-										prId: sid,
-
-									},
-									success: function(data) {
-										if(data.code == 1) {
-											alert("链接删除成功!");
-											window.location.reload();
-										} else {
-											alert(data.msg);
-										}
-
-									},
-									error: function() {
-										alert("发生错误了,请检查你的网络!");
-									}
-								})
-
-							}
-
-						});
 						$('.table tbody').on('click', '.goDetail', function(e) {
 							e.stopPropagation();
 							e.preventDefault();
-							var sid = $(this).parents('tr').attr("data-sid");
-							var sName = $(this).parents('tr').attr("data-sName");
-							if(window.location.search){
-								window.location.href = "../meiri_renwu/shequ_detail.html?sId=" + sid + "&sName=" + sName+"&searchDate="+search+"&userId="+memberId+"&title="+cardTitle+"&tdId="+tdId;
+							var tdId = $(this).parents("tr").attr("data-tdId");
+							var title = $(this).parents("tr").attr("data-title");
+							var mid = $(this).parents("tr").attr("data-mid");
+							if(taskType == "link") {
+								window.location.href = "../meiri_renwu/lianjie.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "social") {
+								window.location.href = "../meiri_renwu/shequ.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "patient") {
+								window.location.href = "../xinxi_guanli/wode_xinxi.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "commun") {
+								window.location.href = "../meiri_renwu/tongxun.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
 							}
-							else{
-								window.location.href = "../meiri_renwu/shequ_detail.html?sId=" + sid + "&sName=" + sName+"&searchDate="+search+"&title="+session_login.info.realName;
-							}
-							
 
 						});
 						$.ajax({
-							url: config.rootUrl + "user/socialWorkList.do",
+							url: config.rootUrl + "user/listPartyMember.do",
 							data: {
 								deviceToken: "html5",
 								deviceType: "html5",
 								userId: session_login.info.userId,
 
-								memberId: memberId || session_login.info.userId,
-								searchDate: search,
-								type: "sq",
+								teamTaskId: teamTaskId,
+								searchTime: searchTime || "",
+
+								memberId: session_login.info.userId,
+								teamId: teamId,
 								page: "1",
-								rows: "10",
-								tdId: tdId || "",
+								rows: "15",
 							},
 							async: true,
-							type: 'post',
+							type: "post",
 							success: function(data) {
-								var info = data.info;
-								if(info.length=="0"){
-									alert(decodeURI(cardTitle)+"没有数据哦!");
-								}
-								var pageCount = data.pageCount;
-								var tbody = $(".table tbody")[0];
-								for(var i = 0; i < info.length; i++) {
-									if(info[i].type == "sq") {
-										var type = "社区";
+								if(data.code == "1") {
+									var info = data.info;
+									if(info.isGood == "0") {
+										$(".light").css("color", "red");
+									} else if(info.isGood == "1") {
+										$(".light").css("color", "green");
+										$(".end").text("任务已结束");
 									}
-									tbody.innerHTML += "<tr data-sid='" + info[i].sId + "' data-sName='" + info[i].sName + "'  style='cursor:pointer'>" +
-										"<td class='goDetail'>" + info[i].sName + "</td>" +
-										"<td class='goDetail'>" + type + "</td>" +
-										"<td class='goDetail'>" + info[i].count + "</td>" +
-										"</tr>";
+									var userInfo = data.userInfo;
+									var pageCount = data.pageCount;
+									var tbody = $(".table tbody")[0];
+									//添加选项盒子
+									for(var i = 0; i < userInfo.length; i++) {
+										if(userInfo[i].isGood == "0") {
+											var _dom1 = "<span style='color:red' class='fa fa-lightbulb-o fa-2x'>";
+										} else {
+											var _dom1 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
+										}
+										if(userInfo[i].isTeamGood == "0") {
+											var _dom2 = "<span style='color:red' class='fa fa-lightbulb-o fa-2x'>";
+										} else {
+											var _dom2 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
+										}
+
+										tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+											"<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+											"<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+											"<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+											"<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+											"<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+											"<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+											"<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+											"<td class='goDetail'>" + _dom1 + "</td>" +
+											"<td class='goDetail'>" + _dom2 + "</td>" +
+											"</tr>";
+									}
+								} else {
+									alert(data.msg);
+									window.history.go(-1);
 								}
+
 								//添加选项内容
 								$('.M-box').pagination({
 									pageCount: pageCount,
@@ -315,42 +331,66 @@
 									prevContent: '上页',
 									nextContent: '下页',
 									callback: function(api) {
+										$("body").mLoading("show");
 										$.ajax({
-											url: config.rootUrl + "user/socialWorkList.do",
+											url: config.rootUrl + "user/listPartyMember.do",
 											data: {
 												deviceToken: "html5",
 												deviceType: "html5",
 												userId: session_login.info.userId,
 
-												memberId: memberId || session_login.info.userId,
-												searchDate: search,
-												type: "sq",
+												teamTaskId: teamTaskId,
+												memberId: session_login.info.userId,
+												teamId: teamId,
 												page: api.getCurrent(),
-												rows: "10",
-												tdId: tdId || "",
+												rows: "15",
+												searchTime: searchTime || "",
+
 											},
 											async: true,
 											type: "post",
 											success: function(data) {
-												var info = data.info;
-												console.log(data);
-												var tbody = $(".table tbody")[0];
-												tbody.innerHTML = "";
-												//添加选项盒子
-												for(var i = 0; i < info.length; i++) {
-													if(info[i].type == "sq") {
-														var type = "社区";
+												if(data.code == "1") {
+													var info = data.info;
+													var userInfo = data.userInfo;
+													var pageCount = userInfo.length;
+													var tbody = $(".table tbody")[0];
+													tbody.innerHTML = "";
+													//添加选项盒子
+													for(var i = 0; i < userInfo.length; i++) {
+														if(userInfo[i].isGood == "0") {
+															var _dom1 = "<span style='color:red' class='fa fa-lightbulb-o fa-2x'>";
+														} else {
+															var _dom1 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
+														}
+														if(userInfo[i].isTeamGood == "0") {
+															var _dom2 = "<span style='color:red' class='fa fa-lightbulb-o fa-2x'>";
+														} else {
+															var _dom2 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
+														}
+														tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "' data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+															"<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+															"<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+															"<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+															"<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+															"<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+															"<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+															"<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+															"<td class='goDetail'>" + _dom1 + "</td>" +
+															"<td class='goDetail'>" + _dom2 + "</td>" +
+															"</tr>";
 													}
-													tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-sName='" + info[i].sName + "' style='cursor:pointer'>" +
-														"<td class='goDetail'>" + info[i].sName + "</td>" +
-														"<td class='goDetail'>" + type + "</td>" +
-														"<td class='goDetail'>" + info[i].count + "</td>" +
-														"</tr>";
+												} else {
+													alert(data.msg);
+													window.history.go(-1);
 												}
 											},
 											error: function() {
 												alert("网络错误");
 
+											},
+											complete: function() {
+												$("body").mLoading("hide"); //关闭loading组件
 											}
 										})
 									}
@@ -358,116 +398,14 @@
 								});
 
 							},
-							error: function(xhr, type, errorThrown) {
-								alert('网络异常，请稍后再试！');
-								console.log(xhr + errorThrown);
+							error: function() {
+								alert("网络错误");
+
+							},
+							complete: function() {
+									$("body").mLoading("hide"); //关闭loading组件
 							}
-						});
-						$(".dataSearch").on("click", function() {
-							dateSearch();
 						})
-
-						function dateSearch() {
-							$(".table tbody")[0].innerHTML = "";
-							search = $("#searchDate").val();
-							if(search === "") {
-								alert("日期格式不正确!");
-							}
-							$.ajax({
-								url: config.rootUrl + "user/socialWorkList.do",
-								data: {
-									deviceToken: "html5",
-									deviceType: "html5",
-									userId: session_login.info.userId,
-
-									memberId:memberId|| session_login.info.userId,
-									searchDate: search,
-									type: "sq",
-									page: "1",
-									rows: "10"
-								},
-								async: true,
-								type: 'post',
-								success: function(data) {
-									console.log(data);
-									if(data.info.length == 0) {
-										alert("没有查询结果!");
-									}
-									var info = data.info;
-									var pageCount = data.pageCount;
-									var tbody = $(".table tbody")[0];
-									for(var i = 0; i < info.length; i++) {
-										if(info[i].type == "sq") {
-											var type = "社区";
-										}
-										tbody.innerHTML += "<tr data-sid='" + info[i].sId + "' data-sName='" + info[i].sName + "' style='cursor:pointer'>" +
-											"<td class='goDetail'>" + info[i].sName + "</td>" +
-											"<td class='goDetail'>" + type + "</td>" +
-											"<td class='goDetail'>" + info[i].count + "</td>" +
-											"</tr>";
-									}
-									//添加选项内容
-									$('.M-box').pagination({
-										pageCount: pageCount,
-										showData: 10,
-										jump: true,
-										coping: true,
-										homePage: '首页',
-										endPage: '末页',
-										prevContent: '上页',
-										nextContent: '下页',
-										callback: function(api) {
-											$.ajax({
-												url: config.rootUrl + "user/socialWorkList.do",
-												data: {
-													deviceToken: "html5",
-													deviceType: "html5",
-													userId: session_login.info.userId,
-
-													memberId: memberId||session_login.info.userId,
-													searchDate: search,
-													type: "sq",
-													page: api.getCurrent(),
-													rows: "10",
-												},
-												async: true,
-												type: "post",
-												success: function(data) {
-													var info = data.info;
-													if(data.info.length == 0) {
-														alert("没有查询结果!");
-													}
-													var tbody = $(".table tbody")[0];
-													tbody.innerHTML = "";
-													//添加选项盒子
-													for(var i = 0; i < info.length; i++) {
-														if(info[i].type == "sq") {
-															var type = "社区";
-														}
-														tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-sName='" + info[i].sName + "' style='cursor:pointer'>" +
-															"<td class='goDetail'>" + info[i].sName + "</td>" +
-															"<td class='goDetail'>" + type + "</td>" +
-															"<td class='goDetail'>" + info[i].count + "</td>" +
-															"</tr>";
-													}
-												},
-												error: function() {
-													alert("网络错误");
-
-												}
-											})
-										}
-
-									});
-
-								},
-								error: function(xhr, type, errorThrown) {
-									alert('网络异常，请稍后再试！');
-									console.log(xhr + errorThrown);
-								}
-							});
-						}
-
 					})
 				</script>
 	</body>

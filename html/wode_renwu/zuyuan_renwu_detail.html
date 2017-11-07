@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/timedropper.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
-
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
@@ -38,7 +38,7 @@
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
 								<li>我的任务</li>
-								<li class="active">添加组员</li>
+								<li class="active">任务详情</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -151,6 +151,7 @@
 													<th>基本考核情况</th>
 													<th>战区考核情况</th>
 													<th>前往完成</th>
+													<th>查看完成情况</th>
 												</tr>
 											</thead>
 
@@ -202,11 +203,12 @@
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
+				<!--<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
 				<script src="../../lib/js/jquery.pagination.js"></script>
-
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+				<script src="../../js/loading_start.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
@@ -264,6 +266,23 @@
 							}
 
 						});
+						$('.table tbody').on('click', '.check', function(e) {
+							e.stopPropagation();
+							e.preventDefault();
+							var tdId = $(this).attr("data-tdId");
+							var title = session_login.info.realName;
+							var mid = session_login.info.userId;
+							if(taskType == "link") {
+								window.location.href = "../meiri_renwu/lianjie.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "social") {
+								window.location.href = "../meiri_renwu/shequ.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "patient") {
+								window.location.href = "../xinxi_guanli/wode_xinxi.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							} else if(taskType == "commun") {
+								window.location.href = "../meiri_renwu/tongxun.html?tdId=" + tdId + "&mid=" + mid + "&title=" + title;
+							}
+
+						});
 						$.ajax({
 							url: config.rootUrl + "user/listPartyMember.do",
 							data: {
@@ -303,11 +322,14 @@
 										"<td class='goDetail'>" + _dom1 + "</td>" +
 										"<td class='goDetail'>" + _dom2 + "</td>" +
 										"<td>" +
-										" <button  class='btn btn-default down'  type='button' data-tdId='" + info.tdId + "'><i class='fa fa-arrows-v'> 完成 </i></button>" +
+										" <button  class='btn btn-primary down'  type='button' data-tdId='" + info.tdId + "'><i class='fa fa-arrows-v'> 完成 </i></button>" +
+										"</td>" +
+										"<td>" +
+										" <button  class='btn btn-success check'  type='button' data-tdId='" + info.tdId + "'><i class='fa fa-arrows-v'> 查看 </i></button>" +
 										"</td>" +
 										"</tr>";
 								} else {
-									alert(data.msg);
+									alert("战区经理还没有发布任务!");
 //									alert("战区");
 									window.history.go(-1);
 								}
@@ -316,6 +338,9 @@
 							error: function() {
 								alert("网络错误");
 
+							},
+							complete:function(){
+								$("body").mLoading("hide");//关闭loading组件
 							}
 						})
 					})

@@ -18,11 +18,23 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
-
+		<link rel="stylesheet" type="text/css" href="../../lib/css/timedropper.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/reset.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+		<style>
+			.ECalendar {
+				width: 400px;
+				height: 30px;
+			}
+			
+			.card .card-body {
+				min-height: 800px;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -35,8 +47,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>每日任务</li>
-								<li class="active">链接类</li>
+								<li>添加考核</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -114,61 +125,58 @@
 					</div>
 				</nav>
 				<div id="sidebar" class="side-menu sidebar-inverse">
-					
+
 				</div>
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title">链接类--工作记录</span>
+							<span class="title">添加考核</span>
+							<div class="description"><span class="tips">操作提示</span>:</div>
+							<div class="desctiption">
+								<span class="">1:时间选择:</span><span class="tips">时间选择可点击小时,分钟分开选择!</span>
+							</div>
+
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title">
-											<div class="title">多条链接添加</div>
-											<div class="title"><a onclick="window.history.go(-2);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a></div>
+											<div class="title">
+												<a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>考核列表</a>
+											</div>
+										</div>
+									</div>
+									
+									<div class="card-body">
+											<table class="self table table-striped" cellspacing="0" width="100%">
+												<thead>
+													<tr>
+														<th>姓名</th>
+														<th>开始时间</th>
+														<th>结束时间</th>
+														<th>个人业绩已完成</th>
+														<th>战区总业绩</th>
+														<th>有效考核人数</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<a class="btn btn-primary"><span></span>组员</a>
 											
+											<table class="users table table-striped" cellspacing="0" width="100%">
+												<thead>
+													<tr>
+														<th>姓名</th>
+														<th>入职时间</th>
+														<th>创建时间</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
 										</div>
-									</div>
-									<div class="card-body" style="font-size:20px;">
-										<h3 style="color:red;">注意事项：</h3>
-										<div >
-											<ul>
-												<li>1.请下载模板,不能自定义文件内容，否则上传失败</li>
-												<li>2.编号，链接，链接来源 全为必填，严格按照模板格式来，否则视为无效</li>
-												<li>3.只能上传excel文件</li>
-												<li >4.表格前两条数据为测试示例，请删除</li>
-												<li>5.链接地址必须以http开头，前面不能加任何字符，数字</li>
-												<li>6.模板1和模板2,二选一,如果使用模板1（高版本）打不开的，请下载模板2（低版本）</li>
-											</ul>
-										</div>
-										<div class="col-sm-12">
-											<div class="col-sm-4">
-												<a href="http://ydcg.cpylss.com:8081/ydcg/work.xlsx" class="btn btn-success">模板1下载</a>
-											</div>
-											<div class="col-sm-4">
-												<a href="http://ydcg.cpylss.com:8081/ydcg/work03.xls" class="btn btn-success">模板2下载</a>
-											</div>
-											<div class="col-sm-4">
-												<a href="http://ydcg.cpylss.com:8081/ydcg/image/help.png" target="_block" class="btn btn-success">使用指导</a>
-											</div>
-											<div class="form-group col-sm-12">
-												<form class="form-group" action="http://ydcg.cpylss.com:8081/ydcg/user/uploadFile.do" enctype="multipart/form-data" method="post" onsubmit="return doCheck()">
-													<div class="col-sm-12">
-														<input type="hidden" id="userId" name="userId" required />
-														<input type="hidden" id="tdId" name="tdId" required />
-														<lable for="upFile" class="col-sm-2">上传文件: </lable>
-														<input type="file" id="upFile" name="upFile" value="">
-													</div>
-													<div class="col-sm-12">
-														<input id="upSubmit" class="col-sm-12 btn btn-lg btn-success"  type="submit" value="提交"></div>
-
-												</form>
-											</div>
-
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -189,33 +197,80 @@
 				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/timedropper.js"></script>
 
 				<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<script type="text/javascript" src="../../lib/js/Ecalendar.jquery.min.js"></script>
+
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
-
+				<script src="../../js/dateFormat.js"></script>
 				<script src="../../js/config.js"></script>
 				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
 				<script type="text/javascript" src="../../js/personal_msg.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript">
-					$("#userId").val(session_login.info.userId);
-					var search = window.location.search;
-					if(search != "") {
-						var tdId = search.split("tdId=")[1].split("&")[0];
-						$("#tdId").val(tdId);
-					}else{
-						$("#tdId").val("");
-					}
+					$(function() {
+						var search = window.location.search;
+						if(search != "") {
+							var memberId = search.split("userId=")[1].split("&")[0];
+							var title = search.split("title=")[1].split("&")[0];
+							$("#name").val(decodeURI(title)).attr("disabled", "disabled");
+						}
+						$.ajax({
+							url: config.rootUrl + "user/appointUserAssess.do",
+							data: {
+								deviceToken: "html5",
+								deviceType: "html5",
+								userId: session_login.info.userId,
+
+								memberId: memberId,
+							},
+							async: true,
+							type: 'post',
+							success: function(data) {
+								console.log(data);
+								if(data.code == 1) {								
+									var info = data.info;
+									var uList=info.uList;
+									var tbody = $(".self tbody")[0];
+									if(info.length == 0) {
+										alert("当前没有数据!");
+									}					
+									//添加选项盒子
+									tbody.innerHTML += "<tr>" +
+											"<td>" + decodeURI(title)+ "</td>" +
+											"<td>" +new Date(info.starTime).format('yyyy-MM-dd hh:mm:ss')+"</td>" +
+											"<td>" +new Date(info.endTime).format('yyyy-MM-dd hh:mm:ss')+"</td>" +
+											"<td>" +info.selfMoney+"</td>" +
+											"<td>" +info.totalMoney+"</td>" +
+											"<td>" +info.userCount+"</td>" +
+											"</tr>";
+									var tbody_users = $(".users tbody")[0];		
+									for(i=0;i<uList.length;i++){
+										//添加选项盒子
+									tbody_users.innerHTML += "<tr>" +
+											"<td>" + uList[i].realName+ "</td>" +
+											"<td>" +uList[i].dateDiff+"</td>" +
+											"<td>" +new Date(uList[i].createTime).format('yyyy-MM-dd hh:mm:ss')+"</td>" +
+											"</tr>";
+									}
+									
+								} else {
+									alert(data.msg);
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								alert('网络异常，请稍后再试！');
+							}
+						});
+					})
 				</script>
 	</body>
 

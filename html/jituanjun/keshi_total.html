@@ -211,7 +211,7 @@
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
 
 						}
-						var searchDate = new Date().toLocaleDateString().replace(/\//g, "-");
+						var searchDate = new Date().format("yyyy-MM-dd").replace(/\//g,"-");
 						$("#searchDate").val(searchDate);
 						$(".dataSearch").on("click", function() {
 							dateSearch();

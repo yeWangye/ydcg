@@ -19,11 +19,18 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/timedropper.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/reset.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+		<style>
+			.ECalendar{width:400px;height:30px;}
+			.card .card-body{
+				min-height: 800px;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -36,7 +43,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>添加任务</li>
+								<li>添加考核</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -119,18 +126,12 @@
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title">添加任务</span>
-							<div class="description"><span class="tips">操作提示</span>:<span class="tips">除了电话,短信,商务通</span>其他需要截图的均属于社区类,请合理选择类型!</div>
-
+							<span class="title">添加考核</span>
+							<div class="description"><span class="tips">操作提示</span>:</div>
 							<div class="desctiption">
 								<span class="">1:时间选择:</span><span class="tips">时间选择可点击小时,分钟分开选择!</span>
 							</div>
-							<div class="desctiption">
-								<span class="">2:任务名称:</span><span class="taskName tips"></span>
-							</div>
-							<div class="desctiption">
-								<span class="">3:任务基本数量:</span><span class="taskNum tips"></span>
-							</div>
+
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
@@ -138,14 +139,14 @@
 									<div class="card-header">
 										<div class="card-title">
 											<div class="title">
-												<a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>任务列表</a>
+												<a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>考核列表</a>
 											</div>
 										</div>
 									</div>
 									<div class="card-body">
 										<form class="form-horizontal">
 											<div class="form-group">
-												<label for="name" class="col-sm-2 control-label">任务</label>
+												<label for="name" class="col-sm-2 control-label">姓名</label>
 												<div class="col-sm-10">
 													<div class="input-group">
 														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
@@ -153,64 +154,35 @@
 													</div>
 												</div>
 											</div>
-											<div class="form-group">
-												<label for="num" class="col-sm-2 control-label">数量</label>
-												<div class="col-sm-10">
-													<div class="input-group">
-														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
-														<input type="number" style="width:30%" id="num" class="form-control" placeholder="请输入任务数量" aria-describedby="basic-addon1">
-													</div>
-												</div>
-											</div>
 
 											<div class="form-group">
 												<label for="starTime" class="col-sm-2 control-label">开始时间</label>
 												<div class="col-sm-10">
-													<div class="input-group">
-														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
-														<input type="text" style="width:30%" id="starTime" class="form-control" placeholder="开始时间" aria-describedby="basic-addon1">
+													<div class="calendarWarp" style="">
+														<input type="text" name="date"    class='starTime ECalendar' id="starTime" value="2017-10-1 15:32" />
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="endTime" class="col-sm-2 control-label">结束时间</label>
 												<div class="col-sm-10">
-													<div class="input-group">
-														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
-														<input type="text" style="width:30%" id="endTime" class="form-control" placeholder="结束时间" aria-describedby="basic-addon1">
+													<div class="calendarWarp" style="">
+														<input type="text" name="date"  class='endTime ECalendar' id="endTime" value="2017-10-1 15:32" />
 													</div>
 												</div>
 											</div>
-											<div class="form-group" id="type">
-												<label for="diseasesBox" class="col-sm-2 control-label">任务类型</label>
+											<div class="form-group">
+												<label for="num" class="col-sm-2 control-label">考核业绩</label>
 												<div class="col-sm-10">
 													<div class="input-group">
-														<span class="input-group-addon" id=""><i>*</i>必填项</span>
-														<div>
-															<select id="diseasesBox" style="width:30%" title="类型" aria-describedby="">
-																<optgroup class="diseasesBox">
-																	<option value="link">
-																		链接类
-																	</option>
-																	<option value="social">
-																		社区类
-																	</option>
-																	<option value="commun">
-																		通讯类
-																	</option>
-																	<option value="patient">
-																		留信息
-																	</option>
-																</optgroup>
-															</select>
-														</div>
-
+														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
+														<input type="number" style="width:30%" id="num" class="form-control" placeholder="请输入金额" aria-describedby="basic-addon1">
 													</div>
 												</div>
 											</div>
 											<div class="form-group">
 												<div class="col-sm-10 col-sm-offset-2">
-													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">提交</button>
+													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">确认添加</button>
 												</div>
 											</div>
 										</form>
@@ -241,11 +213,8 @@
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<!--<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
-				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
-				<!--<script src="../../js/loading_start.js"></script>-->
+				<script type="text/javascript" src="../../lib/js/Ecalendar.jquery.min.js"></script>
+
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
@@ -260,174 +229,80 @@
 					$(function() {
 						var search = window.location.search;
 						if(search != "") {
-							$("#type").css("display", "none");
-							var taskId = search.split("taskId=")[1].split("&")[0];
-							var taskNum = search.split("taskNum=")[1].split("&")[0];
-							var taskName = search.split("taskName=")[1].split("&")[0];
-
-							if(search.split("teamTaskId=")[1] && search.split("teamTaskId=")[1].split("&")[0] != "0") {
-								var teamTaskId = search.split("teamTaskId=")[1].split("&")[0];
-							} else {
-								var teamTaskId = "";
-							}
-							if(search.split("starTime=")[1]) {
-								var starTime = search.split("starTime=")[1].split("&")[0];
-								var endTime = search.split("endTime=")[1].split("&")[0];
-								$("#starTime").val(starTime);
-								$("#endTime").val(endTime);
-							}
-
-							$(".taskName").text(decodeURI(taskName));
-							$(".taskNum").text(taskNum);
-							$("#num").val(taskNum);
-							$("#name").val(decodeURI(taskName)).attr("disabled", "disabled");
-
-						} else {
-
-							$("#endTime").val("");
-							$("#starTime").val("");
+							var userId = search.split("userId=")[1].split("&")[0];
+							var title = search.split("title=")[1].split("&")[0];
+							$("#name").val(decodeURI(title)).attr("disabled", "disabled");
 						}
-						$("#starTime").timeDropper({
-							format: "HH:mm",
-							meridians: false,
-							setCurrentTime: false,
-
+						$("#starTime").ECalendar({
+							type: "time",
+							stamp: false,
+							skin: 5,
+//							format: "yyyy年mm月dd日 hh时ii分",
+							format: "yyyy-mm-dd hh:ii",
+							callback: function(v, e) {
+								console.log(v)
+							}
 						});
-						$("#endTime").timeDropper({
-							format: "HH:mm",
-							meridians: false,
-							setCurrentTime: false,
-
+						$("#endTime").ECalendar({
+							type: "time",
+							stamp: false,
+							skin: 5,
+							format: "yyyy-mm-dd hh:ii",
+							callback: function(v, e) {
+								console.log(v)
+							}
 						});
-
-						//自定义添加任务代码
-						/*var search = window.location.search;
-						if(search != "") {
-							var teamTaskId = window.location.search.split("teamTaskId=")[1].split("&")[0];
-							var taskId = window.location.search.split("taskId=")[1].split("&")[0];
-							var starTime = window.location.search.split("starTime=")[1].split("&")[0];
-							var endTime = window.location.search.split("endTime=")[1].split("&")[0];
-							var taskName = window.location.search.split("taskName=")[1].split("&")[0];
-							var taskNum = window.location.search.split("taskNum=")[1].split("&")[0];
-							$("#name").val(decodeURI(taskName));
-							$("#num").val(taskNum);
-
-							$("#starTime").val(starTime);
-							$("#endTime").val(endTime);
-						} else {
-							$("#endTime").val("");
-							$("#starTime").val("");
-						}*/
-
 						$(".save").on("click", function() {
-							$("body").mLoading("show");//显示loading组件				
+
 							//数量
 							var num = $("#num").val();
 							if(num == "") {
-								alert("请输入任务数量!");
-								$("body").mLoading("hide"); //关闭loading组件
-								return;
-							} else if(num < taskNum) {
-								alert("设置的基本任务数量为" + taskNum + "请重设!");
-								$("#num").val("");
-								$("#num").focus();
-								$("body").mLoading("hide"); //关闭loading组件
+								alert("请输入考核金额!");
 								return;
 							}
 							var starTime = $("#starTime").val();
 							if(starTime == "") {
 								alert("请选择开始时间!");
-								$("body").mLoading("hide"); //关闭loading组件
 								return;
 							}
 							var endTime = $("#endTime").val();
 							if(endTime == "") {
 								alert("请选择结束时间!");
-								$("body").mLoading("hide"); //关闭loading组件
 								return;
 							}
 							if(starTime == endTime) {
 								alert("任务开始时间与结束时间相同,请重设!");
-								$("body").mLoading("hide"); //关闭loading组件
 								return;
 							}
 
 							/*在这里调用上传接口*/
-							if(taskId == undefined) {
-								//自定义添加任务代码
-								//任务
-								var name = $("#name").val();
-								if(name == "") {
-									alert("请输入任务名字!");
-									return;
+							$.ajax({
+								url: config.rootUrl + "user/addMinMoney.do",
+								data: {
+									deviceToken: "html5",
+									deviceType: "html5",
+									userId: session_login.info.userId,
+
+									memberId: userId,
+									starTime: starTime,
+									endTime: endTime,
+									minMoney: num,
+								},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									if(data.code == 1) {
+										alert("添加考核成功");
+										window.history.go(-1);
+									} else {
+										alert(data.msg);
+									}
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
 								}
-								//类型
-								var type = $("#diseasesBox").val();
-								$.ajax({
-									url: config.rootUrl + "user/addTeamTask.do",
-									data: {
-										deviceToken: "html5",
-										deviceType: "html5",
-										userId: session_login.info.userId,
+							});
 
-										teamId: session_login.info.teamId,
-										starTime: starTime,
-										endTime: endTime,
-										taskName: name,
-										taskNum: num,
-										taskType: type,
-									},
-									async: true,
-									type: 'post',
-									success: function(data) {
-										if(data.code == 1) {
-											alert("添加任务成功");
-											window.history.go(-1);
-										} else {
-											alert(data.msg);
-										}
-									},
-									error: function(xhr, type, errorThrown) {
-										alert('网络异常，请稍后再试！');
-									},
-									complete: function() {
-										$("body").mLoading("hide"); //关闭loading组件
-									}
-								});
-							} else {
-								$.ajax({
-									url: config.rootUrl + "user/addTeamTask.do",
-									data: {
-										deviceToken: "html5",
-										deviceType: "html5",
-										userId: session_login.info.userId,
-
-										teamId: session_login.info.teamId,
-										starTime: starTime,
-										endTime: endTime,
-										taskNum: num,
-										taskId: taskId,
-										teamTaskId: teamTaskId,
-									},
-									async: true,
-									type: 'post',
-									success: function(data) {
-										if(data.code == 1) {
-											alert(data.msg);
-											window.history.go(-1);
-										} else {
-											alert(data.msg);
-
-										}
-									},
-									error: function(xhr, type, errorThrown) {
-										alert('网络异常，请稍后再试！');
-									},
-									complete: function() {
-										$("body").mLoading("hide"); //关闭loading组件
-									}
-								});
-							}
 						})
 
 					})

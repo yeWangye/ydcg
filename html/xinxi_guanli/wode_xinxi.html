@@ -132,7 +132,7 @@
 										<div class="card-header">
 
 											<div class="card-title">
-												<div class="title"><button class="btn btn-success" style="color:white;">我的信息</button></div>
+												<div class="title"><button class="btn btn-primary backBtn" style="color:white;">我的信息</button></div>
 
 											</div>
 										</div>
@@ -216,7 +216,16 @@
 
 					<script type="text/javascript">
 						$(document).ready(function() {
-
+							var search=window.location.search;
+							if(search.split("tdId=")[1]){
+								var tdId = search.split("tdId=")[1].split("&")[0];
+								var title = search.split("title=")[1].split("&")[0];
+								var memberId = search.split("mid=")[1].split("&")[0];
+								
+								$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
+								
+								
+							}
 							//数据删除
 							$('.table tbody').on('click', 'button.delrow', function(e) {
 								e.stopPropagation();
@@ -276,7 +285,7 @@
 								e.preventDefault();
 								var pid = $(this).parents('tr').attr("data-pid");
 								var title = $(this).parents('tr').attr("data-title");
-								window.location.href = "yuyue_detail.html?pid=" + pid + "&title=" + title + "&fromWhere=wode_xinxi.html";
+								window.location.href = "yuyue_detail.html?pid=" + pid + "&title=" + title + "&fromWhere=wode_xinxi.html"+"&tdId="+tdId;
 
 							});
 							$.ajax({
@@ -284,15 +293,19 @@
 								data: {
 									deviceToken: "html5",
 									deviceType: "html5",
-									userId: session_login.info.userId,
+									userId: memberId||session_login.info.userId,
 									page: "1",
-									rows: "10"
+									rows: "10",
+									tdId:tdId||"",
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
 									console.log(data);
 									var info = data.info;
+									if(info.length=="0"){
+										alert("你没有信息!");
+									}
 									var pageCount = data.pageCount;
 									var tbody = $(".table tbody")[0];
 									//添加选项盒子
@@ -326,6 +339,10 @@
 											" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +
 											"</td>" +
 											"</tr>";
+											if(tdId){
+												$(".deal").css("display","none");
+												$(".delrow").css("display","none");
+											}
 									}
 									//添加选项内容
 									$('.M-box').pagination({
@@ -343,9 +360,12 @@
 												data: {
 													deviceToken: "html5",
 													deviceType: "html5",
-													userId: session_login.info.userId,
+													userId: memberId||session_login.info.userId,
+													
 													page: api.getCurrent(),
 													rows: "10",
+													tdId:tdId||"",
+													
 												},
 												async: true,
 												type: "post",
@@ -383,6 +403,10 @@
 															" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +
 															"</td>" +
 															"</tr>";
+															if(tdId){
+																	$(".deal").css("display","none");
+																	$(".delrow").css("display","none");
+															}
 													}
 												},
 												error: function() {

@@ -116,6 +116,8 @@
 									session_data.timstamp = new Date().getTime();
 									localStorage.setItem("yi_ding_cheng_gong_loginInfo", JSON.stringify(session_data));
 
+								}else{
+									sessionStorage.setItem("yi_ding_cheng_gong_loginInfo", JSON.stringify(data));
 								}
 								window.location.href="index.html";
 							} else {
