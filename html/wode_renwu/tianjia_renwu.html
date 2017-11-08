@@ -123,13 +123,17 @@
 							<div class="description"><span class="tips">操作提示</span>:<span class="tips">除了电话,短信,商务通</span>其他需要截图的均属于社区类,请合理选择类型!</div>
 
 							<div class="desctiption">
-								<span class="">1:时间选择:</span><span class="tips">时间选择可点击小时,分钟分开选择!</span>
+								<span class="">一:时间选择:</span>
+							</div>
+							<div><span class="tips">1:时间选择可点击小时,分钟分开选择.</span></div>
+							<div class="desctiption">
+								<span class="tips">2:时间段必须大于10分钟小于2小时,留信息不做限制,全天可设置</span>
 							</div>
 							<div class="desctiption">
-								<span class="">2:任务名称:</span><span class="taskName tips"></span>
+								<span class="">二:任务名称:</span><span class="taskName tips"></span>
 							</div>
 							<div class="desctiption">
-								<span class="">3:任务基本数量:</span><span class="taskNum tips"></span>
+								<span class="">三:任务基本数量:</span><span class="taskNum tips"></span>
 							</div>
 						</div>
 						<div class="row">
@@ -264,7 +268,9 @@
 							var taskId = search.split("taskId=")[1].split("&")[0];
 							var taskNum = search.split("taskNum=")[1].split("&")[0];
 							var taskName = search.split("taskName=")[1].split("&")[0];
-
+							if(search.split("taskType=")[1]){
+								var taskType = search.split("taskType=")[1].split("&")[0];
+							}	
 							if(search.split("teamTaskId=")[1] && search.split("teamTaskId=")[1].split("&")[0] != "0") {
 								var teamTaskId = search.split("teamTaskId=")[1].split("&")[0];
 							} else {
@@ -323,6 +329,9 @@
 							var maxTime = 2 * 60;
 							var startStamp = (starTime.split(":")[0] * 60 - 0) + (starTime.split(":")[1] - 0);
 							var endStamp = (endTime.split(":")[0] * 60 - 0) + (endTime.split(":")[1] - 0);
+							if(taskType=="patient"){
+								return true;
+							}
 							if(startStamp > endStamp) {
 								alert("开始时间不能大于结束时间!");
 								return false;

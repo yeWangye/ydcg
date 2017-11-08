@@ -335,10 +335,10 @@
 								var taskNum = $(this).parents('tr').attr("data-taskNum");
 								var taskType = $(this).parents('tr').attr("data-taskType");
 								var teamTaskNum = $(this).parents('tr').attr("data-teamTaskNum");
-								if(teamTaskId == "0") {
+								if(teamTaskId == "0"||!starTime||!endTime) {
 									if(session_login.info.roleId != "1") {
 										alert("任务时间没有设置,前往设置时间!");
-										window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum;
+										window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum+"&taskType="+taskType;;
 										return;
 									} else {
 										alert("战区经理没有设置时间,请联系战区经理设置时间!");
@@ -347,7 +347,7 @@
 								}
 								if(teamTaskNum && teamTaskNum - taskNum > 0) {
 									alert("基本任务数已经更改,前往修改,次日生效!");
-									window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + teamTaskNum;
+									window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + teamTaskNum+"&taskType="+taskType;;
 									return;
 								} else {
 									if(session_login.info.roleId != "1") {
@@ -368,8 +368,8 @@
 									var starTime = $(this).parents('tr').attr("data-starTime");
 									var endTime = $(this).parents('tr').attr("data-endTime");
 									var taskNum = $(this).attr("data-taskNum");
-
-									window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum;
+									var taskType = $(this).parents('tr').attr("data-taskType");
+									window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum+"&taskType="+taskType;
 
 								}
 							});
@@ -382,8 +382,8 @@
 								var starTime = $(this).parents('tr').attr("data-starTime");
 								var endTime = $(this).parents('tr').attr("data-endTime");
 								var taskNum = $(this).attr("data-taskNum");
-
-								window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum;
+								var taskType = $(this).parents('tr').attr("data-taskType");
+								window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum+"&taskType="+taskType;
 							});
 							$('.table tbody').on('click', '.deal', function(e) {
 								e.stopPropagation();
