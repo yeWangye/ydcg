@@ -545,7 +545,7 @@
 														<div>
 															</span> <span class="message-datetime">通知</span>
 														</div>
-														<div class="message tips">去大理!</div>
+														<div class="message2 tips">去大理!</div>
 													</div>
 												</li>
 											</a>
@@ -811,19 +811,17 @@
 					}
 					//获取通知内容
 					$.ajax({
-						url: config.rootUrl + "user/getListMessage.do",
+						url: config.rootUrl + "user/getSelfWallet.do",
 						data: {
 							userId: session_login.info.userId,
 							deviceToken: "html5",
 							deviceType: "html5",
-							page: "1",
-							rows: "8",
 						},
 						async: true,
 						type: 'post',
 						success: function(data) {
-							$("marquee").text(data.info[0].theme);
-
+							$("marquee").text(data.info.taskAward);
+							$(".message2").text(data.info.taskAward);
 						},
 						error: function(xhr, type, errorThrown) {
 							alert('网络异常，请稍后再试！');

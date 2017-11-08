@@ -130,6 +130,12 @@
 										<div class="card-title">
 											<div class="title"></div>
 										</div>
+										<div class="card-title" style="float:right;text-align: center;">
+											<div class="title"><button class="btn btn-success dataSearch" style="color:white;">根据日期查询</button></div>
+										</div>
+										<div class="card-title" style="float:right;text-align: center;">
+											<input type="date" name="searchDate" id="searchDate" style="width:100%;">
+										</div>
 									</div>
 									<div class="card-body">
 										<table class="table table-striped" cellspacing="0" width="100%">
@@ -137,6 +143,7 @@
 												<tr>
 													<th>战区</th>
 													<th>战区头像</th>
+													<th>总业绩</th>
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -178,7 +185,7 @@
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
 				<script type="text/javascript" src="../../js/themings.js"></script>
-
+				<script src="../../js/dateFormat.js"></script>
 				<script src="../../js/config.js"></script>
 				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
@@ -187,198 +194,126 @@
 				<!-- Javascript -->
 				<script>
 					$(document).ready(function() {
-						
 						var search = window.location.search;
-						if(search.split("groupId=")[1]) {
-							var groupId = search.split("groupId=")[1].split("&")[0];
-							var title = search.split("title=")[1].split("&")[0];
-							$(".card-title .title")[0].innerHTML = "<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'></span> " + decodeURI(title) + "</a>";
-							
+						var searchTime = new Date().format("yyyy-MM-dd").replace(/\//g, "-");
+						$("#searchDate").val(searchTime);
+						$(".dataSearch").on("click", function() {
+							dateSearch();
+						})
+						dateSearch();
+						function dateSearch() {
+							$(".table tbody")[0].innerHTML = "";
+							searchTime = $("#searchDate").val();
+							if(search.split("groupId=")[1]) {
+								var groupId = search.split("groupId=")[1].split("&")[0];
+								var title = search.split("title=")[1].split("&")[0];
+								$(".card-title .title")[0].innerHTML = "<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'></span> " + decodeURI(title) + "</a>";
+							} else {
+								var groupId = session_login.info.groupId;
+							}
 							$.ajax({
-							url: config.rootUrl + "user/listGroupTeam.do",
-							data: {
-								deviceToken: "html5",
-								deviceType: "html5",
-								userId: session_login.info.userId,
-								groupId: groupId,
-								page: "1",
-								rows: "10"
-							},
-							async: true,
-							type: 'post',
-							success: function(data) {
-								var info = data.info;
-								var pageCount = data.pageCount;
-								var tbody = $(".table tbody")[0];
-								if(info.length == 0) {
-									alert("当前没有集团军!");
-								}
-								//添加选项盒子
-								for(var i = 0; i < info.length; i++) {
-									tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
-										"<td class='goDetail'>" + info[i].teamName + "</td>" +
-										"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
-										"<td class='goDetail'>" +
-										"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-bell-o'></i> 查看任务 </button> " +
-										"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-line-chart'></i> 查看业绩 </button> " +
-										"</td>" +
-										"</tr>";
-								}
-								//添加选项盒子
-								$('.M-box').pagination({
-									pageCount: pageCount,
-									showData: 10,
-									jump: true,
-									coping: true,
-									homePage: '首页',
-									endPage: '末页',
-									prevContent: '上页',
-									nextContent: '下页',
-									callback: function(api) {
-										$.ajax({
-											url: config.rootUrl + "user/listGroupTeam.do",
-											data: {
-												deviceToken: "html5",
-												deviceType: "html5",
-												userId: session_login.info.userId,
-												groupId: groupId,
-
-												page: api.getCurrent(),
-												rows: "10",
-											},
-											async: true,
-											type: "post",
-											success: function(data) {
-												var info = data.info;
-												var tbody = $(".table tbody")[0];
-												tbody.innerHTML = "";
-												//添加选项盒子
-												for(var i = 0; i < info.length; i++) {
-													tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
-														"<td class='goDetail'>" + info[i].teamName + "</td>" +
-														"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
-														"<td class='goDetail'>" +
-														"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看任务 </button> " +
-														"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看业绩 </button> " +
-														"</td>" +
-														"</tr>";
-												}
-											},
-											error: function() {
-												alert("网络错误");
-
-											}
-										})
+								url: config.rootUrl + "user/teamOfGroup.do",
+								data: {
+									deviceToken: "html5",
+									deviceType: "html5",
+									userId: session_login.info.userId,
+									groupId: groupId,
+									page: "1",
+									rows: "10",
+									searchTime: searchTime,
+								},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									var info = data.info;
+									var pageCount = data.pageCount;
+									var tbody = $(".table tbody")[0];
+									if(info.length == 0) {
+										alert("当月没有数据!");
 									}
-
-								});
-							},
-							error: function(xhr, type, errorThrown) {
-								alert('网络异常，请稍后再试！');
-							},
-
-						});
-						}else{
-							$.ajax({
-							url: config.rootUrl + "user/listGroupTeam.do",
-							data: {
-								deviceToken: "html5",
-								deviceType: "html5",
-								userId: session_login.info.userId,
-								groupId: session_login.info.groupId,
-								page: "1",
-								rows: "10"
-							},
-							async: true,
-							type: 'post',
-							success: function(data) {
-								var info = data.info;
-								var pageCount = data.pageCount;
-								var tbody = $(".table tbody")[0];
-								if(info.length == 0) {
-									alert("当前没有集团军!");
-								}
-								//添加选项盒子
-								for(var i = 0; i < info.length; i++) {
-									tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
-										"<td class='goDetail'>" + info[i].teamName + "</td>" +
-										"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
-										"<td class='goDetail'>" +
-										"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-bell-o'></i> 查看任务 </button> " +
-										"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-line-chart'></i> 查看业绩 </button> " +
-										"</td>" +
-										"</tr>";
-								}
-								//添加选项盒子
-								$('.M-box').pagination({
-									pageCount: pageCount,
-									showData: 10,
-									jump: true,
-									coping: true,
-									homePage: '首页',
-									endPage: '末页',
-									prevContent: '上页',
-									nextContent: '下页',
-									callback: function(api) {
-										$.ajax({
-											url: config.rootUrl + "user/listGroupTeam.do",
-											data: {
-												deviceToken: "html5",
-												deviceType: "html5",
-												userId: session_login.info.userId,
-												groupId: session_login.info.groupId,
-
-												page: api.getCurrent(),
-												rows: "10",
-											},
-											async: true,
-											type: "post",
-											success: function(data) {
-												var info = data.info;
-												var tbody = $(".table tbody")[0];
-												tbody.innerHTML = "";
-												//添加选项盒子
-												for(var i = 0; i < info.length; i++) {
-													tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
-														"<td class='goDetail'>" + info[i].teamName + "</td>" +
-														"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
-														"<td class='goDetail'>" +
-														"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看任务 </button> " +
-														"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看业绩 </button> " +
-														"</td>" +
-														"</tr>";
-												}
-											},
-											error: function() {
-												alert("网络错误");
-
-											}
-										})
+									//添加选项盒子
+									for(var i = 0; i < info.length; i++) {
+										tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
+											"<td class='goDetail'>" + info[i].teamName + "</td>" +
+											"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
+											"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
+											"<td class='goDetail'>" +
+											"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-bell-o'></i> 查看任务 </button> " +
+											"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-line-chart'></i> 查看业绩 </button> " +
+											"</td>" +
+											"</tr>";
 									}
+									//添加选项盒子
+									$('.M-box').pagination({
+										pageCount: pageCount,
+										showData: 10,
+										jump: true,
+										coping: true,
+										homePage: '首页',
+										endPage: '末页',
+										prevContent: '上页',
+										nextContent: '下页',
+										callback: function(api) {
+											$.ajax({
+												url: config.rootUrl + "user/teamOfGroup.do",
+												data: {
+													deviceToken: "html5",
+													deviceType: "html5",
+													userId: session_login.info.userId,
+													groupId: groupId,
 
-								});
-							},
-							error: function(xhr, type, errorThrown) {
-								alert('网络异常，请稍后再试！');
-							},
+													page: api.getCurrent(),
+													rows: "10",
+													searchTime: searchTime,
+												},
+												async: true,
+												type: "post",
+												success: function(data) {
+													var info = data.info;
+													var tbody = $(".table tbody")[0];
+													tbody.innerHTML = "";
+													//添加选项盒子
+													for(var i = 0; i < info.length; i++) {
+														tbody.innerHTML += "<tr data-teamId='" + info[i].teamId + "' data-title='" + info[i].teamName + "'>" +
+															"<td class='goDetail'>" + info[i].teamName + "</td>" +
+															"<td class='goDetail'><img width='50px' src=" + info[i].teamImage + "/></td>" +
+															"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
+															"<td class='goDetail'>" +
+															"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看任务 </button> " +
+															"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看业绩 </button> " +
+															"</td>" +
+															"</tr>";
+													}
+												},
+												error: function() {
+													alert("网络错误");
 
-						});
+												}
+											})
+										}
+
+									});
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
+								},
+
+							});
 						}
 						$('.table tbody').on('click', '.renwu', function(e) {
 							e.stopPropagation();
 							e.preventDefault();
 							var teamId = $(this).parents('tr').attr("data-teamId");
 							var title = $(this).parents('tr').attr("data-title");
-							window.location.href = "../kaohe/renwu_index.html?teamId=" + teamId;
+							window.location.href = "../kaohe/renwu_index.html?teamId=" + teamId+"&searchTime="+searchTime;
 						});
 						$('.table tbody').on('click', '.yeji', function(e) {
 							e.stopPropagation();
 							e.preventDefault();
 							var teamId = $(this).parents('tr').attr("data-teamId");
 							var title = $(this).parents('tr').attr("data-title");
-							window.location.href = "keshi_total.html?teamId=" + teamId + "&title=" + title;
+							window.location.href = "keshi_total.html?teamId=" + teamId + "&title=" + title+"&searchTime="+searchTime;
 						});
-						
 
 					})
 				</script>

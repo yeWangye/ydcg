@@ -119,23 +119,29 @@
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
-							<span class="title">社区类--单条添加</span>
+							<span class="title">社区类--多任务提交!</span>
+							<div class="tips">注意事项:</div> 
+							<div class="description">
+								<span style="color:blue;font-size: 18px;"><span class="tips">一:</span>一张图片包含多个信息,包含的信息数必须准确,有专人审查,同时,请保证图片清晰!</span>
+							</div>
+							<div class="description">
+								<span class="tips">二:</span> <span style="color:blue;font-size: 18px;">图片格式请自行排版,图片中必须包含自己所填写的相应任务数量!</span>
+							</div>
+							<div class="description">
+								<span class="tips">三:</span> <span style="color:blue;font-size: 18px;">一张图片最多包含十个信息,三张图片最多包含三十个信息,请合理规划图片排版!</span>
+							</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title">
-											<div class="title">社区类----单条添加</div>
+											<div class="title">社区类多任务添加</div>
+											
 											<div class="title">
-												<a onclick="window.history.go(-1);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a>
+												<a onclick="window.history.go(-2);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a>
 											</div>
 
-										</div>
-										<div class="card-title" style="float:right;text-align: center;">
-											<div class="title">
-												<a href="" class="btn btn-danger duorenwuBtn">多任务上传</a>
-											</div>
 										</div>
 									</div>
 									<div class="card-body">
@@ -144,8 +150,8 @@
 												<label for="biaoti" class="col-sm-2 control-label">标题</label>
 												<div class="col-sm-10">
 													<div class="input-group">
-														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
-														<input type="text" style="width:30%" id="biaoti" class="form-control" placeholder="请输入标题" aria-describedby="basic-addon1">
+														<span class="input-group-addon"><i>*</i>必填项</span>
+														<input type="text" style="width:40%" id="biaoti" class="form-control" placeholder="请输入标题">
 													</div>
 												</div>
 											</div>
@@ -155,7 +161,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i>*</i>必选项</span>
 													<div>
-														<select id="xinxi_laiyuan" style="width:30%" title="信息来源" aria-describedby="basic-addon1">
+														<select id="xinxi_laiyuan" style="width:40%" title="信息来源" >
 															<optgroup label="请选择信息来源">
 															</optgroup>
 														</select>
@@ -163,7 +169,15 @@
 
 												</div>
 											</div>
-
+											<div class="form-group">
+												<label for="messageNum" class="col-sm-2 control-label">任务数量</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" ><i>*</i>必填项</span>
+														<input  style="width:40%" type="number" id="messageNum" class="form-control" placeholder="请输入截图中包含的任务数量">
+													</div>
+												</div>
+											</div>
 											<div class="form-group">
 												<label class="col-sm-2 control-label">添加截图(<span style="color:red">*必填项</span>)</label>
 												<div class="col-sm-10">
@@ -222,7 +236,6 @@
 				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
 				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
 				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
-
 				<!-- Javascript -->
 				<script type="text/javascript" src="../../js/app.js"></script>
 				<script type="text/javascript" src="../../js/theming.js"></script>
@@ -238,26 +251,36 @@
 					$(function() {
 						var search = window.location.search;
 						if(search != "") {
-
 							if(window.location.search.split("tdId=")[1]) {
 								var tdId = window.location.search.split("tdId=")[1].split("&")[0];
-								$(".duorenwuBtn").attr("href", "sq_durenwu_tianjia.html?tdId="+tdId);
 								$(".backBtn").css("display", "block");
 							}
 						}
 						getSocialCate();
+						//图片上传结束...
 						$(".save").on("click", function() {
-							$("body").mLoading("show"); //显示loading组件
 							//标题
 							var biaoti = $("#biaoti").val();
 							if(biaoti == "") {
 								alert("必须添加标题信息!");
-								$("body").mLoading("hide");
 								return;
 							}
 							//10:信息来源
 							var xinxi_laiyuan = $("#xinxi_laiyuan").val();
-
+							if(image1 == "") {
+								alert("必须添加第一张图");
+								return;
+							}
+							var messageNum=$("#messageNum").val();
+							if(messageNum == "") {
+								alert("必须输入截图包含的任务数量!");
+								return;
+							}
+							if(messageNum > 30) {
+								alert("任务数量不能大于30!");
+								return;
+							}
+							$("body").mLoading("show");
 							$.ajax({
 								url: config.rootUrl + "user/addSocialWork.do",
 								data: {
@@ -273,6 +296,8 @@
 									image3: image3,
 
 									tdId: tdId || "",
+									messageNum:messageNum,
+
 								},
 								async: true,
 								type: 'post',
@@ -292,11 +317,8 @@
 								complete: function() {
 									$("body").mLoading("hide");
 								}
-
 							});
-
 						})
-
 					})
 				</script>
 	</body>

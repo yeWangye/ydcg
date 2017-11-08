@@ -135,7 +135,7 @@
 											<div class=""><button class="btn btn-success dataSearch" style="color:white;">根据月份查询</button></div>
 										</div>
 										<div class="card-title" style="float:right;text-align: center;">
-											<input type="date" name="searchDate" id="searchDate" style="width:100%;">
+											<input type="date" name="searchTime" id="searchTime" style="width:100%;">
 										</div>
 									</div>
 									<div class="card-body">
@@ -201,8 +201,8 @@
 					$(document).ready(function() {
 						var search = window.location.search;
 						if(search.split("teamId=")[1]) {
-							var teamId = window.location.search.split("teamId=")[1].split("&")[0];
-							var title = window.location.search.split("title=")[1].split("&")[0];
+							var teamId = search.split("teamId=")[1].split("&")[0];
+							var title = search.split("title=")[1].split("&")[0];
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
 
 						} else {
@@ -211,8 +211,13 @@
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
 
 						}
-						var searchDate = new Date().format("yyyy-MM-dd").replace(/\//g,"-");
-						$("#searchDate").val(searchDate);
+						if(search.split("searchTime=")[1]) {
+							var searchTime=search.split("searchTime=")[1].split("&")[0];
+							$("#searchTime").val(searchTime);
+						}else{
+							var searchTime = new Date().format("yyyy-MM-dd").replace(/\//g,"-");
+							$("#searchTime").val(searchTime);
+						}
 						$(".dataSearch").on("click", function() {
 							dateSearch();
 						})
@@ -232,7 +237,7 @@
 								teamId: teamId,
 								page: "1",
 								rows: "10",
-								searchTime: searchDate,
+								searchTime: searchTime,
 
 							},
 							async: true,
@@ -243,7 +248,7 @@
 									var pageCount = data.pageCount;
 									var tbody = $(".table tbody")[0];
 									if(info.length == 0) {
-										alert(searchDate + "没有业绩了!");
+										alert(searchTime + "没有业绩了!");
 
 									}
 									//添加选项盒子
@@ -278,7 +283,7 @@
 												departId: departId,
 												page: api.getCurrent(),
 												rows: "10",
-												searchTime: searchDate,
+												searchTime: searchTime,
 											},
 											async: true,
 											type: "post",
@@ -313,7 +318,7 @@
 
 						function dateSearch() {
 							$(".table tbody")[0].innerHTML = "";
-							searchDate = $("#searchDate").val();
+							searchTime = $("#searchTime").val();
 							if(search === "") {
 								alert("日期格式不正确!");
 							}
@@ -326,7 +331,7 @@
 									teamId: teamId,
 									page: "1",
 									rows: "10",
-									searchTime: searchDate,
+									searchTime: searchTime,
 
 								},
 								async: true,
@@ -337,7 +342,7 @@
 										var pageCount = data.pageCount;
 										var tbody = $(".table tbody")[0];
 										if(info.length == 0) {
-											alert(searchDate + "没有业绩了!");
+											alert(searchTime + "没有业绩了!");
 
 										}
 										//添加选项盒子
@@ -369,7 +374,7 @@
 													deviceType: "html5",
 													userId: session_login.info.userId,
 
-													searchTime: searchDate,
+													searchTime: searchTime,
 													departId: departId,
 													page: api.getCurrent(),
 													rows: "10",

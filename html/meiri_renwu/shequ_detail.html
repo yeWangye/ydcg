@@ -144,6 +144,7 @@
 													<th>标题</th>
 													<th>信息来源</th>
 													<th>图片</th>
+													<th>包含信息量</th>
 													<th>操作</th>
 												</tr>
 											</thead>
@@ -288,6 +289,7 @@
 											"<td class='goDetail'>" + info[i].swTitle + "</td>" +
 											"<td class='goDetail'>" + decodeURI(sName) + "</td>" +
 											"<td class='goDetail'>" + images + "</td>" +
+											"<td class='goDetail'>" + info[i].messageNum + "</td>" +
 											"<td class='goDetail'>" +
 											" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
 											"</td>" +
@@ -342,6 +344,7 @@
 															"<td class='goDetail'>" + info[i].swTitle + "</td>" +
 															"<td class='goDetail'>" + decodeURI(sName) + "</td>" +
 															"<td class='goDetail'>" + images + "</td>" +
+															"<td class='goDetail'>" + info[i].messageNum + "</td>" +
 															"<td class='goDetail'>" +
 															" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
 															"</td>" +

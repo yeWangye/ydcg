@@ -117,25 +117,16 @@ $(function() {
 });
 //获取通知内容
 $.ajax({
-	url: config.rootUrl + "user/getListMessage.do",
+	url: config.rootUrl + "user/getSelfWallet.do",
 	data: {
 		userId: session_login.info.userId,
 		deviceToken: "html5",
 		deviceType: "html5",
-		page: "1",
-		rows: "1",
 	},
 	async: true,
 	type: 'post',
 	success: function(data) {
-		if(data.code == 1) {
-			$("marquee").text(data.info[0].theme);
-		} else {
-			alert("请重新登录!");
-			alert(data.msg);
-			/*localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
-			window.location.href = "../login.html";*/
-		}
+		$("marquee").text(data.info.taskAward);
 
 	},
 	error: function(xhr, type, errorThrown) {

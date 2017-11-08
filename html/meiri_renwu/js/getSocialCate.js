@@ -71,10 +71,10 @@ if(typeof FileReader === 'undefined') {
 	input3.addEventListener('change', readFile3, false);
 	//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
 }
+var image1 = "";
 
 function readFile1() {
-	$("body").mLoading("show");//显示loading组件
-	
+	$("body").mLoading("show"); //显示loading组件
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -85,16 +85,37 @@ function readFile1() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
-		$("body").mLoading("hide");
+		var image = new Image();
+		image.src = this.result;
+		image.onload = function() {
+			var imgData = getBase64Image(image)
+			$.ajax({
+				url: config.rootUrl + "user/saveImageUrl.do",
+				data: {
+					headImage: imgData
+				},
+				async: true,
+				type: 'post',
+				success: function(data) {
+					image1 = data.absolutePath;
+					$(".f1").attr("src", image.src);
+				},
+				error: function(xhr, type, errorThrown) {
+					alert('网络异常，请稍后再试！');
+				},
+				complete: function() {
+					$("body").mLoading("hide");
+				}
+			});
+		}
 		
-		$(".f1").attr("src", this.result);
-		$(".f1").attr("data-src", this.result);
+
 	}
 }
+var image2 = "";
 
 function readFile2() {
-	$("body").mLoading("show");//显示loading组件
-	
+	$("body").mLoading("show"); //显示loading组件
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -105,18 +126,35 @@ function readFile2() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
-		$("body").mLoading("hide");
-		
-		// 创建一个新增的图片和文字input 
-		$(".f2").attr("src", this.result);
-		$(".f2").attr("data-src", this.result);
-
+		var image = new Image();
+		image.src = this.result;
+		image.onload = function() {
+			var imgData = getBase64Image(image)
+			$.ajax({
+				url: config.rootUrl + "user/saveImageUrl.do",
+				data: {
+					headImage: imgData
+				},
+				async: true,
+				type: 'post',
+				success: function(data) {
+					image2 = data.absolutePath;
+					$(".f2").attr("src", image.src);
+				},
+				error: function(xhr, type, errorThrown) {
+					alert('网络异常，请稍后再试！');
+				},
+				complete: function() {
+					$("body").mLoading("hide");
+				}
+			});
+		}
 	}
 }
+var image3 = "";
 
 function readFile3() {
-	$("body").mLoading("show");//显示loading组件
-	
+	$("body").mLoading("show"); //显示loading组件
 	var file = this.files[0]; //获取file对象 
 	//判断file的类型是不是图片类型。 
 	if(!/image\/\w+/.test(file.type)) {
@@ -127,12 +165,29 @@ function readFile3() {
 	reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
 	//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
 	reader.onload = function(e) {
-		$("body").mLoading("hide");
-		
-		// 创建一个新增的图片和文字input 
-		$(".f3").attr("src", this.result);
-		$(".f3").attr("data-src", this.result);
-
+		var image = new Image();
+		image.src = this.result;
+		image.onload = function() {
+			var imgData = getBase64Image(image)
+			$.ajax({
+				url: config.rootUrl + "user/saveImageUrl.do",
+				data: {
+					headImage: imgData
+				},
+				async: true,
+				type: 'post',
+				success: function(data) {
+					image3 = data.absolutePath;
+					$(".f3").attr("src", image.src);
+				},
+				error: function(xhr, type, errorThrown) {
+					alert('网络异常，请稍后再试！');
+				},
+				complete: function() {
+					$("body").mLoading("hide");
+				}
+			});
+		}
 	}
 }
 //图片上传结束...

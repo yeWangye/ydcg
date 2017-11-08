@@ -114,24 +114,28 @@
 					</div>
 				</nav>
 				<div id="sidebar" class="side-menu sidebar-inverse">
-					
+
 				</div>
 				<div class="container-fluid">
 					<div class="side-body">
 						<div class="page-title">
 							<span class="title">通讯类--工作记录</span>
 
-							
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="card">
 									<div class="card-header">
 										<div class="card-title">
-											<div class="title">通讯类添加</div>
-											<div class="title"><a onclick="window.history.go(-1);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a></div>
-											
-											<a class="btn btn-primary backBtn" onclick="window.history.go(-1)" style="display: none;">返回任务详情</a>
+											<div class="title">通讯类添加----单任务添加!</div>
+											<div class="title">
+												<a onclick="window.history.go(-1);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a>
+											</div>
+										</div>
+										<div class="card-title" style="float:right;text-align: center;">
+											<div class="title">
+												<a href="" class="btn btn-danger duorenwuBtn">多任务上传</a>
+											</div>
 										</div>
 									</div>
 									<div class="card-body">
@@ -140,8 +144,8 @@
 												<label for="biaoti" class="col-sm-2 control-label">标题</label>
 												<div class="col-sm-10">
 													<div class="input-group">
-														<span class="input-group-addon" id="basic-addon1"><i>*</i>必填项</span>
-														<input type="text" style="width:30%" id="biaoti" class="form-control" placeholder="请输入标题" aria-describedby="basic-addon1">
+														<span class="input-group-addon"><i>*</i>必填项</span>
+														<input type="text" style="width:40%" id="biaoti" class="form-control" placeholder="请输入标题">
 													</div>
 												</div>
 											</div>
@@ -151,7 +155,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i>*</i>必选项</span>
 													<div>
-														<select id="xinxi_laiyuan" style="width:30%" title="信息来源" aria-describedby="basic-addon1">
+														<select id="xinxi_laiyuan" style="width:40%" title="信息来源" >
 															<optgroup label="请选择信息来源">
 																<option value="tel">电话</option>
 																<option value="sms">短信</option>
@@ -162,7 +166,6 @@
 
 												</div>
 											</div>
-
 											<div class="form-group">
 												<label class="col-sm-2 control-label">添加截图(<span style="color:red">*必填项</span>)</label>
 												<div class="col-sm-10">
@@ -230,118 +233,21 @@
 				<script src="../../js/uploadImg.js"></script>
 				<script src="../../js/session_expire.js"></script>
 				<script type="text/javascript" src="../../js/personal_msg.js"></script>
-
+				<script src="js/getSocialCate.js"></script>
 				<!-- Javascript -->
 				<script type="text/javascript">
 					$(function() {
 						var search = window.location.search;
 						if(search != "") {
-							if(window.location.search.split("tdId=")[1]){
+							if(window.location.search.split("tdId=")[1]) {
 								var tdId = window.location.search.split("tdId=")[1].split("&")[0];
-								$(".backBtn").css("display","block");
+								$(".duorenwuBtn").attr("href", "tx_durenwu_tianjia.html?tdId="+tdId);
+								$(".backBtn").css("display", "block");
 							}
 						}
-						//图片获取上传开始
-						$(".f1").on("click", function(e) {
-							e.preventDefault();
-							$("input:file[name=f1]").trigger("click");
-						})
-						$(".f2").on("click", function(e) {
-							e.preventDefault();
-							$("input:file[name=f2]").trigger("click");
-						})
-						$(".f3").on("click", function(e) {
-							e.preventDefault();
-							$("input:file[name=f3]").trigger("click");
-						})
-						var input1 = $("input:file[name=f1]")[0]; //获取选择图片的input元素 
-						//这边是判断本浏览器是否支持这个API。 
-						if(typeof FileReader === 'undefined') {
-							alert("浏览器版本过低，请先更新您的浏览器~");
-							input1.setAttribute('disabled', 'disabled');
-						} else {
-							input1.addEventListener('change', readFile1, false);
-							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
-						}
-						var input2 = $("input:file[name=f2]")[0]; //获取选择图片的input元素 
-						//这边是判断本浏览器是否支持这个API。 
-						if(typeof FileReader === 'undefined') {
-							alert("浏览器版本过低，请先更新您的浏览器~");
-							input2.setAttribute('disabled', 'disabled');
-						} else {
-							input2.addEventListener('change', readFile2, false);
-							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
-						}
-						var input3 = $("input:file[name=f3]")[0]; //获取选择图片的input元素 
-						//这边是判断本浏览器是否支持这个API。 
-						if(typeof FileReader === 'undefined') {
-							alert("浏览器版本过低，请先更新您的浏览器~");
-							input3.setAttribute('disabled', 'disabled');
-						} else {
-							input3.addEventListener('change', readFile3, false);
-							//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
-						}
-
-						function readFile1() {
-							$("body").mLoading("show");//显示loading组件
-							var file = this.files[0]; //获取file对象 
-							//判断file的类型是不是图片类型。 
-							if(!/image\/\w+/.test(file.type)) {
-								alert("请上传一张图片~");
-								return false;
-							}
-							var reader = new FileReader(); //声明一个FileReader实例 
-							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
-							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
-							reader.onload = function(e) {
-								$("body").mLoading("hide");//
-								$(".f1").attr("src", this.result);
-								$(".f1").attr("data-src", this.result);
-							}
-						}
-
-						function readFile2() {
-							$("body").mLoading("show");//显示loading组件
-							var file = this.files[0]; //获取file对象 
-							//判断file的类型是不是图片类型。 
-							if(!/image\/\w+/.test(file.type)) {
-								alert("请上传一张图片~");
-								return false;
-							}
-							var reader = new FileReader(); //声明一个FileReader实例 
-							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
-							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
-							reader.onload = function(e) {
-								$("body").mLoading("hide");//
-								// 创建一个新增的图片和文字input 
-								$(".f2").attr("src", this.result);
-								$(".f2").attr("data-src", this.result);
-
-							}
-						}
-
-						function readFile3() {
-							$("body").mLoading("show");//显示loading组件
-							var file = this.files[0]; //获取file对象 
-							//判断file的类型是不是图片类型。 
-							if(!/image\/\w+/.test(file.type)) {
-								alert("请上传一张图片~");
-								return false;
-							}
-							var reader = new FileReader(); //声明一个FileReader实例 
-							reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
-							//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
-							reader.onload = function(e) {
-								$("body").mLoading("hide");//显示loading组件	
-								// 创建一个新增的图片和文字input 
-								$(".f3").attr("src", this.result);
-								$(".f3").attr("data-src", this.result);
-
-							}
-						}
+						
 						//图片上传结束...
 						$(".save").on("click", function() {
-							
 							//标题
 							var biaoti = $("#biaoti").val();
 							if(biaoti == "") {
@@ -350,115 +256,51 @@
 							}
 							//10:信息来源
 							var xinxi_laiyuan = $("#xinxi_laiyuan").val();
-
-							//图片上传
-							var _img1_down = false;
-							var _img2_down = false;
-							var _img3_down = false;
-
-							//23:image1
-							var image1;
-							if($(".f1").attr("data-src")) {
-								var dataSrc = $(".f1").attr("data-src");
-								uploadImg(dataSrc, "image1");
-
-							} else {
+							if(image1 == "") {
 								alert("必须添加第一张图");
 								return;
 							}
-							//24:image2
-							var image2;
-							if($(".f2").attr("data-src")) {
-								uploadImg($(".f2").attr("data-src"), "image2");
-							} else {
-								image2 = "";
-								_img2_down = true;
+							var messageNum=$("#messageNum").val();
+							if(messageNum == "") {
+								alert("必须输入截图包含的任务数量!");
+								return;
 							}
-							//25:image3
-							var image3;
-							if($(".f3").attr("data-src")) {
-								uploadImg($(".f3").attr("data-src"), "image3");
-							} else {
-								image3 = "";
-								_img3_down = true;
-							}
+							$("body").mLoading("show");
+							$.ajax({
+								url: config.rootUrl + "user/addSocialWork.do",
+								data: {
+									deviceToken: "html5",
+									deviceType: "html5",
+									userId: session_login.info.userId,
 
-							//上传图片 
-							function uploadImg(imgPath, ele) {
-								$("body").mLoading("show");//显示loading组件
-								var image = new Image();
-								image.src = imgPath;
-								image.onload = function() {
-									var imgData = getBase64Image(image);
-
-									/*在这里调用上传接口*/
-									$.ajax({
-										url: config.rootUrl + "user/saveImageUrl.do",
-										data: {
-											headImage: imgData
-										},
-										async: true,
-										type: 'post',
-										success: function(data) {
-											switch(ele) {
-												case "image1":
-													_img1_down = true;
-													image1 = data.absolutePath;
-													break;
-												case "image2":
-													_img2_down = true;
-													image2 = data.absolutePath;
-													break;
-												case "image3":
-													_img3_down = true;
-													image3 = data.absolutePath;
-													break;
-											}
-											if(_img1_down && _img2_down && _img3_down) {
-												//最后一步业绩提交
-												$.ajax({
-													url: config.rootUrl + "user/addSocialWork.do",
-													data: {
-														deviceToken: "html5",
-														deviceType: "html5",
-														userId: session_login.info.userId,
-
-														type: xinxi_laiyuan,
-														swTitle: biaoti,
-														image1: image1,
-														image2: image2,
-														image3: image3,
-														tdId:tdId||"",
-													},
-													async: true,
-													type: 'post',
-													success: function(data) {
-														console.log(data);
-														if(data.code == "1") {
-															alert("添加成功!");
-															window.location.reload();
-														} else {
-															alert(data.msg);
-														}
-													},
-													error: function(xhr, type, errorThrown) {
-														alert('网络异常，请稍后再试！');
-														console.log(xhr + errorThrown);
-													},
-													complete:function(){
-														$("body").mLoading("hide");
-													}
-												});
-											}
-										},
-										error: function(xhr, type, errorThrown) {
-											alert('网络异常，请稍后再试！');
-										}
-									});
+									type: xinxi_laiyuan,
+									swTitle: biaoti,
+									image1: image1,
+									image2: image2,
+									image3: image3,
+									page:1,
+									tdId: tdId || "",
+								},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									console.log(data);
+									if(data.code == "1") {
+										alert("添加成功!");
+										window.location.reload();
+									} else {
+										alert(data.msg);
+									}
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
+									console.log(xhr + errorThrown);
+								},
+								complete: function() {
+									$("body").mLoading("hide");
 								}
-							}
+							});
 						})
-
 					})
 				</script>
 	</body>

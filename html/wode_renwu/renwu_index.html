@@ -365,8 +365,8 @@
 									var taskName = $(this).parents('tr').attr("data-taskName");
 									var teamTaskId = $(this).attr("data-teamTaskId");
 									var taskId = $(this).attr("data-taskId");
-									var starTime = $(this).attr("data-starTime");
-									var endTime = $(this).attr("data-endTime");
+									var starTime = $(this).parents('tr').attr("data-starTime");
+									var endTime = $(this).parents('tr').attr("data-endTime");
 									var taskNum = $(this).attr("data-taskNum");
 
 									window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum;
@@ -379,8 +379,8 @@
 								var taskName = $(this).parents('tr').attr("data-taskName");
 								var teamTaskId = $(this).attr("data-teamTaskId");
 								var taskId = $(this).attr("data-taskId");
-								var starTime = $(this).attr("data-starTime");
-								var endTime = $(this).attr("data-endTime");
+								var starTime = $(this).parents('tr').attr("data-starTime");
+								var endTime = $(this).parents('tr').attr("data-endTime");
 								var taskNum = $(this).attr("data-taskNum");
 
 								window.location.href = "tianjia_renwu.html?teamTaskId=" + teamTaskId + "&taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&taskNum=" + taskNum;
@@ -544,11 +544,21 @@
 												var _dom_type = "<span style='color:green'>基本任务(考核)</span>";
 
 											}
-											tbody.innerHTML += "<tr data-taskType='" + info[i].taskType + "' data-teamTaskNum='" + info[i].teamTaskNum + "' data-taskName='" + info[i].taskName + "' data-starTime='" + info[i].starTime + "'  data-endTime='" + info[i].endTime + "' data-teamTaskId='" + info[i].teamTaskId + "' data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'  style='cursor:pointer'>" +
+											if(!info[i].starTime){
+												var starTime="";
+											}else{
+												var starTime=info[i].starTime;
+											}
+											if(!info[i].endTime){
+												var endTime="";
+											}else{
+												var endTime=info[i].endTime;
+											}
+											tbody.innerHTML += "<tr data-taskType='" + info[i].taskType + "' data-teamTaskNum='" + info[i].teamTaskNum + "' data-taskName='" + info[i].taskName + "' data-starTime='" + starTime + "'  data-endTime='" + endTime + "' data-teamTaskId='" + info[i].teamTaskId + "' data-taskId='" + info[i].taskId + "' data-taskNum='" + info[i].taskNum + "'  style='cursor:pointer'>" +
 												"<td class='goDetail'>" + info[i].taskName + "</td>" +
 												"<td class='goDetail'>" + info[i].taskNum + "</td>" +
-												"<td class='goDetail'>" + info[i].starTime + "</td>" +
-												"<td class='goDetail'>" + info[i].endTime + "</td>" +
+												"<td class='goDetail'>" + starTime + "</td>" +
+												"<td class='goDetail'>" + endTime+ "</td>" +
 												"<td class='goDetail'>" + _dom_type + "</td>" +
 												"<td class='goDetail'>" + _dom + "</td>" +
 												"</tr>";
