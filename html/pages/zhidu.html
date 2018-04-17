@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <link rel="stylesheet" href="style.css">
+    <title>公司规章制度</title>
+</head>
+<body>
+<div class="container main">
+    <div class="row">
+        <div class="col left-column" id="main-left-cloumn" style="position: fixed;">
+            <div class="tab" style="cursor: pointer;background: #1ABC9C;color:white;" onclick="window.history.go(-1);"><i class="fa fa-backward"></i> 一定成功</div>
+            <div class="sidebar-box gallery-list">
+                <div class="design" id="cate1">
+                    <div class="navto-nav"><i class="fa fa-file-word-o"></i> &nbsp; 基本制度</div>
+                </div>
+                <div class="design" id="cate2">
+                    <div class="navto-nav"><i class="fa fa-meh-o"></i>  &nbsp;组员制度</div>
+                </div>
+                <div class="design" id="cate3">
+                    <div class="navto-nav"><i class="fa fa-male"></i>  &nbsp;科长制度</div>
+                </div>
+                <div class="design" id="cate4">
+                    <div class="navto-nav"><i class="fa fa-user-plus"></i>  &nbsp;经理（副经理）制度</div>
+                </div>
+                <div class="design" id="cate5">
+                    <div class="navto-nav"><i class="fa fa-female"></i> &nbsp; 总经理制度</div>
+                </div>
+            </div>
+        </div>
+        <div class="col middle-column-home" style="float: right;">
+            <div class="codelist codelist-desktop cate1">
+                <h2><i class="fa fa-file-word-o"></i> 基本制度
+                    <button type="button" class="btn btn-primary jiben">+</button>
+                    <div class="box1 item"></div>
+                </h2>
+            </div>
+            <div class="codelist codelist-desktop cate2">
+                <h2><i class="fa fa-meh-o"></i> 组员制度
+                    <button type="button" class="btn btn-primary zuyuan">+</button></h2>
+                <div class="box2 item"></div>
+            </div>
+            <div class="codelist codelist-desktop cate3">
+                <h2><i class="fa fa-male"></i> 科长制度
+                    <button type="button" class="btn btn-primary kezhang">+</button></h2>
+                <div class="box3 item"></div>
+            </div>
+            <div class="codelist codelist-desktop cate4">
+                <h2><i class="fa fa-user-plus"></i> 经理（副经理）制度
+                    <button type="button" class="btn btn-primary jingli">+</button></h2>
+                <div class="box4 item"></div>
+            </div>
+            <div class="codelist codelist-desktop cate5">
+                <h2><i class="fa fa-female"></i> 总经理制度
+                    <button type="button" class="btn btn-primary zongjingli">+</button></h2>
+                <div class="box5 item"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="jiben" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="messLabel">添加（修改）制度</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="baseTitle" class="control-label">标题</label>
+                        <input type="text" class="form-control" id="baseTitle"  maxlength="5000" >
+                        <input type="hidden"  id="ruleId">
+                        <input type="hidden"  id="role">
+                    </div>
+                    <div class="form-group">
+                        <label for="baseContent" class="control-label" >内容</label>
+                        <textarea class="form-control" rows="10" id="baseContent" maxlength="5000"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary jibenSave">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+<script src="../../js/config.js"></script>
+<script>
+    $(document).ready(function () {
+        if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+            var session_login = JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+        } else if(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+            session_login = JSON.parse(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+        }
+        $(".design").click(function() {
+            id = $(this).prop("id");
+            var _i=id.split("cate")[1];
+            $("." + id).show();
+            setDom(_i-1);
+            $("." + id).siblings().hide();
+        })
+        $("#cate1").trigger("click");
+        var roleId = session_login.info.roleId;
+        var grade = session_login.info.grade;
+        switch (roleId) {
+            case 1:
+                if (grade == 2) {
+                    $(".cate4").css({"display":"none"})
+                    $("#cate4").css({"display":"none"})
+                    $(".cate5").css({"display":"none"})
+                    $("#cate5").css({"display":"none"})
+                } else {
+                    $(".cate3").css({"display":"none"})
+                    $("#cate3").css({"display":"none"})
+                    $(".cate4").css({"display":"none"})
+                    $("#cate4").css({"display":"none"})
+                    $(".cate5").css({"display":"none"})
+                    $("#cate5").css({"display":"none"})
+                }
+                break;
+            case 2:
+                if(session_login.info.groupId==0){
+                    $(".cate5").css({"display":"none"})
+                    $("#cate5").css({"display":"none"})
+                }
+                break;
+        }
+        if(roleId=="3"||roleId=="6"){
+            $(document).delegate(".item-top","click",function(){
+                var title = $(this).children("h4").text();
+                var id=$(this).parents(".item")[0].className.split(" ")[0].split("box")[1];
+                var _i=id-1;
+                title=title.replace(/[【,】]/g,"");
+                var content = $(this).children("strong").html();
+                content=content.replace(/<br>/g,"\n");
+                var ruleId=$(this).attr("data-ruleId");
+                $("#ruleId").val(ruleId);
+                $("#role").val(_i);
+                $("#baseTitle").val(title);
+                $("#baseContent").val(content);
+                $('#jiben').modal();
+            })
+        }else{
+            $(".jiben").css({"display":"none"});
+            $(".zuyuan").css({"display":"none"});
+            $(".kezhang").css({"display":"none"});
+            $(".jingli").css({"display":"none"});
+            $(".zongjingli").css({"display":"none"});
+        }
+        $('.jiben').on('click', function (e) {
+            $("#ruleId").val("false");
+            $("#role").val(0);
+            $("#baseTitle").val("");
+            $("#baseContent").val("");
+            $('#jiben').modal();
+        });
+        $('.zuyuan').on('click', function (e) {
+            $("#ruleId").val("false");
+            $("#role").val(1);
+            $("#baseTitle").val("");
+            $("#baseContent").val("");
+            $('#jiben').modal();
+        });
+        $('.kezhang').on('click', function (e) {
+            $("#ruleId").val("false");
+            $("#role").val(2);
+            $("#baseTitle").val("");
+            $("#baseContent").val("");
+            $('#jiben').modal();
+        });
+        $('.jingli').on('click', function (e) {
+            $("#ruleId").val("false");
+            $("#role").val(3);
+            $("#baseTitle").val("");
+            $("#baseContent").val("");
+            $('#jiben').modal();
+        });
+        $('.zongjingli').on('click', function (e) {
+            $("#ruleId").val("false");
+            $("#role").val(4);
+            $("#baseTitle").val("");
+            $("#baseContent").val("");
+            $('#jiben').modal();
+        });
+        $('.jibenSave').on('click', function (e) {
+            $("body").mLoading("show");
+            var title = $("#baseTitle").val();
+            if(title==""){
+                alert("请添加制度标题！");
+            }
+            var content = $("#baseContent").val();
+            if(content==""){
+                alert("请添加制度内容！");
+            }
+            var ruleId = $("#ruleId").val();
+            var role = $("#role").val();
+            if(role==0){
+                var type="basic";
+            }else{
+                type="role";
+            }
+            if(ruleId=="false"){
+                $.ajax({
+                    url: config.rootUrl + "user/addRule.do",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        type: type,
+                        roleId:role,
+                        title: title,
+                        content:content,
+                        // remark:"[{detail:'detail',isUpdate:'0'}]",
+                    },
+                    success: function (data) {
+                        if (data.code == 1) {
+                            alert(data.msg);
+                            if(sessionStorage.getItem("role"+role)){
+                                sessionStorage.removeItem("role"+role);
+                            }
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function () {
+                        alert("发生错误了,请检查你的网络!");
+                    },
+                    complete: function () {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+                })
+            }else{
+                $.ajax({
+                    url: config.rootUrl + "user/addRule.do",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        type: type,
+                        roleId:role,
+                        ruleId:ruleId,
+                        title: title,
+                        content:content,
+                        // remark:"[{detail:'detail',isUpdate:'0'}]",
+                    },
+                    success: function (data) {
+                        if (data.code == 1) {
+                            alert(data.msg);
+                            if(sessionStorage.getItem("role"+role)){
+                                sessionStorage.removeItem("role"+role);
+                            }
+                            window.location.reload();
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function () {
+                        alert("发生错误了,请检查你的网络!");
+                    },
+                    complete: function () {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+                })
+            }
+        });
+
+        function TransferString(content)
+        {
+            var string = content;
+            try{
+                string=string.replace(/\r\n/g,"<BR>")
+                string=string.replace(/\n/g,"<BR>");
+            }catch(e) {
+                alert(e.message);
+            }
+            return string;
+        }
+        setDom(0);
+        function setDom(role) {
+            $("body").mLoading("show");
+            if(role==0){
+                var type="basic";
+            }else{
+                type="role";
+            }
+            var _i=role+1;
+            $(".box"+_i)[0].innerHTML="";
+            var json=sessionStorage.getItem("role"+role);
+            if(json){
+                var info=JSON.parse(json);
+                var cate=$(".box"+_i);
+                $("body").mLoading("hide");
+                for(var i=0;i<info.length;i++){
+                    $("#ruleId").val(info[i].ruleId);
+                    var content=TransferString(info[i].content)
+                    if(info[i].isUpdate=="0"){
+                        var _html='<a class="item-top item-1" data-ruleId='+info[i].ruleId+'><h4>【'+info[i].title+'】</h4>' +
+                            "<strong>"+content+"</strong>" +
+                            " </a>";
+                    }else{
+                        _html='<a class="item-top item-1" data-ruleId='+info[i].ruleId+'><h4 style="color:red;">【'+info[i].title+'】</h4>' +
+                            "<strong>"+content+"</strong>" +
+                            " </a>";
+                    }
+                    cate.append(_html);
+                }
+                return;
+            }else{
+                $.ajax({
+                    url: config.rootUrl + "user/listRule.do",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        type: type,
+                        roleId:role,
+                        page: 1,
+                        rows:500,
+                    },
+                    success: function (data) {
+                        var json=JSON.stringify(data.info);
+                        sessionStorage.setItem("role"+role,json);
+                        if (data.code == 1) {
+                            var info=data.info;
+                            var cate=$(".box"+_i);
+                            for(var i=0;i<info.length;i++){
+                                $("#ruleId").val(info[i].ruleId);
+                                var content=TransferString(info[i].content)
+                                if(info[i].isUpdate=="0"){
+                                    var _html='<a class="item-top item-1" data-ruleId='+info[i].ruleId+'><h4>【'+info[i].title+'】</h4>' +
+                                        "<strong>"+content+"</strong>" +
+                                        " </a>";
+                                }else{
+                                    _html='<a class="item-top item-1" data-ruleId='+info[i].ruleId+'><h4 style="color:red;">【'+info[i].title+'】</h4>' +
+                                        "<strong>"+content+"</strong>" +
+                                        " </a>";
+                                }
+                                cate.append(_html);
+                            }
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    error: function () {
+                        alert("发生错误了!");
+                    },
+                    complete: function () {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

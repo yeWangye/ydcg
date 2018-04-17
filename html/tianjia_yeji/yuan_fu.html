@@ -388,6 +388,10 @@
 												<div class="col-sm-10">
 													<div class="form-group">
 														<div class="col-sm-2">
+															<input type="number" id="monthAward" disabled="disabled" class="form-control" placeholder="合计">
+															<input type="number" id="rewardMoney" hidden="hidden">
+														</div>
+														<div class="col-sm-2">
 															<input type="number" id="yingfu" class="form-control" placeholder="应付款">
 
 														</div>
@@ -492,6 +496,7 @@
 				<script src="../../js/session_expire.js"></script>
 				<script type="text/javascript" src="../../js/personal_msg.js"></script>
 				<script src="js/getFuns.js"></script>
+				<!--<script src="js/fu_setVal.js"></script>-->
 				<!-- Javascript -->
 				<script type="text/javascript">
 					$(function() {
@@ -527,7 +532,13 @@
 							_counter++;
 
 						})
+                        $("#ticheng").on("blur",function(){
+                            var ticheng=$("#ticheng").val();
+                            var nianzhong=$("#nianzhong").val();
 
+                            $("#monthAward").val(ticheng);
+                            $("#rewardMoney").val(Number(ticheng)+Number(nianzhong));
+                        });
 						$(".save").on("click", function() {
 							//1患者姓名
 							var patientName = $("#name").val();
@@ -560,6 +571,7 @@
 							for(var i = 1; i < _counter; i++) {
 								deparTreat.push({
 									"deptId": $("#keshi" + i).val(),
+                                    "deptName": $("#keshi" + i).find("option:selected").text(),
 									"deptMoney": $("#jine" + i).val(),
 								})
 
@@ -568,7 +580,10 @@
 							var treatCourse=$("#liaocheng").val();
 							//年终
 							var yearAward=$("#nianzhong").val();
-
+                            //月合计
+                            var monthAward=$("#monthAward").val();
+                            //合计
+                            var rewardMoney=$("#rewardMoney").val();
 
 							/*在这里调用上传接口*/
 							$.ajax({
@@ -585,20 +600,22 @@
 									totalMoney: yingfu,
 									paidMoney: shifu,
 									treatAward: ticheng,
+                                    monthAward:monthAward,
 									patientName: patientName,
 									remarks:supplement,
 									deparTreat:JSON.stringify(deparTreat),
 									yearAward :yearAward,
+                                    rewardMoney :rewardMoney,
 									treatCourse:treatCourse,
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
-									alert("添加业绩成功,等待战区经理审核!");
-									window.history.go(-1);
+									alert("添加业绩成功,等待审核!");
+									window.location.reload();
 								},
 								error: function(xhr, type, errorThrown) {
-									alert('网络异常，请稍后再试！');
+									alert('发生错误,请确认所有内容已经填写！');
 									console.log(xhr + errorThrown);
 								}
 							});

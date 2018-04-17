@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">-->
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>我的任务</li>
+                            <li class="active">管理层任务列表</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee
+                            style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i
+                                                    class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i
+                                                    class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i
+                                                    class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">管理层任务列表</span>
+                        <div class="description">
+                            <sapn class="tips">注意事项:</sapn>
+                            <span class="tips">此任务根据董事长发布的任务进行设置并且完成！</span>
+                        </div>
+                        <div class="description">
+                            <sapn class="tips">操作提示:</sapn>
+                            当前获取到的是<span class="tips">科长、经理、总经理</span>当天应该完成的任务!,<span class="tips" style="color:blue;">点击表格</span>可以进行相应的任务
+                        </div>
+                        <div class="description hidden_zuyuan">
+                            <sapn class="tips">一</sapn>
+                            :<span class="tips">设置时间</span>务必<span class="tip_blue">点击设置按钮进行任务设置</span>，否则不设置时间按不合格记录。
+                        </div>
+                        <div class="description hidden_zuyuan">
+                            <sapn class="tips">二</sapn>
+                            :<span class="tips">完成任务</span>,点击<span class="tip_blue">完成</span>按钮,开始做任务，不同任务需要不同的材料，请自行准备！
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title" style="float:left;text-align: center;">
+                                        <div class="title back" style="display: none;"><span><a
+                                                onclick="window.history.go(-1);" style="color:darkblue"><span
+                                                class="fa fa-chevron-circle-left">返回</span></a></span></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>任务</th>
+                                            <th>开始时间</th>
+                                            <th>结束时间</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+            <script src="../../js/loading_start.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var search = window.location.search;
+                    if ((search != "" && search.split("userId=")[1])) {
+                        var memberId = search.split("userId=")[1].split("&")[0];
+                        $(".back").css("display", "block");
+                    }
+                    if ((search != "" && search.split("searchDate=")[1])) {
+                        var searchDate = search.split("searchDate=")[1].split("&")[0];
+                    } else {
+                        searchDate = new Date().format("yyyy-MM-dd").replace(/\//g, "-");
+                    }
+                    $('.table tbody').on('click', '.goDetail', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var taskName = $(this).parents('tr').attr("data-taskName");
+                        var taskId = $(this).parents('tr').attr("data-taskId");
+                        var userTaskId = $(this).parents('tr').attr("data-userTaskId");
+                        var detailId = $(this).parents('tr').attr("data-detailId");
+                        var starTime = $(this).parents('tr').attr("data-starTime");
+                        var endTime = $(this).parents('tr').attr("data-endTime");
+                        if (!starTime || !endTime) {
+                            if (memberId) {
+                                alert("没有设置时间，算作未完成！");
+                            } else {
+                                alert("任务时间没有设置,前往设置时间!");
+                                window.location.href = "tianjia_guanliceng_renwu.html?taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName;
+                                return;
+                            }
+                        } else {
+                            window.location.href = "guanliceng_renwu_detail.html?taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&userTaskId=" + userTaskId + "&detailId=" + detailId;
+                        }
+                    });
+                    $('.table tbody').on('click', '.set', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var taskName = $(this).parents('tr').attr("data-taskName");
+                        var taskId = $(this).parents('tr').attr("data-taskId");
+                        var detailId = $(this).parents('tr').attr("data-detailId");
+                        var userTaskId = $(this).parents('tr').attr("data-userTaskId");
+                        var starTime = $(this).parents('tr').attr("data-starTime");
+                        var endTime = $(this).parents('tr').attr("data-endTime");
+                        window.location.href = "tianjia_guanliceng_renwu.html?taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&detailId=" + detailId + "&userTaskId=" + userTaskId;
+                    });
+                    $('.table tbody').on('click', '.del', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var userTaskId = $(this).parents('tr').attr("data-userTaskId");
+                        $.ajax({
+                            url: config.rootUrl + "user/delRoleTaskSet.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                userTaskId: userTaskId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                if (data.code == "1") {
+                                    alert(data.msg);
+                                    window.location.reload();
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    })
+                    $('.table tbody').on('click', '.down', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var taskName = $(this).parents('tr').attr("data-taskName");
+                        var taskId = $(this).parents('tr').attr("data-taskId");
+                        var detailId = $(this).parents('tr').attr("data-detailId");
+                        var userTaskId = $(this).parents('tr').attr("data-userTaskId");
+                        var starTime = $(this).parents('tr').attr("data-starTime");
+                        var endTime = $(this).parents('tr').attr("data-endTime");
+                        if (!starTime || !endTime) {
+                            alert("任务时间没有设置,前往设置时间!");
+                            window.location.href = "tianjia_guanliceng_renwu.html?taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName;
+                            return;
+                        } else {
+                            window.location.href = "do_guanliceng_renwu.html?taskId=" + taskId + "&starTime=" + starTime + "&endTime=" + endTime + "&taskName=" + taskName + "&detailId=" + detailId + "&userTaskId=" + userTaskId;
+                        }
+                    });
+                    doAction();
+
+                    function doAction(sta) {
+                        $.ajax({
+                            url: config.rootUrl + "user/listTaskSetting.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                memberId: memberId || session_login.info.userId,
+                                searchDate: searchDate,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                var pageCount = data.pageCount;
+                                var tbody = $(".table tbody")[0];
+                                if (info.length == 0) {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                    alert("刷新获取任务!");
+                                }
+                                for (var i = 0; i < info.length; i++) {
+                                    if (info[i].userTaskId == "0") {
+                                        var _dom = " <button  class='btn btn-primary set' type='button' ><i class='fa fa-edit'> 设置 </i></button>";
+                                    } else if (info[i].isFinish == "0") {
+                                        _dom = " <button  class='btn btn-primary set' type='button' ><i class='fa fa-edit'> 设置 </i></button>" +
+                                            " <button  class='btn btn-success down' type='button'><i class='fa fa-arrows'> 完成 </i></button>";
+
+                                    } else if (info[i].isFinish == "1") {
+                                        _dom = " <button  class='btn btn-primary set' type='button' ><i class='fa fa-edit'> 设置 </i></button>" +
+                                            " <button  class='btn btn-default' type='button'><i class='fa fa-arrow-circle-up'> 已完成 </i></button>";
+
+                                    }
+                                    if (memberId) {
+                                        if (session_login.info.userName == "scss10002") {
+                                            _dom = " <button  class='btn btn-danger del' type='button'><i class='fa fa-arrows'> 删除 </i></button>";
+                                        }
+                                    }
+                                    if (!info[i].starTime) {
+                                        var starTime = "";
+                                    } else {
+                                        var starTime = info[i].starTime;
+                                    }
+                                    if (!info[i].endTime) {
+                                        var endTime = "";
+                                    } else {
+                                        var endTime = info[i].endTime;
+                                    }
+                                    if (info[i].isFinish == "0" || !info[i].isFinish) {
+                                        var isGood = "<span style='color:red' class='fa fa-lightbulb-o fa-2x'>";
+                                    } else {
+                                        var isGood = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
+                                    }
+                                    tbody.innerHTML += "<tr data-userTaskId='" + info[i].userTaskId + "'data-detailId='" + info[i].detailId + "' data-taskName='" + info[i].taskName + "' data-starTime='" + starTime + "'  data-endTime='" + endTime + "' data-taskId='" + info[i].taskId + "'  style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + info[i].taskName + "</td>" +
+                                        "<td class='goDetail'>" + starTime + "</td>" +
+                                        "<td class='goDetail'>" + endTime + "</td>" +
+                                        "<td class='goDetail'>" + isGood + "</td>" +
+                                        "<td class='goDetail'>" + _dom + "</td>" +
+                                        "</tr>";
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
+                })
+            </script>
+</body>
+
+</html>

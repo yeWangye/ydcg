@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/html/tongji/verifyDeparTreat.html" line="812" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2e63ff36-a642-4c11-aae9-f9ecdea51211" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
+      <change beforePath="$PROJECT_DIR$/css/themes/flat-blue.css" afterPath="$PROJECT_DIR$/css/themes/flat-blue.css" />
+      <change beforePath="$PROJECT_DIR$/html/index.html" afterPath="$PROJECT_DIR$/html/index.html" />
+      <change beforePath="$PROJECT_DIR$/html/jituanjun/jituanjun.html" afterPath="$PROJECT_DIR$/html/jituanjun/jituanjun.html" />
+      <change beforePath="$PROJECT_DIR$/html/jituanjun/keshi.html" afterPath="$PROJECT_DIR$/html/jituanjun/keshi.html" />
+      <change beforePath="$PROJECT_DIR$/html/jituanjun/keshi_detail.html" afterPath="$PROJECT_DIR$/html/jituanjun/keshi_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/jituanjun/keshi_total.html" afterPath="$PROJECT_DIR$/html/jituanjun/keshi_total.html" />
+      <change beforePath="$PROJECT_DIR$/html/kaohe/kaohe_weidabiao.html" afterPath="$PROJECT_DIR$/html/kaohe/kaohe_weidabiao.html" />
+      <change beforePath="$PROJECT_DIR$/html/kaohe/renwu_detail.html" afterPath="$PROJECT_DIR$/html/kaohe/renwu_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/kaohe/renwu_index.html" afterPath="$PROJECT_DIR$/html/kaohe/renwu_index.html" />
+      <change beforePath="$PROJECT_DIR$/html/kaohe/renwu_jiancha.html" afterPath="$PROJECT_DIR$/html/kaohe/renwu_jiancha.html" />
+      <change beforePath="$PROJECT_DIR$/html/login.html" afterPath="$PROJECT_DIR$/html/login.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/duotiao_tiezi.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/duotiao_tiezi.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/lianjie_detail.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/lianjie_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/shequ_detail.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/shequ_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/sq_durenwu_tianjia.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/sq_durenwu_tianjia.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/tongxun_detail.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/tongxun_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/tongxun_tianjia.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/tongxun_tianjia.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__lianjie.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__lianjie.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__shequ.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__shequ.html" />
+      <change beforePath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__tongxun.html" afterPath="$PROJECT_DIR$/html/meiri_renwu/zuyuan__tongxun.html" />
+      <change beforePath="$PROJECT_DIR$/html/pages/login.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/goutong.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/goutong.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/guahao.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/guahao.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/js/getFuns.js" afterPath="$PROJECT_DIR$/html/tianjia_yeji/js/getFuns.js" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/lai_chu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/lai_chu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/lai_fu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/lai_fu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/yizhu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/yizhu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/you_fu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/you_fu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/yuan_chu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/yuan_chu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tianjia_yeji/yuan_fu.html" afterPath="$PROJECT_DIR$/html/tianjia_yeji/yuan_fu.html" />
+      <change beforePath="$PROJECT_DIR$/html/tongji/yeji_shenhe.html" afterPath="$PROJECT_DIR$/html/tongji/yeji_shenhe.html" />
+      <change beforePath="$PROJECT_DIR$/html/tongji/zhanqu_total.html" afterPath="$PROJECT_DIR$/html/tongji/zhanqu_total.html" />
+      <change beforePath="$PROJECT_DIR$/html/wode_renwu/renwu_detail.html" afterPath="$PROJECT_DIR$/html/wode_renwu/renwu_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/wode_renwu/renwu_index.html" afterPath="$PROJECT_DIR$/html/wode_renwu/renwu_index.html" />
+      <change beforePath="$PROJECT_DIR$/html/wode_renwu/tianjia_renwu.html" afterPath="$PROJECT_DIR$/html/wode_renwu/tianjia_renwu.html" />
+      <change beforePath="$PROJECT_DIR$/html/wode_renwu/zuyuan_renwu_detail.html" afterPath="$PROJECT_DIR$/html/wode_renwu/zuyuan_renwu_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/xinxi_guanli/lizhi_xinxi.html" afterPath="$PROJECT_DIR$/html/xinxi_guanli/lizhi_xinxi.html" />
+      <change beforePath="$PROJECT_DIR$/html/xinxi_guanli/shenhe_detail.html" afterPath="$PROJECT_DIR$/html/xinxi_guanli/shenhe_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/xinxi_guanli/tianjiayeji.html" afterPath="$PROJECT_DIR$/html/xinxi_guanli/tianjiayeji.html" />
+      <change beforePath="$PROJECT_DIR$/html/xinxi_guanli/wode_xinxi.html" afterPath="$PROJECT_DIR$/html/xinxi_guanli/wode_xinxi.html" />
+      <change beforePath="$PROJECT_DIR$/html/xinxi_guanli/yuyue_detail.html" afterPath="$PROJECT_DIR$/html/xinxi_guanli/yuyue_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/yeji_guanli/yeji.html" afterPath="$PROJECT_DIR$/html/yeji_guanli/yeji.html" />
+      <change beforePath="$PROJECT_DIR$/html/yeji_guanli/yeji_dai_shenhe.html" afterPath="$PROJECT_DIR$/html/yeji_guanli/yeji_dai_shenhe.html" />
+      <change beforePath="$PROJECT_DIR$/html/yeji_guanli/yeji_detail.html" afterPath="$PROJECT_DIR$/html/yeji_guanli/yeji_detail.html" />
+      <change beforePath="$PROJECT_DIR$/html/yeji_guanli/zuyuan_yeji.html" afterPath="$PROJECT_DIR$/html/yeji_guanli/zuyuan_yeji.html" />
+      <change beforePath="$PROJECT_DIR$/img/tita-bg1-v3_h.jpg" afterPath="$PROJECT_DIR$/img/tita-bg1-v3_h.jpg" />
+      <change beforePath="$PROJECT_DIR$/js/config.js" afterPath="$PROJECT_DIR$/js/config.js" />
+      <change beforePath="$PROJECT_DIR$/js/index.js" afterPath="$PROJECT_DIR$/js/index.js" />
+      <change beforePath="$PROJECT_DIR$/js/personal_msg.js" afterPath="$PROJECT_DIR$/js/personal_msg.js" />
+      <change beforePath="$PROJECT_DIR$/js/session_expire.js" afterPath="$PROJECT_DIR$/js/session_expire.js" />
+      <change beforePath="$PROJECT_DIR$/lib/css/select2.min.css" afterPath="$PROJECT_DIR$/lib/css/select2.min.css" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="medRecord.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/hua_jia/medRecord.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2520">
+              <caret line="140" column="44" lean-forward="false" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="44" />
+              <folding>
+                <marker date="1523581780968" expanded="true" signature="16248:16262" ph="..." />
+                <marker date="1523581780968" expanded="true" signature="19983:19997" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/doctor_assistant/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16506">
+              <caret line="1149" column="32" lean-forward="false" selection-start-line="1149" selection-start-column="32" selection-end-line="1149" selection-end-column="32" />
+              <folding>
+                <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#script#16;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#30996#32533#0" expanded="false" />
+                <element signature="e#37375#39189#0" expanded="false" />
+                <element signature="e#48656#51271#0" expanded="false" />
+                <marker date="1523751203695" expanded="true" signature="41990:42002" ph="..." />
+                <marker date="1523751203695" expanded="true" signature="42448:42458" ph="..." />
+                <marker date="1523751203695" expanded="true" signature="42849:42859" ph="..." />
+                <marker date="1523751203695" expanded="true" signature="43333:43347" ph="..." />
+                <marker date="1523751203695" expanded="true" signature="43643:43657" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5940">
+              <caret line="330" column="32" lean-forward="false" selection-start-line="330" selection-start-column="32" selection-end-line="330" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="guanliceng_renwu_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/wode_renwu/guanliceng_renwu_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="167" column="42" lean-forward="true" selection-start-line="167" selection-start-column="42" selection-end-line="167" selection-end-column="42" />
+              <folding>
+                <marker date="1523777017145" expanded="true" signature="17291:17318" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="yaopin_guanli.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/html/hua_jia/yaopin_guanli.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="470" column="56" lean-forward="false" selection-start-line="470" selection-start-column="56" selection-end-line="470" selection-end-column="56" />
+              <folding>
+                <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#lable#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#lable#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#17448#18924#0" expanded="false" />
+                <element signature="e#19038#19797#0" expanded="false" />
+                <element signature="e#20136#21895#0" expanded="false" />
+                <element signature="e#21967#23361#0" expanded="false" />
+                <marker date="1523930868113" expanded="true" signature="27242:27256" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sendName</find>
+      <find>back</find>
+      <find>请选择药房</find>
+      <find>medicineCost</find>
+      <find>json_data</find>
+      <find>memberId</find>
+      <find>地址</find>
+      <find>hospName</find>
+      <find>.select2-container--default .select2-selection--single .select2-selection__rendered</find>
+      <find>decoctMoney</find>
+      <find>save</find>
+      <find>折</find>
+      <find>submit</find>
+      <find>days</find>
+      <find>任务检查</find>
+      <find>discount</find>
+      <find>medText()</find>
+      <find>add_yao</find>
+      <find>select</find>
+      <find>selectSup</find>
+      <find>查看</find>
+      <find>hospId</find>
+      <find>medMoney</find>
+      <find>herbalMoney</find>
+      <find>medRecordDetail</find>
+      <find>getmedicineSupplier</find>
+      <find>medicineMoney</find>
+      <find>calc()</find>
+      <find>buyPrice</find>
+      <find>json_data.page</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>td</replace>
+      <replace>toFixed(4)</replace>
+      <replace>zhuijia</replace>
+      <replace>info</replace>
+      <replace>transfer</replace>
+      <replace>管理层</replace>
+      <replace>delrow</replace>
+      <replace>memberId</replace>
+      <replace>删除</replace>
+      <replace>appoint_name</replace>
+      <replace>searchDate</replace>
+      <replace>edit</replace>
+      <replace>supplyName</replace>
+      <replace>药厂</replace>
+      <replace>medicineName</replace>
+      <replace>http://192.168.0.166:8080/scss/</replace>
+      <replace>money</replace>
+      <replace>setMember</replace>
+      <replace>ruleId</replace>
+      <replace>base</replace>
+      <replace>console.log</replace>
+      <replace>detail</replace>
+      <replace>_detail</replace>
+      <replace>yyyy-MM-dd hh:mm:ss</replace>
+      <replace>data-patientId</replace>
+      <replace>patientId</replace>
+      <replace>finishTime</replace>
+      <replace>_data</replace>
+      <replace>hospId</replace>
+      <replace>发药</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/html/jituanjun/jituanjun.html" />
+        <option value="$PROJECT_DIR$/html/xinxi_guanli/wode_xinxi.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/departRankList.html" />
+        <option value="$PROJECT_DIR$/html/yeji_guanli/yeji.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/appointRankList.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/onlineRankList.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/assistRankList.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/hospNewRankList.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/rankList.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/verifyHospMedicine.html" />
+        <option value="$PROJECT_DIR$/html/order.html" />
+        <option value="$PROJECT_DIR$/../upAndDown/js/scroll.js" />
+        <option value="$PROJECT_DIR$/js/scroll.js" />
+        <option value="$PROJECT_DIR$/css/index.css" />
+        <option value="$PROJECT_DIR$/js/index.js" />
+        <option value="$PROJECT_DIR$/html/pages/zhidu.html" />
+        <option value="$PROJECT_DIR$/html/tongji/zhanghu_ruzhang.html" />
+        <option value="$PROJECT_DIR$/html/xinxi_guanli/addMedInvoice.html" />
+        <option value="$PROJECT_DIR$/html/xinxi_guanli/tianjiayeji.html" />
+        <option value="$PROJECT_DIR$/js/getBaseData.js" />
+        <option value="$PROJECT_DIR$/html/hua_jia/temp.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/addPresc.html" />
+        <option value="$PROJECT_DIR$/html/tongji/verifyDeparTreat.html" />
+        <option value="$PROJECT_DIR$/html/yeji_guanli/yeji_jiangli.html" />
+        <option value="$PROJECT_DIR$/html/xinxi_guanli/zhanqu_xinxi.html" />
+        <option value="$PROJECT_DIR$/html/tongji/cache.js" />
+        <option value="$PROJECT_DIR$/html/tongji/yeji_shenhe.html" />
+        <option value="$PROJECT_DIR$/html/pai_hang_bang/achieveRankList.html" />
+        <option value="$PROJECT_DIR$/html/jituanjun/keshi_total.html" />
+        <option value="$PROJECT_DIR$/html/shezhi_renwu/tianjia_yeji_renwu.html" />
+        <option value="$PROJECT_DIR$/html/kaohe/yue_kaohe_list.html" />
+        <option value="$PROJECT_DIR$/html/kaohe/yue_kaohe.html" />
+        <option value="$PROJECT_DIR$/html/kaohe/yue_kaohe_detail.html" />
+        <option value="$PROJECT_DIR$/html/wode_renwu/yue_kaohe_detail.html" />
+        <option value="$PROJECT_DIR$/html/tongji/zhanqu_total.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/medRecord.html" />
+        <option value="$PROJECT_DIR$/html/wode_renwu/do_guanliceng_renwu.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/yaochang_guanli.html" />
+        <option value="$PROJECT_DIR$/html/doctor_assistant/addMedcineRecord.html" />
+        <option value="$PROJECT_DIR$/lib/css/select2.min.css" />
+        <option value="$PROJECT_DIR$/html/hua_jia/addMedInvoice.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/listMedInvoice.html" />
+        <option value="$PROJECT_DIR$/html/doctor_assistant/medRecordDetail.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/medInvoiceDetail.html" />
+        <option value="$PROJECT_DIR$/html/doctor_assistant/index.html" />
+        <option value="$PROJECT_DIR$/js/config.js" />
+        <option value="$PROJECT_DIR$/html/index.html" />
+        <option value="$PROJECT_DIR$/js/personal_msg.js" />
+        <option value="$PROJECT_DIR$/js/floatObj.js" />
+        <option value="$PROJECT_DIR$/html/wode_renwu/guanliceng_renwu_detail.html" />
+        <option value="$PROJECT_DIR$/html/hua_jia/yaopin_guanli.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="hua_jia" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="tongji" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="wode_renwu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ydcg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ydcg" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\ydcg\html\hua_jia" />
+      <recent name="C:\Users\Administrator\Desktop\ydcg\html\tongji" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e63ff36-a642-4c11-aae9-f9ecdea51211" name="Default" comment="" />
+      <created>1510753219856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1510753219856</updated>
+      <workItem from="1510753232154" duration="647000" />
+      <workItem from="1510791932340" duration="141000" />
+      <workItem from="1510966292533" duration="706000" />
+      <workItem from="1512288471853" duration="3066000" />
+      <workItem from="1512292507471" duration="1859000" />
+      <workItem from="1512348046181" duration="8775000" />
+      <workItem from="1512369100049" duration="10357000" />
+      <workItem from="1512391592670" duration="4493000" />
+      <workItem from="1512432825488" duration="9111000" />
+      <workItem from="1512453701454" duration="4773000" />
+      <workItem from="1512522696740" duration="15486000" />
+      <workItem from="1512606170572" duration="2624000" />
+      <workItem from="1512609842887" duration="20302000" />
+      <workItem from="1512693582936" duration="15033000" />
+      <workItem from="1512717998258" duration="15156000" />
+      <workItem from="1512778717485" duration="3033000" />
+      <workItem from="1512798427573" duration="7930000" />
+      <workItem from="1512824664078" duration="1699000" />
+      <workItem from="1512826710132" duration="122000" />
+      <workItem from="1512866616379" duration="3163000" />
+      <workItem from="1512894468032" duration="377000" />
+      <workItem from="1512954779903" duration="1332000" />
+      <workItem from="1512958542490" duration="3693000" />
+      <workItem from="1513045909114" duration="6482000" />
+      <workItem from="1513066381586" duration="680000" />
+      <workItem from="1513124889152" duration="9125000" />
+      <workItem from="1513385193564" duration="6009000" />
+      <workItem from="1513469501958" duration="1863000" />
+      <workItem from="1513472172848" duration="3110000" />
+      <workItem from="1513500267970" duration="3310000" />
+      <workItem from="1513562584254" duration="1460000" />
+      <workItem from="1513585270238" duration="625000" />
+      <workItem from="1513642612177" duration="716000" />
+      <workItem from="1513644075764" duration="626000" />
+      <workItem from="1513665729004" duration="13413000" />
+      <workItem from="1513728898126" duration="2491000" />
+      <workItem from="1513748868623" duration="2062000" />
+      <workItem from="1513753452537" duration="2822000" />
+      <workItem from="1513815485485" duration="11413000" />
+      <workItem from="1513851522022" duration="3726000" />
+      <workItem from="1513904525719" duration="4100000" />
+      <workItem from="1513923886434" duration="8515000" />
+      <workItem from="1513948621241" duration="442000" />
+      <workItem from="1513949711028" duration="3532000" />
+      <workItem from="1513987891397" duration="8281000" />
+      <workItem from="1514011392480" duration="6030000" />
+      <workItem from="1514074291335" duration="6249000" />
+      <workItem from="1514084727869" duration="4623000" />
+      <workItem from="1514097807894" duration="10323000" />
+      <workItem from="1514163077476" duration="2785000" />
+      <workItem from="1514248533759" duration="2314000" />
+      <workItem from="1514273263766" duration="1371000" />
+      <workItem from="1514339739366" duration="229000" />
+      <workItem from="1514356829964" duration="841000" />
+      <workItem from="1514417557658" duration="7610000" />
+      <workItem from="1514449413783" duration="4126000" />
+      <workItem from="1514516298786" duration="5419000" />
+      <workItem from="1514531261762" duration="4057000" />
+      <workItem from="1514548975034" duration="1021000" />
+      <workItem from="1514591178191" duration="17511000" />
+      <workItem from="1514679965738" duration="16237000" />
+      <workItem from="1514728962786" duration="395000" />
+      <workItem from="1514767117614" duration="1927000" />
+      <workItem from="1514961240350" duration="6627000" />
+      <workItem from="1515023545334" duration="4425000" />
+      <workItem from="1515109507933" duration="3625000" />
+      <workItem from="1515115982808" duration="9438000" />
+      <workItem from="1515203862593" duration="20677000" />
+      <workItem from="1515371936547" duration="24845000" />
+      <workItem from="1515457371467" duration="30646000" />
+      <workItem from="1515543182246" duration="26064000" />
+      <workItem from="1515626225384" duration="15937000" />
+      <workItem from="1515716548341" duration="6396000" />
+      <workItem from="1515804549298" duration="6894000" />
+      <workItem from="1515889460498" duration="11922000" />
+      <workItem from="1515975844387" duration="5109000" />
+      <workItem from="1516059537566" duration="13430000" />
+      <workItem from="1516234160831" duration="5022000" />
+      <workItem from="1516319534815" duration="14261000" />
+      <workItem from="1516409243059" duration="10675000" />
+      <workItem from="1516582197009" duration="19455000" />
+      <workItem from="1516664585302" duration="6087000" />
+      <workItem from="1516756167737" duration="7272000" />
+      <workItem from="1516835792905" duration="5843000" />
+      <workItem from="1516923483362" duration="3783000" />
+      <workItem from="1517009714005" duration="4178000" />
+      <workItem from="1517095432103" duration="7542000" />
+      <workItem from="1517185687694" duration="4133000" />
+      <workItem from="1517271328819" duration="16415000" />
+      <workItem from="1517358605860" duration="15255000" />
+      <workItem from="1517441612791" duration="21770000" />
+      <workItem from="1517530281041" duration="8332000" />
+      <workItem from="1517618978009" duration="599000" />
+      <workItem from="1517791430955" duration="6256000" />
+      <workItem from="1517876536776" duration="5560000" />
+      <workItem from="1517963204002" duration="6300000" />
+      <workItem from="1519173098544" duration="2555000" />
+      <workItem from="1519258809402" duration="597000" />
+      <workItem from="1519347518675" duration="599000" />
+      <workItem from="1519431301520" duration="1933000" />
+      <workItem from="1519518576428" duration="8455000" />
+      <workItem from="1519694727875" duration="3647000" />
+      <workItem from="1519777575136" duration="22539000" />
+      <workItem from="1519948698779" duration="8761000" />
+      <workItem from="1520035770452" duration="15959000" />
+      <workItem from="1520123357973" duration="19778000" />
+      <workItem from="1520211973100" duration="15190000" />
+      <workItem from="1520251203742" duration="2041000" />
+      <workItem from="1520293610479" duration="5850000" />
+      <workItem from="1520381784618" duration="5783000" />
+      <workItem from="1520466795237" duration="736000" />
+      <workItem from="1520667542211" duration="946000" />
+      <workItem from="1520678822837" duration="636000" />
+      <workItem from="1520686833498" duration="404000" />
+      <workItem from="1520729121729" duration="858000" />
+      <workItem from="1520817438387" duration="2154000" />
+      <workItem from="1520900410253" duration="3318000" />
+      <workItem from="1520924523865" duration="15026000" />
+      <workItem from="1520993226816" duration="15442000" />
+      <workItem from="1521069508452" duration="31018000" />
+      <workItem from="1521158276800" duration="6990000" />
+      <workItem from="1521179425573" duration="9566000" />
+      <workItem from="1521246671560" duration="1337000" />
+      <workItem from="1521427104237" duration="2802000" />
+      <workItem from="1521504633287" duration="9204000" />
+      <workItem from="1521591682700" duration="1564000" />
+      <workItem from="1521619078736" duration="2492000" />
+      <workItem from="1521641597965" duration="2719000" />
+      <workItem from="1521674248544" duration="7010000" />
+      <workItem from="1521763079453" duration="2439000" />
+      <workItem from="1521850597321" duration="3351000" />
+      <workItem from="1521936662448" duration="597000" />
+      <workItem from="1522024209517" duration="4711000" />
+      <workItem from="1522108602956" duration="26613000" />
+      <workItem from="1522196048582" duration="3581000" />
+      <workItem from="1522219038559" duration="7182000" />
+      <workItem from="1522277985285" duration="3045000" />
+      <workItem from="1522367517659" duration="4673000" />
+      <workItem from="1522457304233" duration="13668000" />
+      <workItem from="1522629702449" duration="15525000" />
+      <workItem from="1522713240822" duration="18932000" />
+      <workItem from="1522801119349" duration="3662000" />
+      <workItem from="1522884591654" duration="11879000" />
+      <workItem from="1522973733000" duration="18771000" />
+      <workItem from="1523065288575" duration="1201000" />
+      <workItem from="1523147328231" duration="3077000" />
+      <workItem from="1523234904641" duration="8405000" />
+      <workItem from="1523319294686" duration="16872000" />
+      <workItem from="1523405581566" duration="2599000" />
+      <workItem from="1523487585960" duration="6292000" />
+      <workItem from="1523580167082" duration="9201000" />
+      <workItem from="1523666131927" duration="17742000" />
+      <workItem from="1523750990098" duration="7107000" />
+      <workItem from="1523926746591" duration="3997000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1119553000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16319445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/listMedInvoice.bak.html" />
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/listMecineRecord.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="280" column="46" lean-forward="true" selection-start-line="280" selection-start-column="46" selection-end-line="280" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/addPresc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="328" column="49" lean-forward="false" selection-start-line="328" selection-start-column="49" selection-end-line="328" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/tongji/verifyDeparTreat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="752" column="80" lean-forward="true" selection-start-line="752" selection-start-column="80" selection-end-line="752" selection-end-column="80" />
+          <folding>
+            <element signature="e#26113#31379#0" expanded="false" />
+            <marker date="1522630474565" expanded="true" signature="38922:38939" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="39130:39141" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="39334:39344" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="39533:39543" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="39730:39741" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="39927:39939" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="40202:40216" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="44056:44073" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="44312:44323" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="44564:44574" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="44811:44821" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="45056:45067" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="45301:45313" ph="..." />
+            <marker date="1522630474565" expanded="true" signature="45624:45638" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/yeji_guanli/yeji_jiangli.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="459" column="65" lean-forward="true" selection-start-line="459" selection-start-column="65" selection-end-line="459" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/gongzuo_zongjie/zuyuan_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3370">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/gongzuo_zongjie/jingli_tianjia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3034">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/gongzuo_zongjie/jingli_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2947">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6120">
+          <caret line="398" column="23" lean-forward="false" selection-start-line="398" selection-start-column="23" selection-end-line="398" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/gongzuo_zongjie/zuyuan_tianjia.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="329" column="52" lean-forward="true" selection-start-line="329" selection-start-column="52" selection-end-line="329" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../一定成功/html/tongji/yeji_shenhe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="458" column="24" lean-forward="false" selection-start-line="458" selection-start-column="24" selection-end-line="458" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/tongji/cache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="39" column="2" lean-forward="false" selection-start-line="39" selection-start-column="2" selection-end-line="39" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/getBaseData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/pai_hang_bang/achieveRankList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4140">
+          <caret line="230" column="30" lean-forward="false" selection-start-line="230" selection-start-column="30" selection-end-line="230" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/jituanjun/keshi_total.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5886">
+          <caret line="327" column="71" lean-forward="false" selection-start-line="327" selection-start-column="71" selection-end-line="327" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/wode_renwu/renwu_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4379">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/guanliceng_renwu_jiancha.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="235" column="20" lean-forward="true" selection-start-line="235" selection-start-column="20" selection-end-line="239" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/listHospRecord.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="251" column="16" lean-forward="false" selection-start-line="251" selection-start-column="16" selection-end-line="251" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/xinxi_guanli/zhanqu_xinxi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="521" column="38" lean-forward="true" selection-start-line="521" selection-start-column="38" selection-end-line="521" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/zuyuan_kaohe_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/shezhi_renwu/tianjia_yeji_renwu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="156" column="65" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="314" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/shezhi_renwu/yeji_renwu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/yeji_renwu_jiancha.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="284" column="51" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="348" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/session_expire.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/yeji_renwu_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="379" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/shezhi_renwu/tianjia_guanliceng_renwu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="89" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="274" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/wode_renwu/yeji_renwu_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1098">
+          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/wode_renwu/yue_kaohe_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="236" column="47" lean-forward="false" selection-start-line="236" selection-start-column="47" selection-end-line="236" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/tongji/zhanqu_total.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="309" column="64" lean-forward="true" selection-start-line="309" selection-start-column="64" selection-end-line="309" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/yaochang_guanli.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="155" column="18" lean-forward="true" selection-start-line="155" selection-start-column="18" selection-end-line="155" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/wode_renwu/do_guanliceng_renwu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="337" column="31" lean-forward="false" selection-start-line="337" selection-start-column="31" selection-end-line="337" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/yue_kaohe_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="225" column="40" lean-forward="false" selection-start-line="225" selection-start-column="40" selection-end-line="225" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/yue_kaohe_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="240" column="51" lean-forward="false" selection-start-line="240" selection-start-column="51" selection-end-line="240" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/kaohe/yue_kaohe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="257" column="46" lean-forward="false" selection-start-line="257" selection-start-column="46" selection-end-line="257" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/css/select2.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/doctor_assistant/addMedcineRecord.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4716">
+          <caret line="262" column="62" lean-forward="true" selection-start-line="262" selection-start-column="62" selection-end-line="262" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="47" lean-forward="false" selection-start-line="1" selection-start-column="47" selection-end-line="1" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/medRecord.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="140" column="44" lean-forward="false" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="44" />
+          <folding>
+            <marker date="1523581780968" expanded="true" signature="16248:16262" ph="..." />
+            <marker date="1523581780968" expanded="true" signature="19983:19997" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/doctor_assistant/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16506">
+          <caret line="1149" column="32" lean-forward="false" selection-start-line="1149" selection-start-column="32" selection-end-line="1149" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#16;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#30996#32533#0" expanded="false" />
+            <element signature="e#37375#39189#0" expanded="false" />
+            <element signature="e#48656#51271#0" expanded="false" />
+            <marker date="1523751203695" expanded="true" signature="41990:42002" ph="..." />
+            <marker date="1523751203695" expanded="true" signature="42448:42458" ph="..." />
+            <marker date="1523751203695" expanded="true" signature="42849:42859" ph="..." />
+            <marker date="1523751203695" expanded="true" signature="43333:43347" ph="..." />
+            <marker date="1523751203695" expanded="true" signature="43643:43657" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/personal_msg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="268" column="47" lean-forward="true" selection-start-line="268" selection-start-column="47" selection-end-line="268" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../一定成功/html/hua_jia/yaopin_guanli.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="258" column="40" lean-forward="true" selection-start-line="258" selection-start-column="40" selection-end-line="258" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/addMedInvoice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="456" column="21" lean-forward="true" selection-start-line="456" selection-start-column="21" selection-end-line="456" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/listMedInvoice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="628" column="60" lean-forward="false" selection-start-line="628" selection-start-column="60" selection-end-line="628" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/doctor_assistant/medRecordDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="150" column="42" lean-forward="true" selection-start-line="150" selection-start-column="42" selection-end-line="150" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/medInvoiceDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="249" column="47" lean-forward="false" selection-start-line="249" selection-start-column="47" selection-end-line="249" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/floatObj.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="61" column="2" lean-forward="true" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5940">
+          <caret line="330" column="32" lean-forward="false" selection-start-line="330" selection-start-column="32" selection-end-line="330" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../2018-4-12备份/一定成功备份/html/wode_renwu/guanliceng_renwu_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="165" column="50" lean-forward="true" selection-start-line="157" selection-start-column="43" selection-end-line="165" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/wode_renwu/guanliceng_renwu_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="167" column="42" lean-forward="true" selection-start-line="167" selection-start-column="42" selection-end-line="167" selection-end-column="42" />
+          <folding>
+            <marker date="1523777017145" expanded="true" signature="17291:17318" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/tongji/yeji_shenhe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="408" column="0" lean-forward="false" selection-start-line="408" selection-start-column="0" selection-end-line="409" selection-end-column="0" />
+          <folding>
+            <marker date="1522808616762" expanded="true" signature="46030:46045" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="46232:46243" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="46432:46442" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="49049:49063" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="50556:50570" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="51984:51994" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="56642:56657" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="56892:56903" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="57140:57150" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="60269:60283" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="62033:62047" ph="..." />
+            <marker date="1522808616762" expanded="true" signature="63717:63727" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/hua_jia/yaopin_guanli.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="470" column="56" lean-forward="false" selection-start-line="470" selection-start-column="56" selection-end-line="470" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#lable#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#lable#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#17448#18924#0" expanded="false" />
+            <element signature="e#19038#19797#0" expanded="false" />
+            <element signature="e#20136#21895#0" expanded="false" />
+            <element signature="e#21967#23361#0" expanded="false" />
+            <marker date="1523930868113" expanded="true" signature="27242:27256" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

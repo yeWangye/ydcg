@@ -19,11 +19,33 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+		<link rel="stylesheet" href="../../css/cxcalendar.css">
 
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+		<style>
+			* {
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+
+			.card .card-header .card-title {
+				padding: 0;
+				float: left;
+			}
+
+			.input {
+				margin: 0;
+				float: inherit;
+				width: auto;
+			}
+			.card-title .title{
+				font-size: 18px;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -122,16 +144,21 @@
 							<span class="title">战区</span>
 							<div class="description">
 								<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">战区</span>总业绩!,默认展现当月,搜索时只提取月份,<span class="tips">日期自动忽略!</span></div>
-
 						</div>
 						<div class="row">
 							<div class="col-xs-12 detail">
 								<div class="card">
 									<div class="card-header">
-										<div class="card-title">
-											<div class="title"></div>
+										<div class="card-title col-sm-4 col-xs-6">
+											<lable>开始时间</lable>
+											<input name="mydate" id="starTime" type="text" style="width:200px;"
+												   class="input_cxcalendar">
 										</div>
-										
+										<div class="card-title col-sm-4 col-xs-6">
+											<lable>结束时间</lable>
+											<input name="mydate2" type="text" id="endTime" style="width:200px;"
+												   class="input_cxcalendar">
+										</div>
 									</div>
 									<div class="card-body">
 										<table class="table table-striped" cellspacing="0" width="100%">
@@ -162,7 +189,8 @@
 			</footer>
 			<div>
 				<!-- Javascript Libs -->
-				<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+				<script src="../../lib/js/jquery-1.9.1.js"></script>
+				<script src="../../lib/js/calendar.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
@@ -189,6 +217,15 @@
 				<!-- Javascript -->
 				<script>
 					$(document).ready(function() {
+                        $('.input_cxcalendar').each(function () {
+                            var a = new Calendar({
+                                targetCls: $(this),
+                                type: 'yyyy-mm-dd HH:MM:SS',
+                                wday: 2
+                            }, function (val) {
+                                console.log(val);
+                            });
+                        });
 						var search = window.location.search;
 						if(search != "") {
 							var groupId = window.location.search.split("groupId=")[1].split("&")[0];
@@ -212,8 +249,11 @@
 							e.preventDefault();
 							var teamId = $(this).parents('tr').attr("data-teamId");
 							var title = $(this).parents('tr').attr("data-title");
-							window.location.href = "../jituanjun/keshi_total.html?teamId=" + teamId + "&title=" + title;
+							var starTime=$("#starTime").val();
+							var endTime=$("#endTime").val();
+							window.location.href = "../jituanjun/keshi_total.html?teamId=" + teamId + "&title=" + title+ "&starTime=" + starTime+ "&endTime=" + endTime;
 						});
+						var page=sessionStorage.getItem("session_page");
 						$.ajax({
 							url: config.rootUrl + "user/getListTeam.do",
 							data: {
@@ -223,7 +263,7 @@
 								
 								searchTime:searchTime,
 								groupId:groupId,
-								page: "1",
+								page: page||"1",
 								rows: "10"
 							},
 							async: true,
@@ -243,7 +283,6 @@
 										"<td class='goDetail'>"+
 										"<img style='max-width:50px;' src='"+info[i].teamImage+"' ></td>"+
 										"<td>"+
-										"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看任务 </button> " +
 										"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看业绩 </button> " +
 										"</td>"+
 										"</tr>";
@@ -258,7 +297,9 @@
 									endPage: '末页',
 									prevContent: '上页',
 									nextContent: '下页',
+                                    current: page||1,
 									callback: function(api) {
+									    sessionStorage.setItem("session_page",api.getCurrent());
 										$.ajax({
 											url: config.rootUrl + "user/getListTeam.do",
 											data: {
@@ -284,7 +325,6 @@
 													"<td class='goDetail'>"+
 													"<img style='max-width:50px;' src='"+info[i].teamImage+"' ></td>"+
 													"<td>"+
-													"<button  class='btn btn-primary renwu' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看任务 </button> " +
 													"<button  class='btn btn-success yeji' type='button' data-teamId='" + info[i].teamId + "'><i class='fa fa-eye'></i> 查看业绩 </button> " +
 													"</td>"+
 													"</tr>";

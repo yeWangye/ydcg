@@ -391,12 +391,11 @@
 							var patientId = window.location.search.split("pid=")[1].split("&")[0];
 							var cardTitle = window.location.search.split("title=")[1].split("&")[0];
 							var fromWhere = window.location.search.split("fromWhere=")[1].split("&")[0];
-							if(window.location.search.split("tdId=")[1]){
+							if(window.location.search.split("tdId=")[1]) {
 								var tdId = window.location.search.split("tdId=")[1].split("&")[0];
-								
+
 							}
 
-							
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(cardTitle) + "</a>");
 							$.ajax({
 								url: config.rootUrl + "user/getAppointDetail.do",
@@ -459,7 +458,7 @@
 									//10:来院意向
 									$("#intention").val(info.intention);
 
-									if(tdId=="undefined") {
+									/*if(tdId=="undefined") {
 										//11:电话号码
 										$("#phone").val(info.patientPhone);
 										//11:qq号码
@@ -472,8 +471,19 @@
 										$("#emergencyContact").val(info.emergencyContact);
 										//14:信息来源
 										$("#sourcesBox").val(info.sName);
-									}
-
+									}*/
+									//11:电话号码
+									$("#phone").val(info.patientPhone);
+									//11:qq号码
+									$("#qq").val(info.qq);
+									//12:qq号码
+									$("#weixin").val(info.wx);
+									//12:邮箱
+									$("#youxiang").val(info.email);
+									//13:紧急联系人
+									$("#emergencyContact").val(info.emergencyContact);
+									//14:信息来源
+									$("#sourcesBox").val(info.sName);
 									//15:省份
 									//16:市
 									//17:县/区

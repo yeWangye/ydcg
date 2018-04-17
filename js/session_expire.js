@@ -127,7 +127,7 @@ $.ajax({
 	type: 'post',
 	success: function(data) {
 		$("marquee").text(data.info.taskAward);
-
+		sessionStorage.setItem("taskAward",data.info.taskAward);
 	},
 	error: function(xhr, type, errorThrown) {
 		alert('网络异常，请稍后再试！');

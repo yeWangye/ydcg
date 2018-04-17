@@ -144,6 +144,7 @@
 														<th>来源</th>
 														<th>状态</th>
 														<th>创建时间</th>
+														<th>审核通过时间</th>
 														<th>操作</th>
 													</tr>
 												</thead>
@@ -173,7 +174,8 @@
 								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_fu.html">远程(复诊)</button>
 								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_chu.html">来院(初诊)</button>
 								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="lai_fu.html">来院(复诊)</button>
-								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="you_fu.html">邮寄复诊</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="you_fu.html">来院邮寄复诊</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="yuan_you_fu.html">远程邮寄复诊</button>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -221,11 +223,13 @@
 								var tdId = search.split("tdId=")[1].split("&")[0];
 								var title = search.split("title=")[1].split("&")[0];
 								var memberId = search.split("mid=")[1].split("&")[0];
-								
 								$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
-								
-								
-							}
+							}else if(search.split("mid=")[1]){
+                                title = search.split("title=")[1].split("&")[0];
+                                memberId = search.split("mid=")[1].split("&")[0];
+                                $(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
+
+                            }
 							//数据删除
 							$('.table tbody').on('click', 'button.delrow', function(e) {
 								e.stopPropagation();
@@ -301,7 +305,6 @@
 								async: true,
 								type: 'post',
 								success: function(data) {
-									console.log(data);
 									var info = data.info;
 									if(info.length=="0"){
 										alert("你没有信息!");
@@ -334,6 +337,7 @@
 											"<td class='goDetail'>" + info[i].sName + "</td>" +
 											"<td class='goDetail'>" + status + "</td>" +
 											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+											"<td class='goDetail'>" + new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s') + "</td>" +
 											"<td class='goDetail'>" +
 											" <button  class='btn btn-success deal' type='button'  data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 											" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +
@@ -398,6 +402,8 @@
 															"<td class='goDetail'>" + info[i].sName + "</td>" +
 															"<td class='goDetail'>" + status + "</td>" +
 															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+															"<td class='goDetail'>" + new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+															
 															"<td class='goDetail'>" +
 															" <button  class='btn btn-success deal' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-check'> 成交 </i></button>" +
 															" <button  class='btn btn-danger delrow' type='button' data-pid=" + info[i].patientId + "><i class='fa fa-trash-o'> 放弃信息 </i></button>" +

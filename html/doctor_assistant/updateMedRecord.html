@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        .lable {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .medMoney {
+            color: red;
+        }
+
+        .modal-footer {
+            border: 0;
+        }
+
+        .input-group-addon {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>添加处方</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                                <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">划价</span>
+                    <div class="description" style="font-size:20px;color:red;"> 1:计算价格：添加药品之前务必选择天数，否则无法计算价格。</div>
+                    <div class="description" style="font-size:20px;color:red;"> 2:添加药品：请对应正确药厂。</div>
+                    <div class="description" style="font-size:20px;color:red;"> 3:刷新：如果没有获取到最新添加的药厂和药品请点击刷新！</div>
+                    <div class="description" style="font-size:20px;color:red;"> 4:添加：没有的疾病请点击添加按钮！</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                     <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                             class="fa fa-chevron-circle-left"></span>返回</a>
+                                     <a href="tag"></a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">患者姓名</label>
+                                        <div class="input-group col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <input type="text" id="patientName" maxlength="30" class="form-control" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">患者性别</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="text" id="sex"  maxlength="30"
+                                                       class="form-control" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctor" class="col-sm-2 control-label">医生</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="text" id="doctor"  maxlength="30"
+                                                       class="form-control" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dId" class="col-sm-2 control-label">疾病名称</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="text" id="dId"  maxlength="30"
+                                                       class="form-control" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="illness" class="col-sm-2 col-xs-2 control-label">疾病描述</label>
+                                        <div class="col-sm-10 col-xs-10" style="padding-left: 0;">
+                                            <textarea class="form-control" id="illness"  maxlength="300" rows="3" disabled="disabled"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">疗程</label>
+                                        <div class="input-group  col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <input type="text" id="days"  maxlength="30"
+                                                   class="form-control" disabled="disabled">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="medicine">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">状态</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div class="input-group col-sm-5 col-xs-5">
+                                                <input type="text" class="form-control status" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">折扣</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="text" id="discount" maxlength="10" class="form-control" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" style="color:red;">煎药费</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="text" id="decoctMoney" maxlength="30" class="form-control" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" style="color:red;">总价</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="input-group  col-sm-5 col-xs-5">
+                                                <input type="hidden" id="oldMoney" maxlength="30">
+                                                <input type="number" id="discountMoney" maxlength="30"
+                                                       class="form-control"
+                                                       disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group saveBox">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-success btn-lg saveBtn"
+                                                    style="width:100%">提交
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+                期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/dateFormat.js"></script>  
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+            <script type="text/javascript" src="../../js/getBaseData.js?"></script>
+            <!-- Javascript -->
+            <script type="text/javascript">
+                $(function () {
+                    var search = window.location.search;
+                    if (search != "" && search.split("mrId=")[1]) {
+                        var mrId = search.split("mrId=")[1].split("&")[0];
+                    }
+                    //获取门诊药品列表
+                    var retMedicineOrder = "";
+                    var detail;
+                    $.ajax({
+                        url: config.rootUrl + "user/medRecordDetail.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            mrId: mrId,
+                        },
+                        async: true,
+                        type: "post",
+                        success: function (data) {
+                            var info = data.info;
+                            console.log(data);
+                            var tbody = $(".table tbody")[0];
+                            //添加选项盒子
+                            if (info.createTime) {
+                                var createTime = new Date(info.createTime).format('yyyy-MM-dd h:m:s');
+                            } else {
+                                createTime = "";
+                            }
+                            if(info.type == "unreceive") {
+                                var type = "没收";
+                            }
+                            if(info.type == "received") {
+                                type = "已收";
+                            }
+                            if(info.type == "dreceive") {
+                                type = "代收";
+                            }
+                            if(info.sex == "0") {
+                                var sex = "男";
+                            }else if(info.sex == "1"){
+                                sex = "女";
+                            }else{
+                                sex="未填写!";
+                            }
+                            if(info.paidMoney>0&&info.unpayMoney>0) {
+                                type = "已收:"+info.paidMoney+"  代收:"+info.unpayMoney;
+                            }
+                            $("#patientName").val(info.patientName);
+                            $("#sex").val(sex);
+                            $("#dId").val(info.dName);
+                            $("#doctor").val(info.doctorName);
+                            $("#decoctMoney").val(info.decoctMoney);
+                            $("#days").val(info.days);
+                            $("#discount").val(info.discount);
+                            $("#illness").text(info.illness);
+                            $(".status").val(type);
+                            $("#discountMoney").val(info.discountMoney||info.oldMoney);
+
+                            detail=JSON.parse(info.detail);
+                            var _counter=0;
+                            for(var i in detail){
+                                var _i=_counter+1;
+                                var _html = '<div class="itemFlag itemBox' + _counter + '"><hr><label class="col-sm-2 control-label medText" style="color:green;">药品'+_i+'</label>' +
+                                    '<div class="input-group col-sm-10 medBox">' +
+                                    '<div class="col-sm-3">' +
+                                    '<p class="lable">价格</p>' +
+                                    '<input type="number"   disabled="disabled"  maxlength="30" class="form-control medMoney"  value="'+detail[_counter].medMoney+'">' +
+                                    '</div>' +
+                                    '<div class="col-sm-3">' +
+                                    '<p class="lable">药品</p>' +
+                                    '<input type="text" value=' + detail[_counter].medicineName + '  maxlength="30" class="form-control" disabled="disabled">' +
+                                    '</div>' +
+                                    '<div class="col-sm-3" style="display: none;">' +
+                                    '<p class="lable">药厂</p>' +
+                                    '<input type="text"value=' + detail[_counter].medicineName + '  maxlength="30" class="form-control" disabled="disabled">' +
+                                    '</div>' +
+                                    '<div class="col-sm-3" style="display: none;">' +
+                                    '<p class="lable">单价</p>' +
+                                    '<input type="number" value=' + detail[_counter].salePrice + '  maxlength="30" class="form-control" disabled="disabled">' +
+                                    '</div>' +
+                                    '<div class="col-sm-3">' +
+                                    '<p class="lable">每日用量</p>' +
+                                    '<input type="text" value=' + detail[_counter].grams + '   maxlength="30"  class="form-control" disabled="disabled">' +
+                                    '</div>' +
+                                    '<div class="col-sm-3">' +
+                                    '<p class="lable">实际用量</p>' +
+                                    '<input type="text" class="form-control actualSale" id="actualSale'+_counter+'" value=' + detail[_counter].grams + '  maxlength="30"  placeholder="用量">' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                                $("#medicine").append(_html);
+                                $("#actualSale"+_counter).on("input", function () {
+                                    var _id = $(this).attr("id").split(" ")[0].split("actualSale")[1];
+                                    check("#actualSale"+_id);
+                                })
+                                ++_counter;
+                            }
+                        },
+                        error: function () {
+                            alert("网络错误");
+
+                        }
+                    });
+                    function check(id) {
+                        var obj = $(id)[0];
+                        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+                        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+                        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+                        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d\d).*$/, '$1$2.$3');//只能输入五个小数
+                        if (obj.value.indexOf(".") < 0 && obj.value != "") {//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+                            obj.value = parseFloat(obj.value);
+                        }
+                    }
+                    $(".saveBtn").on("click", function () {
+                        $("body").mLoading("show");
+                        // console.log(detail)
+                        /*在这里调用上传接口*/
+                        for(var i in detail){
+                            var days = $("#days ").val();
+                            var _val = $(".actualSale")[i].value;
+                            detail[i].actualSale=(days*_val).toFixed(2);
+                        }
+                        $.ajax({
+                            url: config.rootUrl + "user/updateMedRecord.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                mrId:mrId,
+                                detail: JSON.stringify(detail),
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                if (data.code == "1") {
+                                    alert("成功!");
+                                    window.history.go(-1);
+                                    // window.location.reload();
+                                }else{
+                                    alert(data.msg);
+                                    window.history.go(-1);
+                                }
+
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                                console.log(xhr + errorThrown);
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    })
+
+                })
+            </script>
+</body>
+
+</html>

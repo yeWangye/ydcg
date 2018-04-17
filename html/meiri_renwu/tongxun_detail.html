@@ -133,6 +133,7 @@
 										<table class="table table-striped" cellspacing="0" width="100%">
 											<thead>
 												<tr>
+													<th>序号</th>
 													<th>标题</th>
 													<th>信息来源</th>
 													<th>图片</th>
@@ -259,7 +260,7 @@
 							async: true,
 							type: 'post',
 							success: function(data) {
-								console.log(data);
+                                var _counter=1;
 								var info = data.info;
 								var pageCount = data.pageCount;
 								var tbody = $(".table tbody")[0];
@@ -276,15 +277,20 @@
 									if(info[i].image3) {
 										images = images + "<a href='" + info[i].image3 + "' target='_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
 									}
+                                    if(session_login.info.roleId!="4"){
+                                        var deleBtn=" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>";
+                                    }else{
+                                        var deleBtn="";
+                                    }
 									tbody.innerHTML += "<tr data-swId='" + info[i].swId + "'>" +
+                                        "<td class='goDetail'>" + _counter +"</td>" +
 										"<td class='goDetail'>" + info[i].swTitle + "</td>" +
 										"<td class='goDetail'>" + decodeURI(sName) + "</td>" +
 										"<td class='goDetail'>" + images + "</td>" +
 										"<td class='goDetail'>" + info[i].messageNum + "</td>" +
-										"<td class='goDetail'>" +
-										" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
-										"</td>" +
+										"<td class='goDetail'>" + deleBtn +"</td>" +
 										"</tr>";
+                                    _counter++;
 								}
 								//添加选项内容
 								$('.M-box').pagination({
@@ -316,6 +322,7 @@
 											type: "post",
 											success: function(data) {
 												var info = data.info;
+                                                _counter=(api.getCurrent()-1)*10;
 												var tbody = $(".table tbody")[0];
 												tbody.innerHTML = "";
 												//添加选项盒子
@@ -330,15 +337,20 @@
 													if(info[i].image3) {
 														images = images + "<a href='" + info[i].image3 + "' target='_blank'><img src='" + info[i].image3 + "' class='_blank' style='max-width:50px;'/></a>";
 													}
-													tbody.innerHTML += "<tr data-swId='" + info[i].swId + "'>" +
-														"<td class='goDetail'>" + info[i].swTitle + "</td>" +
-														"<td class='goDetail'>" + decodeURI(sName) + "</td>" +
-														"<td class='goDetail'>" + images + "</td>" +
-														"<td class='goDetail'>" + info[i].messageNum + "</td>" +
-														"<td class='goDetail'>" +
-														" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
-														"</td>" +
-														"</tr>";
+                                                    if(session_login.info.roleId!="4"){
+                                                        var deleBtn=" <button  class='btn btn-danger delrow' type='button' data-swId='" + info[i].swId + "'><i class='fa fa-trash-o'> 删除 </i></button>";
+                                                    }else{
+                                                        var deleBtn="";
+                                                    }
+                                                    _counter++;
+                                                    tbody.innerHTML += "<tr data-swId='" + info[i].swId + "'>" +
+                                                        "<td class='goDetail'>" + _counter +"</td>" +
+                                                        "<td class='goDetail'>" + info[i].swTitle + "</td>" +
+                                                        "<td class='goDetail'>" + decodeURI(sName) + "</td>" +
+                                                        "<td class='goDetail'>" + images + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].messageNum + "</td>" +
+                                                        "<td class='goDetail'>" + deleBtn +"</td>" +
+                                                        "</tr>";
 												}
 											},
 											error: function() {

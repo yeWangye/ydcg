@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>一定成功业绩管理</title>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+		<!-- CSS Libs -->
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/basic.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dropzone.min.css">
+		<!-- CSS App -->
+		<link rel="stylesheet" type="text/css" href="../../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+	</head>
+	<style>
+		.input-group-addon {
+			color: red;
+		}
+		
+		.alert-warning {
+			text-align: center;
+			margin-left: 25%;
+			position: absolute;
+			top: 50%;
+			z-index: 9999;
+		}
+		
+		.dropzone {
+			border: 2px dashed #0087F7;
+			border-radius: 5px;
+			background: white;
+		}
+	</style>
+
+	<body class="flat-blue">
+		<div class="app-container">
+			<div class="row content-container">
+				<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+					<div class="container-fluid" style="text-align: center;">
+						<div class="navbar-header">
+							<button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+							<ol class="breadcrumb navbar-breadcrumb">
+								<li>添加信息</li>
+							</ol>
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+						</div>
+						<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+						<ul class="nav navbar-nav navbar-right">
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="title">
+										通知 <span class="badge pull-right">0</span>
+									</li>
+									<li class="message">
+										没有新的通知
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown danger">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right totalMsg"></span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="../yeji_guanli/yeji_dai_shenhe.html">
+												<li class="list-group-item">
+													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/zuyuan_yeji.html">
+												<li class="list-group-item">
+													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/yeji.html">
+												<li class="list-group-item">
+													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown profile">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="profile-img">
+										<img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+									</li>
+									<li>
+										<div class="profile-info">
+											<h4 class="username">测试</h4>
+											<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+											<div class="btn-group margin-bottom-2x" role="group">
+												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+												<input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div id="sidebar" class="side-menu sidebar-inverse">
+
+				</div>
+				<div class="container-fluid">
+					<div class="side-body">
+						<div class="page-title">
+							<span class="title">预约信息添加</span>
+							<div class="description">请输入正确<span class="tips">职位、学历、疾病名称、来源意向、信息来源、</span>以及准确的<span class="tips">信息来源</span>,添加截图<span class="tips">第一张必须传!!!</span></div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title">预约信息添加</div>
+											<a class="btn btn-primary backBtn" onclick="window.history.go(-1)" style="display: none;">返回任务详情</a>
+
+										</div>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="name" class="col-sm-2 control-label">患者真实姓名</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必填项</span>
+														<input type="text" id="name" class="form-control" placeholder="请输入姓名" aria-describedby="">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="" class="col-sm-2 control-label">性别(<span style="color:red">*必填项</span>)</label>
+												<div class="col-sm-10 radio-check radio-success radio-inline">
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="sex" value="0"> 男
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="sex" value="1"> 女
+													</label>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="age" class="col-sm-2 control-label">年龄</label>
+												<div class="col-sm-10">
+													<input type="number" id="age" class="form-control" placeholder="请输入年龄">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="" class="col-sm-2 control-label">婚姻状况</label>
+												<div class="col-sm-10">
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="hunying" value="3"> 离异
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="hunying" value="1"> 未婚
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="hunying" value="2"> 已婚
+													</label>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="patRelations" class="col-sm-2 control-label">与患者关系</label>
+												<div class="col-sm-10">
+													<div>
+														<select id="patRelations" style="width:30%" title="与患者关系">
+															<optgroup label="请选择关系" class="optgroupRelations">
+															</optgroup>
+														</select>
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="form-group">
+												<label for="zhiye" class="col-sm-2 control-label">职业</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必填项</span>
+														<div>
+															<select id="works" style="width:30%" title="患者职业">
+																<optgroup label="请选择患者职业" class="optgroupWorks">
+																</optgroup>
+															</select>
+														</div>
+													</div>
+
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="xueli" class="col-sm-2 control-label">学历</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必填项</span>
+														<div>
+															<select id="educationsBox" style="width:30%" title="学历" aria-describedby="">
+																<optgroup label="请选择关系" class="educationsBox">
+																</optgroup>
+															</select>
+														</div>
+
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="height" class="col-sm-2 control-label">身高</label>
+												<div class="col-sm-10">
+													<input type="number" id="height" class="form-control" placeholder="身高(厘米)">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="weight" class="col-sm-2 control-label">体重</label>
+												<div class="col-sm-10">
+													<input type="number" id="weight" class="form-control" placeholder="体重(公斤)">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="diseasesBox" class="col-sm-2 control-label">疾病名称</label>
+												<div class="col-sm-10">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必填项</span>
+														<div>
+															<select id="diseasesBox" style="width:30%" title="学历" aria-describedby="">
+																<optgroup label="请选择疾病名称" class="diseasesBox">
+																</optgroup>
+															</select>
+														</div>
+
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="yixiang" class="col-sm-2 control-label">来院意向(<span style="color:red">*必填项</span>)</label>
+												<div class="col-sm-10">
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="yixiang" value="来院"> 来院
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="yixiang" value="远程"> 远程
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="yixiang" value="咨询"> 咨询
+													</label>
+													<label class="checkbox-inline">
+														<input type="radio" id="" name="yixiang" value="待定"> 待定
+													</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="phone" class="col-sm-2 control-label">联系电话</label>
+												<div class="col-sm-10">
+
+													<input type="number" id="phone" class="form-control" placeholder="请输入联系电话">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="qq" class="col-sm-2 control-label">QQ号</label>
+												<div class="col-sm-10">
+													<input type="number" id="qq" class="form-control" placeholder="请输入QQ号">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="weixin" class="col-sm-2 control-label">微信号</label>
+												<div class="col-sm-10">
+													<input type="text" id="weixin" class="form-control" placeholder="请输入微信号">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="youxiang" class="col-sm-2 control-label">邮箱</label>
+												<div class="col-sm-10">
+													<input type="text" id="youxiang" class="form-control" placeholder="请输入邮箱">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="emergencyContact" class="col-sm-2 control-label">紧急联系人及联系方式</label>
+												<div class="col-sm-10">
+													<input type="text" id="emergencyContact" class="form-control" placeholder="紧急联系人电话或微信">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="sourcesBox" class="col-sm-2 control-label">信息来源</label>
+												<div class="input-group">
+													<span class="input-group-addon" id=""><i>*</i>必填项</span>
+													<div>
+														<select id="sourcesBox" style="width:30%" title="信息来源" aria-describedby="">
+															<optgroup label="请选择信息来源" class="sourcesBox">
+															</optgroup>
+														</select>
+													</div>
+
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="quyu" class="col-sm-2 control-label">区域</label>
+												<div class="col-sm-10">
+													<div class="form-group">
+
+														<div class="col-sm-3">
+															<select name="input_province" id="input_province" class="form-control">
+																<option value="">--请选择--</option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="input_city" id="input_city" class="form-control">
+																<option value=""></option>
+															</select>
+														</div>
+														<div class="col-sm-3">
+															<select name="input_area" id="input_area" class="form-control">
+																<option value=""></option>
+															</select>
+														</div>
+													</div>
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="detailAddress" class="col-sm-2 control-label">详细地址</label>
+												<div class="col-sm-10">
+													<input type="text" id="detailAddress" class="form-control" placeholder="请输入详细地址">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="sickTimes" class="col-sm-2 control-label">发病多长时间</label>
+												<div class="col-sm-10">
+													<input type="text" id="sickTimes" class="form-control" placeholder="发病多长时间">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="bingshi" class="col-sm-2 control-label">以前得过什么病</label>
+												<div class="col-sm-10">
+													<input type="text" id="bingshi" class="form-control" placeholder="请输入以前病史">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="treatHistory" class="col-sm-2 control-label">之前治疗情况</label>
+												<div class="col-sm-10">
+													<input type="text" id="treatHistory" class="form-control" placeholder="请输入之前在别的医院治疗的时间,费用,治疗方法">
+
+												</div>
+
+											</div>
+											<div class="form-group">
+												<label for="supplement" class="col-sm-2 control-label">备注</label>
+												<div class="col-sm-10">
+													<textarea class="form-control" id="supplement" placeholder="请输入备注信息	" rows="3"></textarea>
+												</div>
+
+											</div>
+											<div class="form-group">
+												<div class="dropzone" id="myDropzone">
+													<div class="am-text-success dz-message">
+														<span class="tips">将图片或文件夹拖拽到此处<br>或点此打开文件管理器选择图片</span>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												
+												<div class="col-sm-12">
+													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">保存信息</button>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--提示框-->
+			<!--<div class="alert alert-warning alert-dismissible fade in" role="alert">
+      			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      			<strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+   			 </div>-->
+			<!--loading-->
+			<div id="target" class="loading">
+				<div class="loading-overlay">
+					<p class="loading-spinner">
+						<span class="loading-icon"></span>
+						<span class="loading-text">加载中...</span>
+					</p>
+				</div>
+			</div>
+			<footer class="app-footer">
+				<div class="wrapper">
+					<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+					<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+					<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+				</div>
+			</footer>
+			<div>
+				<!-- Javascript Libs -->
+				<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+				<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+				<script src="../../lib/js/dropzone.min.js"></script>
+
+				<!-- Javascript -->
+				<script src="../../js/address.js"></script>
+				<script type="text/javascript" src="../../js/app.js"></script>
+				<script type="text/javascript" src="../../js/theming.js"></script>
+				<script type="text/javascript" src="../../js/themings.js"></script>
+
+				<script src="../../js/config.js"></script>
+				<script src="../../js/uploadImg.js"></script>
+				<script src="../../js/session_expire.js"></script>
+				<script type="text/javascript" src="../../js/personal_msg.js"></script>
+				<script type="text/javascript">
+					Array.prototype.remove = function(dx) {
+						if(isNaN(dx) || dx > this.length) {
+							return false;
+						}
+						for(var i = 0, n = 0; i < this.length; i++) {
+							if(this[i] != this[dx]) {
+								this[n++] = this[i]
+							}
+						}
+						this.length -= 1
+					}
+				</script>
+				<script type="text/javascript">
+					Dropzone.autoDiscover = false;
+					var images_url = [];
+					var myDropzone = new Dropzone("#myDropzone", {
+						url: config.rootUrl + "user/uploadImage.do",
+						addRemoveLinks: true,
+						method: 'post',
+						autoProcessQueue: true,
+						acceptedFiles: "image/*",
+						filesizeBase: 1024,
+						maxFilesize: 2,
+						maxThumbnailFilesize: 2,
+						maxFiles:3,
+						dictCancelUpload: "取消上传",
+						dictCancelUploadConfirmation: "取消上传",
+						dictInvalidFileType: "包含非图片文件",
+						dictFileTooBig: "图片不能超出2M",
+						dictRemoveFile: "删除",
+						dictDefaultMessage: "将图片拖拽到此处\n或点此打开文件管理器选择文件",
+						dictFallbackMessage: "浏览器不支持拖拽,换个浏览器试试,推荐谷歌,火狐浏览器!",
+						sending: function(file, xhr, formData) {
+							formData.append("filesize", file.size);
+						},
+						success: function(file, response, e) {
+							//    var res = JSON.parse(response);
+							if(response.code != "1") {
+								$(file.previewTemplate).children('.dz-error-mark').css('opacity', '1');
+								alert(response.msg);
+							}
+							images_url.push({
+								url: response.absolutePath,
+								name: file.name
+							});
+						},
+						error: function(file, errorMessage, xhr) {
+							alert(errorMessage);
+						},
+					});
+					//移除图片
+					myDropzone.on("removedfile", function(file) {
+						for(i = 0; i < images_url.length; i++) {
+							if(images_url[i].name == file.name) {
+								images_url.remove(i);
+							}
+						}
+					});
+					myDropzone.on("maxfilesexceeded", function(file) {
+						alert("超过三张图片,仅上传前三张!")
+						
+					});
+				</script>
+				<script type="text/javascript">
+					$(function() {
+						var search = window.location.search;
+						if(search != "") {
+
+							if(window.location.search.split("tdId=")[1]) {
+								var tdId = window.location.search.split("tdId=")[1].split("&")[0];
+								$(".backBtn").css("display", "block");
+							}
+						}
+						//三级联动省市区选择框
+						var html = "";
+						$("#input_city").append(html);
+						$("#input_area").append(html);
+						$.each(pdata, function(idx, item) {
+							if(parseInt(item.level) == 0) {
+								html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+							}
+						});
+						$("#input_province").append(html);
+
+						$("#input_province").change(function() {
+							if($(this).val() == "") return;
+							$("#input_city option").remove();
+							$("#input_area option").remove();
+							var code = $(this).find("option:selected").attr("exid");
+							code = code.substring(0, 2);
+							var html = "<option value=''>--请选择--</option>";
+							$("#input_area").append(html);
+							$.each(pdata, function(idx, item) {
+								if(parseInt(item.level) == 1 && code == item.code.substring(0, 2)) {
+									html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+								}
+							});
+							$("#input_city").append(html);
+						});
+
+						$("#input_city").change(function() {
+							if($(this).val() == "") return;
+							$("#input_area option").remove();
+							var code = $(this).find("option:selected").attr("exid");
+							code = code.substring(0, 4);
+							var html = "<option value=''>--请选择--</option>";
+							$.each(pdata, function(idx, item) {
+								if(parseInt(item.level) == 2 && code == item.code.substring(0, 4)) {
+									html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+								}
+							});
+							$("#input_area").append(html);
+						});
+						//三级联动结束
+
+						//获取基本信息开始...
+						(function() {
+							//按拼音排序并分类
+							function pySegSort(arr, empty) {
+								if(!String.prototype.localeCompare)
+									return null;
+								var letters = "*abcdefghjklmnopqrstwxyz".split('');
+								var zh = "阿八嚓哒妸发旮哈讥咔垃痳拏噢妑七呥扨它穵夕丫帀".split('');
+								var segs = [];
+								var curr;
+								$.each(letters, function(i) {
+									curr = {
+										letter: this,
+										data: []
+									};
+									$.each(arr, function() {
+										if((!zh[i - 1] || zh[i - 1].localeCompare(this, "zh") <= 0) && this.localeCompare(zh[i], "zh") == -1) {
+											curr.data.push(this);
+										}
+									});
+									if(empty || curr.data.length) {
+										segs.push(curr);
+										curr.data.sort(function(a, b) {
+											return a.localeCompare(b, "zh");
+										});
+									}
+								});
+								return segs;
+							}
+							$.ajax({
+								url: config.rootUrl + "user/getBaseData.do",
+								data: {},
+								async: true,
+								type: 'post',
+								success: function(data) {
+									//添加选项盒子
+									var optgroupWorks = $(".optgroupWorks");
+									var optgroupRelations = $(".optgroupRelations");
+									var educationsBox = $(".educationsBox");
+									var sourcesBox = $(".sourcesBox");
+									var diseasesBox = $(".diseasesBox");
+									//添加选项内容
+									var works = data.works;
+									var patRelations = data.patRelations;
+									var educations = data.educations;
+									var sources = data.sources;
+									var diseases = data.diseases;
+									//工作
+									for(var i in works) {
+										var _option = document.createElement("option");
+										_option.value = works[i].wId;
+										_option.text = works[i].wName;
+										optgroupWorks.append(_option);
+									}
+									//患者关系
+									for(var i in patRelations) {
+										var _option = document.createElement("option");
+										_option.value = patRelations[i].prId;
+										_option.text = patRelations[i].prName;
+										optgroupRelations.append(_option);
+									}
+									//学历
+									for(var i in educations) {
+										var _option = document.createElement("option");
+										_option.value = educations[i].eId;
+										_option.text = educations[i].eName;
+										educationsBox.append(_option);
+									}
+									//信息来源
+									for(var i in sources) {
+										var _option = document.createElement("option");
+										_option.value = sources[i].sId;
+										_option.text = sources[i].sName;
+										sourcesBox.append(_option);
+									}
+									//疾病名称
+									for(var i in diseases) {
+										var _option = document.createElement("option");
+										_option.value = diseases[i].dId;
+										_option.text = diseases[i].dName;
+										diseasesBox.append(_option);
+									}
+								},
+								error: function(xhr, type, errorThrown) {
+									alert('网络异常，请稍后再试！');
+								},
+								complete: function() {
+									$('select').select2();
+								}
+							});
+						})()
+						//获取基本信息开始...
+
+						//提交事件绑定
+						$(".save").on("click", function() {
+
+							//合成提交表单数据
+							//1:姓名
+							var username = $("#name").val();
+							if(username == "") {
+								alert("请填写患者姓名");
+								return;
+							}
+							//2:性别
+							var sex = getSex();
+
+							function getSex() {
+								var sexinput = $("input:radio[name=sex]");
+								for(var i = 0; i < sexinput.length; i++) {
+									if(sexinput[i].checked) {
+										return sexinput[i].value;
+									}
+								}
+								alert("请勾选性别!");
+								return;
+							}
+							//3(+)年龄:
+							var age = $("#age").val();
+
+							//3:婚姻状况
+							var hunying = getMar();
+
+							function getMar() {
+								var input = $("input:radio[name=hunying]");
+								for(var i = 0; i < input.length; i++) {
+									if(input[i].checked) {
+										return input[i].value;
+									}
+								}
+								//								alert("请选择患者婚姻状况!")
+							}
+							console.log(hunying);
+							//4:患者关系
+							var relation = $("#patRelations").val();
+							//5:职业
+							var works = $("#works").val();
+							//6:学历
+							var educations = $("#educationsBox").val();
+							//7:身高
+							var height = $("#height").val();
+							//8:体重
+							var weight = $("#weight").val();
+							//9:疾病名称
+							var diseases = $("#diseasesBox").val();
+							//10:来院意向
+							var yixiang = getyixiang();
+
+							function getyixiang() {
+								var input = $("input:radio[name=yixiang]");
+								for(var i = 0; i < input.length; i++) {
+									if(input[i].checked) {
+										return input[i].value;
+									}
+								}
+								//								alert("请选择来院意向!")
+							}
+							//11:电话号码
+							var phone = $("#phone").val();
+							isphone(phone);
+
+							function isphone(inpurStr) {
+								if(phone.length == 0) {
+									if(confirm('手机号码未填写,确认继续保存?')) {
+										return;
+									} else {
+										$("#phone").focus();
+									}
+								}
+								if(phone.length != 11) {
+									if(confirm('手机号码位数不对,确认继续保存?')) {
+										return;
+									} else {
+										$("#phone").focus();
+									}
+								}
+
+								var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+								if(!myreg.test(phone)) {
+									if(confirm('手机号码无效,确认继续保存?')) {
+										return;
+									} else {
+										$("#phone").focus();
+									}
+
+								}
+							}
+							//11:qq号码
+							var qq = $("#qq").val();
+							//12:微信号码
+							var weixin = $("#weixin").val();
+							if(phone == "" && weixin == "") {
+								alert("患者手机号或者微信号必填一项!");
+								return;
+							}
+							//12:邮箱
+							var youxiang = $("#youxiang").val();
+							/*emailCheck(youxiang);
+
+							function emailCheck(emailStr) {
+								var emailPat = /^(.+)@(.+)$/;
+								var matchArray = emailStr.match(emailPat);
+								if(matchArray == null) {
+									
+									if(confirm("电子邮件格式不正确,确认继续保存信息?")){
+										return;
+									}else{
+										$("#youxiang").focus();
+									}
+									
+								}
+							}*/
+							//13:紧急联系人
+							var emergencyContact = $("#emergencyContact").val();
+							//14:信息来源
+							var sources = $("#sourcesBox").val();
+							//15:省份
+							var input_province = $("#input_province").val();
+							/*if(input_province == "") {
+								alert("务必选择省份信息!");
+								return;
+							}*/
+							//16:市
+							var input_city = $("#input_city").val();
+							/*if(input_city == "") {
+								alert("务必选择市信息!");
+								return;
+							}*/
+							//17:县/区
+							var input_area = $("#input_area").val();
+							/*if(input_area == "") {
+								alert("务必选择县/区信息!");
+								return;
+							}*/
+							//18:详细地址
+							var detailAddress = $("#detailAddress").val();
+							//19:发病时间
+							var sickTimes = $("#sickTimes").val();
+							//20:病史
+							var sickness = $("#bingshi").val();
+							//21:之前治疗情况
+							var treatHistory = $("#treatHistory").val();
+							//22:备注
+							var supplement = $("#supplement").val();
+							if(images_url == "") {
+								alert("必须添加至少一张图");
+								return;
+							}
+							$("body").mLoading("show");
+							upload();
+							var message_flag = true;
+							function upload() {
+								$.ajax({
+									url: config.rootUrl + "user/addAppointPatient.do",
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+
+										dId: diseases,
+										sId: sources,
+										mId: hunying,
+										eId: educations,
+										wId: works,
+										intention: yixiang,
+										prId: relation,
+										patientPhone: phone,
+										patientName: username,
+										sex: sex,
+										province: input_province,
+										city: input_city,
+										area: input_area,
+										detailAddress: detailAddress,
+										age: age,
+										wx: weixin,
+										qq: qq,
+										email: youxiang,
+										height: height,
+										weight: weight,
+										treatHistory: treatHistory,
+										sickTimes: sickTimes,
+										sickness: sickness,
+										emergencyContact: emergencyContact,
+										supplement: supplement,
+										image: images_url[0].url,
+										image2: images_url[1]?images_url[1].url:"",
+										image3:	images_url[2]?images_url[2].url:"",
+										tdId: tdId || "",
+									},
+									async: true,
+									type: 'post',
+									success: function(data) {
+										if(data.code == "1") {
+											alert("信息添加成功,等待战区经理审核!");
+											window.location.reload();
+										} else {
+											alert(data.msg);
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										alert('网络异常，请稍后再试！');
+										console.log(xhr + errorThrown);
+									},
+									complete: function() {
+										$("body").mLoading("hide");
+									}
+								});
+
+							}
+
+						})
+					})
+				</script>
+				<!-- Javascript -->
+	</body>
+
+</html>

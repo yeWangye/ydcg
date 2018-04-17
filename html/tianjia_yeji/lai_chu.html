@@ -384,12 +384,15 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="heji" class="col-sm-2 control-label">当月合计</label>
+												<label class="col-sm-2 control-label">当月合计</label>
 												<div class="col-sm-10">
 													<div class="form-group">
 														<div class="col-sm-2">
+															<input type="number" id="monthAward" disabled="disabled" class="form-control" placeholder="合计">
+															<input type="number" id="rewardMoney" hidden="hidden">
+														</div>
+														<div class="col-sm-2">
 															<input type="text" id="yingfu" class="form-control" placeholder="应付款">
-
 														</div>
 														<div class="col-sm-3">
 															<input type="number" id="shifu" class="form-control" placeholder="实付款">
@@ -535,7 +538,54 @@
 							_counter++;
 
 						})
-
+                        $("#ticheng").on("focus",function(){
+                            var shifu = $("#shifu").val();
+                            var yingfu = $("#yingfu").val();
+                            if(shifu!=""&&yingfu!=""){
+                                $(this).val((shifu*0.05).toFixed(2));
+                                if($("#nianzhong").val()==""){
+                                    $("#nianzhong").val((shifu*0.01).toFixed(2));
+                                }
+                            }
+                            setVal();
+                        });
+                        $("#nianzhong").on("focus",function(){
+                            var shifu = $("#shifu").val();
+                            var yingfu = $("#yingfu").val();
+                            if(shifu!=""&&yingfu!=""){
+                                $(this).val((shifu*0.01).toFixed(2));
+                                if($("#ticheng").val()==""){
+                                    $("#ticheng").val((shifu*0.05).toFixed(2));
+                                }
+                            }
+                            setVal();
+                        });
+                        $("#ticheng").on("blur",function(){
+                            setVal()
+                        });
+                        $("#nianzhong").on("blur",function(){
+                            setVal()
+                        });
+                        $("#zhuijia").on("blur",function(){
+                            setVal()
+                        });
+                        $("#waitui").on("blur",function(){
+                            setVal()
+                        });
+                        $("#yizhu").on("blur",function(){
+                            setVal()
+                        });
+                        function setVal(){
+                            var shifu = $("#shifu").val();
+                            var yingfu = $("#yingfu").val();
+                            var zhuijia = $("#zhuijia").val();
+                            var ticheng = $("#ticheng").val();
+                            var nianzhong = $("#nianzhong").val();
+                            var yizhu = $("#yizhu").val();
+                            var waitui = $("#waitui").val();
+                            $("#monthAward").val(Number(zhuijia)+Number(ticheng)+Number(waitui)+Number(yizhu));
+                            $("#rewardMoney").val(Number(zhuijia)+Number(ticheng)+Number(waitui)+Number(yizhu)+Number(nianzhong));
+                        }
 						$(".save").on("click", function() {
 							//1患者姓名
 							var patientName = $("#name").val();
@@ -568,6 +618,7 @@
 							for(var i = 1; i < _counter; i++) {
 								deparTreat.push({
 									"deptId": $("#keshi" + i).val(),
+                                    "deptName": $("#keshi" + i).find("option:selected").text(),
 									"deptMoney": $("#jine" + i).val(),
 								})
 							}
@@ -582,6 +633,10 @@
 							var extenAward=$("#waitui").val();
 							//医助
 							var doctHelpAward=$("#yizhu").val();
+                            //月合计
+                            var monthAward=$("#monthAward").val();
+                            //合计
+                            var rewardMoney=$("#rewardMoney").val();
 							/*在这里调用上传接口*/
 							$.ajax({
 								url: config.rootUrl + "user/addTreatRecord.do",
@@ -596,6 +651,7 @@
 									totalMoney: yingfu,
 									paidMoney: shifu,
 									treatAward: ticheng,
+                                    monthAward:monthAward,
 									patientName: patientName,
 									remarks:supplement,
 									deparTreat:JSON.stringify(deparTreat),
@@ -606,13 +662,13 @@
 									extenAward:extenAward,
 									appointAward :appointAward,
 									doctHelpAward:doctHelpAward,
+                                    rewardMoney :rewardMoney,
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
-									alert("添加业绩成功,等待战区经理审核!");
-									console.log(data);
-									window.history.go(-1);
+									alert("添加业绩成功,等待审核!");
+									window.location.reload();
 								},
 								error: function(xhr, type, errorThrown) {
 									alert('网络异常，请稍后再试！');

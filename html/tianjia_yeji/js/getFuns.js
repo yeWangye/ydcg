@@ -1,4 +1,7 @@
 function getAccount() {
+    $("#shoukuan").select2({
+        placeholder: "请输入收款账户"
+    });
 	$.ajax({
 		url: config.rootUrl + "user/getAccount.do",
 		data: {
@@ -9,7 +12,6 @@ function getAccount() {
 		async: true,
 		type: 'post',
 		success: function(data) {
-			console.log(data)
 			//添加选项盒子
 			var shoukuan = $(".shoukuan");
 			//添加选项内容
@@ -27,7 +29,7 @@ function getAccount() {
 			alert('网络异常，请稍后再试！');
 		},
 		complete: function() {
-			$('#shoukuan').select2();
+			$('#shoukuan').select2("val", "");
 		}
 	});
 }
@@ -61,7 +63,9 @@ function getDoctor() {
 			alert('网络异常，请稍后再试！');
 		},
 		complete: function() {
-			$('#doctor').select2();
+			$('#doctor').val("").select2({
+                placeholder: "请选择医生"
+            });
 		}
 	});
 }
@@ -93,7 +97,9 @@ function getDepart(ele) {
 			alert('网络异常，请稍后再试！');
 		},
 		complete: function() {
-			$('#'+ele).select2();
+			$('#'+ele).val("").select2({
+                placeholder: "请选择科室"
+            });
 		}
 	});
 }

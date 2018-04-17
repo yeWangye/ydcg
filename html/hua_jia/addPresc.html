@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        .lable {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .medMoney {
+            color: red;
+        }
+
+        .modal-footer {
+            border: 0;
+        }
+
+        .input-group-addon {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>添加协定方</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">添加协定方</span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <!-- <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                             class="fa fa-chevron-circle-left"></span>返回</a>
+                                     <a href="tag"></a>-->
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+                                    <div class="">
+                                        <a class="btn btn-success reset" style="color:white;display: block;">刷新<span
+                                                class="fa fa-chevron-circle-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">药方名字</label>
+                                        <div class="input-group col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <input type="text" id="prescName" maxlength="30" class="form-control"
+                                                   placeholder="药方名字">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctorId" class="col-sm-2 control-label">医生</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div>
+                                                <select id="doctorId" class="col-sm-5 col-xs-5" title="医生"
+                                                        aria-describedby="">
+                                                    <optgroup label="请选择医生" class="doctorId">
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hospId" class="col-sm-2 control-label">门诊</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div>
+                                                <select id="hospId" class="col-sm-5 col-xs-5" title="门诊"
+                                                        aria-describedby="">
+                                                    <optgroup label="请选择门诊" class="hospId">
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="medicine">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" style="color:red;">总价</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="col-sm-4">
+                                                <input type="hidden" id="oldMoney" maxlength="30">
+                                                <input type="number" id="discountMoney" maxlength="30"
+                                                       class="form-control"
+                                                       disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group saveBox">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-success btn-lg saveBtn"
+                                                    style="width:100%">提交
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+                期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+            <script type="text/javascript">
+                function getDoctor() {
+                    var doctorId = $(".doctorId");
+                    if (sessionStorage.getItem("doctors")) {
+                        var doctors = JSON.parse(sessionStorage.getItem("doctors"));
+                        for (var i in doctors) {
+                            var _option = document.createElement("option");
+                            _option.value = doctors[i].doctorId;
+                            _option.text = doctors[i].doctorName;
+                            doctorId.append(_option);
+                        }
+                        $('#doctorId').val("").select2({
+                            placeholder: "请选择医生"
+                        });
+                    } else {
+                        $.ajax({
+                            url: config.rootUrl + "user/getDoctor.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                sessionStorage.setItem("doctors", JSON.stringify(info));
+                                //收款账户
+                                for (var i in info) {
+                                    var _option = document.createElement("option");
+                                    _option.value = info[i].doctorId;
+                                    _option.text = info[i].doctorName;
+                                    doctorId.append(_option);
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $('#doctorId').val("").select2({
+                                    placeholder: "请选择医生"
+                                });
+                            }
+                        });
+                    }
+                }
+                function getHospital() {
+                    var hospId = $(".hospId");
+                    if (sessionStorage.getItem("hospital")) {
+                        var hospital = JSON.parse(sessionStorage.getItem("hospital"));
+                        for (var i in hospital) {
+                            var _option = document.createElement("option");
+                            _option.value = hospital[i].hospId;
+                            _option.text = hospital[i].hospName;
+                            hospId.append(_option);
+                        }
+                        $('#hospId').val("").select2({
+                            placeholder: "请选择门诊"
+                        });
+                    } else {
+                        $.ajax({
+                            url: config.rootUrl + "user/getHospital.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                sessionStorage.setItem("hospital", JSON.stringify(info));
+                                for (var i in info) {
+                                    var _option = document.createElement("option");
+                                    _option.value = info[i].hospId      ;
+                                    _option.text = info[i].hospName;
+                                    hospId.append(_option);
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $('#hospId').val("").select2({
+                                    placeholder: "请选择门诊"
+                                });
+                            }
+                        });
+                    }
+                }
+            </script>
+            <!-- Javascript -->
+            <script type="text/javascript">
+                $(function () {
+                    var search = window.location.search;
+                    $('select').select2("val", "");
+                    $(".reset").on("click", function () {
+                        sessionStorage.clear();
+                        window.location.reload();
+                    })
+                    //获取门诊药品列表
+                    var retMedicineOrder = "";
+                    function listHospMedicine(hospId) {
+                        $(".del").trigger("click");
+                        _counter=1;
+                        $("body").mLoading("show");//关闭loading组件
+                        $.ajax({
+                            url: config.rootUrl + "user/listHospMedicine.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                hospId: hospId,
+                                page: "1",
+                                rows: "666"
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                //添加选项内容
+                                var info = data.info;
+                                retMedicineOrder="";
+                                //收款账户
+                                for (var i in info) {
+                                    var dataJson = JSON.stringify(info[i]);
+                                    var _option = "<option value='" + info[i].mId + "' data-json='" + dataJson + "'>" + info[i].medicineName + "</option>";
+                                    retMedicineOrder += _option;
+                                }
+                                $(".medicine")[0].innerHTML = retMedicineOrder;
+                                $('.selectMed1').val("").select2({
+                                    placeholder: "请选择药品"
+                                });
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    }
+                    
+                    // 获取医生数据
+                    getDoctor();
+                    // 获取门诊数据
+                    getHospital();
+                    //门诊药品列表
+                    var hospId;
+                    $("#hospId").on("select2:close", function () {
+                        hospId=$(this).val();
+                        if(hospId){
+                            listHospMedicine(hospId);
+                            setDom();
+                        }
+                    })
+                    var _counter = 1;
+                    var medMoney = {};
+                    $("#medicine").delegate(".tianjia", "click", function () {
+                        if ($(this).attr("disabled") == "disabled") {
+                            return;
+                        } else {
+                            setDom()
+                        }
+                    })
+
+                    // 重构药品序号
+                    function medText() {
+                        var _item = $(".medText");
+                        for (var i = 1; i <= _item.length; i++) {
+                            $(".medText")[i - 1].innerText = "药品" + i;
+                        }
+                    }
+
+                    //删除药品
+                    $("#medicine").delegate(".del", "click", function () {
+                        var _id = $(this).parents(".itemFlag").attr("class").split(" ")[1].split("itemBox")[1];
+                        var len = $(".medText").length;
+                        $("#medicine")[0].removeChild($('.itemBox' + _id + '')[0]);
+                        delete medMoney["allMoney" + _id];
+                        delete medMoney["json" + _id];
+                        delete medMoney["num" + _id];
+                        delete medMoney["mId" + _id];
+                        delete medMoney["msId" + _id];
+                        delete medMoney["salePrice" + _id];
+                        delete medMoney["selectMed" + _id];
+                        delete medMoney["medicineStock" + _id];
+                        medText()
+                    })
+                    // 增加药品
+                    function setDom() {
+                        console.log(retMedicineOrder)
+                        var _html = '<div class="itemFlag itemBox' + _counter + '"><hr><label class="col-sm-2 control-label medText" style="color:green;">药品</label>' +
+                            '<div class="input-group col-sm-10 medBox">' +
+                            '<div class="col-sm-3">' +
+                            '<p class="lable">价格</p>' +
+                            '<input type="number"   disabled="disabled"  maxlength="30" class="form-control medMoney"  placeholder="价格">' +
+                            '</div>' +
+                            '<div class="col-sm-3">' +
+                            '<p class="lable">药品</p>' +
+                            '<select class="selectMed' + _counter + '"   style="width:100%" title="药品">' +
+                            '<optgroup label="请选择药品" class="medicine">' + retMedicineOrder + '</optgroup>' +
+                            '</select>' +
+                            '</div>' +
+                            '<div class="col-sm-3" style="display: none;">' +
+                            '<p class="lable">药厂</p>' +
+                            '<input type="text" id="medSup' + _counter + '"  maxlength="30" class="form-control" disabled="disabled">' +
+                            '</div>' +
+                            '<div class="col-sm-3" style="display: none;">' +
+                            '<p class="lable">单价</p>' +
+                            '<input type="number" id="salePrice' + _counter + '"  maxlength="30" class="form-control" disabled="disabled">' +
+                            '</div>' +
+                            '<div class="col-sm-3">' +
+                            '<p class="lable">每日用量</p>' +
+                            '<input type="text" id="num' + _counter + '"  maxlength="30"  class="form-control" placeholder="每日用量">' +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">添药</p>' +
+                            '<div class="btn btn-primary tianjia"><span class="icon fa fa-plus-circle"> </span> 增加</div>' +
+                            '</div>' +
+                            '<div class="col-sm-2 col-xs-3">' +
+                            '<p class="lable">删除</p>' +
+                            '<div class="btn btn-danger del"><span class="icon fa fa-delicious"> </span> 删除</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                        $("#medicine").append(_html);
+                        medText();
+                        // 重置下拉框
+                        $('.selectMed' + _counter).val("").select2({
+                            placeholder: "请选择药品"
+                        });
+                        $('.selectMed' + _counter).on("select2:close", function () {
+                            var _id = $(this).attr("class").split(" ")[0].split("selectMed")[1];
+                            $("#num" + _id).val("");
+                            $(this).parents(".medBox").find(".medMoney").val("");
+                            var _json = $(this).find("option:selected").attr("data-json");
+                            medMoney["json" + _id] = _json;
+                            _json = JSON.parse(_json);
+                            console.log(_json);
+                            var salePrice = _json.salePrice;
+                            var _mId = _json.mId;
+                            var _msId = _json.msId;
+                            var _selectMed = _json.medicineName;
+                            var _supplyName = _json.supplyName;
+                            var _medicineStock = _json.medicineStock;
+
+                            medMoney["selectMed" + _id] = _selectMed;
+                            medMoney["mId" + _id] = _mId;
+                            medMoney["msId" + _id] = _msId;
+                            $('#salePrice' + _id).parent().css("display", "block");
+                            $('#medSup' + _id).parent().css("display", "block");
+                            $('#salePrice' + _id).val(salePrice);
+                            $('#medSup' + _id).val(_supplyName);
+                            medMoney["salePrice" + _id] = salePrice;
+                            medMoney["medicineStock" + _id] = _medicineStock;
+                            console.log(medMoney);
+                            calc();
+                        })
+                        $("#num" + _counter).on("input", function () {
+                            var _id = $(this).attr("id").split(" ")[0].split("num")[1];
+                            check("#num" + _id);
+                            var medicineStock = medMoney["medicineStock" + _id];
+                            medMoney["num" + _id] = $(this).val();
+                            var allMoney = medMoney["salePrice" + _id] * medMoney["num" + _id];
+                            allMoney = allMoney.toFixed(2);
+                            medMoney["allMoney" + _id] = allMoney;
+                            $(this).parents(".medBox").find(".medMoney").val(allMoney);
+                            calc();
+                        })
+                        ++_counter;
+                    }
+                    function check(id) {
+                        var obj = $(id)[0];
+                        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+                        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+                        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+                        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d\d).*$/, '$1$2.$3');//只能输入五个小数
+                        if (obj.value.indexOf(".") < 0 && obj.value != "") {//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+                            obj.value = parseFloat(obj.value);
+                        }
+                    }
+
+                    function calc() {
+                        var medMoneys = $(".medMoney");
+                        var allCount = 0;
+                        var discount = $("#discount").val() || 10;
+                        discount = discount / 10;
+                        var decoctMoney = $("#decoctMoney").val() || 0;
+                        for (var i = 0; i < medMoneys.length; i++) {
+                            allCount += Number(medMoneys[i].value);
+                        }
+                        var _temp = allCount + Number(decoctMoney);
+                        $("#oldMoney").val(_temp);
+                        var discountMoney = ((discount * allCount) + Number(decoctMoney)).toFixed(2);
+                        $("#discountMoney").val(discountMoney);
+                    }
+                    $(".saveBtn").on("click", function () {
+                        $("body").mLoading("show");
+                        var prescName = $("#prescName").val();
+                        if (prescName == "") {
+                            alert("请填写药方名字！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        var doctorId = $("#doctorId").val();
+                        if (!doctorId) {
+                            alert("请选择医生！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        var meds = $(".medMoney");
+                        for (var i=0;i<meds.length;i++) {
+                            if ($(meds[i]).val() == "" || $(meds[i]).val() == "0") {
+                                alert("药品信息录入不完全，请仔细检查！");
+                                $("body").mLoading("hide");//关闭loading组件
+                                return;
+                            }
+                        }
+                        var hospId = $("#hospId").val();
+                        var discountMoney = $("#discountMoney ").val();
+                        if (prescName == "") {
+                            alert("请填写药方名！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        //药品详情
+                        var detail = [];
+                        console.log(medMoney);
+                        for (var i in medMoney) {
+                            if (typeof medMoney[i] == "string" && i.indexOf("json") == "0") {
+                                var item = i.split("json")[1];
+                                var json_data = JSON.parse(medMoney[i]);
+                                json_data.medMoney = medMoney["allMoney" + item];
+                                json_data.grams = medMoney["num" + item];
+                                detail.push(json_data)
+                            }
+                        }
+                        if (detail.length == "0") {
+                            alert("至少需要添加一种药！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        // console.log(detail)
+                        /*在这里调用上传接口*/
+                        $.ajax({
+                            url: config.rootUrl + "user/addPresc.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                prescName: prescName,
+                                doctorId: doctorId,
+                                hospId: hospId,
+                                price: discountMoney,
+                                prescDetail: JSON.stringify(detail),
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                if (data.code == "1") {
+                                    alert("成功!");
+                                    // window.history.go(-2);
+                                    window.location.reload();
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                                console.log(xhr + errorThrown);
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    })
+
+                })
+            </script>
+</body>
+
+</html>

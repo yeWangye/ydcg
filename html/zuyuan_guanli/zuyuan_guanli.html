@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>一定成功</title>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+		<!-- CSS Libs -->
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+
+		<!-- CSS App -->
+		<link rel="stylesheet" type="text/css" href="../../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+
+	</head>
+
+	<body class="flat-blue">
+		<div class="app-container">
+			<div class="row content-container">
+				<div class="row content-container">
+					<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+						<div class="container-fluid" style="text-align: center;">
+							<div class="navbar-header">
+								<button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+								<ol class="breadcrumb navbar-breadcrumb">
+									<li>每日任务</li>
+									<li class="active">组员管理</li>
+								</ol>
+								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+							</div>
+							<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+							<ul class="nav navbar-nav navbar-right">
+								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+									<ul class="dropdown-menu animated fadeInDown">
+										<li class="title">
+											通知 <span class="badge pull-right">0</span>
+										</li>
+										<li class="message">
+											没有新的通知
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown danger">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+									<ul class="dropdown-menu danger  animated fadeInDown">
+										<li class="title">
+											提示 <span class="badge pull-right totalMsg"></span>
+										</li>
+										<li>
+											<ul class="list-group notifications">
+												<a href="../yeji_guanli/yeji_dai_shenhe.html">
+													<li class="list-group-item">
+														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+													</li>
+												</a>
+												<a href="../yeji_guanli/zuyuan_yeji.html">
+													<li class="list-group-item">
+														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+													</li>
+												</a>
+												<a href="../yeji_guanli/yeji.html">
+													<li class="list-group-item">
+														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+													</li>
+												</a>
+												<a href="#">
+													<li class="list-group-item message">
+														敬请期待...
+													</li>
+												</a>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown profile">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+									<ul class="dropdown-menu animated fadeInDown">
+										<li class="profile-img">
+											<img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+										</li>
+										<li>
+											<div class="profile-info">
+												<h4 class="username"></h4>
+												<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+												<div class="btn-group margin-bottom-2x" role="group">
+													<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+													<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+													<input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div id="sidebar" class="side-menu sidebar-inverse">
+
+					</div>
+					<!-- Main Content -->
+					<div class="container-fluid">
+						<div class="side-body">
+							<div class="page-title">
+								<span class="title">查看<span style="color:red;">组员</span>管理</span>
+								<div class="description">
+									<sapn class="tips">操作提示:经理以上</sapn>级别可以增删组员或者恢复组员!
+								</div>
+								<div class="description">
+									<sapn class="tips">调动人员:</sapn>如果该组员为其他战区调动过来的,请设置其为调动人员,立马参加考核!
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="card">
+										<div class="card-header">
+											<div class="card-title">
+												<div class="title tip_blue"><button class="btn btn-danger lizhi_zuyuan">离职组员</button></div>
+												<div class="title tip_blue"><button class="btn btn-success zaizhi_zuyuan">在职组员</button></div>
+
+											</div>
+											<div class="card-title" style="float:right;text-align: center;">
+												<div class="">
+													<a class="btn btn-primary add_zuyuan" style="color:white;display: block;">添加组员<span class="fa fa-chevron-circle-right"></span></a>
+													<a class="btn btn-primary add_keshi" style="color:white;display: block;">添加科室<span class="fa fa-chevron-circle-right"></span></a>
+												</div>
+											</div>
+										</div>
+										<div class="card-body">
+											<table class="table table-striped" cellspacing="0" width="100%">
+												<thead>
+													<tr>
+														<th>组员姓名</th>
+														<th>组员用户名</th>
+														<th>职位</th>
+														<th>科室</th>
+														<th>头像</th>
+														<th>调动人员</th>
+														<th>增删时间</th>
+														<th>操作</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+											<div class="M-box"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="choose" tabindex="-3" role="dialog" aria-labelledby="choosemyModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title" id="myModalLabel">添加组员类型</h4>
+							</div>
+							<div class="modal-body">
+								<button type="button" class="btn btn-lg btn-primary target" data-dismiss="modal" data-target="diao">调战区组员</button>
+								<button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="xin">新组员</button>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="kezhang" tabindex="-1" role="dialog" aria-labelledby="kezhangModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">设置科长</h4>
+								<p>注意事项：设置时请确认该科长是否接科室。</p>
+							</div>
+							<div class="modal-body">
+								<input type="hidden" class="saveVal">
+								<a class="keshi" data-obj="status" style="max-width: 100%;">
+									<span class="lable" style="font-size:18px;color:green;">有科室：</span>
+								</a>
+								<br>
+								<a class="wu_keshi"  style="max-width: 100%;">
+									<span class="lable" style="font-size:18px;color:red;">没有科室：</span>
+									<button type="button" class="btn  btn-success set_no" data-dismiss="modal">无科室</button>
+								</a>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="addKeshi" tabindex="-2" role="dialog" aria-labelledby="addKeshiModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">添加科室</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group col-xs-12">
+									<div class="col-xs-3">
+										<lable for="departName" style="height:38px;line-height: 38px;width:100%;color:red;font-size: 18px;">科室名称：</lable>
+									</div>
+									<input type="text" id="departName"  class="col-xs-5">
+								</div>
+								<a class="hosp"  style="max-width: 100%;">
+									<span class="lable" style="font-size:18px;color:green;">医院/门诊：</span>
+								</a>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<footer class="app-footer">
+					<div class="wrapper">
+						<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+						<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+						<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+					</div>
+				</footer>
+				<div>
+					<!-- Javascript Libs -->
+					<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+					<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+					<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+					<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+					<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+					<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+					<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+					<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+					<script src="../../lib/js/jquery.pagination.js"></script>
+					<!-- Javascript -->
+					<script type="text/javascript" src="../../js/app.js"></script>
+					<script src="../../js/dateFormat.js"></script>
+					<script type="text/javascript" src="../../js/theming.js"></script>
+					<script type="text/javascript" src="../../js/themings.js"></script>
+
+					<script src="../../js/config.js"></script>
+					<script src="../../js/uploadImg.js"></script>
+					<script src="../../js/session_expire.js"></script>
+					<script type="text/javascript" src="../../js/personal_msg.js"></script>
+
+					<script type="text/javascript">
+						$(document).ready(function() {
+							if(session_login.info.roleId == "1") {
+								alert("组员没有机会访问本页面,请尽快升职加薪哦,我等你!");
+								window.location.href = "../index.html";
+								return;
+							}
+							$('.add_zuyuan').on('click', function(e) {
+								$('#choose').modal();
+							});
+                            $(document).delegate(".set","click",function () {
+								var memberId= $(".saveVal").val();
+								var departId= $(this).attr("data-departId");
+                                $.ajax({
+                                    url: config.rootUrl + "user/setDepartManager.do",
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        memberId: memberId,
+                                        departId:departId,
+                                    },
+                                    async: true,
+                                    type: "post",
+                                    success: function(data) {
+                                       alert(data.msg);
+                                       window.location.reload();
+                                    },
+                                    error: function() {
+                                        alert("发生错误");
+                                    },
+                                    complete: function() {
+                                        $('#depart').select2("val", "");
+                                        $('#treat').select2("val", "");
+                                    }
+                                })
+                            })
+							//设置无科室科长
+                            $(".set_no").on("click",function () {
+                                var memberId= $(".saveVal").val();
+                                $.ajax({
+                                    url: config.rootUrl + "user/setDepartManager.do",
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        memberId: memberId,
+                                        departId:"0",
+                                    },
+                                    async: true,
+                                    type: "post",
+                                    success: function(data) {
+                                        alert(data.msg);
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        alert("发生错误");
+                                    },
+                                    complete: function() {
+                                        $('#depart').select2("val", "");
+                                        $('#treat').select2("val", "");
+                                    }
+                                })
+                            })
+                            // 科室数据填充
+                            $.ajax({
+                                url: config.rootUrl + "user/getDepartOfTeam.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    teamId: session_login.info.teamId,
+                                },
+                                async: true,
+                                type: "post",
+                                success: function(data) {
+                                    var depart = $(".keshi");
+                                    var deptInfo = data.info;
+                                    for(var i in deptInfo) {
+                                        var _btn= ' <button type="button" class="btn  btn-primary set" data-dismiss="modal" data-departId="'+deptInfo[i].departId+'">'+deptInfo[i].departName+'</button>';
+                                        depart.append(_btn);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误");
+                                },
+                                complete: function() {
+                                    $('#depart').select2("val", "");
+                                    $('#treat').select2("val", "");
+                                }
+                            })
+                            // 医院数据填充
+                            $.ajax({
+                                url: config.rootUrl + "user/getHospital.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    teamId: session_login.info.teamId,
+                                },
+                                async: true,
+                                type: "post",
+                                success: function(data) {
+                                    var hosp = $(".hosp");
+                                    var info = data.info;
+                                    for(var i in info) {
+                                        var _btn= ' <button type="button" class="btn  btn-primary add_hosp" data-dismiss="modal" data-hospId="'+info[i].hospId+'">'+info[i].hospName+'</button>';
+                                        hosp.append(_btn);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误");
+                                },
+                                complete: function() {
+                                    $('#depart').select2("val", "");
+                                    $('#treat').select2("val", "");
+                                }
+                            })
+                            //添加科室
+                            $(document).delegate(".add_hosp","click",function () {
+                                var hospId= $(this).attr("data-hospId");
+                                var departName=$("#departName").val();
+                                $.ajax({
+                                    url: config.rootUrl + "user/addDepart.do",
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        departName: departName,
+                                        hospId:hospId,
+                                    },
+                                    async: true,
+                                    type: "post",
+                                    success: function(data) {
+                                        alert(data.msg);
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        alert("发生错误");
+                                    },
+                                    complete: function() {
+                                        $('#depart').select2("val", "");
+                                        $('#treat').select2("val", "");
+                                    }
+                                })
+                            })
+							// 添加组员
+							$('#choose').on('click', 'button.target', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var target = $(this).attr("data-target");
+								if(target == "diao") {
+									$.ajax({
+										url: config.rootUrl + "user/addMember.do",
+										type: 'POST',
+										dataType: 'json',
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
+											transfer: 1,
+										},
+										success: function(data) {
+											console.log(data);
+											if(data.code == 1) {
+												alert("组员增加成功!\n用户名:" + data.info.userName + "\n密码:" + data.info.password);
+												window.location.reload();
+											} else {
+												alert(data.msg);
+											}
+										},
+										error: function() {
+											alert("发生错误了,请检查你的网络!");
+										}
+									})
+								} else if(target == "xin") {
+									$.ajax({
+										url: config.rootUrl + "user/addMember.do",
+										type: 'POST',
+										dataType: 'json',
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
+											transfer: 0,
+										},
+										success: function(data) {
+											console.log(data);
+											if(data.code == 1) {
+												alert("组员增加成功!\n用户名:" + data.info.userName + "\n密码:" + data.info.password);
+												window.location.reload();
+											} else {
+												alert(data.msg);
+											}
+										},
+										error: function() {
+											alert("发生错误了,请检查你的网络!");
+										}
+									})
+								}
+							});
+							$('.lizhi_zuyuan').on('click', function(e) {
+								var title = "离职";
+								history.replaceState({
+									title: title
+								}, title, location.href.split("?")[0] + "?" + "lizhi=true");
+								doAjax("leave");
+							});
+							$('.zaizhi_zuyuan').on('click', function(e) {
+								var title = "在职";
+								history.replaceState({
+									title: title
+								}, title, location.href.split("?")[0] + "?" + "lizhi=false");
+								doAjax();
+							});
+							// 删除组员
+							$('.table tbody').on('click', 'button.delrow', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var memberId = $(this).attr("data-memberId");
+								if(confirm("确认删除组员?")) {
+									$.ajax({
+										url: config.rootUrl + "user/delMember.do",
+										type: 'POST',
+										dataType: 'json',
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
+											memberId: memberId,
+										},
+										success: function(data) {
+											if(data.code == 1) {
+												alert("组员删除成功!");
+												window.location.reload();
+											} else {
+												alert(data.msg);
+											}
+
+										},
+										error: function() {
+											alert("发生错误了,请检查你的网络!");
+										}
+									})
+
+								}
+
+							});
+							// 设置调组
+							$('.table tbody').on('click', 'button.setTransferMember', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var memberId = $(this).attr("data-memberId");
+								$.ajax({
+									url: config.rootUrl + "user/setTransferMember.do",
+									type: 'POST',
+									dataType: 'json',
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+										memberId: memberId,
+									},
+									success: function(data) {
+										if(data.code == 1) {
+											alert("设置成功!");
+											window.location.reload();
+										} else {
+											alert(data.msg);
+										}
+
+									},
+									error: function() {
+										alert("发生错误了,请检查你的网络!");
+									}
+								})
+
+							});
+							// 恢复组员
+							$('.table tbody').on('click', 'button.refresh', function(e) {
+								e.stopPropagation();
+								e.preventDefault();
+								var memberId = $(this).attr("data-memberId");
+								if(confirm("恢复组员?")) {
+									$.ajax({
+										url: config.rootUrl + "user/recoveryEmployee.do",
+										type: 'POST',
+										dataType: 'json',
+										data: {
+											deviceToken: "html5",
+											deviceType: "html5",
+											userId: session_login.info.userId,
+											memberId: memberId,
+										},
+										success: function(data) {
+											if(data.code == 1) {
+												alert("恢复成功!");
+												window.location.reload();
+											} else {
+												alert(data.msg);
+											}
+
+										},
+										error: function() {
+											alert("发生错误了,请检查你的网络!");
+										}
+									})
+
+								}
+
+							});
+                            $('.table tbody').on('click', 'button.kezhang', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                var memberId = $(this).attr("data-memberId");
+                                $(".saveVal").val(memberId);
+                                $('#kezhang').modal();
+                            });
+                            $('.add_keshi').on('click', function(e) {
+                                // var memberId = $(this).attr("data-memberId");
+                                $('#addKeshi').modal();
+                            });
+                            $('.table tbody').on('click', 'button.zuyuan', function(e) {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                var memberId = $(this).attr("data-memberId");
+                                $.ajax({
+                                    url: config.rootUrl + "user/setDepartManager.do",
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        memberId: memberId,
+                                        // departId:"0",
+                                    },
+                                    async: true,
+                                    type: "post",
+                                    success: function(data) {
+                                        alert(data.msg);
+                                        window.location.reload();
+                                    },
+                                    error: function() {
+                                        alert("发生错误");
+                                    },
+                                    complete: function() {
+                                        $('#depart').select2("val", "");
+                                        $('#treat').select2("val", "");
+                                    }
+                                })
+                            });
+							if(window.location.search.split("lizhi=")[1] == "true") {
+								doAjax("leave");
+							} else {
+								doAjax();
+							}
+							function doAjax(type) {
+								$(".table tbody")[0].innerHTML = "";
+								$.ajax({
+									url: config.rootUrl + "user/getMemberList.do",
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+										teamId: session_login.info.teamId,
+										type: type,
+										page: "1",
+										rows: "15"
+									},
+									async: true,
+									type: 'post',
+									success: function(data) {
+										console.log(data);
+										var info = data.info;
+										var pageCount = data.pageCount;
+										var tbody = $(".table tbody")[0];
+                                        for(var i = 0; i < info.length; i++) {
+                                            if(type == "leave") {
+                                                var _dom = " <button  class='btn btn-success refresh' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 恢复 </i></button>";
+                                                var date= new Date(info[i].leaveDate ).format('yyyy-MM-dd h:m:s');
+                                            } else if(info[i].transfer == "0") {
+                                                var date= new Date(info[i].createTime ).format('yyyy-MM-dd h:m:s');
+                                                if(info[i].grade == "2") {
+                                                    var _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                        " <button  class='btn btn-primary zuyuan' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 降为组员 </i></button>"+
+                                                        " <button  class='btn btn-default setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 非调动人员 </i></button>";
+                                                }else if(info[i].grade == "1") {
+													_dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                        " <button  class='btn btn-primary kezhang' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 设为科长 </i></button>"+
+                                                        " <button  class='btn btn-default setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 非调动人员 </i></button>";
+                                                }
+
+                                            } else if(info[i].transfer == "1") {
+                                                date= new Date(info[i].createTime ).format('yyyy-MM-dd h:m:s');
+                                                if(info[i].grade == "2") {
+                                                     _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                        " <button  class='btn btn-primary zuyuan' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 降为组员 </i></button>"+
+                                                        " <button  class='btn btn-success setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 调动人员 </i></button>";
+                                                }else if(info[i].grade == "1") {
+                                                     _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                        " <button  class='btn btn-primary kezhang' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 设为科长 </i></button>"+
+                                                        " <button  class='btn btn-success setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 调动人员 </i></button>";
+                                                }
+                                            }
+                                            if(info[i].transfer == "0") {
+                                                var transfer = "不是";
+                                            } else if(info[i].transfer == "1"){
+                                                transfer = "是";
+                                            }
+                                            if(info[i].grade == "2") {
+                                                var grade="科长"
+                                            } else if(info[i].grade == "1"){
+                                                grade = "组员";
+                                            }
+                                            if(info[i].grade == "2") {
+                                                var grade="科长"
+                                            } else if(info[i].grade == "1"){
+                                                grade = "组员";
+                                            }
+                                            tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-transfer='" + info[i].transfer + "' style='cursor:pointer'>" +
+                                                "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                "<td class='goDetail'>" + info[i].userName + "</td>" +
+                                                "<td class='goDetail'>" + grade + "</td>" +
+                                                "<td class='goDetail'>" + info[i].departName + "</td>" +
+                                                "<td class='goDetail'><img style='max-width:50px;' src=" + info[i].headImage + "></td>" +
+                                                "<td class='goDetail'>" + transfer + "</td>" +
+                                                "<td class='goDetail'>" + date  + "</td>" +
+                                                "<td class='goDetail'>" + _dom + "</td>" +
+                                                "</tr>";
+                                        }
+										//添加选项内容
+										$('.M-box').pagination({
+											pageCount: pageCount,
+											showData: 10,
+											jump: true,
+											coping: true,
+											homePage: '首页',
+											endPage: '末页',
+											prevContent: '上页',
+											nextContent: '下页',
+											callback: function(api) {
+												$.ajax({
+													url: config.rootUrl + "user/getMemberList.do",
+													data: {
+														deviceToken: "html5",
+														deviceType: "html5",
+														userId: session_login.info.userId,
+
+														teamId: session_login.info.teamId,
+														type: type,
+														page: api.getCurrent(),
+														rows: "15",
+													},
+													async: true,
+													type: "post",
+													success: function(data) {
+														var info = data.info;
+														console.log(data);
+														var tbody = $(".table tbody")[0];
+														tbody.innerHTML = "";
+														//添加选项盒子
+
+                                                        for(var i = 0; i < info.length; i++) {
+                                                            if(type == "leave") {
+                                                                var _dom = " <button  class='btn btn-success refresh' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 恢复 </i></button>";
+                                                                var date= new Date(info[i].leaveDate ).format('yyyy-MM-dd h:m:s');
+                                                            } else if(info[i].transfer == "0") {
+                                                                var transfer = "不是";
+                                                                var date= new Date(info[i].createTime ).format('yyyy-MM-dd h:m:s');
+                                                                if(info[i].grade == "2") {
+                                                                    var _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                                        " <button  class='btn btn-primary zuyuan' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 降为组员 </i></button>"+
+                                                                        " <button  class='btn btn-default setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 非调动人员 </i></button>";
+                                                                }else if(info[i].grade == "1") {
+                                                                    _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                                        " <button  class='btn btn-primary kezhang' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 设为科长 </i></button>"+
+                                                                        " <button  class='btn btn-default setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 非调动人员 </i></button>";
+                                                                }
+
+                                                            } else if(info[i].transfer == "1") {
+                                                                transfer = "是";
+                                                                date= new Date(info[i].createTime ).format('yyyy-MM-dd h:m:s');
+                                                                if(info[i].grade == "2") {
+                                                                    _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                                        " <button  class='btn btn-primary zuyuan' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 降为组员 </i></button>"+
+                                                                        " <button  class='btn btn-success setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 调动人员 </i></button>";
+                                                                }else if(info[i].grade == "1") {
+                                                                    _dom = " <button  class='btn btn-danger delrow' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-trash-o'> 删除 </i></button>" +
+                                                                        " <button  class='btn btn-primary kezhang' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-add'> 设为科长 </i></button>"+
+                                                                        " <button  class='btn btn-success setTransferMember' type='button' data-memberId='" + info[i].memberId + "'><i class='fa fa-refresh'> 调动人员 </i></button>";
+                                                                }
+                                                            }
+                                                            if(info[i].grade == "2") {
+                                                                var grade="科长"
+                                                            } else if(info[i].grade == "1"){
+                                                                grade = "组员";
+                                                            }
+                                                            tbody.innerHTML += "<tr data-mid='" + info[i].memberId + "' data-transfer='" + info[i].transfer + "' style='cursor:pointer'>" +
+                                                                "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                                "<td class='goDetail'>" + info[i].userName + "</td>" +
+                                                                "<td class='goDetail'>" + grade + "</td>" +
+                                                                "<td class='goDetail'>" + info[i].departName + "</td>" +
+                                                                "<td class='goDetail'><img style='max-width:50px;' src=" + info[i].headImage + "></td>" +
+                                                                "<td class='goDetail'>" + transfer + "</td>" +
+                                                                "<td class='goDetail'>" + date  + "</td>" +
+                                                                "<td class='goDetail'>" + _dom + "</td>" +
+                                                                "</tr>";
+                                                        }
+													},
+													error: function() {
+														alert("网络错误");
+
+													}
+												})
+											}
+
+										});
+
+									},
+									error: function(xhr, type, errorThrown) {
+										alert('网络异常，请稍后再试！');
+									},
+									complete: function() {
+										$('select').select2();
+									}
+								});
+							}
+
+						})
+					</script>
+	</body>
+
+</html>

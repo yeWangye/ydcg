@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        h3{
+            color: #fc4118;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>信息管理</li>
+                            <li class="active">待审信息</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee
+                            style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i
+                                                    class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i
+                                                    class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i
+                                                    class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <div class="page-title">
+                            <span class="title">工作总结详情</span>
+                            <div class="description">操作提示<span class="tips">A.B.C</span>属于选填项,<span
+                                    class="tips">D</span>属于必填项!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <div class="card-title">
+                                        <div class="title">
+                                            <a onclick="window.history.go(-1);" style="color:darkblue"><span class="fa fa-chevron-circle-left"></span> 返回</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="swtBox">
+                                        <h3>A:商务通</h3>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="swtNum" class="control-label">1:上了几个商务通?</label>
+                                                <input type="text" class="form-control" id="swtNum"  disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sqNum" class="control-label">2:上了几个商桥?</label>
+                                                <input type="text" class="form-control" id="sqNum"  disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalFlow" class="control-label">3:总流量多少?</label>
+                                                <input type="text" class="form-control" id="totalFlow" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalClick" class="control-label">4:总点击量多少?</label>
+                                                <input type="text" class="form-control" id="totalClick" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalChat" class="control-label">5:总对话几个?</label>
+                                                <input type="text" class="form-control" id="totalChat" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalMessage" class="control-label">6:留信息多少?</label>
+                                                <input type="text" class="form-control" id="totalMessage" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="totalDeal" class="control-label">7:直接成交多少?</label>
+                                                <input type="text" class="form-control" id="totalDeal" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="swtFeel" class="control-label">8:商务通工作的不足和如何改进?</label>
+                                                <textarea class="form-control" id="swtFeel" disabled="disabled"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="wtBox">
+                                        <h3>B:外推</h3>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="releaseMessNum" class="control-label">1:一共发布多少外推信息?</label>
+                                                <input type="text" class="form-control" id="releaseMessNum" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="platform" class="control-label">2:主要平台是?</label>
+                                                <textarea class="form-control" id="platform" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="leaveMessNum" class="control-label">3:留信息数量?</label>
+                                                <input type="text" class="form-control" id="leaveMessNum" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="greatPlat" class="control-label">4:效果最好的平台是?</label>
+                                                <textarea class="form-control" id="greatPlat" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="extensionFeel" class="control-label">5:外推工作的不足和如何改进?</label>
+                                                <textarea class="form-control" id="extensionFeel" disabled="disabled"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="messBox">
+                                        <h3>C:处理信息</h3>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="dealMessNum" class="control-label">1:今天总共处理了多少信息?</label>
+                                                <input type="text" class="form-control" id="dealMessNum" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="socialNum" class="control-label">2:电话,短信,微信,QQ各是多少?</label>
+                                                <textarea class="form-control" id="socialNum" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dealTreatNum" class="control-label">3:成交了几个(预约,远程,复诊)?</label>
+                                                <input type="text" class="form-control" id="dealTreatNum" disabled="disabled">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dealFeel" class="control-label">4:信息处理工作的不足和如何改进?</label>
+                                                <textarea class="form-control" id="dealFeel" disabled="disabled"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="feelBox">
+                                        <h3>D:心得感悟</h3>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="specialty" class="control-label">1:你任务最擅长哪一块?</label>
+                                                <textarea class="form-control" id="specialty" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="selfFeel" class="control-label">2:今天全力以赴了吗?理想还在吗?心得?</label>
+                                                <textarea class="form-control" id="selfFeel" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="managerFeel" class="control-label">3:我的管理心得(组员填"无",科长必填)?</label>
+                                                <textarea class="form-control" id="managerFeel" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="proposal" class="control-label">4:对公司和战区的建议?</label>
+                                                <textarea class="form-control" id="proposal" disabled="disabled"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="otherArrange" class="control-label">5:今天从事其他工作安排了吗(如接诊)心得?</label>
+                                                <textarea class="form-control" id="otherArrange" disabled="disabled"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var search=window.location.search;
+                if(search&&search.split("wsId=")[1]){
+                    var wsId=search.split("wsId=")[1].split("&")[0];
+                }
+                $("body").mLoading("show");
+                $.ajax({
+                    url: config.rootUrl + "user/getDailyDetail.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        wsId:wsId,
+                        type:""
+                    },
+                    async: true,
+                    type: "post",
+                    success: function (data) {
+                        var info = data.info;
+                        if(data.code=="1"){
+                            //商务通
+                            $("#swtNum").val(info.swtNum);
+                            $("#sqNum").val(info.sqNum);
+                            $("#totalFlow").val(info.totalFlow);
+                            $("#totalClick").val(info.totalClick);
+                            $("#totalChat").val(info.totalChat);
+                            $("#totalMessage").val(info.totalMessage);
+                            $("#totalDeal").val(info.totalDeal);
+                            $("#swtFeel").val(info.swtFeel);
+                                //外推
+                            $("#releaseMessNum").val(info.releaseMessNum);
+                            $("#platform").val(info.platform);
+                            $("#leaveMessNum").val(info.leaveMessNum);
+                            $("#greatPlat").val(info.greatPlat);
+                            $("#extensionFeel").val(info.extensionFeel);
+                                //信息处理
+                            $("#dealMessNum").val(info.dealMessNum);
+                            $("#socialNum").val(info.socialNum);
+                            $("#dealTreatNum").val(info.dealTreatNum);
+                            $("#dealFeel").val(info.dealFeel);
+                                //心得感悟
+                            $("#specialty").val(info.specialty);
+                            $("#selfFeel").val(info.selfFeel);
+                            $("#managerFeel").val(info.managerFeel);
+                            $("#proposal").val(info.proposal);
+                            $("#otherArrange").val(info.otherArrange);
+                        }
+                    },
+                    error: function () {
+                        alert("发生错误了!");
+                    },
+                    complete: function() {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+                })
+            })
+        </script>
+
+</body>
+
+</html>

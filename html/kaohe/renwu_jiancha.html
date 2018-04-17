@@ -6,6 +6,8 @@
 		<meta charset="utf-8">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 		<!-- Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
@@ -130,9 +132,9 @@
 					<div class="container-fluid">
 						<div class="side-body">
 							<div class="page-title">
-								<span class="title">查看<span style="color:red;">战区的任务完成情况</span></span>
+								<span class="title">查看<span style="color:red;">战区的任务完成情况,</span></span>
 								<div class="description">
-									<sapn class="tips">操作提示:</sapn>点击表格可以进行详情查看</div>
+									<sapn class="tips">操作提示:</sapn>点击表格可以进行详情查看,默认展现的是<span class="tip_blue">昨天</span>的数据!</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
@@ -210,10 +212,19 @@
 					<script type="text/javascript">
 						$(document).ready(function() {
 							var search = window.location.search;
-							if(search != "") {
+							if(search != ""&&search.split("groupId=")[1]) {
 								var groupId = search.split("groupId=")[1].split("&")[0];
 							}
-							var searchTime = new Date().format("yyyy-MM-dd").replace(/\//g, "-");
+							if(search != ""&&search.split("page=")[1]) {
+								var page = search.split("page=")[1].split("&")[0];
+							}
+							if(search != ""&&search.split("searchTime=")[1]) {
+								var searchTime = search.split("searchTime=")[1].split("&")[0];
+							}else{
+								 var day1 = new Date();
+								 day1.setDate(day1.getDate() - 1);
+								 var searchTime = day1.format("yyyy-MM-dd");
+							}
 							$("#searchDate").val(searchTime);
 
 							$('.table tbody').on('click', '.goDetail', function(e) {
@@ -226,8 +237,22 @@
 
 							$(".dataSearch").on("click", function() {
 								$("body").mLoading("show");
+								page=1;
+								var searchTime = $("#searchDate").val();
+								history.replaceState({ title: title }, title, location.href.split("?")[0] + "?searchTime="+searchTime);
+								
 								setTable();
 							})
+							var title="日期";
+							
+							if(window.location.search.split("page=")[1]){
+									var _page=window.location.search.split("page=")[1].split("&")[0];
+									history.replaceState({ title: title }, title, location.href.split("?")[0] + "?searchTime="+searchTime + "&page="+_page);
+									
+								}else{
+									history.replaceState({ title: title }, title, location.href.split("?")[0] + "?searchTime="+searchTime);
+									
+							}
 							setTable();
 
 							function setTable() {
@@ -241,7 +266,7 @@
 										deviceType: "html5",
 										userId: session_login.info.userId,
 										searchTime: searchTime || "",
-										page: "1",
+										page: page||1,
 										rows: "10",
 										groupId: groupId || "",
 
@@ -294,8 +319,13 @@
 											endPage: '末页',
 											prevContent: '上页',
 											nextContent: '下页',
+											current:page,
 											callback: function(api) {
 												$("body").mLoading("show");
+												var page=api.getCurrent();
+												var title="页面";
+												history.replaceState({ title: title }, title, location.href.split("&")[0] + "&page="+page);
+
 												$.ajax({
 													url: config.rootUrl + "user/teamTaskResult.do",
 													data: {

@@ -1,1041 +1,1371 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>感动自己,一定成功</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- Fonts -->
-		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
-		<!-- CSS Libs -->
+<head>
+    <title>感动自己,一定成功</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
 
-		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-switch.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/checkbox3.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/dataTables.bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="../lib/css/select2.min.css">
-		<!-- CSS App -->
-		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		<link rel="stylesheet" type="text/css" href="../css/themes/flat-blue.css">
-		<link rel="stylesheet" type="text/css" href="../css/themes/flat-green.css">
-	</head>
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/jquery.mloading.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+    <link rel="stylesheet" type="text/css" href="../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../css/themes/flat-green.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-	<body class="flat-blue">
-		<div class="app-container">
-			<div class="row content-container">
-				<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
-					<div class="container-fluid" style="text-align: center;">
-						<div class="navbar-header">
-							<button type="button" class="navbar-expand-toggle">
-                            <i class="fa fa-bars icon"></i>
-                        </button>
-							<ol class="breadcrumb navbar-breadcrumb">
-								<li class="active">一定成功</li>
-							</ol>
-							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
-                            <i class="fa fa-th icon"></i>
-                        </button>
-						</div>
-						<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
-						<ul class="nav navbar-nav navbar-right">
-							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+        ul {
+            list-style-type: none;
+        }
+        .visibility{
+            visibility: hidden;
+        }
+        body {
+            font-family: Verdana, sans-serif;
+            background: #E8F0F3;
+        }
+
+        button {
+            padding: 5px;
+            border-radius: 5px;
+        }
+        #calendar {
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        }
+
+        .month {
+            width: 100%;
+            background: #abc9d2;
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .year-month {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .year-month:hover {
+            background: rgba(150, 2, 12, 0.1);
+        }
+
+        .choose-year {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .choose-month {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .arrow {
+            padding: 30px;
+        }
+
+        .arrow:hover {
+            background: rgba(100, 2, 12, 0.1);
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+
+        .weekdays {
+            margin: 0;
+            padding: 10px 0;
+            background-color: #fbc3f9;
+            display: flex;
+            flex-wrap: wrap;
+            color: #FFFFFF;
+            justify-content: space-around;
+        }
+
+        .weekdays li {
+            display: inline-block;
+            width: 13.6%;
+            text-align: center;
+        }
+
+        .days, .times {
+            padding: 0;
+            background: #FFFFFF;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .days li {
+            list-style-type: none;
+            display: inline-block;
+            width: 14.2%;
+            text-align: center;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            font-size: 1rem;
+            color: #000;
+        }
+
+        .times li {
+            list-style-type: none;
+            display: inline-block;
+            width: 20%;
+            text-align: center;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-size: 1rem;
+            color: #000;
+            background: #b7b79b;
+        }
+
+        .days li .active {
+            padding: 2px 10px;
+            border-radius: 50%;
+            background: #07d832;
+            color: #fff;
+        }
+
+        .days li .other-month {
+            padding: 5px;
+            color: gainsboro;
+        }
+
+        .days li:hover {
+            background: #e1e1e1;
+        }
+
+        .time_item {
+            min-height: 80px;
+            border: 1px solid;
+        }
+        .times li.time_item_acitve {
+            background: #fffdf5;!important;
+            cursor: pointer;
+        }
+
+        .time {
+            padding: 5px;
+            color: black;
+        }
+
+        .noRecive {
+            background: darkgray;
+        }
+        #doctor{
+            width: 20%;
+            padding: 5px;
+            font-size: 14px;
+        }
+        #doctor option{
+            font-size: 14px;
+        }
+        [v-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li class="active">一定成功</li>
+                    </ol>
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-th icon"></i>
+                    </button>
+                </div>
+                <marquee
+                        style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="title">
+                                通知 <span class="badge pull-right">0</span>
+                            </li>
+                            <li class="message">
+                                没有新的通知
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                提示 <span class="badge pull-right totalMsg"></span>
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="wode_renwu/renwu_index.html" class="ri_gong_zuo_biao">
+                                        <li class="list-group-item"><span class="badge wode_ren_notifi">0</span><i
+                                                class="fa fa-bell-o icon"></i> 日工作表
+                                        </li>
+                                    </a>
+                                    <a href="yeji_guanli/yeji_dai_shenhe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge dai_shen_yeji">0</span> <i
+                                                class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                        </li>
+                                    </a>
+                                    <a href="yeji_guanli/zuyuan_yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge success zuyuan_yeji">0</span> <i
+                                                class="fa fa-check icon"></i> 组员业绩
+                                        </li>
+                                    </a>
+                                    <a href="yeji_guanli/yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge danger wode_yeji">0</span> <i
+                                                class="fa fa-comments icon"></i> 我的业绩
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="list-group-item message">
+                                            敬请期待...
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img personImg">
+                                <img src="../img/profile/picjumbo.com_HNCK4153_resize.jpg"
+                                     class="profile-img personImg">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span>
+                                    </p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" style="display: none;" name="headimg_exchange"
+                                               id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="side-menu-container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <div class="icon fa fa-paper-plane"></div>
+                            <div class="title">感动自己,一定成功</div>
+                        </a>
+                        <button type="button" class="navbar-expand-toggle pull-right visible-xs">
                             <i class="fa fa-times icon"></i>
                         </button>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
-								<ul class="dropdown-menu animated fadeInDown">
-									<li class="title">
-										通知 <span class="badge pull-right">0</span>
-									</li>
-									<li class="message">
-										没有新的通知
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown danger">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
-								<ul class="dropdown-menu danger  animated fadeInDown">
-									<li class="title">
-										提示 <span class="badge pull-right totalMsg"></span>
-									</li>
-									<li>
-										<ul class="list-group notifications">
-											<a href="wode_renwu/renwu_index.html">
-												<li class="list-group-item"><span class="badge wode_ren_notifi">0</span><i class="fa fa-bell-o icon"></i> 我的任务
-												</li>
-											</a>
-											<a href="yeji_guanli/yeji_dai_shenhe.html">
-												<li class="list-group-item">
-													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
-												</li>
-											</a>
-											<a href="yeji_guanli/zuyuan_yeji.html">
-												<li class="list-group-item">
-													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
-												</li>
-											</a>
-											<a href="yeji_guanli/yeji.html">
-												<li class="list-group-item">
-													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
-												</li>
-											</a>
-											<a href="#">
-												<li class="list-group-item message">
-													敬请期待...
-												</li>
-											</a>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown profile">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
-								<ul class="dropdown-menu animated fadeInDown">
-									<li class="profile-img">
-										<img src="../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-									</li>
-									<li>
-										<div class="profile-info">
-											<h4 class="username"></h4>
-											<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
-											<div class="btn-group margin-bottom-2x" role="group">
-												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
-												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
-												<input type="file" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="pages/zhidu.html">
+                                <span class="icon fa fa-file-word-o"></span><span class="title">规章制度</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                <span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
+                            </a>
+                        </li>
+                        <li class="wode_renwu flag3">
+                            <a href="wode_renwu/renwu_index.html">
+                                <span class="icon fa fa-bell-o"></span><span class="title">日工作表</span>
+                            </a>
+                        </li>
+                        <li class="wode_renwu flag3">
+                            <a href="wode_renwu/yeji_renwu.html">
+                                <span class="icon fa fa-calendar-o"></span><span class="title">业绩任务</span>
+                            </a>
+                        </li>
+                        <li class="guanliceng_renwu flag3">
+                            <a href="wode_renwu/guanliceng_renwu.html">
+                                <span class="icon fa fa-bullhorn"></span><span class="title">管理层任务</span>
+                            </a>
+                        </li>
+                        <li class="panel panel-default dropdown hua_jia">
+                            <a data-toggle="collapse" href="#hua_jia">
+                                <span class="icon fa fa-balance-scale"></span><span class="title">划价系统</span>
+                            </a>
+                            <div id="hua_jia" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="hua_jia/yaopin_guanli.html">药品管理</a></li>
+                                        <!--<li class="temp"><a href="hua_jia/yaochang_guanli.html">药厂管理</a></li>-->
+                                        <!--<li class="temp"><a href="hua_jia/verifyHospMedicine.html">药品审核</a></li>-->
+                                        <!--<li><a href="hua_jia/listHospRecord.html">进药记录</a></li>-->
+                                        <li><a href="hua_jia/addPresc.html">添加协定方</a></li>
+                                        <!--<li><a href="hua_jia/listMecineRecord.html">处方单审核</a></li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown shezhi_renwu">
+                            <a data-toggle="collapse" href="#shezhi_renwu">
+                                <span class="icon fa fa-calendar-plus-o"></span><span class="title">设置任务</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="shezhi_renwu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="shezhi_renwu/renwu_index.html">每日任务</a></li>
+                                        <li><a href="shezhi_renwu/yeji_renwu.html">业绩任务</a></li>
+                                        <li><a href="shezhi_renwu/guanliceng_renwu.html">管理层任务</a></li>
 
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</nav>
-				<div id="sidebar" class="side-menu sidebar-inverse">
-					<nav class="navbar navbar-default" role="navigation">
-						<div class="side-menu-container">
-							<div class="navbar-header">
-								<a class="navbar-brand" href="#">
-									<div class="icon fa fa-paper-plane"></div>
-									<div class="title">感动自己,一定成功</div>
-								</a>
-								<button type="button" class="navbar-expand-toggle pull-right visible-xs">
-                                <i class="fa fa-times icon"></i>
-                            </button>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active">
-									<a href="index.html">
-										<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
-									</a>
-								</li>
-								<li class="wode_renwu">
-									<a href="wode_renwu/renwu_index.html">
-										<span class="icon fa fa-bell-o"></span><span class="title">日工作表</span>
-									</a>
-								</li>
-								<li class="shezhi_renwu">
-									<a href="shezhi_renwu/renwu_index.html">
-										<span class="icon fa fa-calendar-plus-o"></span><span class="title">设置任务</span>
-									</a>
-								</li>
-								<li class="renwu_jiancha">
-									<a href="kaohe/renwu_jiancha.html">
-										<span class="icon fa fa-binoculars"></span><span class="title">任务检查</span>
-									</a>
-								</li>
-								<li>
-									<a href="xinxi_guanli/tianjiayeji.html">
-										<span class="icon fa fa-plus-square-o"></span><span class="title">添加信息</span>
-									</a>
-								</li>
-								<!--<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-table">
-										<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
-									</a>
-									
-									<div id="dropdown-table" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="table/datatable.html">患者数据库</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>-->
-								<li class="panel panel-collapse dropdown meiri_renwu_box">
-									<a data-toggle="collapse" href="#meiri_renwu">
-										<span class="icon fa fa-bell"></span><span class="title">每日任务</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="meiri_renwu" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="meiri_renwu/lianjie.html">链接类</a>
-												</li>
-												<li>
-													<a href="meiri_renwu/shequ.html">社区类</a>
-												</li>
-												<li>
-													<a href="meiri_renwu/tongxun.html">通讯类</a>
-												</li>
-												<li>
-													<a href="meiri_renwu/zuyuan__shequ.html">组员社区</a>
-												</li>
-												<li>
-													<a href="meiri_renwu/zuyuan__tongxun.html">组员通讯</a>
-												</li>
-												<li>
-													<a href="meiri_renwu/zuyuan__lianjie.html">组员链接</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
+                                    </ul>
+                                </div>
+                            </div>
 
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
-										<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="xinxi_guanli/wode_xinxi.html">我的信息</a>
-												</li>
-												<li>
-													<a href="xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
-												</li>
-												<li>
-													<a href="xinxi_guanli/daishen_xinxi.html">待审信息</a>
-												</li>
-												<li>
-													<a href="xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
-												</li>
-												<li>
-													<a href="xinxi_guanli/lizhi_xinxi.html">离职信息</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
-										<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="xinxi_shenhe/dai_shenhe.html">待审核</a>
-												</li>
-												<li>
-													<a href="xinxi_shenhe/tongguo.html">通过</a>
-												</li>
-												<li>
-													<a href="xinxi_shenhe/wei_tonguo.html">未通过</a>
-												</li>
+                        </li>
+                        <!--<li class="renwu_jiancha">
+                            <a href="kaohe/renwu_jiancha.html">
+                                <span class="icon fa fa-binoculars"></span><span class="title">任务检查</span>
+                            </a>
+                        </li>-->
+                        <li class="panel panel-default dropdown renwu_jiancha">
+                            <a data-toggle="collapse" href="#renwu_jiancha">
+                                <span class="icon fa fa-binoculars"></span><span class="title">任务检查</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="renwu_jiancha" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li class="meiri_renwu_jiancha"><a href="kaohe/renwu_jiancha.html">每日任务</a></li>
+                                        <li class="flag3 yeji_renwu_jiancha"><a href="kaohe/yeji_renwu_jiancha.html">业绩任务</a>
+                                        <li class="flag3 yeji_renwu_jiancha"><a href="kaohe/yue_kaohe_list.html">月业绩任务</a>
+                                        </li>
+                                        <li class="flag3 yeji_renwu_jiancha"><a
+                                                href="kaohe/guanliceng_renwu_jiancha.html">管理层任务</a></li>
+                                        <li class="meiri_renwu_jiancha"><a href="kaohe/zongjie_jiancha.html">工作总结</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-											</ul>
-										</div>
-									</div>
-								</li>
+                        </li>
+                        <li class="flag3">
+                            <a href="xinxi_guanli/tianjiayeji.html">
+                                <span class="icon fa fa-plus-square-o"></span><span class="title">添加信息</span>
+                            </a>
+                        </li>
+                        <li class="panel panel-collapse dropdown meiri_renwu_box flag3">
+                            <a data-toggle="collapse" href="#meiri_renwu">
+                                <span class="icon fa fa-bell"></span><span class="title">每日任务</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="meiri_renwu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="meiri_renwu/lianjie.html">链接类</a>
+                                        </li>
+                                        <li>
+                                            <a href="meiri_renwu/shequ.html">社区类</a>
+                                        </li>
+                                        <li>
+                                            <a href="meiri_renwu/tongxun.html">通讯类</a>
+                                        </li>
+                                        <li>
+                                            <a href="meiri_renwu/zuyuan__shequ.html">组员社区</a>
+                                        </li>
+                                        <li>
+                                            <a href="meiri_renwu/zuyuan__tongxun.html">组员通讯</a>
+                                        </li>
+                                        <li>
+                                            <a href="meiri_renwu/zuyuan__lianjie.html">组员链接</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown flag3">
+                            <a data-toggle="collapse" href="#dropdown-xinxi-guanli">
+                                <span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="xinxi_guanli/wode_xinxi.html">我的信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_guanli/daishen_xinxi.html">待审信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_guanli/lizhi_xinxi.html">离职信息</a>
+                                        </li>
+                                        <li><a href="xinxi_guanli/xinxi_hongbao.html">信息红包</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown flag3">
+                            <a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
+                                <span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="xinxi_shenhe/dai_shenhe.html">待审核</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_shenhe/tongguo.html">通过</a>
+                                        </li>
+                                        <li>
+                                            <a href="xinxi_shenhe/wei_tonguo.html">未通过</a>
+                                        </li>
 
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#component-example">
-										<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="component-example" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="yeji_guanli/yeji_dai_shenhe.html">待审核</a>
-												</li>
-												<li>
-													<a href="yeji_guanli/zuyuan_yeji.html">组员业绩</a>
-												</li>
-												<li>
-													<a href="yeji_guanli/yeji.html">业绩信息</a>
-												</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
 
-											</ul>
-										</div>
-									</div>
+                        <!-- Dropdown-->
+                        <li class="panel panel-default dropdown flag3">
+                            <a data-toggle="collapse" href="#component-example">
+                                <span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="component-example" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="yeji_guanli/yeji_dai_shenhe.html">待审核</a>
+                                        </li>
+                                        <li>
+                                            <a href="yeji_guanli/zuyuan_yeji.html">组员业绩</a>
+                                        </li>
+                                        <li>
+                                            <a href="yeji_guanli/yeji.html">业绩信息</a>
+                                        </li>
+                                        <li><a href="tongji/yeji_bili.html">业绩比例</a></li>
+                                        <li><a href="yeji_guanli/yeji_jiangli.html">业绩奖励</a></li>
+                                    </ul>
+                                </div>
+                            </div>
 
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#tianjiayeji">
-										<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="tianjiayeji" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="tianjia_yeji/guahao.html">挂号费</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/goutong.html">沟通费</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/yizhu.html">医助</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/yuan_chu.html">远程(初诊)</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/yuan_fu.html">远程(复诊)</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/lai_chu.html">来院(初诊)</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/lai_fu.html">来院(复诊)</a>
-												</li>
-												<li>
-													<a href="tianjia_yeji/you_fu.html">邮寄复诊</a>
-												</li>
-											</ul>
-										</div>
-									</div>
+                        </li>
+                        <!-- Dropdown-->
+                        <li class="panel panel-default dropdown flag3">
+                            <a data-toggle="collapse" href="#tianjiayeji">
+                                <span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="tianjiayeji" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="tianjia_yeji/guahao.html">挂号费</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/goutong.html">沟通费</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/yizhu.html">接诊</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/yuan_chu.html">远程(初诊)</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/yuan_fu.html">远程(复诊)</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/lai_chu.html">来院(初诊)</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/lai_fu.html">来院复诊(来院)</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/you_fu.html">来院复诊(邮寄)</a>
+                                        </li>
+                                        <li>
+                                            <a href="tianjia_yeji/yuan_you_fu.html">远程复诊(来院)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
-								</li>
-								<!-- Dropdown-->
-								<li class="jituanjunBox">
-									<a href="jituanjun/jituanjun.html">
-										<span class="icon fa fa-flag"></span><span class="title">集团军</span>
-									</a>
-								</li>
-								<li class="kaohe">
-									<a href="kaohe/kaohe_weidabiao.html">
-										<span class="icon fa fa-exclamation-triangle"></span><span class="title">考核未达标列表</span>
-									</a>
-								</li>
-								<li class="panel panel-default dropdown tongjiBox">
-									<a data-toggle="collapse" href="#tongji">
-										<span class="icon fa fa-calculator"></span><span class="title">统计</span>
-									</a>
-									<div id="tongji" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="tongji/yeji_shenhe.html">业绩审核</a>
-												</li>
-												<li>
-													<a href="tongji/zhanqu_total.html">战区业绩和任务</a>
-												</li>
-												<li>
-													<!--<a href="tongji/qiandao_tongji.html">考勤统计</a>-->
-												</li>
-												<!--<li><a href="tongji/keshi_yeji.html">科室业绩审核</a></li>-->
-												<li>
-													<a href="tongji/menzheng.html">门诊业绩</a>
-												</li>
-												<li>
-													<a href="tongji/menzheng_total.html">门诊业绩总和</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-element">
-										<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-element" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="ui-kits/theming.html">主题</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-								<!-- Dropdown-->
-								<li class="panel panel-default dropdown">
-									<a data-toggle="collapse" href="#dropdown-example">
-										<span class="icon fa fa-slack"></span><span class="title">更多</span>
-									</a>
-									<!-- Dropdown level 1 -->
-									<div id="dropdown-example" class="panel-collapse collapse">
-										<div class="panel-body">
-											<ul class="nav navbar-nav">
-												<li>
-													<a href="login.html">注销登陆</a>
-												</li>
-												<li>
-													<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<!-- /.navbar-collapse -->
-					</nav>
-				</div>
+                        </li>
+                        <!-- Dropdown-->
+                        <li class="jituanjunBox">
+                            <a href="jituanjun/jituanjun.html">
+                                <span class="icon fa fa-flag"></span><span class="title">集团军</span>
+                            </a>
+                        </li>
+                        <li class="kaohe">
+                            <a href="kaohe/kaohe_weidabiao.html">
+                                <span class="icon fa fa-exclamation-triangle  "></span><span
+                                    class="title">考核未达标列表</span>
+                            </a>
+                        </li>
+                        <li class="kao_qing">
+                            <a href="kaohe/kao_qing.html">
+                                <span class="icon fa fa-calendar-check-o"></span><span class="title">考勤统计</span>
+                            </a>
+                        </li>
+                        <li class="panel panel-default dropdown tongjiBox">
+                            <a data-toggle="collapse" href="#tongji">
+                                <span class="icon fa fa-calculator"></span><span class="title">统计</span>
+                            </a>
+                            <div id="tongji" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="tongji/yeji_shenhe.html">业绩审核</a>
+                                        </li>
+                                        <li>
+                                            <a href="tongji/verifyDeparTreat.html">科室业绩</a>
+                                        </li>
+                                        <li>
+                                            <a href="tongji/yeji_bili.html">业绩比例</a>
+                                        </li>
+                                        <li>
+                                            <a href="tongji/tixian_tongji.html">提现统计</a>
+                                        </li>
+                                        <li><a href="tongji/xinxi_shenhe.html">信息提现审核</a></li>
+                                        <li><a href="tongji/tixian_shenhe.html">业绩提现审核</a></li>
+                                        <li><a href="hua_jia/listMedInvoice.html">发药审核</a></li>
+                                        <li>
+                                            <a href="tongji/zuyuan_liucun.html">组员留存</a>
+                                        </li>
+                                        <li><a href="tongji/zhanghu_ruzhang.html">账户收支</a></li>
+                                        <li>
+                                            <a href="tongji/zhanqu_total.html">战区业绩和任务</a>
+                                        </li>
+                                        <!--<li><a href="tongji/keshi_yeji.html">科室业绩审核</a></li>-->
+                                        <li>
+                                            <a href="tongji/menzheng.html">门诊业绩</a>
+                                        </li>
+                                        <li>
+                                            <a href="tongji/menzheng_total.html">门诊业绩总和</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="panel panel-default dropdown pai_hang_bang_Box">
+                            <a data-toggle="collapse" href="#pai_hang_bang">
+                                <span class="icon fa fa-area-chart"></span><span class="title">排行榜</span>
+                            </a>
+                            <div id="pai_hang_bang" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="pai_hang_bang/achieveRankList.html">信息排行榜</a></li>
+                                        <li><a href="pai_hang_bang/rankList.html">业绩排行榜</a></li>
+                                        <li><a href="pai_hang_bang/departRankList.html">科室排行榜</a></li>
+                                        <li><a href="pai_hang_bang/appointRankList.html">预约排行榜</a></li>
+                                        <li><a href="pai_hang_bang/hospNewRankList.html">预约来院排行榜</a></li>
+                                        <li><a href="pai_hang_bang/assistRankList.html">医助排行榜</a></li>
+                                        <li><a href="pai_hang_bang/onlineRankList.html">远程排行榜</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="zuyuan_guanli flag3">
+                            <a href="zuyuan_guanli/zuyuan_guanli.html">
+                                <span class="icon fa fa-users"></span><span class="title">组员管理</span>
+                            </a>
+                        </li>
+                        <li class="zuyuan_guanli huajia">
+                            <a href="doctor_assistant/addMedcineRecord.html">
+                                <span class="icon fa fa-balance-scale"></span><span class="title">划价</span>
+                            </a>
+                        </li>
+                        <li class="zuyuan_guanli flag3">
+                            <a href="hua_jia/medRecord.html">
+                                <span class="icon fa fa-adjust"></span><span class="title">发药</span>
+                            </a>
+                        </li>
+                        <li class="keshi_yeji flag3">
+                            <a href="jituanjun/keshi_total.html">
+                                <span class="icon fa fa-list-ol"></span><span class="title">科室业绩</span>
+                            </a>
+                        </li>
+                        <li class="zuyuan_guanli">
+                            <a href="huiyi_jilu/huiyi_jilu.html">
+                                <span class="icon fa fa-street-view"></span><span class="title">会议记录</span>
+                            </a>
+                        </li>
+                        <li class="zuyuan_guanli">
+                            <a href="zhanghao_guanli/zhanghao_guanli.html">
+                                <span class="icon fa fa-suitcase"></span><span class="title">账号管理</span>
+                            </a>
+                        </li>
+                        <li class="zhanqu_guanli">
+                            <a href="zhanqu_guanli/zhanqu_guanli.html">
+                                <span class="icon fa fa-key"></span><span class="title">战区管理</span>
+                            </a>
+                        </li>
+                        <li class="gongzuo_zongjie">
+                            <a href="gongzuo_zongjie/zuyuan_tianjia.html" class="lable0">
+                                <span class="icon fa fa-keyboard-o"></span><span class="title">工作总结</span>
+                            </a>
+                            <a href="gongzuo_zongjie/jingli_tianjia.html" class="lable1">
+                                <span class="icon fa fa-keyboard-o"></span><span class="title">工作总结</span>
+                            </a>
+                        </li>
+                        <!-- Dropdown-->
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-element">
+                                <span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-element" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="ui-kits/theming.html">主题</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Dropdown-->
+                        <li class="panel panel-default dropdown">
+                            <a data-toggle="collapse" href="#dropdown-example">
+                                <span class="icon fa fa-slack"></span><span class="title">更多</span>
+                            </a>
+                            <!-- Dropdown level 1 -->
+                            <div id="dropdown-example" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="login.html">注销登陆</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
 
-				<!-- Main Content -->
-				<div class="container-fluid">
-					<div class="side-body padding-top">
-						<div class="row">
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-								<a href="xinxi_guanli/wode_xinxi.html">
-									<div class="card red summary-inline">
-										<div class="card-body">
-											<i class="icon fa fa-inbox fa-4x"></i>
-											<div class="content">
-												<div class="title myMsg"></div>
-												<div class="sub-title">我的信息</div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" id="daishenMsg">
-								<a href="xinxi_shenhe/dai_shenhe.html">
-									<div class="card yellow summary-inline">
-										<div class="card-body">
-											<i class="icon fa fa-comments fa-4x"></i>
-											<div class="content">
-												<div class="title daishenMsg"></div>
-												<div class="sub-title">待审信息</div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-								<a href="xinxi_guanli/fangqi_xinxi.html">
-									<div class="card green summary-inline">
-										<div class="card-body">
-											<i class="icon fa fa-tags fa-4x"></i>
-											<div class="content">
-												<div class="title fangqiMsg"></div>
-												<div class="sub-title">放弃信息</div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-								<a href="xinxi_guanli/lizhi_xinxi.html">
-									<div class="card blue summary-inline">
-										<div class="card-body">
-											<i class="icon fa fa-share-alt fa-4x"></i>
-											<div class="content">
-												<div class="title lizhiMsg"></div>
-												<div class="sub-title">离职信息</div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="row  no-margin-bottom">
-							<div class="col-sm-6 col-xs-12">
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="card primary">
-											<div class="card-jumbotron no-padding">
-												<canvas id="jumbotron-line-chart" class="chart no-padding"></canvas>
-											</div>
-											<div class="card-body half-padding">
-												<h4 class="float-left no-margin font-weight-300">业绩曲线</h4>
-												<h2 class="float-right no-margin font-weight-300">¥3200(测试数据)</h2>
-												<div class="clear-both"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6 col-sm-12">
-										<div class="thumbnail no-margin-bottom">
-											<img src="../img/thumbnails/picjumbo.com_IMG_4566.jpg" class="img-responsive">
-											<div class="caption">
-												<h3 id="thumbnail-label">感动自己<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
-												<p>每天一句名言</p>
-												<p>
-													<a href="#" class="btn btn-primary" role="button">查看</a>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-12">
-										<div class="thumbnail no-margin-bottom">
-											<img src="../img/thumbnails/picjumbo.com_IMG_3241.jpg" class="img-responsive">
-											<div class="caption">
-												<h3 id="thumbnail-label">一定成功<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
-												<p>做更好的自己</p>
-												<p>
-													<a href="#" class="btn btn-success" role="button">查看</a>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6 col-xs-12">
-								<div class="row">
-									<div class="col-md-6 col-sm-12">
-										<div class="card primary">
-											<div class="card-jumbotron no-padding">
-												<canvas id="jumbotron-bar-chart" class="chart no-padding"></canvas>
-											</div>
-											<div class="card-body half-padding">
-												<h4 class="float-left no-margin font-weight-300">业绩图表(测试)</h4>
-												<div class="clear-both"></div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-6 col-sm-12">
-										<div class="card primary">
-											<div class="card-jumbotron no-padding">
-												<canvas id="jumbotron-line-2-chart" class="chart no-padding"></canvas>
-											</div>
-											<div class="card-body half-padding">
-												<h4 class="float-left no-margin font-weight-300">科室业绩曲线(测试)</h4>
-												<div class="clear-both"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card card-success">
-									<div class="card-header">
-										<div class="card-title">
-											<div class="title"><i class="fa fa-comments-o"></i>通知消息</div>
-										</div>
-										<div class="clear-both"></div>
-									</div>
-									<div class="card-body no-padding">
-										<ul class="message-list">
-											<a href="#">
-												<li>
-													<img src="../img/profile/profile-1.jpg" class="profile-img pull-left">
-													<div class="message-block">
-														<div><span class="message-datetime">通知</span>
-														</div>
-														<div class="message tips">注意事项:一定成功电脑版一个浏览器只能登陆一个账号!</div>
-													</div>
-												</li>
-											</a>
-											<a href="#">
-												<li>
-													<img src="../img/profile/profile-1.jpg" class="profile-img pull-left">
-													<div class="message-block">
-														<div>
-															</span> <span class="message-datetime">通知</span>
-														</div>
-														<div class="message2 tips">去大理!</div>
-													</div>
-												</li>
-											</a>
+        <!-- Main Content -->
+        <div class="container-fluid">
+            <div class="side-body padding-top">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <a href="xinxi_guanli/wode_xinxi.html">
+                            <div class="card red summary-inline">
+                                <div class="card-body">
+                                    <i class="icon fa fa-inbox fa-4x"></i>
+                                    <div class="content">
+                                        <div class="title myMsg"></div>
+                                        <div class="sub-title">我的信息</div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" id="daishenMsg">
+                        <a href="xinxi_shenhe/dai_shenhe.html">
+                            <div class="card yellow summary-inline">
+                                <div class="card-body">
+                                    <i class="icon fa fa-comments fa-4x"></i>
+                                    <div class="content">
+                                        <div class="title daishenMsg"></div>
+                                        <div class="sub-title">待审信息</div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <a href="xinxi_guanli/fangqi_xinxi.html">
+                            <div class="card green summary-inline">
+                                <div class="card-body">
+                                    <i class="icon fa fa-tags fa-4x"></i>
+                                    <div class="content">
+                                        <div class="title fangqiMsg"></div>
+                                        <div class="sub-title">放弃信息</div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <a href="xinxi_guanli/lizhi_xinxi.html">
+                            <div class="card blue summary-inline">
+                                <div class="card-body">
+                                    <i class="icon fa fa-share-alt fa-4x"></i>
+                                    <div class="content">
+                                        <div class="title lizhiMsg"></div>
+                                        <div class="sub-title">离职信息</div>
+                                    </div>
+                                    <div class="clear-both"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row  no-margin-bottom">
+                    <div class="col-sm-6 col-xs-12">
+                        <div id="calendar" v-cloak>
+                            <!-- 年份 月份 -->
+                            <div style="width:100%;text-align: center;">
+                                <select id="doctor" title="医生"
+                                        @change="selectDoctor">
+                                    <optgroup label="请选择医生" >
+                                        <option v-for="docotor in doctors" :value="docotor.doctorId">{{docotor.doctorName}}</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="month" v-if="toggle">
+                                <ul>
+                                    <!--点击会触发pickpre函数，重新刷新当前日期 @click(vue v-on:click缩写) -->
+                                    <li class="arrow" @click="pickPre(currentYear,currentMonth)">❮</li>
+                                    <li class="year-month">
+                                        <span class="choose-year">{{ currentYear }}</span>
+                                        <span class="choose-month">{{ currentMonth }}月</span>
+                                    </li>
+                                    <li class="arrow" @click="pickNext(currentYear,currentMonth)">❯</li>
+                                </ul>
+                            </div>
+                            <!-- 星期 -->
+                            <ul class="weekdays" v-if="toggle">
+                                <li>一</li>
+                                <li>二</li>
+                                <li>三</li>
+                                <li>四</li>
+                                <li>五</li>
+                                <li style="color:red">六</li>
+                                <li style="color:red">日</li>
+                            </ul>
+                            <!-- 日期 -->
+                            <ul class="days" v-if="toggle">
+                                <!-- v-for循环 每一次循环用<li>标签创建一天 -->
+                                <li v-for="dayobject in days" style="height: 120px;">
+                                    <!--本月-->
+                                    <!--如果不是本月  改变类名加灰色-->
 
-											<a href="#" id="message-load-more">
-												<li class="text-center load-more">
-													<i class="fa fa-refresh"></i> 加载更多
-												</li>
-											</a>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<footer class="app-footer">
-				<div class="wrapper">
-					<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
-					<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
-					<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
-				</div>
-			</footer>
+                                    <span v-if="dayobject.day.getMonth()+1 != currentMonth"
+                                          class="other-month">{{ dayobject.day.getDate() }}</span>
 
-			<!-- Javascript Libs -->
-			<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
-			<script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="../lib/js/Chart.min.js"></script>
-			<script type="text/javascript" src="../lib/js/bootstrap-switch.min.js"></script>
-			<script type="text/javascript" src="../lib/js/jquery.matchHeight-min.js"></script>
-			<script type="text/javascript" src="../lib/js/jquery.dataTables.min.js"></script>
-			<script type="text/javascript" src="../lib/js/dataTables.bootstrap.min.js"></script>
-			<script type="text/javascript" src="../lib/js/select2.full.min.js"></script>
-			<script type="text/javascript" src="../lib/js/ace/ace.js"></script>
-			<script type="text/javascript" src="../lib/js/ace/mode-html.js"></script>
-			<script type="text/javascript" src="../lib/js/ace/theme-github.js"></script>
-			<!--<script type="text/javascript" src="../lib/js/echarts.min.js"></script>-->
-			<!-- Javascript -->
-			<script>
-				var expireTime = 7 * 24 * 60 * 60 * 1000; //过期时间7天
-				if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
-					var session_login = JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
-					if(new Date().getTime() - session_login.timstamp > expireTime) {
-						localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+                                    <!--如果是本月  还需要判断是不是这一天-->
+                                    <span v-else>
+          <!--今天  同年同月同日-->
+                <span v-if="dayobject.day.getFullYear() == new Date().getFullYear() && dayobject.day.getMonth() == new Date().getMonth() && dayobject.day.getDate() == new Date().getDate()"
+                      class="active">{{ dayobject.day.getDate() }}</span>
+                <span v-else>{{ dayobject.day.getDate() }}</span>
+            </span>
+                                    <!--显示剩余多少数量-->
+                                    <!--<p v-if="leftobj[dayobject.index]">剩余：<span style="color: red">{{leftobj[dayobject.index].count}}</span>
+                                    </p>-->
+                                    <!---->
+                                    <br>
+                                    <!--<button @click="setDoctRest(dayobject)" class="btn btn-danger" v-if="canset&&leftobj[dayobject.index]">休息</button>-->
+                                    <button @click="order(dayobject)" class="btn btn-primary" v-if="dayobject.day.getFullYear() == new Date().getFullYear() && dayobject.day.getMonth() == new Date().getMonth() && dayobject.day.getDate() == new Date().getDate()||dayobject.day.getTime()>new Date().getTime()&&dayobject.day.getTime()<=Date.parse(new Date())+2592000000">预约</button>
+                                </li>
+                            </ul>
 
-						window.location.href = "login.html";
-					}
-				} else if(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
-					session_login = JSON.parse(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo"));
-				} else {
-					window.location.href = "login.html";
-				}
-				//鉴权
-				var roleId = session_login.info.roleId;
-				if(roleId == "1") {
-					$(".zuyuan_yeji").parent().css("display", "none");
-					$("#component-example ul").children("li").eq("1").css("display", "none");
-					$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display", "none");
-					$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display", "none");
-					$("#meiri_renwu ul").children("li").eq("3").css("display", "none");
-					$("#meiri_renwu ul").children("li").eq("4").css("display", "none");
-					$("#meiri_renwu ul").children("li").eq("5").css("display", "none");
-//					$(".meiri_renwu_box").css("display", "none");
-					$(".jituanjunBox").css("display", "none");
-				}
-				if(session_login.info.groupId == "0") {
-					$(".jituanjunBox").css("display", "none");
-				}
-				/*if(roleId != "1") {
-					$("#meiri_renwu ul").children("li").eq("0").css("display", "none");
-					$("#meiri_renwu ul").children("li").eq("1").css("display", "none");
-					$("#meiri_renwu ul").children("li").eq("2").css("display", "none");
-				}*/
-				if(roleId != "5") {
-					$(".tongjiBox").css("display", "none");
-				}
-				if(roleId != "3") {
-					$(".shezhi_renwu").css("display", "none");
-				}
-				if(roleId != "6") {
-					$(".kaohe").css("display", "none");
-				}
-				if(roleId != "4") {
-					$(".renwu_jiancha").css("display", "none");
-				}
-				if(roleId == "3") {
-					$(".wode_renwu").css("display", "none");
-					$(".jituanjunBox").css("display", "block");
-					$(".jituanjunBox a").attr("href", "jituanjun/jituanjun_list.html");
-					$(".tongjiBox").css("display", "block");
-					$(".kaohe").css("display", "block");
-					$(".renwu_jiancha").css("display", "block");
-				}
-			</script>
-			<script type="text/javascript" src="../js/app.js"></script>
-			<script type="text/javascript" src="../js/config.js"></script>
-			<script type="text/javascript" src="../js/index.js"></script>
-			<script type="text/javascript" src="../js/themings.js"></script>
-			<script type="text/javascript">
-				$(function() {
-					//退出
-					$(".logout").on("click", function() {
-						$.ajax({
-							type: "post",
-							url: config.rootUrl + "user/logout.do",
-							async: true,
-							data: {
-								userId: session_login.info.userId
-							},
-							success: function(data) {
-								if(window.location.pathname == "/ydcgweb/html/index.html") {
-									window.location.href = "login.html";
+                            <div id="appointList" v-else="toggle">
+                                <div class="month">
+                                    <ul>
+                                        <li class="arrow" @click="changeToggle">❮</li>
+                                        <li class="year-month" @click="changeToggle">
+                                            <span>{{ date }}</span>
+                                        </li>
+                                        <li v-if="canset&&!rest"><button @click="setDoctRest()" class="btn btn-danger" style="height: 100%; margin-top: 0;padding: 20px;" >设置休息</button></li>
+                                        <li v-if="canset&&rest"><button @click="setDoctRest()" class="btn btn-danger" style="height: 100%; margin-top: 0;padding: 20px;" >取消休息</button></li>
+                                        <li v-if="!canset&&rest"><button class="btn btn-primary" style="height: 100%; margin-top: 0;padding: 20px;" >休息中...</button></li>
+                                        <li v-if="!canset&&!rest"></li>
+                                    </ul>
+                                </div>
+                                <ul class="times">
+                                    <!-- v-for循环 每一次循环用<li>标签创建一天 -->
+                                    <li v-if="!rest" v-for="time in times" class="time_item" :class="{time_item_acitve:!time['patientName']}">
+                                        <!--本月-->
+                                        <span class="time">{{ time.time }}</span>
+                                        <!--显示患者姓名-->
+                                        <p v-if="time['status']=='appoint'&&!rest" class="noRecive">
+                                            <span style="color: red">{{time.patientName | mask(time.userId)}}</span>
+                                            <br>
+                                            <button class="btn btn-danger" v-if="self(time.userId)" @click="see(time.dsId)">查看</button>
+                                        </p>
+                                        <p v-if="time['status']=='unappoint'&&!rest&&delay(time.appoinTime)"><button class="btn btn-success" @click="appoint(time.dsId)">预约</button></p>
+                                    </li>
+                                    <li v-if="rest" v-for="time in restArr" class="time_item">
+                                        <span class="time">{{ time }}</span>
+                                        <p style="color:red;">医生休息</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 list_lh" v-cloak>
+                        <ul>
+                            <li v-for="(item,index) in items">
+                                <p><a>患者：{{item.patientName|mask}}</a><a  class="btn_lh">成功</a><em>预约</em></p>
+                                <p><a class="a_blue">医生：{{item.doctorName}}</a><span>{{item.appoinTime | toLocalTime}}</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <div class="title"><i class="fa fa-comments-o"></i>通知消息</div>
+                                </div>
+                                <div class="clear-both"></div>
+                            </div>
+                            <div class="card-body no-padding">
+                                <ul class="message-list">
+                                    <a href="#">
+                                        <li>
+                                            <img src="../img/profile/profile-1.jpg"
+                                                 class="profile-img personImg pull-left">
+                                            <div class="message-block">
+                                                <div><span class="message-datetime">注意事项</span>
+                                                </div>
+                                                <div class="message">注意事项:一定成功电脑版一个浏览器只能登陆一个账号!</div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li>
+                                            <img src="../img/profile/profile-1.jpg"
+                                                 class="profile-img personImg pull-left">
+                                            <div class="message-block">
+                                                <div>
+                                                    </span> <span class="message-datetime">公司通知</span>
+                                                </div>
+                                                <div class="message2"></div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li>
+                                            <img src="../img/profile/profile-1.jpg"
+                                                 class="profile-img teamImg pull-left">
+                                            <div class="message-block">
+                                                <div>
+                                                    </span> <span class="message-datetime">战区口号</span>
+                                                </div>
+                                                <div class="message3"></div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+            期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div class="modal fade" id="swt"  role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">{{title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form v-show="cancel">
+                        <div class="form-group">
+                            <label  class="control-label">1:医院</label>
+                            <input type="text"  class="form-control" disabled="disabled"  :value="info.hospName">
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label">2:医生</label>
+                            <input type="text"  class="form-control" disabled="disabled" :value="info.doctorName">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">3:时间</label>
+                            <input type="text"  class="form-control" disabled="disabled" :value="time">
+                        </div>
+                        <div class="form-group">
+                            <label  class="control-label">4:就诊方式</label>
+                            <input type="text"  class="form-control" disabled="disabled" :value="info.type| type">
+                        </div>
+                    </form>
+                    <form v-show="!cancel">
+                        <div class="form-group">
+                            <label for="patientName" class="control-label">1:患者姓名?</label>
+                            <input type="text"  class="form-control"  id="patientName">
+                            <input type="hidden"  id="dsId">
+                        </div>
+                        <div class="form-group">
+                            <label for="patientPhone" class="control-label">2:患者手机号?</label>
+                            <input type="number"  class="form-control" id="patientPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="dId" class="control-label">3:疾病?</label>
+                            <br>
+                            <select id="dId"  title="疾病" aria-describedby="basic-addon1">
+                                <optgroup label="请选择疾病" class="doctor">
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="treatId" class="control-label">4:治疗方式?</label>
+                            <br>
+                            <select id="treatId"  title="治疗方式" aria-describedby="basic-addon1">
+                                <optgroup label="请选择治疗方式" class="doctor">
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="control-label">5:就诊方式?</label>
+                            <br>
+                            <select id="type"  style="width:30%" title="就诊方式" aria-describedby="basic-addon1">
+                                <optgroup label="请选择就诊方式" class="doctor">
+                                    <option value="0">面诊</option>
+                                    <option value="1">视频</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="text-align:center;">
+                    <button type="button" style="width:100%;" class="btn btn-lg btn-danger" v-if="cancel" @click="cancelAppoint">取消预约</button>
+                    <button type="button" style="width:100%;" class="btn btn-lg btn-success" v-else="cancel" @click="appoint">预约</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript Libs -->
+    <script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../lib/js/select2.full.min.js"></script>-->
+    <script type="text/javascript" src="../lib/js/jquery.mloading.js"></script>
+    <!-- Javascript -->
+    <script>
+        $(document).ready(function(){
+            $('.list_lh li:even').addClass('lieven');
+        })
+        $(function(){
+            $("div.list_lh").myScroll({
+                speed:40, //数值越大，速度越慢
+                rowHeight:68 //li的高度
+            });
+        });
+        var expireTime = 7 * 24 * 60 * 60 * 1000; //过期时间7天
+        if (localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+            var session_login = JSON.parse(localStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+            if (new Date().getTime() - session_login.timstamp > expireTime) {
+                localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+                window.location.href = "login.html";
+            }
+        } else if (sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+            session_login = JSON.parse(sessionStorage.getItem("yi_ding_cheng_gong_loginInfo"));
+        } else {
+            window.location.href = "login.html";
+        }
+        //鉴权
+        var roleId = session_login.info.roleId;
+        if (roleId == "1") {
+            $(".zuyuan_yeji").parent().css("display", "none");
+            $("#component-example ul").children("li").eq("1").css("display", "none");
+            $("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display", "none");
+            $("#dropdown-xinxi-shenhe").parent(".dropdown").css("display", "none");
+            $("#meiri_renwu ul").children("li").eq("3").css("display", "none");
+            $("#meiri_renwu ul").children("li").eq("4").css("display", "none");
+            $("#meiri_renwu ul").children("li").eq("5").css("display", "none");
+            $(".jituanjunBox").css("display", "none");
+            $(".zuyuan_guanli").css("display", "none");
+            $(".guanliceng_renwu").css("display", "none");
+            $(".keshi_yeji").css("display", "none");
+        }
+        //科长
+        if (roleId == 1 && session_login.info.grade == 2) {
+            $(".keshi_yeji").css("display", "block");
+            $(".huajia").css("display", "block");
+            $(".guanliceng_renwu").css("display", "block");
+        }
+        if (session_login.info.roleId != "2") {
+            $(".zhanqu_guanli").css("display", "none");
+        }
+        if (session_login.info.groupId == "0") {
+            $(".jituanjunBox").css("display", "none");
+        }
+        if (session_login.info.label == "1") {
+            $(".lable0").css("display", "none");
+        } else {
+            $(".lable1").css("display", "none");
+        }
+        if (roleId != "3") {
+            $(".shezhi_renwu").css("display", "none");
+        }
 
-								} else {
-									window.location.href = "../login.html";
+        if (roleId != "4") {
+            $(".renwu_jiancha").css("display", "none");
+        }
+        if (roleId == "4") {
+            $(".lable0").css("display", "none");
+            $(".lable1").css("display", "none");
+            $(".huajia").css("display", "none");
+            $(".notifications").css("display", "none");
+        }
+        if (roleId != "1" & roleId != "2") {
+            $(".flag3").css("display", "none");
+        }
+        $(".temp").css("display", "none");
+        if (roleId != "5") {
+            $(".tongjiBox").css("display", "none");
+            $(".hua_jia").css("display", "none");
+            $(".kao_qing").css("display", "none");
+        }
+        if (roleId == "5") {
+            $(".lable0").css("display", "none");
+            $(".lable1").css("display", "none");
+            $(".renwu_jiancha").css("display", "block");
+            $(".meiri_renwu_jiancha").css("display", "none");
+            $(".notifications").css("display", "none");
+            $(".yeji_renwu_jiancha").css("display", "block");
+            $(".huajia").css("display", "none");
+        }
+        if (roleId != "6") {
+            $(".kaohe").css("display", "none");
+        }
+        if (roleId == "6") {
+            $(".lable0").css("display", "none");
+            $(".lable1").css("display", "none");
+            $(".huajia").css("display", "none");
+            $(".notifications").css("display", "none");
+            $(".renwu_jiancha").css("display", "block");
+            $(".meiri_renwu_jiancha").css("display", "block");
+            $(".yeji_renwu_jiancha").css("display", "block");
+        }
+        if (roleId == "3") {
+            $(".lable0").css("display", "none");
+            $(".lable1").css("display", "none");
+            $(".wode_renwu").css("display", "none");
+            $(".notifications").css("display", "none");
+            $(".jituanjunBox").css("display", "block");
+            $(".jituanjunBox a").attr("href", "jituanjun/jituanjun_list.html");
+            $(".tongjiBox").css("display", "block");
+            $(".kaohe").css("display", "block");
+            $(".renwu_jiancha").css("display", "block");
+            $(".yeji_renwu_jiancha").css("display", "block");
+        }
+        if (session_login.info.userName == "scss10002") {
+            $(".hua_jia").css("display", "block");
+            $(".temp").css("display", "block");
+        }
+    </script>
+    <script type="text/javascript" src="../js/config.js"></script>
+    <script type="text/javascript" src="../js/themings.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script type="text/javascript" src="../js/getBaseData.js"></script>
+    <script type="text/javascript" src="../js/scroll.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#swt").on("shown.bs.modal", function(){
+                $('#dId').select2({dropdownParent:$("#swt"),val:""});
+                $('#treatId').select2({dropdownParent:$("#swt"),val:""});
+                $('#type').select2({dropdownParent:$("#swt"),val:""});
+            })
+            //退出
+            $(".logout").on("click", function () {
+                /*$.ajax({
+                    type: "post",
+                    url: config.rootUrl + "user/logout.do",
+                    async: true,
+                    data: {
+                        userId: session_login.info.userId
+                    },
+                    success: function (data) {
+                        if (window.location.pathname == "/ydcgweb/html/index.html") {
+                            window.location.href = "login.html";
 
-								}
+                        } else {
+                            window.location.href = "../login.html";
 
-								localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
-							},
-							error: function(data) {
-								alert(data);
-							}
+                        }
 
-						});
+                        localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
 
-					})
-					//个人信息
-					var username = session_login.info.realName;
-					$(".username").text(username);
-					var grade = session_login.info.grade;
-					var roleId = session_login.info.roleId;
-					switch(roleId) {
-						case 1:
-							if(grade == 2) {
-								$(".role").text("科长");
-							} else {
-								$(".role").text("组员");
-							}
-							break;
-						case 2:
-							$(".role").text("经理");
-							break;
-						case 3:
-							$(".role").text("董事");
-							break;
-						case 4:
-							$(".role").text("行政");
-							break;
-						case 5:
-							$(".role").text("会计");
-							break;
-						case 6:
-							$(".role").text("人事");
-							break;
-					}
+                });*/
+                if (window.location.pathname == "/ydcgweb/html/index.html") {
+                    window.location.href = "login.html";
+                } else {
+                    window.location.href = "../login.html";
+                }
+                if (localStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+                    localStorage.removeItem("yi_ding_cheng_gong_loginInfo");
 
-					var teamName = session_login.info.teamName;
-					$(".teamName").text(teamName);
-					var headimg = session_login.info.headImage;
-					$(".profile-img").attr("src", headimg);
-					$(".headimg_exchange").on("click", function(e) {
-						e.preventDefault();
-						$("#headimg_exchange").trigger("click");
-					})
-					//头像上传开始
-					var input = document.getElementById("headimg_exchange"); //获取选择图片的input元素 
-					//这边是判断本浏览器是否支持这个API。 
-					if(typeof FileReader === 'undefined') {
-						alert("浏览器版本过低，请先更新您的浏览器~");
-						input.setAttribute('disabled', 'disabled');
-					} else {
-						input.addEventListener('change', readFile, false);
+                } else if (sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")) {
+                    sessionStorage.removeItem("yi_ding_cheng_gong_loginInfo");
+                }
 
-						//如果支持就监听改变事件，一旦改变了就运行readFile函数。 
-					}
+            })
+            //个人信息
+            var username = session_login.info.realName;
+            $(".username").text(username);
+            var grade = session_login.info.grade;
+            var roleId = session_login.info.roleId;
+            switch (roleId) {
+                case 1:
+                    if (grade == 2) {
+                        $(".role").text("科长");
+                    } else {
+                        $(".role").text("组员");
+                    }
+                    break;
+                case 2:
+                    if (session_login.info.groupId != 0) {
+                        $(".role").text(session_login.info.groupName);
+                    } else {
+                        $(".role").text("经理");
+                    }
+                    break;
+                case 3:
+                    $(".role").text("董事");
+                    break;
+                case 4:
+                    $(".role").text("行政");
+                    break;
+                case 5:
+                    $(".role").text("会计");
+                    break;
+                case 6:
+                    $(".role").text("人事");
+                    break;
+            }
 
-					function readFile() {
-						var file = this.files[0]; //获取file对象 
-						//判断file的类型是不是图片类型。 
-						if(!/image\/\w+/.test(file.type)) {
-							alert("请上传一张图片~");
-							return false;
-						}
+            var teamName = session_login.info.teamName;
+            if (session_login.info.groupId != 0) {
+                $(".teamName").text("总经理");
+            } else {
+                $(".teamName").text(teamName);
+            }
+            var headimg = session_login.info.headImage;
+            $(".personImg").attr("src", headimg);
+            $(".headimg_exchange").on("click", function (e) {
+                e.preventDefault();
+                $("#headimg_exchange").trigger("click");
+            })
+            //头像上传开始
+            var input = document.getElementById("headimg_exchange"); //获取选择图片的input元素
+            //这边是判断本浏览器是否支持这个API。
+            if (typeof FileReader === 'undefined') {
+                alert("浏览器版本过低，请先更新您的浏览器~");
+                input.setAttribute('disabled', 'disabled');
+            } else {
+                input.addEventListener('change', readFile, false);
 
-						var reader = new FileReader(); //声明一个FileReader实例 
-						reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件 
-						//最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片 
-						reader.onload = function(e) {
-							// 创建一个新增的图片和文字input 
-							$(".profile-img img").attr("src", this.result);
-							uploadHead(this.result);
-						}
-					}
-					//上传头像图片 
-					function uploadHead(imgPath) {
-						var image = new Image();
-						image.src = imgPath;
-						image.onload = function() {
-							console.log('开始上传...');
-							var imgData = getBase64Image(image);
-							//						imgPath.replace("data:image/png;base64,", "");
-							/*在这里调用上传接口*/
-							$.ajax({
-								url: config.rootUrl + "user/saveImageUrl.do",
-								data: {
-									headImage: imgData
-								},
-								async: true,
-								type: 'post',
-								success: function(data) {
-									console.log(data);
-									$.ajax({
-										url: config.rootUrl + "user/uploadUserHead.do",
-										data: {
-											userId: session_login.info.userId,
-											deviceToken: "html5",
-											deviceType: "html5",
-											userHead: data.absolutePath,
-										},
-										async: true,
-										type: 'post',
-										success: function(data) {
-											//											alert(data.msg);
-											alert('上传成功,请退出登录查看');
-										},
-										error: function(xhr, type, errorThrown) {
-											alert('网络异常，请稍后再试！');
-										}
-									});
+                //如果支持就监听改变事件，一旦改变了就运行readFile函数。
+            }
 
-								},
-								error: function(xhr, type, errorThrown) {
-									alert('网络异常，请稍后再试！');
-								}
-							});
-						}
-					}
-					//将图片压缩转成base64 
-					function getBase64Image(img) {
-						var canvas = document.createElement("canvas");
-						var width = img.width;
-						var height = img.height;
-						// 计算宽高
-						if(width > height) {
-							if(width > 300) {
-								height = Math.round(height *= 300 / width);
-								width = 300;
-							}
-						} else {
-							if(height > 300) {
-								width = Math.round(width *= 300 / height);
-								height = 300;
-							}
-						}
-						canvas.width = width; /*设置新的图片的宽度*/
-						canvas.height = height; /*设置新的图片的长度*/
-						var ctx = canvas.getContext("2d");
-						ctx.drawImage(img, 0, 0, width, height); /*绘图*/
-						var dataURL = canvas.toDataURL("image/png", 0.8);
-						return dataURL.replace("data:image/png;base64,", "");
-					}
-					//获取通知内容
-					$.ajax({
-						url: config.rootUrl + "user/getSelfWallet.do",
-						data: {
-							userId: session_login.info.userId,
-							deviceToken: "html5",
-							deviceType: "html5",
-						},
-						async: true,
-						type: 'post',
-						success: function(data) {
-							$("marquee").text(data.info.taskAward);
-							$(".message2").text(data.info.taskAward);
-						},
-						error: function(xhr, type, errorThrown) {
-							alert('网络异常，请稍后再试！');
-						}
-					});
-					//我的信息					
-					$.ajax({
-						url: config.rootUrl + "user/getSelfAppoint.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							var info = data.patCount || 0;
-							$(".myMsg").text(info);
-						},
-						error: function() {
-							alert("网络错误");
+            function readFile() {
+                var file = this.files[0]; //获取file对象
+                //判断file的类型是不是图片类型。
+                if (!/image\/\w+/.test(file.type)) {
+                    alert("请上传一张图片~");
+                    return false;
+                }
 
-						}
-					})
-					//待审信息
-					$.ajax({
-						url: config.rootUrl + "user/getVerifyAppoint.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							status: "verify",
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							if(data.code == 1) {
-								var info = data.info.length == 0 ? 0 : data.pageCount;
-								$(".daishenMsg").text(info);
-							} else {
-								$("#daishenMsg").css("display", "none");
-							}
+                var reader = new FileReader(); //声明一个FileReader实例
+                reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件
+                //最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片
+                reader.onload = function (e) {
+                    // 创建一个新增的图片和文字input
+                    $(".profile-img img").attr("src", this.result);
+                    uploadHead(this.result);
+                }
+            }
 
-						},
-						error: function() {
-							alert("网络错误");
+            //上传头像图片
+            function uploadHead(imgPath) {
+                var image = new Image();
+                image.src = imgPath;
+                image.onload = function () {
+                    console.log('开始上传...');
+                    var imgData = getBase64Image(image);
+                    //						imgPath.replace("data:image/png;base64,", "");
+                    /*在这里调用上传接口*/
+                    $.ajax({
+                        url: config.rootUrl + "user/saveImageUrl.do",
+                        data: {
+                            headImage: imgData
+                        },
+                        async: true,
+                        type: 'post',
+                        success: function (data) {
+                            console.log(data);
+                            $.ajax({
+                                url: config.rootUrl + "user/uploadUserHead.do",
+                                data: {
+                                    userId: session_login.info.userId,
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userHead: data.absolutePath,
+                                },
+                                async: true,
+                                type: 'post',
+                                success: function (data) {
+                                    //											alert(data.msg);
+                                    alert('上传成功,请退出登录查看');
+                                },
+                                error: function (xhr, type, errorThrown) {
+                                    console.log('网络异常，请稍后再试！');
+                                }
+                            });
 
-						}
-					})
-					//放弃信息fangqiMsg
-					$.ajax({
-						url: config.rootUrl + "user/quitListAppoint.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							userId: session_login.info.userId,
-							memberId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							var info = data.info.length == 0 ? 0 : data.pageCount;
-							$(".fangqiMsg").text(info);
-						},
-						error: function() {
-							alert("网络错误");
+                        },
+                        error: function (xhr, type, errorThrown) {
+                            console.log('网络异常，请稍后再试！');
+                        }
+                    });
+                }
+            }
 
-						}
-					})
-					//离职信息lizhiMsg
-					$.ajax({
-						url: config.rootUrl + "user/leaveMemberAppoint.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							var info = data.info.length == 0 ? 0 : data.pageCount;
-							$(".lizhiMsg").text(info);
-						},
-						error: function() {
-							alert("网络错误");
+            //将图片压缩转成base64
+            function getBase64Image(img) {
+                var canvas = document.createElement("canvas");
+                var width = img.width;
+                var height = img.height;
+                // 计算宽高
+                if (width > height) {
+                    if (width > 300) {
+                        height = Math.round(height *= 300 / width);
+                        width = 300;
+                    }
+                } else {
+                    if (height > 300) {
+                        width = Math.round(width *= 300 / height);
+                        height = 300;
+                    }
+                }
+                canvas.width = width;
+                /*设置新的图片的宽度*/
+                canvas.height = height;
+                /*设置新的图片的长度*/
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+                /*绘图*/
+                var dataURL = canvas.toDataURL("image/png", 0.8);
+                return dataURL.replace("data:image/png;base64,", "");
+            }
 
-						}
-					})
-					//提示信息总数totalMsg;
-					$(".totalMsg").text(0);
-					var totalNow = 0;
-					//待审核业绩dai_shen_yeji
-					$.ajax({
-						url: config.rootUrl + "user/getSelfTreat.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							status: "verify",
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							if(data.code == 1) {
-								var info = data.info.length == 0 ? 0 : data.pageCount;
-								$(".dai_shen_yeji").text(info);
-								totalNow += info;
-								$(".totalMsg").text(totalNow);
-							} else {
-								$(".dai_shen_yeji").parent().css("display", "none");
-							}
+            //获取通知内容
+            $.ajax({
+                url: config.rootUrl + "user/getSelfWallet.do",
+                data: {
+                    userId: session_login.info.userId,
+                    deviceToken: "html5",
+                    deviceType: "html5",
+                },
+                async: true,
+                type: 'post',
+                success: function (data) {
+                    $("marquee").text(data.info.taskAward);
+                    $(".message2").text(data.info.taskAward);
+                },
+                error: function (xhr, type, errorThrown) {
+                    console.log('网络异常，请稍后再试！');
+                }
+            });
 
-						},
-						error: function() {
-							alert("网络错误");
-
-						}
-					})
-					//组员业绩zuyuan_yeji
-					if(roleId != "1") {
-						$.ajax({
-							url: config.rootUrl + "user/getTreatList.do",
-							data: {
-								deviceToken: "html5",
-								deviceType: "html5",
-								status: "verify",
-								userId: session_login.info.userId,
-								page: "1",
-								rows: "1",
-							},
-							async: true,
-							type: "post",
-							success: function(data) {
-								if(data.code == 1) {
-									var info = data.info.length == 0 ? 0 : data.pageCount;
-									$(".zuyuan_yeji").text(info);
-									totalNow += info;
-									$(".totalMsg").text(totalNow);
-								} else {
-									$(".zuyuan_yeji").parent().css("display", "none");
-									$("#component-example ul").children("li").eq("1").css("display", "none");
-									$("#dropdown-xinxi-guanli ul").children("li").eq("1").css("display", "none");
-									$("#dropdown-xinxi-shenhe").parent(".dropdown").css("display", "none");
-								}
-
-							},
-							error: function() {
-								alert("网络错误");
-
-							}
-						})
-					}
-
-					//我的业绩wode_yeji
-					$.ajax({
-						url: config.rootUrl + "user/getSelfTreat.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							status: "notverify",
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							var info = data.info.length == 0 ? 0 : data.pageCount;
-							$(".wode_yeji").text(info);
-							totalNow += info;
-							$(".totalMsg").text(totalNow);
-						},
-						error: function() {
-							alert("网络错误");
-
-						}
-					})
-					//我的任务
-					$.ajax({
-						url: config.rootUrl + "user/listTeamTask.do",
-						data: {
-							deviceToken: "html5",
-							deviceType: "html5",
-							teamId: session_login.info.teamId,
-							userId: session_login.info.userId,
-							page: "1",
-							rows: "1",
-						},
-						async: true,
-						type: "post",
-						success: function(data) {
-							var info = data.info.length == 0 ? 0 : data.pageCount;
-							$(".wode_ren_notifi").text(info);
-							totalNow += info;
-							$(".totalMsg").text(totalNow);
-
-						},
-						error: function() {
-							alert("网络错误");
-
-						}
-					})
-				});
-			</script>
-	</body>
+            //战区头像口号
+            $.ajax({
+                url: config.rootUrl + "user/getTeamData.do",
+                data: {
+                    deviceToken: "html5",
+                    deviceType: "html5",
+                    userId: session_login.info.userId,
+                    teamId: session_login.info.teamId,
+                },
+                async: true,
+                type: "post",
+                success: function (data) {
+                    $(".message3").text(data.info.slogan);
+                    $(".teamImg").attr("src", data.info.teamImage);
+                },
+                error: function () {
+                    console.log("网络错误");
+                }
+            })
+        });
+    </script>
+</body>
 
 </html>

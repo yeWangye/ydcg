@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <link href="../../lib/css/SimpleCanleder.css"rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cxcalendar.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        input{
+            margin:0;
+        }
+        .select2-container--default .select2-results>.select2-results__options{
+            max-height: 500px;
+        }
+        .iconBox{
+            position: relative;
+            margin: 4px 5px 0 0;
+            padding: 0 19px 0 4px;
+            max-width: 100%;
+            white-space: nowrap;
+            /*overflow: hidden;*/
+            text-overflow: ellipsis;
+            border: 1px solid #e8e8e8;
+            height: 38px;
+            line-height: 38px;
+            color: #666;
+            text-decoration: none;
+        }
+        .iconBox:hover{
+            border-color: #f40;
+        }
+        .patientName,.appointName,.payTime,.payMoney,.team,.depart,.member,.hosp,.treat,.account,.doctor,.sta,.pageBox,.starTime,.endTime{
+            display: none;
+        }
+        .selectBox input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            float: none;
+            margin: 0 5px;
+            width: 60%;
+            height: 100%;
+            line-height: 38px;
+            text-align: left;
+            background: #fff;
+            /*border: 1px solid #ebebeb;*/
+            outline: none;
+            color: #bdbdbd;
+            font-size: 14px;
+        }
+        .pay_time{
+            width:80%!important;
+        }
+        .icon-btn-x{
+            color: red;
+            cursor: pointer;
+            /* position: absolute; */
+            /* right: 0px; */
+            border: 1px solid red;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .select2-results{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .lable{
+            color:blue;
+        }
+        .cxcalendar .date_hd{
+            height: inherit;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">发货列表</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+                                            <button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+                                            <input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <div class="description tips">默认展现最近一个月数据！</div>
+                        <div>
+                            <a onclick="window.history.go(-1)" class="btn btn-primary backBtn" style="display: none;"> < 返回 </a>
+                        </div>
+                        <div>
+                            <lable style="color:blue;">筛选条件:</lable>
+                            <select id="select"  style="width:25%" title="筛选" aria-describedby="basic-addon1">
+                                <optgroup label="请选择筛选条件">
+                                    <option value="status">审核状态</option>
+                                    <option value="patientName">患者姓名</option>
+                                    <option value="starTime">开始时间</option>
+                                    <option value="endTime">结束时间</option>
+                                    <option value="hospId">门诊</option>
+                                    <option value="departId">科室</option>
+                                    <option value="page">单页显示数</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header col-xs-12" style="text-align: center;">
+                                    <div class="card-title col-xs-4 selectBox">
+                                        <a class="sta iconBox" data-obj="status" style="max-width: 100%;">
+                                            <span class="lable">审核状态：</span>
+                                            <select id="sta" style="width:60%;" title="状态" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择状态">
+                                                    <option value="verify">待审核</option>
+                                                    <option value="verified">审核通过</option>
+                                                    <option value="notverify">审核未通过</option>
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="patientName iconBox"  data-obj="patientName">
+                                            <span class="lable">姓名：</span>
+                                            <input class="patient_name" value="" type="text">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="starTime iconBox"  data-obj="starTime">
+                                            <span class="lable">开始时间：</span>
+                                            <input name="mydate" id="star_time" type="text"
+                                                   class="star_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="endTime iconBox"  data-obj="endTime">
+                                            <span class="lable">结束时间：</span>
+                                            <input name="mydate2" type="text"
+                                                   class="end_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="hosp iconBox" data-obj="hospId">
+                                            <span class="lable">门诊：</span>
+                                            <select id="hosp" style="width:60%;" title="门诊" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择门诊">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="depart iconBox" data-obj="departId">
+                                            <span class="lable">科室：</span>
+                                            <select id="depart" style="width:60%;" title="科室" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择科室">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="pageBox iconBox"  data-obj="page">
+                                            <span class="lable">显示数：</span>
+                                            <input class="page"  type="number" placeholder="最多显示500" min="1" max="500">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                    </div>
+                                    <div class="card-title col-xs-5">
+                                        <div class="title"><button class="btn btn-success searchBtn" style="border:1px solid;border-radius: 20px;width:100%;">查询</button></div>
+                                    </div>
+                                    <div class="card-title col-xs-3">
+                                        <button type="submit" onclick="method5('tableExcel','name','发药审核.xls')" class="btn btn-primary" style="float:right;"><a id="dlink" href="" style="display: none;"></a><i class="fa fa-download"></i> 导出表格
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%" id="tableExcel">
+                                        <thead>
+                                        <tr>
+                                            <th>医院</th>
+                                            <th>科室</th>
+                                            <th>患者姓名</th>
+                                            <th>审核状态</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script src="../../lib/js/calendar.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+            <script src="../../lib/js/jquery.pagination.js"></script>
+
+
+            <!--<script src="../../lib/js/DatePicker.js"></script>-->
+            <script src="../../lib/js/SimpleCanleder.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js"></script>
+            <script type="text/javascript" src="../../js/excel.js"></script>
+            <script type="text/javascript" src="../tongji/cache.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.input_cxcalendar').each(function () {
+                        var a = new Calendar({
+                            targetCls: $(this),
+                            type: 'yyyy-mm-dd HH:MM:SS',
+                            wday: 2
+                        }, function (val) {
+                            console.log(val);
+                        });
+                    });
+                    if(session_login.info.roleId!=5){
+                        $(".backBtn").css("display","inline-block");
+                    }
+                    var json_data={};
+                    var search = window.location.search;
+                    $('select').select2({"val":""});
+                    $("#select").select2({
+                        placeholder: "请选择筛选条件"
+                    });
+                    $("#sta").select2({
+                        placeholder: "请选择审核状态"
+                    });
+                    $("#depart").select2({
+                        placeholder: "请选择科室"
+                    });
+                    $("#hosp").select2({
+                        placeholder: "请选择门诊"
+                    });
+                    $("#select").on("select2:close", function(e) {
+                        var val = $(this).val();
+                        switch(val){
+                            case "patientName":
+                                $(".patientName").css("display","block");
+                                if(!json_data.patientName){
+                                    json_data.patientName="";
+                                    $(".patient_name").val("");
+                                }
+                                break;
+                            case "starTime":
+                                $(".starTime").css("display","block");
+                                if(!json_data.starTime){
+                                    json_data.starTime="";
+                                    $(".star_time").val("");
+                                }
+                                break;
+                            case "endTime":
+                                $(".endTime").css("display","block");
+                                if(!json_data.endTime){
+                                    json_data.endTime="";
+                                    $(".end_time").val("");
+                                }
+                                break;
+                            case "departId":
+                                $(".depart").css("display","block");
+                                if(!json_data.departId){
+                                    json_data.departId="";
+                                    $('#depart').select2("val", "");
+                                }
+                                break;
+                            case "hospId":
+                                $(".hosp").css("display","block");
+                                if(!json_data.hospId){
+                                    json_data.hospId="";
+                                    $('#hosp').select2("val", "");
+                                }
+                                break;
+                            case "page":
+                                $(".pageBox").css("display","block");
+                                if(!json_data.page){
+                                    json_data.page="";
+                                    $(".page").val("");
+                                }
+                                break;
+                            case "status":
+                                $(".sta").css("display","block");
+                                if(!json_data.status){
+                                    json_data.status="";
+                                    $('#sta').select2("val", "");
+                                }
+                                break;
+                        }
+                    });
+                    $('.table tbody').on('click', '.goDetail', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var invoiceId = $(this).parents('tr').attr("data-invoiceId");
+                        window.location.href = "medInvoiceDetail.html?invoiceId=" + invoiceId;
+                    });
+                    $(".icon-btn-x").on("click",function(){
+                        $(this).parents("a").css("display","none");
+                        var json_obj=$(this).parents("a").attr("data-obj");
+                        if(json_obj=="starTime"){
+                            $(".star_time").val("");
+                        }
+                        if(json_obj=="endTime"){
+                            $(".end_time").val("");
+                        }
+                        delete json_data[json_obj];
+                    });
+                    // 患者
+                    $(".patient_name").on("blur",function(){
+                        var patient_name=$(this).val();
+                        json_data.patientName=patient_name;
+                    });
+                    // 科室
+                    $("#depart").on("select2:close",function(){
+                        var depart=$(this).val();
+                        json_data.departId=depart;
+                    });
+                    // 门诊
+                    $("#hosp").on("select2:close",function(){
+                        var hosp=$(this).val();
+                        json_data.hospId=hosp;
+                    });
+                    //页数
+                    $(".page").on("blur",function(){
+                        var page=$(this).val();
+                        json_data.page=page;
+                    });
+                    // 状态
+                    $("#sta").on("select2:close",function(){
+                        var sta=$(this).val();
+                        json_data.status=sta;
+                    });
+                    $(".searchBtn").on("click",function(){
+                        console.log(json_data);
+                        doAction(json_data);
+                    });
+                    $('.table tbody').on('click', 'button.recive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核通过?")) {
+                            var invoiceId = $(this).attr("data-invoiceId");
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/verifyMedInvoice.do",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    invoiceId: invoiceId,
+                                    isPass: "1",
+                                },
+                                success: function(data) {
+                                    if(data.code == 1) {
+                                        alert("审核完成!");
+                                        window.location.reload();
+                                    } else {
+                                        alert(data.msg);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误了,请检查你的网络!");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+                        }
+                    });
+                    $('.table tbody').on('click', 'button.noRecive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核不通过?")) {
+                            var invoiceId = $(this).attr("data-invoiceId");
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/verifyMedInvoice.do",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    invoiceId: invoiceId,
+                                    isPass: "0",
+                                },
+                                success: function(data) {
+                                    if(data.code == 1) {
+                                        alert("审核完成!");
+                                        window.location.reload();
+                                    } else {
+                                        alert(data.msg);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误了,请检查你的网络!");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+                        }
+                    });
+                    doAction(json_data);
+                    function doAction(json_data){
+                        if($(".star_time").val()!=""){
+                            var starTime=$(".star_time").val();
+                        }else{
+                            var d1 = new Date();
+                            var d2 = new Date(d1);
+                            d2.setDate(d1.getDate()-30);
+                            starTime = new Date(d2).format('yyyy-MM-dd hh:mm:ss') ;
+                            $(".star_time").val(starTime);
+                        }
+                        if($(".end_time").val()!=""){
+                            var endTime=$(".end_time").val();
+                        }else{
+                            endTime = new Date().format("yyyy-MM-dd hh:mm:ss").replace(/\//g, "-");
+                            $(".end_time").val(endTime);
+                        }
+                        var sta=json_data.status||"verify";
+                        $(".table tbody")[0].innerHTML="";
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/listMedInvoice.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                isSimple: 1,
+                                departId:json_data.departId||"",
+                                hospId:json_data.hospId||"",
+                                patientName:json_data.patientName||"",
+                                starTime:starTime,
+                                endTime:endTime,
+                                status:sta,
+                                page: 1,
+                                rows: json_data.page||"25",
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function(data) {
+                                var info = data.info;
+                                var pageCount = data.pageCount;
+                                var tbody = $(".table tbody")[0];
+                                if(info.length == 0) {
+                                    alert("没有数据!");
+                                    return;
+                                }
+                                //添加选项盒子
+                                for(var i = 0; i < info.length; i++) {
+                                    if(info[i].status == "verify") {
+                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                    }
+                                    if(info[i].status == "verified") {
+                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                    }
+                                    if(info[i].status == "notverify") {
+                                        status = "<span style='color:red;'>审核未通过</span>";
+                                    }
+                                    if(session_login.info.roleId==5){
+                                        if(sta=="verify"){
+                                            var _dom="<button  class='btn btn-success recive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                                " <button  class='btn btn-danger noRecive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                        }else if(sta=="notverify"){
+                                            _dom="<button  class='btn btn-success recive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> ";
+                                        }else if(sta=="verified"){
+                                            _dom=" <button  class='btn btn-danger noRecive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                        }
+                                    }else{
+                                        _dom="";
+                                    }
+                                    tbody.innerHTML += "<tr data-invoiceId='" + info[i].invoiceId + "' style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + info[i].hospName + "</td>" +
+                                        "<td class='goDetail'>" + info[i].departName + "</td>" +
+                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                        "<td class='goDetail'>" + status + "</td>" +
+                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                        "<td class='goDetail'>" +_dom+
+                                        "</td>" +
+                                        "</tr>";
+                                }
+                                //添加选项内容
+                                $('.M-box').pagination({
+                                    pageCount: pageCount,
+                                    showData: 10,
+                                    jump: true,
+                                    coping: true,
+                                    homePage: '首页',
+                                    endPage: '末页',
+                                    prevContent: '上页',
+                                    nextContent: '下页',
+                                    callback: function(api) {
+                                        $("body").mLoading("show");
+                                        $.ajax({
+                                            url: config.rootUrl + "user/listMedInvoice.do",
+                                            data: {
+                                                deviceToken: "html5",
+                                                deviceType: "html5",
+                                                userId: session_login.info.userId,
+                                                isSimple: 1,
+                                                departId:json_data.departId||"",
+                                                hospId:json_data.hospId||"",
+                                                patientName:json_data.patientName||"",
+                                                starTime:starTime,
+                                                endTime:endTime,
+                                                status:sta,
+                                                page: api.getCurrent(),
+                                                rows: json_data.page||"25",
+                                            },
+                                            async: true,
+                                            type: "post",
+                                            success: function(data) {
+                                                var info = data.info;
+                                                console.log(data);
+                                                var tbody = $(".table tbody")[0];
+                                                tbody.innerHTML = "";
+                                                //添加选项盒子
+                                                for(var i = 0; i < info.length; i++) {
+                                                    if(info[i].status == "verify") {
+                                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                                    }
+                                                    if(info[i].status == "verified") {
+                                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                                    }
+                                                    if(info[i].status == "notverify") {
+                                                        status = "<span style='color:red;'>审核未通过</span>";
+                                                    }
+                                                    if(session_login.info.roleId==5){
+                                                        if(sta=="verify"){
+                                                            var _dom="<button  class='btn btn-success recive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                                                " <button  class='btn btn-danger noRecive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                                        }else if(sta=="notverify"){
+                                                            _dom="<button  class='btn btn-success recive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> ";
+                                                        }else if(sta=="verified"){
+                                                            _dom=" <button  class='btn btn-danger noRecive' type='button' data-invoiceId='" + info[i].invoiceId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                                        }
+                                                    }else{
+                                                        _dom="";
+                                                    }
+                                                    tbody.innerHTML += "<tr data-invoiceId='" + info[i].invoiceId + "' style='cursor:pointer'>" +
+                                                        "<td class='goDetail'>" + info[i].hospName + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].departName + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                        "<td class='goDetail'>" + status + "</td>" +
+                                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                                        "<td class='goDetail'>" +_dom+
+                                                        "</td>" +
+                                                        "</tr>";
+                                                }
+                                            },
+                                            error: function() {
+                                                alert("网络错误");
+
+                                            },
+                                            complete: function() {
+                                                $("body").mLoading("hide"); //关闭loading组件
+                                            }
+                                        })
+                                    }
+
+                                });
+                            },
+                            error: function(xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
+
+                })
+            </script>
+</body>
+
+</html>

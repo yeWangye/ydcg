@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        .lable {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+        #medicine{
+            color: red;
+        }
+        #medicine input{
+            color: blue;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>处方单详情</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                                <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">处方单详情</span>
+                    <div class="description" style="font-size:24px;color:red;">请仔细阅读下面的步骤:</div>
+
+                    <!-- <div class="description" style="font-size:20px;color:red;"> 1:选择药厂，添加完一个药厂清重新选择药厂进行添加下一个。</div>
+                     <div class="description" style="font-size:20px;color:red;"> 2:添加药品，请对应正确药厂。</div>-->
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                            class="fa fa-chevron-circle-left"></span>返回</a>
+                                    <div class="title">处方单详情</div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>总价格</th>
+
+                                        <th>审核状态</th>
+
+                                        <th>创建时间</th>
+                                        <th>审核时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <div class="form-group" id="medicine"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+            期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+        <script type="text/javascript" src="../../js/getBaseData.js?"></script>
+        <!-- Javascript -->
+        <script type="text/javascript">
+            $(function () {
+                var search = window.location.search;
+                if (search != "" && search.split("moId=")[1]) {
+                    var moId = search.split("moId=")[1].split("&")[0];
+                }
+                $("body").mLoading("show");
+                $.ajax({
+                    url: config.rootUrl + "user/medOrderDetail.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        moId: moId,
+                    },
+                    async: true,
+                    type: "post",
+                    success: function (data) {
+                        var info = data.info;
+                        console.log(data);
+                        var tbody = $(".table tbody")[0];
+                        //添加选项盒子
+                        if (info.createTime) {
+                            var createTime = new Date(info.createTime).format('yyyy-MM-dd h:m:s');
+                        } else {
+                            createTime = "";
+                        }
+                        if (info.verifyTime) {
+                            var verifyTime = new Date(info.verifyTime).format('yyyy-MM-dd h:m:s');
+                        } else {
+                            verifyTime = "";
+                        }
+                        if(info.status == "verify") {
+                            var status = "<span style='color:darkgray;'>待审核</span>";
+                        }
+                        if(info.status == "verified") {
+                            status = "<span style='color:#6cf;'>审核通过</span>";
+                        }
+                        if(info.status == "notverify") {
+                            status = "<span style='color:red;'>审核未通过</span>";
+                        }
+                        var _dom = "";
+                        tbody.innerHTML += "<tr data-mrId='" + info.mrId + "' style='cursor:pointer'>" +
+                            "<td class='goDetail'>" + info.totalMoney + "</td>" +
+                            "<td class='goDetail'>" + status + "</td>" +
+                            "<td class='goDetail'>" + createTime + "</td>" +
+                            "<td class='goDetail'>" + verifyTime + "</td>" +
+                            "</tr>";
+                        var detail=JSON.parse(info.detail);
+                        for(var i in detail){
+                            var _html = '<hr><label class="col-sm-2 control-label">药品' + i + '</label>' +
+                                '<div class="input-group col-sm-10 medBox">' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">价格</p>'+
+                                '<input type="number"   disabled="disabled" class="form-control"  value="'+detail[i].medMoney+'"  placeholder="价格">' +
+                                '</div>' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">药品</p>'+
+                                '<input type="text"   disabled="disabled" class="form-control" value="'+detail[i].medicineName+'"  placeholder="价格">' +
+                                '</div>' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">药厂</p>'+
+                                '<input type="text"   disabled="disabled" class="form-control" value="'+detail[i].supplyName+'"  placeholder="价格">' +
+                                '</div>' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">重量</p>'+
+                                '<input type="text" disabled="disabled" value="'+detail[i].grams+'" class="form-control" placeholder="重量（g）">' +
+                                '</div>' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">进价</p>'+
+                                '<input type="number" disabled="disabled"  value="'+detail[i].buyPrice+'" class="form-control" placeholder="进价（元/克）">' +
+                                '</div>' +
+                                '<div class="col-sm-3">' +
+                                '<p class="lable">售价</p>'+
+                                '<input type="number" disabled="disabled"  value="'+detail[i].salePrice+'" class="form-control">' +
+                                '</div>' +
+                                '</div>';
+                            $("#medicine").append(_html);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误");
+                    },
+                    complete:function(){
+                        $("body").mLoading("hide");//关闭loading组件
+                    }
+                });
+            })
+        </script>
+</body>
+
+</html>

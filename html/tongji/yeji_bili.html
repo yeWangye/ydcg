@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功业绩管理</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>业绩比例</li>
+
+                    </ol>
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-th icon"></i>
+                    </button>
+                </div>
+                <marquee
+                        style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="title">
+                                通知 <span class="badge pull-right">0</span>
+                            </li>
+                            <li class="message">
+                                没有新的通知
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                提示 <span class="badge pull-right totalMsg"></span>
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge dai_shen_yeji">0</span> <i
+                                                class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                        </li>
+                                    </a>
+                                    <a href="../yeji_guanli/zuyuan_yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge success zuyuan_yeji">0</span> <i
+                                                class="fa fa-check icon"></i> 组员业绩
+                                        </li>
+                                    </a>
+                                    <a href="../yeji_guanli/yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge danger wode_yeji">0</span> <i
+                                                class="fa fa-comments icon"></i> 我的业绩
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="list-group-item message">
+                                            敬请期待...
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                                <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span>
+                                    </p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">查看<span style="color:red;">业绩比例</span></span>
+                    <div class="description">
+                        <span class="tips">操作提示:</span>默认展现的是<span class="tips_blue">当月业绩</span>,要想查看所有请点击<span
+                            class="tips_blue">查询所有</span><br/>
+                        <span class="tips">日期格式自动保留月份,舍弃日期!</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+
+                                <div class="card-title">
+                                    <div class="title tip_blue">
+                                        <button class="btn btn-danger all">查询所有</button>
+                                    </div>
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+
+                                    <div class="title">
+                                        <button class="btn btn-success dataSearch" style="color:white;">根据月份查询</button>
+                                    </div>
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+                                    <input type="date" name="searchDate" id="searchDate" style="width:100%;"/>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>业绩类型</th>
+                                        <th>笔数</th>
+                                        <th>金额</th>
+                                        <th>笔数比例</th>
+                                        <th>金额比例</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <div class="M-box"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+            期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js"></script>
+        <!-- Javascript -->
+        <script type="text/javascript">
+            $(function () {
+                if (window.location.search != "") {
+                    var times = window.location.search.split("times=")[1].split("&")[0];
+                    $("#searchDate").val(times);
+                } else {
+                    var search = new Date().format("yyyy-MM-dd").replace(/\//g, "-");
+                    $("#searchDate").val(search);
+                }
+                $('.table tbody').on('click', '.goDetail', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var type = $(this).parents('tr').attr("data-type");
+                    if ($(".all").attr("data-all") == "true") {
+                        window.location.href = "yeji_bili_detail.html?type=" + type + "&times=" + "all";
+                    } else {
+                        var searchDate = $("#searchDate").val();
+                        window.location.href = "yeji_bili_detail.html?type=" + type + "&times=" + searchDate;
+                    }
+                });
+                dateSearch();
+                $(".dataSearch").on("click", function () {
+                    dateSearch();
+                })
+                $(".all").on("click", function () {
+                    dateSearch("all");
+                })
+
+                function dateSearch(times) {
+                    $("body").mLoading("show");
+                    if (times) {
+                        $(".all").attr("data-all", "true");
+                    }
+                    $(".table tbody")[0].innerHTML = "";
+                    search = $("#searchDate").val();
+                    /*var title = "日期";
+                        history.replaceState({
+                            title: title
+                        }, title, location.href.split("?")[0] + "?" + "times="+search);*/
+                    $.ajax({
+                        url: config.rootUrl + "user/achieveProport.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            times: times || search,
+                        },
+                        async: true,
+                        type: 'post',
+                        success: function (data) {
+                            if(data.code=="0"){
+                                alert(data.msg);
+                            }else{
+                                var info = data.info;
+                                var tbody = $(".table tbody")[0];
+                                var total_count = 0;
+                                var total_money = 0;
+                                var total_count_rote = 0;
+                                var total_money_rote = 0;
+                                for (var i = 0; i < info.length; i++) {
+                                    var count = info[i].count || 0;
+                                    var totalCount = data.totalCount || 0;
+                                    var money = info[i].money || 0;
+                                    var totalMoney = data.totalMoney || 0;
+                                    if (count == "0") {
+                                        var count_rote = 0;
+                                        var count_rote_temp = 0;
+                                    } else {
+                                        count_rote_temp = (count / totalCount) * 100;
+                                        count_rote_temp = count_rote_temp.toFixed(4);
+                                        count_rote = count_rote_temp + "%";
+                                    }
+                                    if (money == "0") {
+                                        var money_rote = 0;
+                                        var money_rote_temp = 0;
+                                    } else {
+                                        money_rote_temp = (money / totalMoney) * 100;
+                                        money_rote_temp = money_rote_temp.toFixed(4);
+                                        money_rote = money_rote_temp + "%";
+                                    }
+                                    total_count += Number(info[i].count);
+                                    total_money += Number(info[i].money);
+                                    total_count_rote += Number(count_rote_temp);
+                                    total_money_rote += Number(money_rote_temp);
+                                    tbody.innerHTML += "<tr  data-type='" + info[i].type + "'  style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + info[i].statisKey + "</td>" +
+                                        "<td class='goDetail'>" + info[i].count + "</td>" +
+                                        "<td class='goDetail'>" + info[i].money + "</td>" +
+                                        "<td class='goDetail'>" + count_rote + "</td>" +
+                                        "<td class='goDetail'>" + money_rote + "</td>" +
+                                        "</tr>";
+                                }
+                                tbody.innerHTML += "<tr>" +
+                                    "<td class='goDetail'>汇总</td>" +
+                                    "<td class='goDetail'>" + total_count + "</td>" +
+                                    "<td class='goDetail'>" + total_money.toFixed(2) + "</td>" +
+                                    "<td class='goDetail'>" + total_count_rote.toFixed(4) + "%" + "</td>" +
+                                    "<td class='goDetail'>" + total_money_rote.toFixed(4) + "%" + "</td>" +
+                                    "</tr>";
+                                //添加选项内容
+                            }
+
+
+                        },
+                        error: function (xhr, type, errorThrown) {
+                            alert('网络异常，请稍后再试！');
+                            console.log(xhr + errorThrown);
+                        },
+                        complete: function () {
+                            $("body").mLoading("hide");
+                        }
+                    });
+                }
+
+            })</script>
+</body>
+
+</html>

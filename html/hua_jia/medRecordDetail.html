@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        #medicine span{
+            font-size: 14px;
+        }
+        .item{
+            padding:0;
+            margin-top: 5px;
+        }
+        .date{
+            text-align: right;
+        }
+        .flag{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>处方单详情</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                                <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">处方单详情</span>
+                    <div class="description" style="font-size:24px;color:red;">请仔细阅读下面的步骤:</div>
+
+                    <div class="description" style="font-size:20px;color:red;"> 1:注意事项：打印之前请将账户名字改成门诊名称，以便打印处方显示医院抬头。</div>
+                    <div class="description" style="font-size:20px;color:red;"> 2:打印：请检查是否安装了打印设备。</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card" id="print-area">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                            class="fa fa-chevron-circle-left"></span>返回</a>
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+                                    <div class="">
+                                        <a class="btn btn-success" onclick="doPrint()"  rel="external nofollow" target="_self" style="color:white;display: block;"><span class="fa fa-chevron-circle-down"></span> 打印</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--startprint-->
+                            <div class="card-body">
+                                <h2 style="text-align: center;" class="hospital"></h2>
+                                <h3 style="text-align: center;">处方笺</h3>
+                                <p class="date">日期：<span class="time"></span></p>
+                                <hr/>
+                                <h4><b>基本信息：</b></h4>
+                                <p class="col-xs-4">患者姓名：<span class="flag patientName"></span></p>
+                                <p class="col-xs-4">性别：<span class="flag sex"></span></p>
+                                <p class="col-xs-4">疾病：<span class="flag dName"></span></p>
+                                <p class="col-xs-4">疾病描述：<span class="flag illness"></span></p>
+                                <hr style="clear: both;"/>
+                                <h4><b>药品信息：</b></h4>
+                                <h3>Rp</h3>
+                                <div class="col-xs-12" id="medicine"></div>
+                                <hr style="clear: both;"/>
+                                <h4><b>结算：</b></h4>
+                                <p class="col-xs-4">医生：<span class="flag doctor"></span></p>
+                                <p class="col-xs-4">煎药费：<span class="flag decoctMoney"></span></p>
+                                <p class="col-xs-4">用药天数：<span class="flag days"></span></p>
+                                <p class="col-xs-4">优惠：<span class="flag discount"></span></p>
+                                <p class="col-xs-4">收药状态：<span class="flag status"></span></p>
+                                <p class="col-xs-4">合计：<span class="flag discountMoney"></span></p>
+                                <hr>
+                                <!--endprint-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+            期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.jqprint-0.3.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+        <script type="text/javascript" src="../../js/getBaseData.js?"></script>
+        <!-- Javascript -->
+        <script type="text/javascript">
+            function doPrint() {
+                bdhtml=window.document.body.innerHTML;
+                sprnstr="<!--startprint-->";
+                eprnstr="<!--endprint-->";
+                prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+                prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+                window.document.body.innerHTML=prnhtml;
+                window.print();
+            }
+            $(function () {
+                var search = window.location.search;
+
+                if (search != "" && search.split("mrId=")[1]) {
+                    var mrId = search.split("mrId=")[1].split("&")[0];
+                }
+                $.ajax({
+                    url: config.rootUrl + "user/medRecordDetail.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        mrId: mrId,
+                    },
+                    async: true,
+                    type: "post",
+                    success: function (data) {
+                        var info = data.info;
+                        console.log(data);
+                        var tbody = $(".table tbody")[0];
+                        //添加选项盒子
+                        if (info.createTime) {
+                            var createTime = new Date(info.createTime).format('yyyy-MM-dd h:m:s');
+                        } else {
+                            createTime = "";
+                        }
+                        if(info.type == "unreceive") {
+                            var type = "<span style='color:#a90563;'>没收</span>";
+                        }
+                        if(info.type == "received") {
+                            type = "<span style='color:#5dff45;'>已收</span>";
+                        }
+                        if(info.type == "dreceive") {
+                            type = "<span style='color:#753cff;'>代收</span>";
+                        }
+                        if(info.sex == "0") {
+                            var sex = "男";
+                        }else if(info.sex == "1"){
+                            sex = "女";
+                        }else{
+                            sex="未填写!";
+                        }
+                        if(info.paidMoney>0&&info.unpayMoney>0) {
+                            type = "<span style='color:#0dff67;'>已收:"+info.paidMoney+"  代收:"+info.unpayMoney+"</span>";
+                        }
+                        $(".hospital").text(session_login.info.realName);
+                        $(".patientName").text(info.patientName);
+                        $(".sex").text(sex);
+                        $(".time").text(createTime);
+                        $(".dName").text(info.dName);
+                        $(".doctor").text(info.doctorName);
+                        $(".decoctMoney").text(info.decoctMoney);
+                        $(".days").text(info.days);
+                        if(info.discount<="0"||info.discount>="10"){
+                            var discount="无";
+                        }else{
+                            /*var _dis=String(info.discount).split(".")[1];
+                            if(_dis.length>1){
+                                var fir=_dis.substring(0,1);
+                                fir=fir+".";
+                                var next=_dis.substring(1);
+                                discount=fir+next+"折";
+                            }else{
+                                discount=_dis+"折";
+                            }*/
+                            discount=info.discount+"折";
+                        }
+                        $(".discount").text(discount);
+                        $(".illness").text(info.illness);
+                        $(".status").html(type);
+                        $(".discountMoney").text(info.discountMoney);
+
+                        var detail=JSON.parse(info.detail);
+                        for(var i in detail){
+                            var num=Number(i)+1;
+                            var _temp=detail[i].grams*info.days;
+                            _temp=_temp.toFixed(2);
+                            var _html="<div class='col-xs-6 item'>" +
+                                "<span>药品"+num+":</span> "+
+                                "<span>"+detail[i].medicineName+" </span>"+
+                                "<span>"+detail[i].salePrice+"元/g </span>"+
+                                "<span> X </span> "+
+                                "<span>"+_temp+"g </span>"+
+                                "<span> = </span> "+
+                                "<span>"+detail[i].medMoney+"元 </span>"+
+                                "</div>"
+                            $("#medicine").append(_html);
+                        }
+                    },
+                    error: function () {
+                        alert("网络错误");
+
+                    }
+                });
+            })
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功业绩管理</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/timedropper.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>我的任务</li>
+                        <li class="active">任务详情</li>
+                    </ol>
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-th icon"></i>
+                    </button>
+                </div>
+                <marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="title">
+                                通知 <span class="badge pull-right">0</span>
+                            </li>
+                            <li class="message">
+                                没有新的通知
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                        <ul class="dropdown-menu danger  animated fadeInDown">
+                            <li class="title">
+                                提示 <span class="badge pull-right totalMsg"></span>
+                            </li>
+                            <li>
+                                <ul class="list-group notifications">
+                                    <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                        <li class="list-group-item">
+                                            <span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                        </li>
+                                    </a>
+                                    <a href="../yeji_guanli/zuyuan_yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+                                        </li>
+                                    </a>
+                                    <a href="../yeji_guanli/yeji.html">
+                                        <li class="list-group-item">
+                                            <span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+                                        </li>
+                                    </a>
+                                    <a href="#">
+                                        <li class="list-group-item message">
+                                            敬请期待...
+                                        </li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                                <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+                                        <button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+                                        <input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">任务详情</span>
+                    <div class="description"><span class="tips">操作提示</span>你当前获取到的<span class="taskName tips"></span>的详情</div>
+                    <div class="description"><span class="tips">一:</span>以下任务数量,开始时间,结束时间</div>
+                    <div><span class="">任务数量:</span><span class="taskNum tips"></span></div>
+                    <div><span class="">开始时间:</span><span class="starTime tips"></span></div>
+                    <div><span class="">结束时间:</span><span class="endTime tips"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <div class="title">
+                                        <a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>任务列表</a>
+                                    </div>
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+                                    <a class="btn btn-danger reset" ><span class="fa fa-chevron-circle-right"></span>清空</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-horizontal">
+                                    <div style="font-size: 16px;font-weight: 800;">
+                                        <div class="col-sm-12" style="margin-bottom: 20px;">
+                                            <span>任务内容：</span>
+                                            <span id="content"></span>
+                                        </div>
+                                        <div class="col-sm-12" style="margin-bottom: 20px;">
+                                            <span>链接：</span>
+                                            <a class="linkUrl" target="_blank" style="text-decoration: underline"></a>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 16px;font-weight: 800;">
+                                        <div class="col-sm-12 imgBox">
+                                            <div class="col-sm-3 col-xs-3  col-sm-offset-1 col-xs-offset-1">
+                                                <img  class="f1" src="" onclick="javascript:window.open(this.src);" style="width:100%;cursor: pointer;" />
+                                            </div>
+                                            <div class="col-sm-3 col-xs-3 ">
+                                                <img  onclick="javascript:window.open(this.src);" src="" style="width:100%;cursor: pointer;" class="f2" />
+                                            </div>
+                                            <div class="col-sm-3 col-xs-3 ">
+                                                <img src=""  onclick="javascript:window.open(this.src);" style="width:100%;cursor: pointer;" class="f3" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="choose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">选择你需要完成的任务类型</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="../meiri_renwu/tongxun_tianjia.html">通讯类</button>
+                    <button type="button" class="btn btn-lg btn-success target" data-dismiss="modal" data-target="../meiri_renwu/shequ_tianjia.html">社区类</button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/timedropper.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <!--<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
+        <script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
+        <script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>-->
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+        <script src="../../js/loading_start.js"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js"></script>
+        <!-- Javascript -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var search = window.location.search;
+                if(search != "") {
+                    var detailId = window.location.search.split("detailId=")[1].split("&")[0];
+                    var taskName = window.location.search.split("taskName=")[1].split("&")[0];
+                    var starTime = window.location.search.split("starTime=")[1].split("&")[0];
+                    var endTime = window.location.search.split("endTime=")[1].split("&")[0];
+                    $(".taskName").text(decodeURI(taskName));
+                    $(".starTime").text(starTime);
+                    $(".endTime").text(endTime);
+                }
+                if(session_login.info.roleId=="5"||session_login.info.roleId=="6"){
+                    $(".reset").css({"display":"none"});
+                }
+                $(".reset").on("click",function () {
+                    $("body").mLoading("show");
+                    $.ajax({
+                        url: config.rootUrl + "user/delTaskDetail.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            detailId: detailId,
+                        },
+                        async: true,
+                        type: "post",
+                        success: function(data) {
+                            alert(data.msg);
+                            window.history.go(-1);
+                        },
+                        error: function() {
+                            alert("网络错误");
+                        },
+                        complete: function() {
+                            $("body").mLoading("hide"); //关闭loading组件
+                        }
+                    })
+                })
+                $.ajax({
+                    url: config.rootUrl + "user/getTaskDetail.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        detailId: detailId,
+                    },
+                    async: true,
+                    type: "post",
+                    success: function(data) {
+                        if(data.code == "1") {
+                            var info = data.info;
+                            $("#content").text(info.content);
+                            $(".linkUrl").attr("href",info.linkUrl).text(info.linkUrl);
+                            if(info.image1||info.image2||info.image3){
+                                $(".f1").attr("src", info.image1);
+                                //24:image2
+                                $(".f2").attr("src", info.image2);
+                                //25:image3
+                                $(".f3").attr("src", info.image3);
+                            }else{
+                                for(var i = 0;i<info.images.length;i++){
+                                    var _images='<div class="col-sm-3 col-xs-3 ">' +
+                                        '<img src="'+info.images[i]+'"  onclick="javascript:window.open(this.src);" style="width:100%;cursor: pointer;"/>' +
+                                        '</div>';
+                                    $(".imgBox").append(_images);
+                                }
+
+                            }
+                            //添加选项盒子
+                        } else {
+                            alert(data.msg);
+                           window.history.go(-1);
+                        }
+                    },
+                    error: function() {
+                        alert("网络错误");
+
+                    },
+                    complete: function() {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+
+                })
+            })
+        </script>
+</body>
+
+</html>

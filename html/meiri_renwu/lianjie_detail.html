@@ -136,10 +136,10 @@
 										<table class="table table-striped" cellspacing="0" width="100%">
 											<thead>
 												<tr>
+													<th>序号</th>
 													<th>链接</th>
 													<th>创建时间</th>
 													<th>操作</th>
-
 												</tr>
 											</thead>
 											<tbody>
@@ -252,20 +252,24 @@
 								async: true,
 								type: 'post',
 								success: function(data) {
-									console.log(data);
+									var _counter=1;
 									var info = data.info;
 									var pageCount = data.pageCount;
 									var tbody = $(".table tbody")[0];
 									//添加选项盒子
 									for(var i = 0; i < info.length; i++) {
-
+									    if(session_login.info.roleId!="4"){
+									        var deleBtn=" <button  class='btn btn-danger delrow' type='button' data-prId='" + info[i].prId + "'><i class='fa fa-trash-o'> 删除链接 </i></button>";
+										}else{
+                                            var deleBtn="";
+										}
 										tbody.innerHTML += "<tr data-prId='" + info[i].prId + "' data-prUrl='" + info[i].prUrl + "'  style='cursor:pointer'>" +
+                                            "<td class='goDetail'>" + _counter +"</td>" +
 											"<td class='goDetail'><a href='" + info[i].prUrl + "' target='_blank'>" + info[i].prUrl + "</a></td>" +
 											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-											"<td class='goDetail'>" +
-											" <button  class='btn btn-danger delrow' type='button' data-prId='" + info[i].prId + "'><i class='fa fa-trash-o'> 删除链接 </i></button>" +
-											"</td>" +
+											"<td class='goDetail'>" + deleBtn +"</td>" +
 											"</tr>";
+                                        _counter++;
 									}
 									//添加选项内容
 									$('.M-box').pagination({
@@ -297,16 +301,22 @@
 												success: function(data) {
 													var info = data.info;
 													var tbody = $(".table tbody")[0];
+													_counter=(api.getCurrent()-1)*15;
 													tbody.innerHTML = "";
 													//添加选项盒子
 													for(var i = 0; i < info.length; i++) {
-														tbody.innerHTML += "<tr data-prId='" + info[i].prId + "' data-prUrl='" + info[i].prUrl + "'  style='cursor:pointer'>" +
-															"<td class='goDetail'><a href='" + info[i].prUrl + "' target='_blank'>" + info[i].prUrl + "</a></td>" +
-															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-															"<td class='goDetail'>" +
-															" <button  class='btn btn-danger delrow' type='button' data-prId='" + info[i].prId + "'><i class='fa fa-trash-o'> 删除链接 </i></button>" +
-															"</td>" +
-															"</tr>";
+                                                        if(session_login.info.roleId!="4"){
+                                                            var deleBtn=" <button  class='btn btn-danger delrow' type='button' data-prId='" + info[i].prId + "'><i class='fa fa-trash-o'> 删除链接 </i></button>";
+                                                        }else{
+                                                            var deleBtn="";
+                                                        }
+                                                        _counter++;
+                                                        tbody.innerHTML += "<tr data-prId='" + info[i].prId + "' data-prUrl='" + info[i].prUrl + "'  style='cursor:pointer'>" +
+                                                            "<td class='goDetail'>" + _counter +"</td>" +
+                                                            "<td class='goDetail'><a href='" + info[i].prUrl + "' target='_blank'>" + info[i].prUrl + "</a></td>" +
+                                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                            "<td class='goDetail'>" + deleBtn +"</td>" +
+                                                            "</tr>";
 													}
 												},
 												error: function() {

@@ -123,12 +123,12 @@
 						<div class="page-title">
 							<span class="title">任务详情</span>
 							<div class="description"><span class="tips">操作提示</span>你当前获取到的<span class="taskName tips"></span>的详情</div>
-							<div class="description"><span class="tips">一:</span>以下任务数量,开始时间,结束时间<span class="tips">红色字体</span>为任务列表数值,<span class="tips">(  )</span>为今日数值!</div>
+							<div class="description"><span class="tips">一:</span>以下任务数量,开始时间,结束时间<span class="tips">红色字体</span>为任务列表数值,<span class="tip_blue">( 蓝色字体 )</span>为今日数值!</div>
 
-							<div><span class="">任务数量:</span><span class="taskNum tips"></span> ( <span class="today_taskNum"></span> )</div>
+							<div><span class="">任务数量:</span><span class="taskNum tips"></span><span class="tip_blue">( <span class="today_taskNum"></span> )</span> </div>
 
-							<div><span class="">开始时间:</span><span class="starTime tips"></span> ( <span class="today_starTime"></span> )</div>
-							<div><span class="">结束时间:</span><span class="endTime tips"></span> ( <span class="today_endTime"></span> )</div>
+							<div><span class="">开始时间:</span><span class="starTime tips"></span><span class="tip_blue"> ( <span class="today_starTime"></span> )</span></div>
+							<div><span class="">结束时间:</span><span class="endTime tips"></span><span class="tip_blue"> ( <span class="today_endTime"></span> )</span></div>
 
 							<div style="position: fixed;top:150px;right:150px;" class="light"><span class="fa fa-lightbulb-o fa-3x"></span></div>
 
@@ -141,6 +141,11 @@
 											<div class="title">
 												<a class="btn btn-primary" onclick="window.history.go(-1)"><span class="fa fa-chevron-circle-left"></span>任务列表</a>
 											</div>
+										</div>
+										<div class="card-title" style="float:right;text-align: center;">
+												<div class="">
+													<a class="btn btn-primary flush" style="display: block;"><span class="">刷新状态 </span><span class="fa fa-chevron-circle-right"></span></a>
+												</div>
 										</div>
 									</div>
 									<div class="card-body">
@@ -252,7 +257,7 @@
 							} else if(taskType == "social") {
 								window.location.href = "../meiri_renwu/shequ_tianjia.html?tdId=" + tdId;
 							} else if(taskType == "patient") {
-								window.location.href = "../xinxi_guanli/tianjiayeji.html?tdId=" + tdId;
+								window.location.href = "../xinxi_guanli/new_tianjia_yeji.html?tdId=" + tdId;
 							} else if(taskType == "commun") {
 								window.location.href = "../meiri_renwu/tongxun_tianjia.html?tdId=" + tdId;
 							}
@@ -275,6 +280,39 @@
 							}
 
 						});
+						$(".flush").on("click", function() {
+								$("body").mLoading("show"); //显示loading组件
+								$.ajax({
+									url: config.rootUrl + "user/finishTask.do",
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+										teamTaskId: teamTaskId,
+
+
+									},
+									async: true,
+									type: "post",
+									success: function(data) {
+
+										if(data.code == "1") {
+											alert("刷新成功!");
+										} else {
+											alert(data.msg);
+
+										}
+										window.location.reload();
+									},
+									error: function() {
+										alert("网络错误");
+
+									},
+									complete: function() {
+										$("body").mLoading("hide"); //关闭loading组件
+									}
+								})
+							})
 						$.ajax({
 							url: config.rootUrl + "user/listPartyMember.do",
 							data: {

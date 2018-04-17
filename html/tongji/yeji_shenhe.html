@@ -1,589 +1,1103 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<title>一定成功</title>
-		<meta charset="utf-8">
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- Fonts -->
-		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
-		<!-- CSS Libs -->
-		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
-		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <link href="../../lib/css/SimpleCanleder.css"rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cxcalendar.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        input{
+            margin:0;
+        }
+        .select2-container--default .select2-results>.select2-results__options{
+            max-height: 500px;
+        }
+        .iconBox{
+            position: relative;
+            margin: 4px 5px 0 0;
+            padding: 0 19px 0 4px;
+            max-width: 100%;
+            white-space: nowrap;
+            /*overflow: hidden;*/
+            text-overflow: ellipsis;
+            border: 1px solid #e8e8e8;
+            height: 38px;
+            line-height: 38px;
+            color: #666;
+            text-decoration: none;
+        }
+        .iconBox:hover{
+            border-color: #f40;
+        }
+        .patientName,.appointName,.payTime,.payMoney,.team,.depart,.member,.hosp,.treat,.account,.doctor,.sta,.pageBox,.starTime,.endTime{
+            display: none;
+        }
+        .selectBox input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            float: none;
+            margin: 0 5px;
+            width: 60%;
+            height: 100%;
+            line-height: 38px;
+            text-align: left;
+            background: #fff;
+            /*border: 1px solid #ebebeb;*/
+            outline: none;
+            color: #bdbdbd;
+            font-size: 14px;
+        }
+        .pay_time{
+            width:80%!important;
+        }
+        .icon-btn-x{
+            color: red;
+            cursor: pointer;
+            /* position: absolute; */
+            /* right: 0px; */
+            border: 1px solid red;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .select2-results{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .lable{
+            color:blue;
+        }
+        .cxcalendar .date_hd{
+            height: inherit;
+        }
+    </style>
+</head>
 
-		<!-- CSS App -->
-		<link rel="stylesheet" type="text/css" href="../../css/style.css">
-		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
-		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
-
-	</head>
-
-	<body class="flat-blue">
-		<div class="app-container">
-			<div class="row content-container">
-				<div class="row content-container">
-					<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
-						<div class="container-fluid" style="text-align: center;">
-							<div class="navbar-header">
-								<button type="button" class="navbar-expand-toggle">
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
                             <i class="fa fa-bars icon"></i>
                         </button>
-								<ol class="breadcrumb navbar-breadcrumb">
-									<li>统计</li>
-									<li class="active">业绩审核</li>
-								</ol>
-								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>统计</li>
+                            <li class="active">业绩审核</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
                         </button>
-							</div>
-							<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
-							<ul class="nav navbar-nav navbar-right">
-								<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                    </div>
+                    <marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-times icon"></i>
                         </button>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
-									<ul class="dropdown-menu animated fadeInDown">
-										<li class="title">
-											通知 <span class="badge pull-right">0</span>
-										</li>
-										<li class="message">
-											没有新的通知
-										</li>
-									</ul>
-								</li>
-								<li class="dropdown danger">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
-									<ul class="dropdown-menu danger  animated fadeInDown">
-										<li class="title">
-											提示 <span class="badge pull-right totalMsg"></span>
-										</li>
-										<li>
-											<ul class="list-group notifications">
-												<a href="../yeji_guanli/yeji_dai_shenhe.html">
-													<li class="list-group-item">
-														<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/zuyuan_yeji.html">
-													<li class="list-group-item">
-														<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
-													</li>
-												</a>
-												<a href="../yeji_guanli/yeji.html">
-													<li class="list-group-item">
-														<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
-													</li>
-												</a>
-												<a href="#">
-													<li class="list-group-item message">
-														敬请期待...
-													</li>
-												</a>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li class="dropdown profile">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
-									<ul class="dropdown-menu animated fadeInDown">
-										<li class="profile-img">
-											<img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
-										</li>
-										<li>
-											<div class="profile-info">
-												<h4 class="username"></h4>
-												<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
-												<div class="btn-group margin-bottom-2x" role="group">
-													<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
-													<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
-													<input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+                                            <button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+                                            <input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
 
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</nav>
-					<div id="sidebar" class="side-menu sidebar-inverse">
-						<nav class="navbar navbar-default" role="navigation">
-							<div class="side-menu-container">
-								<div class="navbar-header">
-									<a class="navbar-brand" href="#">
-										<div class="icon fa fa-paper-plane"></div>
-										<div class="title">感动自己,一定成功</div>
-									</a>
-									<button type="button" class="navbar-expand-toggle pull-right visible-xs">
-                                <i class="fa fa-times icon"></i>
-                            </button>
-								</div>
-								<ul class="nav navbar-nav">
-									<li class="active">
-										<a href="../index.html">
-											<span class="icon fa fa-tachometer"></span><span class="title">一定成功</span>
-										</a>
-									</li>
-									<li>
-										<a href="../xinxi_guanli/tianjiayeji.html">
-											<span class="icon fa fa-plus-square-o"></span><span class="title">添加业绩</span>
-										</a>
-									</li>
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#dropdown-table">
-											<span class="icon fa fa-table"></span><span class="title">患者数据库</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="dropdown-table" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../table/datatable.html">患者数据库</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li class="panel panel-collapse dropdown">
-										<a data-toggle="collapse" href="#meiri_renwu">
-											<span class="icon fa fa-bell"></span><span class="title">每日任务</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="meiri_renwu" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../meiri_renwu/lianjie.html">链接类</a>
-													</li>
-													<li>
-														<a href="../meiri_renwu/shequ.html">社区类</a>
-													</li>
-													<li>
-														<a href="../meiri_renwu/tongxun.html">通讯类</a>
-													</li>
-													<li>
-														<a href="../meiri_renwu/zuyuan__shequ.html">组员社区</a>
-													</li>
-													<li>
-														<a href="../meiri_renwu/zuyuan__tongxun.html">组员通讯</a>
-													</li>
-													<li>
-														<a href="../meiri_renwu/zuyuan__lianjie.html">组员链接</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#dropdown-xinxi-guanli">
-											<span class="icon fa fa-file-text-o"></span><span class="title">信息管理</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="dropdown-xinxi-guanli" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../xinxi_guanli/wode_xinxi.html">我的信息</a>
-													</li>
-													<li>
-														<a href="../xinxi_guanli/zuyuan_xinxi.html">组员信息</a>
-													</li>
-													<li>
-														<a href="../xinxi_guanli/daishen_xinxi.html">待审信息</a>
-													</li>
-													<li>
-														<a href="../xinxi_guanli/fangqi_xinxi.html">放弃信息</a>
-													</li>
-													<li>
-														<a href="../xinxi_guanli/lizhi_xinxi.html">离职信息</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#dropdown-xinxi-shenhe">
-											<span class="icon fa fa-eyedropper"></span><span class="title">信息审核</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="dropdown-xinxi-shenhe" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../xinxi_shenhe/dai_shenhe.html">待审核</a>
-													</li>
-													<li>
-														<a href="../xinxi_shenhe/tongguo.html">通过</a>
-													</li>
-													<li>
-														<a href="../xinxi_shenhe/wei_tonguo.html">未通过</a>
-													</li>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
 
-												</ul>
-											</div>
-										</div>
-									</li>
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">审核业绩</span>
+                        <div class="description">
+                            <span class="tips">操作提示:</span>当前获取到的是<span class="tips">统计,会计</span>查看审核的业绩!
+                            <br>
+                            <span class="tips">筛选条件:</span>根据情况自行添加<span class="tips">需要参与筛选的条目!</span>
+                            <br>
+                            <a onclick='window.history.go(-1);' style='color:darkblue;display: none' class="title back"><span class='fa fa-chevron-circle-left'>返回</span></a>
+                        </div>
+                        <div>
+                            <lable style="color:blue;">筛选条件:</lable>
+                            <select id="select"  style="width:25%" title="筛选" aria-describedby="basic-addon1">
+                                <optgroup label="请选择筛选条件">
+                                    <option value="status">审核状态</option>
+                                    <option value="patientName">患者姓名</option>
+                                    <option value="appointName">预约人</option>
+                                    <option value="payTime">日期</option>
+                                    <option value="starTime">开始时间</option>
+                                    <option value="endTime">结束时间</option>
+                                    <option value="payMoney">金额</option>
+                                    <option value="teamId">战区</option>
+                                    <option value="departId">科室</option>
+                                    <option value="memberId">组员</option>
+                                    <!--<option value="hospId">门诊</option>-->
+                                    <!--<option value="">费用类型</option>-->
+                                    <option value="accountId">收款账户</option>
+                                    <option value="treatId">就诊方式</option>
+                                    <option value="doctorId">医生</option>
+                                    <option value="page">单页显示数</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header col-xs-12" style="text-align: center;">
+                                    <div class="card-title col-xs-4 selectBox">
+                                        <a class="sta iconBox" data-obj="status" style="max-width: 100%;">
+                                            <span class="lable">审核状态：</span>
+                                            <select id="sta" style="width:60%;" title="状态" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择状态">
+                                                    <option value="verify">待审核</option>
+                                                    <option value="verified">审核通过</option>
+                                                    <option value="notverify">审核未通过</option>
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="patientName iconBox"  data-obj="patientName">
+                                            <span class="lable">姓名：</span>
+                                            <input class="patient_name" value="" type="text">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="appointName iconBox"  data-obj="appointName">
+                                            <span class="lable">预约人：</span>
+                                            <input class="appoint_name" value="" type="text">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="payTime iconBox"  data-obj="payTime">
+                                            <span class="lable">日期：</span>
+                                            <input class="pay_time" value="" type="date">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="starTime iconBox"  data-obj="starTime">
+                                            <span class="lable">开始时间：</span>
+                                            <input name="mydate" id="star_time" type="text"
+                                                   class="star_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="endTime iconBox"  data-obj="endTime">
+                                            <span class="lable">结束时间：</span>
+                                            <input name="mydate2" type="text"
+                                                   class="end_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="payMoney iconBox"  data-obj="payMoney">
+                                            <span class="lable">金额：</span>
+                                            <input class="pay_money" value="" type="number">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="team iconBox" data-obj="teamId">
+                                            <span class="lable">战区：</span>
+                                            <select id="team" style="width:60%;" title="战区" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择战区">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="depart iconBox" data-obj="departId">
+                                            <span class="lable">科室：</span>
+                                            <select id="depart" style="width:60%;" title="科室" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择科室">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="member iconBox" data-obj="memberId">
+                                            <span class="lable">组员：</span>
+                                            <select id="member" style="width:60%;" title="组员" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择组员">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="hosp iconBox" data-obj="hospId">
+                                            <span class="lable">门诊：</span>
+                                            <select id="hosp" style="width:60%;" title="门诊" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择门诊">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="treat iconBox" data-obj="treatId">
+                                            <span class="lable">就诊方式：</span>
+                                            <select id="treat" style="width:60%;" title="就诊方式" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择就诊方式">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="account iconBox" data-obj="accountId">
+                                            <span class="lable">收款账户：</span>
+                                            <select id="account" style="width:60%;" title="收款账户" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择收款账户">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="doctor iconBox" data-obj="doctorId">
+                                            <span class="lable">医生：</span>
+                                            <select id="doctor" style="width:60%;" title="医生" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择医生">
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="pageBox iconBox"  data-obj="page">
+                                            <span class="lable">显示数：</span>
+                                            <input class="page"  type="number" placeholder="最多显示500" min="1" max="500">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                    </div>
+                                    <div class="card-title col-xs-5">
+                                        <div class="title"><button class="btn btn-success searchBtn" style="border:1px solid;border-radius: 20px;width:100%;">查询</button></div>
+                                    </div>
+                                    <div class="card-title col-xs-3">
+                                        <button type="submit" onclick="method5('tableExcel','name','业绩审核.xls')" class="btn btn-primary" style="float:right;"><a id="dlink" href="" style="display: none;"></a><i class="fa fa-download"></i> 导出表格
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%" id="tableExcel">
+                                        <thead>
+                                        <tr>
+                                            <th>患者姓名</th>
+                                            <th>预约人</th>
+                                            <th>业绩类型</th>
+                                            <th>收款账户</th>
+                                            <th>状态</th>
+                                            <th>付款金额</th>
+                                            <th>当月总提成</th>
+                                            <th>年终奖</th>
+                                            <th>科室业绩</th>
+                                            <th>创建时间</th>
+                                            <th>审核时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
 
-									<!-- Dropdown-->
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#component-example">
-											<span class="icon fa fa-cubes"></span><span class="title">业绩管理</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="component-example" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../yeji_guanli/yeji_dai_shenhe.html">待审核</a>
-													</li>
-													<li>
-														<a href="../yeji_guanli/zuyuan_yeji.html">组员业绩</a>
-													</li>
-													<li>
-														<a href="../yeji_guanli/yeji.html">业绩信息</a>
-													</li>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script src="../../lib/js/calendar.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+            <script src="../../lib/js/jquery.pagination.js"></script>
 
-												</ul>
-											</div>
-										</div>
-									</li>
-									<!-- Dropdown-->
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#tianjiayeji">
-											<span class="icon fa fa-line-chart"></span><span class="title">添加业绩</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="tianjiayeji" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../tianjia_yeji/guahao.html">挂号费</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/goutong.html">沟通费</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/yizhu.html">医助</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/yuan_chu.html">远程(初诊)</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/yuan_fu.html">远程(复诊)</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/lai_chu.html">来院(初诊)</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/lai_fu.html">来院(复诊)</a>
-													</li>
-													<li>
-														<a href="../tianjia_yeji/you_fu.html">邮寄复诊</a>
-													</li>
-												</ul>
-											</div>
-										</div>
 
-									</li>
-									<!-- Dropdown-->
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#dropdown-element">
-											<span class="icon fa fa-desktop"></span><span class="title">界面设置</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="dropdown-element" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../ui-kits/theming.html">主题</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<!-- Dropdown-->
-									<li class="panel panel-default dropdown">
-										<a data-toggle="collapse" href="#dropdown-example">
-											<span class="icon fa fa-slack"></span><span class="title">更多</span>
-										</a>
-										<!-- Dropdown level 1 -->
-										<div id="dropdown-example" class="panel-collapse collapse">
-											<div class="panel-body">
-												<ul class="nav navbar-nav">
-													<li>
-														<a href="../login.html">注销登陆</a>
-													</li>
-													<li>
-														<a href="http://www.bj11ss.com/index.html" target="_blank">公司官网</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<!-- /.navbar-collapse -->
-						</nav>
-					</div>
-					<!-- Main Content -->
-					<div class="container-fluid">
-						<div class="side-body">
-							<div class="page-title">
-								<span class="title">审核业绩</span>
-								<div class="description">
-									<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">统计</span>查看审核的业绩!</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 detail">
-									<div class="card">
-										<div class="card-header col-xs-12" style="text-align: center;">
+            <!--<script src="../../lib/js/DatePicker.js"></script>-->
+            <script src="../../lib/js/SimpleCanleder.js"></script>
 
-											<div class="card-title col-xs-4">
-												<div class="title"><button class="btn btn-primary dai_shenhe">1:待审核</button></div>
-											</div>
-											<div class="card-title col-xs-4">
-												<div class="title"><button class="btn btn-success tonguo_shenhe">2:审核通过</button></div>
-											</div>
-											<div class="card-title col-xs-4">
-												<div class="title"><button class="btn btn-danger wei_shenhe">3:审核未通过</button></div>
-											</div>
-											<!--<div class="card-title col-sm-12">
-												<div class="col-sm-4">
-													<label for="begainTime">开始时间:</label>
-													<input type="date" name="begainTime" id="begainTime" style="width:100%; ">
-												</div>
-												<div class="col-sm-4">
-													<label for="endTime">结束时间</label>
-													<input type="date" name="endTime" id="endTime" style="width:100%; ">
-												</div>
-												<div class="col-sm-4" style="padding:20px;">
-													<div>
-														<button class="btn btn-success dataSearch" style="color:white;">查询</button>
-													</div>
-												</div>
-											</div>-->
-										</div>
-										<div class="card-body">
-											<table class="table table-striped" cellspacing="0" width="100%">
-												<thead>
-													<tr>
-														<th>患者姓名</th>
-														<th>提交者</th>
-														<th>业绩类型</th>
-														<th>状态</th>
-														<th>当月总提成</th>
-														<th>年终奖</th>
-														<th>创建时间</th>
-													</tr>
-												</thead>
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
 
-												<tbody>
-												</tbody>
-											</table>
-											<div class="M-box"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<footer class="app-footer">
-					<div class="wrapper">
-						<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
-						<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
-						<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
-					</div>
-				</footer>
-				<div>
-					<!-- Javascript Libs -->
-					<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js"></script>
+            <script type="text/javascript" src="../../js/excel.js"></script>
+            <script type="text/javascript" src="cache.js"></script>
+            <script type="text/javascript">
+                // 付款方式数据填充
+                $.ajax({
+                    url: config.rootUrl + "user/getAccount.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                    },
+                    async: true,
+                    type: 'post',
+                    success: function(data) {
+                        //添加选项盒子
+                        var shoukuan = $("#account");
+                        //添加选项内容
+                        var info = data.info;
+                        //收款账户
+                        for(var i in info) {
+                            var _option = document.createElement("option");
+                            _option.value = info[i].accountId;
+                            _option.text = info[i].accountName;
+                            shoukuan.append(_option);
+                        }
+                    },
+                    error: function(xhr, type, errorThrown) {
+                        alert('网络异常，请稍后再试！');
+                    },
+                    complete: function() {
+                        if("accountId" in session_data){
+                            $(".account").css("display","block");
+                            checked($('#account'),session_data.accountId);
+                        }else{
+                            $('#account').select2("val", "");
+                        }
+                    }
+                });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.input_cxcalendar').each(function () {
+                        var a = new Calendar({
+                            targetCls: $(this),
+                            type: 'yyyy-mm-dd HH:MM:SS',
+                            wday: 2
+                        }, function (val) {
+                            console.log(val);
+                        });
+                    });
 
-					<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
-					<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-					<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
-					<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-					<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
-					<script src="../../lib/js/jquery.pagination.js"></script>
+                    var  isRank=1;
+                    var page=1;
+                    $('select').select2({"val":""});
+                    $("#select").select2({
+                        placeholder: "请选择筛选条件"
+                    });
+                    $("#sta").select2({
+                        placeholder: "请选择审核状态"
+                    });
+                    $("#team").select2({
+                        placeholder: "请选择战区"
+                    });
+                    $("#depart").select2({
+                        placeholder: "请选择科室"
+                    });
+                    $("#member").select2({
+                        placeholder: "请搜索组员"
+                    });
+                    $("#hosp").select2({
+                        placeholder: "请选择门诊"
+                    });
+                    $("#treat").select2({
+                        placeholder: "请选择就诊方式"
+                    });
+                    $("#account").select2({
+                        placeholder: "请选择付款账户"
+                    });
+                    $("#doctor").select2({
+                        placeholder: "请选择就诊方式"
+                    });
+                    $("#select").on("select2:close", function(e) {
+                        var val = $(this).val();
+                        switch(val){
+                            case "patientName":
+                                $(".patientName").css("display","block");
+                                if(!json_data.patientName){
+                                    json_data.patientName="";
+                                    $(".patient_name").val("");
+                                }
+                                break;
+                            case "appointName":
+                                $(".appointName").css("display","block");
+                                if(!json_data.appointName){
+                                    json_data.appointName="";
+                                    $(".appoint_name").val("");
+                                }
+                                break;
+                            case "payTime":
+                                $(".payTime").css("display","block");
+                                if(!json_data.payTime){
+                                    json_data.payTime="";
+                                    $(".pay_time").val("");
+                                }
+                                break;
+                            case "starTime":
+                                $(".starTime").css("display","block");
+                                if(!json_data.starTime){
+                                    json_data.starTime="";
+                                    $(".star_time").val("");
+                                }
+                                break;
+                            case "endTime":
+                                $(".endTime").css("display","block");
+                                if(!json_data.endTime){
+                                    json_data.endTime="";
+                                    $(".end_time").val("");
+                                }
+                                break;
+                            case "payMoney":
+                                $(".payMoney").css("display","block");
+                                if(!json_data.payMoney){
+                                    json_data.payMoney="";
+                                    $(".pay_money").val("");
+                                }
+                                break;
+                            case "teamId":
+                                $(".team").css("display","block");
+                                if(!json_data.teamId){
+                                    json_data.teamId="";
+                                    $('#team').select2("val", "");
+                                }
+                                break;
+                            case "departId":
+                                $(".depart").css("display","block");
+                                if(!json_data.departId){
+                                    json_data.departId="";
+                                    $('#depart').select2("val", "");
+                                }
+                                break;
+                            case "memberId":
+                                $(".member").css("display","block");
+                                if(!json_data.memberId){
+                                    json_data.memberId="";
+                                    $('#member').select2("val", "");
+                                }
+                                break;
+                            case "hospId":
+                                $(".hosp").css("display","block");
+                                if(!json_data.hospId){
+                                    json_data.hospId="";
+                                    $('#hosp').select2("val", "");
+                                }
+                                break;
+                            case "treatId":
+                                $(".treat").css("display","block");
+                                if(!json_data.treatId){
+                                    json_data.treatId="";
+                                    $('#treat').select2("val", "");
+                                }
+                                break;
+                            case "accountId":
+                                $(".account").css("display","block");
+                                if(!json_data.accountId){
+                                    json_data.accountId="";
+                                    $('#account').select2("val", "");
+                                }
+                                break;
+                            case "doctorId":
+                                $(".doctor").css("display","block");
+                                if(!json_data.doctorId){
+                                    json_data.doctorId="";
+                                    $('#doctor').select2("val", "");
+                                }
+                                break;
+                            case "page":
+                                $(".pageBox").css("display","block");
+                                if(!json_data.page){
+                                    json_data.page="";
+                                    $(".page").val("");
+                                }
+                                break;
+                            case "status":
+                                $(".sta").css("display","block");
+                                if(!json_data.status){
+                                    json_data.status="";
+                                    $('#sta').select2("val", "");
+                                }
+                                break;
+                        }
+                    });
+                    $('.table tbody').on('click', '.goDetail', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var rid = $(this).parents('tr').attr("data-rid");
+                        var title = $(this).parents('tr').attr("data-title");
+                        window.location.href = "../yeji_guanli/yeji_detail.html?rid=" + rid + "&title=" + title + "&fromWhere=daishen_xinxi.html";
+                    });
+                    $(".icon-btn-x").on("click",function(){
+                        $(this).parents("a").css("display","none");
+                        var json_obj=$(this).parents("a").attr("data-obj");
+                        if(json_obj=="payTime"){
+                            $(".pay_time").val("");
+                        }
+                        if(json_obj=="starTime"){
+                            $(".star_time").val("");
+                        }
+                        if(json_obj=="endTime"){
+                            $(".end_time").val("");
+                        }
+                        delete json_data[json_obj];
+                    });
+                    // 患者
+                    $(".patient_name").on("blur",function(){
+                        var patient_name=$(this).val();
+                        json_data.patientName=patient_name;
+                    });
+                    // 预约人
+                    $(".appoint_name").on("blur",function(){
+                        var appoint_name=$(this).val();
+                        json_data.appointName=appoint_name;
+                    });
+                    /*// 日期
+                    $(".pay_time").on("blur",function(){
+                        var pay_time=$(this).val();
+                        json_data.payTime=pay_time;
+                    });
+                    // 开始时间
+                    $(".star_time").on("click",function(){
+                        var star_time=$(this).val();
+                        json_data.starTime=star_time;
+                    });
+                    // 结束时间
+                    $(".end_time").on("click",function(){
+                        var end_time=$(this).val();
+                        json_data.endTime=end_time;
+                    });*/
+                    //金额
+                    $(".pay_money").on("blur",function(){
+                        var pay_money=$(this).val();
+                        json_data.payMoney=pay_money;
+                    });
+                    // 战区
+                    $("#team").on("select2:close",function(){
+                        var team=$(this).val();
+                        json_data.teamId=team;
+                    });
+                    // 科室
+                    $("#depart").on("select2:close",function(){
+                        var depart=$(this).val();
+                        json_data.departId=depart;
+                    });
+                    // 组员
+                    $("#member").on("select2:close",function(){
+                        var member=$(this).val();
+                        json_data.memberId=member;
+                    });
+                    // 门诊
+                    $("#hosp").on("select2:close",function(){
+                        var hosp=$(this).val();
+                        json_data.hospId=hosp;
+                    });
+                    // 就诊方式
+                    $("#treat").on("select2:close",function(){
+                        var treat=$(this).val();
+                        json_data.treatId=treat;
+                    });
+                    // 收款账户
+                    $("#account").on("select2:close",function(){
+                        var account=$(this).val();
+                        json_data.accountId=account;
+                    });
+                    // 医生
+                    $("#doctor").on("select2:close",function(){
+                        var doctor=$(this).val();
+                        json_data.doctorId=doctor;
+                    });
+                    //页数
+                    $(".page").on("blur",function(){
+                        var page=$(this).val();
+                        json_data.page=page;
+                    });
+                    $("#sta").on("select2:close",function(){
+                        var sta=$(this).val();
+                        json_data.status=sta;
+                    });
+                    // 状态
+                    $(".searchBtn").on("click",function(){
+                        console.log(json_data);
+                        doAction(json_data);
+                    });
+                    $('.table tbody').on('click', 'button.recive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核通过这条业绩信息?")) {
+                            var rid = $(this).attr("data-rid");
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/verifyTreat.do",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    recordId: rid,
+                                    isPass: "1",
+                                },
+                                success: function(data) {
+                                    if(data.code == 1) {
+                                        alert("审核完成!");
+                                        window.location.reload();
+                                    } else {
+                                        alert(data.msg);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误了,请检查你的网络!");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+                        }
+                    });
+                    $('.table tbody').on('click', 'button.noRecive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核不通过这条业绩信息?")) {
+                            var rid = $(this).attr("data-rid");
+                            var refuseReason = prompt("请输入不通过的原因!", "");
+                            if(refuseReason) {
+                                $("body").mLoading("show");
+                                $.ajax({
+                                    url: config.rootUrl + "user/verifyTreat.do",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        recordId: rid,
+                                        isPass: "2",
+                                        refuseReason: refuseReason,
+                                    },
+                                    success: function(data) {
+                                        if(data.code == 1) {
+                                            alert("审核完成!");
+                                            window.location.reload();
+                                        } else {
+                                            alert(data.msg);
+                                        }
 
-					<!-- Javascript -->
-					<script type="text/javascript" src="../../js/app.js"></script>
-					<script src="../../js/dateFormat.js"></script>
-					<script type="text/javascript" src="../../js/theming.js"></script>
-					<script type="text/javascript" src="../../js/themings.js"></script>
+                                    },
+                                    error: function() {
+                                        alert("发生错误了,请检查你的网络!");
+                                    },
+                                    complete: function() {
+                                        $("body").mLoading("hide"); //关闭loading组件
+                                    }
+                                })
+                            }else{
+                                alert("请输入原因!")
+                            }
+                        }
+                    });
+                    doAction(session_data);
+                    function doAction(json_data){
+                        /*gloableSta=sta;
+                        var startTime=$("#begainTime").val();
+                        var endTime=$("#endTime").val();
+                        var title="审核";
+                        if(window.location.search.split("page=")[1]){
+                            var _page=page||window.location.search.split("page=")[1].split("&")[0];
+                            history.replaceState({ title: title }, title, location.href.split("?")[0] + "?verify="+sta + "&page="+_page);
+                        }else{
+                            history.replaceState({ title: title }, title, location.href.split("?")[0] + "?verify="+sta);
+                        }*/
+                        if($(".star_time").val()!=""){
+                            var starTime=$(".star_time").val();
+                            json_data.starTime=starTime;
+                        }else{
+                            starTime="";
+                        }
+                        if($(".pay_time").val()!=""){
+                            var pay_time=$(".pay_time").val();
+                            json_data.payTime=pay_time;
+                        }else{
+                            pay_time="";
+                        }
+                        if($(".end_time").val()!=""){
+                            var endTime=$(".end_time").val();
+                            json_data.endTime=endTime;
+                        }else{
+                            endTime="";
+                        }
+                        sessionStorage.setItem("json_data",JSON.stringify(json_data));
+                        var sta=json_data.status||"verified";
+                        $(".table tbody")[0].innerHTML="";
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/verifyTreatRecord.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
 
-					<script src="../../js/config.js"></script>
-					<script src="../../js/uploadImg.js"></script>
-					<script src="../../js/session_expire.js"></script>
-					<script type="text/javascript" src="../../js/personal_msg.js"></script>
+                                appointName:json_data.appointName||"",
+                                departId:json_data.departId||"",
+                                doctorId:json_data.doctorId||"",
+                                hospId:json_data.hospId||"",
+                                memberId:json_data.memberId||"",
+                                patientName:json_data.patientName||"",
+                                payMoney:json_data.payMoney||"",
+                                payTime:json_data.payTime||"",
+                                type:json_data.type||"",
+                                // isRank:isRank||"",
+                                beginTime:starTime,
+                                finishTime:endTime,
+                                status:sta,
+                                teamId:json_data.teamId||"",
+                                treatId:json_data.treatId||"",
+                                accountId:json_data.accountId||"",
+                                page: page||1,
+                                rows: json_data.page||"25",
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function(data) {
+                                var info = data.info;
+                                var pageCount = data.pageCount;
+                                var tbody = $(".table tbody")[0];
+                                if(info.length == 0) {
+                                    alert("没有数据!");
+                                    return;
+                                }
+                                var paidMoneySum=0;
+                                var monthAwardSum=0;
+                                var yearAwardSum=0;
+                                //添加选项盒子
+                                for(var i = 0; i < info.length; i++) {
+                                    if(info[i].status == "verify") {
+                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                    }
+                                    if(info[i].status == "verified") {
+                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                    }
+                                    if(info[i].status == "notverify") {
+                                        status = "<span style='color:red;'>审核未通过</span>";
+                                    }
+                                    if(sta=="verify"){
+                                        var _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                            " <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                    }else if(sta=="notverify"){
+                                        _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> ";
+                                    }else if(sta=="verified"){
+                                        _dom=" <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                    }
+                                    if(info[i].verifyTime){
+                                        var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd hh:mm:ss');
+                                    }else{
+                                        verifyTime="";
+                                    }
+                                    if(info[i].detail){
+                                        var detail=JSON.parse(info[i].detail);
+                                        var _depart="";
+                                        for(var j =0;j<detail.length;j++){
+                                            var deptName=detail[j].deptName||"";
+                                            var deptMoney=detail[j].deptMoney||"0";
+                                            var _departHtml="<span>科室:"+deptName+"</span> "+
+                                                "<span>业绩:"+deptMoney+"</span>";
+                                            _depart+=_departHtml;
+                                        }
+                                    }else{
+                                        _depart="";
+                                    }
+                                    paidMoneySum+=info[i].paidMoney;
+                                    monthAwardSum+=info[i].monthAward;
+                                    yearAwardSum+=info[i].yearAward;
+                                    if(i!=info.length-1){
+                                        tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
+                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].treatName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].accountName + "</td>" +
+                                            "<td class='goDetail'>" + status + "</td>" +
+                                            "<td class='goDetail'>" + info[i].paidMoney + "</td>" +
+                                            "<td class='goDetail'>" + info[i].monthAward + "</td>" +
+                                            "<td class='goDetail'>" + info[i].yearAward + "</td>" +
+                                            "<td class='goDetail'>" + _depart+ "</td>" +
+                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                            "<td class='goDetail'>" + verifyTime + "</td>" +
+                                            "<td class='goDetail'>" +_dom+
+                                            "</td>" +
+                                            "</tr>";
+                                    }else{
+                                        tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
+                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].treatName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].accountName + "</td>" +
+                                            "<td class='goDetail'>" + status + "</td>" +
+                                            "<td class='goDetail'>" + info[i].paidMoney + "</td>" +
+                                            "<td class='goDetail'>" + info[i].monthAward + "</td>" +
+                                            "<td class='goDetail'>" + info[i].yearAward + "</td>" +
+                                            "<td class='goDetail'>" + _depart + "</td>" +
+                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                            "<td class='goDetail'>" + verifyTime + "</td>" +
+                                            "<td class='goDetail'>" +_dom+
+                                            "</td>" +
+                                            "</tr>"+
+                                            "<tr>" +
+                                            "<td style='color:red;'> 合计 </td>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td>" + paidMoneySum.toFixed(2) + "</td>" +
+                                            "<td>" + monthAwardSum.toFixed(2)+ "</td>" +
+                                            "<td>" + yearAwardSum.toFixed(2) + "</td>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td>"+
+                                            "</td>" +
+                                            "</tr>"
+                                    }
+                                }
+                                //添加选项内容
+                                $('.M-box').pagination({
+                                    pageCount: pageCount,
+                                    showData: 10,
+                                    jump: true,
+                                    coping: true,
+                                    homePage: '首页',
+                                    endPage: '末页',
+                                    prevContent: '上页',
+                                    nextContent: '下页',
+                                    current:page,
+                                    callback: function(api) {
+                                        $("body").mLoading("show");
+                                        /* var page=api.getCurrent();
+                                         var title="页面";
+                                         history.replaceState({ title: title }, title, location.href.split("&")[0] + "&page="+page);*/
 
-					<script type="text/javascript">
-						$(document).ready(function() {
+                                        $.ajax({
+                                            url: config.rootUrl + "user/verifyTreatRecord.do",
+                                            data: {
+                                                deviceToken: "html5",
+                                                deviceType: "html5",
+                                                userId: session_login.info.userId,
 
-							$('.table tbody').on('click', '.goDetail', function(e) {
-								e.stopPropagation();
-								e.preventDefault();
-								var rid = $(this).parents('tr').attr("data-rid");
-								var title = $(this).parents('tr').attr("data-title");
-								window.location.href = "../yeji_guanli/yeji_detail.html?rid=" + rid + "&title=" + title + "&fromWhere=daishen_xinxi.html";
+                                                status: sta,
+                                                appointName:json_data.appointName||"",
+                                                departId:json_data.departId||"",
+                                                doctorId:json_data.doctorId||"",
+                                                hospId:json_data.hospId||"",
+                                                memberId:json_data.memberId||"",
+                                                patientName:json_data.patientName||"",
+                                                payMoney:json_data.payMoney||"",
+                                                payTime:json_data.payTime||"",
+                                                beginTime:starTime,
+                                                finishTime:endTime,
+                                                // isRank:isRank||"",
+                                                status:sta,
+                                                teamId:json_data.teamId||"",
+                                                treatId:json_data.treatId||"",
+                                                accountId:json_data.accountId||"",
+                                                page: api.getCurrent()||1,
+                                                rows: json_data.page||"25",
+                                            },
+                                            async: true,
+                                            type: "post",
+                                            success: function(data) {
+                                                var info = data.info;
+                                                console.log(data);
+                                                var tbody = $(".table tbody")[0];
+                                                tbody.innerHTML = "";
+                                                var paidMoneySum=0;
+                                                var monthAwardSum=0;
+                                                var yearAwardSum=0;
+                                                //添加选项盒子
+                                                for(var i = 0; i < info.length; i++) {
+                                                    if(info[i].status == "verify") {
+                                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                                    }
+                                                    if(info[i].status == "verified") {
+                                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                                    }
+                                                    if(info[i].status == "notverify") {
+                                                        status = "<span style='color:red;'>审核未通过</span>";
+                                                    }
+                                                    if(sta=="verify"){
+                                                        var _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                                            " <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                                    }else if(sta=="notverify"){
+                                                        _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> ";
+                                                    }else if(sta=="verified"){
+                                                        _dom=" <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                                    }
+                                                    if(info[i].verifyTime){
+                                                        var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd hh:mm:ss');
+                                                    }else{
+                                                        verifyTime="";
+                                                    }
+                                                    if(info[i].detail){
+                                                        var detail=JSON.parse(info[i].detail);
+                                                        var _depart="";
+                                                        for(var j =0;j<detail.length;j++){
+                                                            var deptName=detail[j].deptName||"";
+                                                            var deptMoney=detail[j].deptMoney||"0";
+                                                            var _departHtml="<span>科室:"+deptName+"</span> "+
+                                                                "<span>业绩:"+deptMoney+"</span>";
+                                                            _depart+=_departHtml;
+                                                        }
+                                                    }else{
+                                                        _depart="";
+                                                    }
+                                                    paidMoneySum+=info[i].paidMoney;
+                                                    monthAwardSum+=info[i].monthAward;
+                                                    yearAwardSum+=info[i].yearAward;
+                                                    if(i!=info.length-1){
+                                                        tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
+                                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].treatName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].accountName + "</td>" +
+                                                            "<td class='goDetail'>" + status + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].paidMoney + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].monthAward + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].yearAward + "</td>" +
+                                                            "<td class='goDetail'>" + _depart + "</td>" +
+                                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                                            "<td class='goDetail'>" + verifyTime + "</td>" +
+                                                            "<td class='goDetail'>" +_dom+
+                                                            "</td>" +
+                                                            "</tr>";
+                                                    }else{
+                                                        tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
+                                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].treatName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].accountName + "</td>" +
+                                                            "<td class='goDetail'>" + status + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].paidMoney + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].monthAward + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].yearAward + "</td>" +
+                                                            "<td class='goDetail'>" + _depart + "</td>" +
+                                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                                            "<td class='goDetail'>" + verifyTime + "</td>" +
+                                                            "<td class='goDetail'>" +_dom+
+                                                            "</td>" +
+                                                            "</tr>"+
+                                                            "<tr>" +
+                                                            "<td style='color:red;'> 合计 </td>" +
+                                                            "<td></td>" +
+                                                            "<td></td>" +
+                                                            "<td></td>" +
+                                                            "<td></td>" +
+                                                            "<td>" + paidMoneySum.toFixed(2) + "</td>" +
+                                                            "<td>" + monthAwardSum.toFixed(2) + "</td>" +
+                                                            "<td>" + yearAwardSum.toFixed(2) + "</td>" +
+                                                            "<td></td>" +
+                                                            "<td></td>" +
+                                                            "<td>"+
+                                                            "</td>" +
+                                                            "</tr>"
+                                                    }
+                                                }
+                                            },
+                                            error: function() {
+                                                alert("网络错误");
 
-							});
-							
-							$(".dai_shenhe").on("click",function(){
-								doAction("verify");
-							});
-							$(".wei_shenhe").on("click",function(){
-								doAction("notverify");
-							});
-							$(".tonguo_shenhe").on("click",function(){
-								doAction("verified");
-							});
-							$(".dataSearch").on("click",function(){
-								doAction(gloableSta);
-							});
-							doAction("verify");
-							var gloableSta;
-							function doAction(sta){
-								gloableSta=sta;
-								var startTime=$("#begainTime").val();
-								var endTime=$("#endTime").val();
-								console.log(startTime)
-								$(".table tbody")[0].innerHTML="";
-								$.ajax({
-								url: config.rootUrl + "user/verifyTreatRecord.do",
-								data: {
-									deviceToken: "html5",
-									deviceType: "html5",
-									userId: session_login.info.userId,
-									
+                                            },
+                                            complete: function() {
+                                                $("body").mLoading("hide"); //关闭loading组件
+                                            }
+                                        })
+                                    }
 
-									status: sta,
-									page: "1",
-									rows: "15",
-									/*startTime:startTime,
-									endTime:endTime,*/
-								},
-								async: true,
-								type: 'post',
-								success: function(data) {
-									console.log(data);
-									var info = data.info;
-									var pageCount = data.pageCount;
-									var tbody = $(".table tbody")[0];
-									if(info.length == 0) {
-										alert("你当前没有待审核信息!");
+                                });
+                            },
+                            error: function(xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
 
-									}
-
-									//添加选项盒子
-									for(var i = 0; i < info.length; i++) {
-										if(info[i].status == "verify") {
-											var status = "<span style='color:darkyellow;'>待审核</span>";
-										}
-										if(info[i].status == "verified") {
-											var status = "<span style='color:#6cf;'>审核通过</span>";
-										}
-										if(info[i].status == "notverify") {
-											var status = "<span style='color:red;'>审核未通过</span>";
-										}
-										
-										tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
-											"<td class='goDetail'>" + info[i].patientName + "</td>" +
-											"<td class='goDetail'>" + info[i].realName + "</td>" +
-											"<td class='goDetail'>" + info[i].treatName + "</td>" +
-											"<td class='goDetail'>" + status + "</td>" +
-											"<td class='goDetail'>" + info[i].monthAward + "</td>" +
-											"<td class='goDetail'>" + info[i].yearAward + "</td>" +
-											"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-											"</tr>";
-											
-									}
-									//添加选项内容
-									$('.M-box').pagination({
-										pageCount: pageCount,
-										showData: 10,
-										jump: true,
-										coping: true,
-										homePage: '首页',
-										endPage: '末页',
-										prevContent: '上页',
-										nextContent: '下页',
-										callback: function(api) {
-											$.ajax({
-												url: config.rootUrl + "user/verifyTreatRecord.do",
-												data: {
-													deviceToken: "html5",
-													deviceType: "html5",
-													userId: session_login.info.userId,
-
-													status: sta,
-													page: api.getCurrent(),
-													rows: "15",
-													startTime:startTime,
-													endTime:endTime,
-												},
-												async: true,
-												type: "post",
-												success: function(data) {
-													var info = data.info;
-													console.log(data);
-													var tbody = $(".table tbody")[0];
-													tbody.innerHTML = "";
-													for(var i = 0; i < info.length; i++) {
-														if(info[i].status == "verify") {
-															var status = "<span style='color:darkyellow;'>待审核</span>";
-														}
-														if(info[i].status == "verified") {
-															var status = "<span style='color:#6cf;'>审核通过</span>";
-														}
-														if(info[i].status == "notverify") {
-															var status = "<span style='color:red;'>审核未通过</span>";
-														}
-														
-														tbody.innerHTML += "<tr data-rid='" + info[i].recordId + "' data-title='" + info[i].realName + "'  style='cursor:pointer'>" +
-															"<td class='goDetail'>" + info[i].patientName + "</td>" +
-															"<td class='goDetail'>" + info[i].realName + "</td>" +
-															"<td class='goDetail'>" + info[i].treatName + "</td>" +
-															"<td class='goDetail'>" + status + "</td>" +
-															"<td class='goDetail'>" + info[i].monthAward + "</td>" +
-															"<td class='goDetail'>" + info[i].yearAward + "</td>" +
-															"<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
-															"</tr>";
-													}
-												},
-												error: function() {
-													alert("网络错误");
-
-												}
-											})
-										}
-
-									});
-								},
-								error: function(xhr, type, errorThrown) {
-									alert('网络异常，请稍后再试！');
-								},
-
-							});
-							}
-
-						})
-					</script>
-	</body>
+                })
+            </script>
+</body>
 
 </html>

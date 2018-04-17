@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        .lable {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .medMoney{
+            color: red;
+        }
+
+        .modal-footer {
+            border: 0;
+        }
+
+        .input-group-addon {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>添加处方</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">划价</span>
+                    <div class="description" style="font-size:20px;color:red;"> 1:计算价格：添加药品之前务必选择天数，否则无法计算价格。</div>
+                    <div class="description" style="font-size:20px;color:red;"> 2:添加药品：请对应正确药厂。</div>
+                    <div class="description" style="font-size:20px;color:red;"> 3:刷新：如果没有获取到最新添加的药厂和药品请点击刷新！</div>
+                    <div class="description" style="font-size:20px;color:red;"> 4:添加：没有的疾病请点击添加按钮！</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                     <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                             class="fa fa-chevron-circle-left"></span>返回</a>
+                                     <a href="tag"></a>
+                                </div>
+                                <div class="card-title" style="float:right;text-align: center;">
+                                    <div class="">
+                                        <a class="btn btn-success reset" style="color:white;display: block;">刷新<span
+                                                class="fa fa-chevron-circle-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">门诊</label>
+                                        <div class="input-group col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必选项</span>
+                                            <select id="hospId" style="width:100%" title="门诊">
+                                                <optgroup label="请选择门诊" class="medicineSupplier">
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">患者姓名</label>
+                                        <div class="input-group col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <input type="text" id="patientName" maxlength="30" class="form-control"
+                                                   placeholder="患者姓名">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">患者性别</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <div>
+                                                <select id="sex" class="col-sm-5 col-xs-5" title="性别">
+                                                    <optgroup label="请选择性别" class="type">
+                                                        <option value="0">男</option>
+                                                        <option value="1">女</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="doctorId" class="col-sm-2 control-label">医生</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <div>
+                                                <select id="doctorId" class="col-sm-5 col-xs-5" title="医生"
+                                                        aria-describedby="">
+                                                    <optgroup label="请选择医生" class="doctorId">
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dId" class="col-sm-2 control-label">疾病名称</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <div>
+                                                <select id="dId" class="col-sm-5 col-xs-5" title="疾病名称"
+                                                        aria-describedby="">
+                                                    <optgroup label="请选择疾病名称" class="dId">
+                                                    </optgroup>
+                                                </select>
+                                                <div class="btn btn-primary add"
+                                                     style="padding: 3px;margin: 0;background: #7b0e0e;border: 1px solid;border-radius: 5px;">
+                                                    <span class="icon fa fa-plus-circle"> </span> 添加
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="illness" class="col-sm-2 col-xs-2 control-label">疾病描述</label>
+                                        <div class="col-sm-10 col-xs-10" style="padding-left: 0;">
+                                            <textarea class="form-control" id="illness" placeholder="疾病描述（选填，300字以内！）"
+                                                      maxlength="300" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">用药天数</label>
+                                        <div class="input-group  col-sm-5 col-xs-5">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <input type="text" id="days"  maxlength="30"
+                                                   class="form-control" placeholder="用药天数（必填，默认30天）">
+                                            <input type="text" id="giveDay" maxlength="30"
+                                                   class="form-control" placeholder="赠药天数（选填，默认0）">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="medicine">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="listPresc" class="col-sm-2 control-label">补方</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <div>
+                                                <select id="listPresc" class="col-sm-5 col-xs-5" multiple="multiple"
+                                                        title="补方"
+                                                        aria-describedby="">
+                                                    <optgroup label="请选择补方" class="listPresc">
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">状态</label>
+                                        <div class="input-group col-sm-10 col-xs-10">
+                                            <span class="input-group-addon"><i>*</i>必填项</span>
+                                            <div>
+                                                <select id="type" class="col-sm-5" title="状态">
+                                                    <optgroup label="请选择状态" class="type">
+                                                        <option value="received">已收</option>
+                                                        <option value="unreceive">未收</option>
+                                                        <option value="dreceive">代收</option>
+                                                        <option value="transfer">转账</option>
+                                                        <option value="paidAndDreceive">已收+代收</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="reBox" style="display: none;">
+                                                    <span style="color:red;">已收：<span class="received"
+                                                                                      style="color:blue;">25</span></span>
+                                                <span style="color:red;">代收：<span class="dreceive"
+                                                                                  style="color:blue;">30</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">折扣</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="col-sm-6">
+                                                <input type="text" id="discount" maxlength="10" class="form-control"
+                                                       placeholder="8折请填写8（不打折可不填，或填10）">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" style="color:red;">煎药费</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="col-sm-4">
+                                                <input type="text" id="decoctMoney" maxlength="30" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" style="color:red;">总价</label>
+                                        <div class="input-group col-sm-10">
+                                            <div class="col-sm-4">
+                                                <input type="hidden" id="oldMoney" maxlength="30">
+                                                <input type="number" id="discountMoney" maxlength="30"
+                                                       class="form-control"
+                                                       disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group preBox">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary btn-lg preview"
+                                                    style="width:100%">保存
+                                            </button>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group saveBox">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-success btn-lg saveBtn"
+                                                    style="width:100%">提交
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="re_dreceive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="feelLabel">已收+代收</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="paidMoney">已收</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="paidMoney">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="unpayMoney">代收</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="unpayMoney">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success col-sm-12 submit">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="add_disease" tabindex="-2" role="dialog" aria-labelledby="addKeshiModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">添加疾病</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group col-xs-12">
+                        <div class="col-xs-3">
+                            <lable for="disease"
+                                   style="height:38px;line-height: 38px;width:100%;color:red;font-size: 18px;">疾病名称：
+                            </lable>
+                        </div>
+                        <input type="text" id="disease" class="form-control col-xs-5">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary save">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright.
+                期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+            <script type="text/javascript">
+                //医生
+                function getDoctor() {
+                    var doctorId = $(".doctorId");
+                    if (sessionStorage.getItem("doctors")) {
+                        var doctors = JSON.parse(sessionStorage.getItem("doctors"));
+                        for (var i in doctors) {
+                            var _option = document.createElement("option");
+                            _option.value = doctors[i].doctorId;
+                            _option.text = doctors[i].doctorName;
+                            doctorId.append(_option);
+                        }
+                        $('#doctorId').val("").select2({
+                            placeholder: "请选择医生"
+                        });
+                    } else {
+                        $.ajax({
+                            url: config.rootUrl + "user/getDoctor.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                sessionStorage.setItem("doctors", JSON.stringify(info));
+                                for (var i in info) {
+                                    var _option = document.createElement("option");
+                                    _option.value = info[i].doctorId;
+                                    _option.text = info[i].doctorName;
+                                    doctorId.append(_option);
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $('#doctorId').val("").select2({
+                                    placeholder: "请选择医生"
+                                });
+                            }
+                        });
+                    }
+                }
+
+                //协定方
+                function listPresc(doctorId) {
+                    var listPresc = $(".listPresc");
+                    if (sessionStorage.getItem("listPresc")) {
+                        var listPrescs = JSON.parse(sessionStorage.getItem("listPrescs"));
+                        for (var i in listPrescs) {
+                            var _option = document.createElement("option");
+                            _option.value = doctors[i].doctorId;
+                            _option.text = doctors[i].doctorName;
+                            listPresc.append(_option);
+                        }
+                        $('#listPresc').val("").select2({
+                            placeholder: "请选择"
+                        });
+                    } else {
+                        $.ajax({
+                            url: config.rootUrl + "user/listPresc.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                doctorId: doctorId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                sessionStorage.setItem("listPrescs", JSON.stringify(info));
+                                for (var i in info) {
+                                    var _option = document.createElement("option");
+                                    _option.value = info[i].doctorId;
+                                    _option.text = info[i].doctorName;
+                                    listPresc.append(_option);
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $('#listPresc').val("").select2({
+                                    placeholder: "请选择"
+                                });
+                            }
+                        });
+                    }
+                }
+
+                // 疾病获取
+                function getBaseData() {
+                    var dId = $(".dId");
+                    if (sessionStorage.getItem("diseases")) {
+                        var diseases = JSON.parse(sessionStorage.getItem("diseases"));
+                        for (var i in diseases) {
+                            var _option = document.createElement("option");
+                            _option.value = diseases[i].dId;
+                            _option.text = diseases[i].dName;
+                            dId.append(_option);
+                        }
+                        $("#dId").val("").select2({placeholder: "请选择疾病"});
+                    } else {
+                        $.ajax({
+                            url: config.rootUrl + "user/getBaseData.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var diseases = data.diseases;
+                                sessionStorage.setItem("diseases", JSON.stringify(diseases));
+                                //疾病名称
+                                for (var i in diseases) {
+                                    var _option = document.createElement("option");
+                                    _option.value = diseases[i].dId;
+                                    _option.text = diseases[i].dName;
+                                    dId.append(_option);
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $("#dId").val("").select2({placeholder: "请选择疾病"});
+                            }
+                        })
+                    }
+                }
+
+            </script>
+            <!-- Javascript -->
+            <script type="text/javascript">
+                $(function () {
+                    var hospId=session_login.info.hospId;
+                    listHospMedicine();
+                    // 十八反十九畏
+                    var all = ["甘草", "甘遂", "大戟", "海藻", "芫花", "乌头", "贝母", "瓜蒌", "半夏", "白蔹", "白芨", "藜芦", "人参", "沙参", "丹参", "玄参", "苦参", "细辛", "芍药",
+                            "硫磺", "朴硝", "水银", "砒霜", "狼毒", "密陀僧", "巴豆", "牵牛", "丁香", "郁金", "川乌", "草乌", "犀角", "牙硝", "三棱", "官桂", "赤石脂", "五灵脂"],
+                        eighteen = ["甘草", "甘遂", "大戟", "海藻", "芫花", "乌头", "贝母", "瓜蒌", "半夏", "白蔹", "白芨", "藜芦", "人参", "沙参", "丹参", "玄参", "苦参", "细辛", "芍药"],
+                        nineteen = ["硫磺", "朴硝", "水银", "砒霜", "狼毒", "密陀僧", "巴豆", "牵牛", "丁香", "郁金", "川乌", "草乌", "犀角", "牙硝", "三棱", "官桂", "赤石脂", "五灵脂", "人参"];
+                    $('select').select2("val", "");
+                    $('#type').select2({"placeholder": "请选择状态", val: "1"});
+                    $('#sex').select2({"placeholder": "请选择性别"});
+                    $(".reset").on("click", function () {
+                        sessionStorage.clear();
+                        window.location.reload();
+                    })
+                    $('.add').on('click', function (e) {
+                        $('#add_disease').modal();
+                    });
+                    //添加疾病
+                    $('.save').on('click', function (e) {
+                        var disease = $("#disease").val();
+                        if (disease == "") {
+                            alert("请输入疾病名称！");
+                        }
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/addPlatData.do",
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                type: "disease",
+                                value: disease,
+                            },
+                            success: function (data) {
+                                if (data.code == 1) {
+                                    alert(data.msg);
+                                    sessionStorage.clear();
+                                    window.location.reload();
+                                } else {
+                                    alert(data.msg);
+                                }
+                            },
+                            error: function () {
+                                alert("发生错误!");
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        })
+                    });
+                    //获取门诊
+                    var retSupplier = "";
+                    getmedicineSupplier();
+                    function getmedicineSupplier() {
+                        if (sessionStorage.getItem("getHospital")) {
+                            var medicineSup = JSON.parse(sessionStorage.getItem("getHospital"));
+                            for (var i in medicineSup) {
+                                var _option = "<option value='" + medicineSup[i].hospId + "'>" + medicineSup[i].hospName + "</option>";
+                                retSupplier += _option;
+                            }
+                            $(".medicineSupplier")[0].innerHTML = retSupplier;
+                            $("#hospId").val("").select2({
+                                placeholder: "请选择门诊"
+                            });
+                        } else {
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/getHospital.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                },
+                                async: true,
+                                type: 'post',
+                                success: function (data) {
+                                    //添加选项内容
+                                    var info = data.info;
+                                    sessionStorage.setItem("getHospital", JSON.stringify(info));
+                                    for (var i in info) {
+                                        var _option = "<option value='" + info[i].hospId + "'>" + info[i].hospName + "</option>";
+                                        retSupplier += _option;
+                                    }
+                                    $(".medicineSupplier")[0].innerHTML = retSupplier;
+                                    $("#hospId").val("").select2({
+                                        placeholder: "请选择门诊"
+                                    });
+                                },
+                                error: function (xhr, type, errorThrown) {
+                                    alert('发生错误！');
+                                },
+                                complete: function () {
+                                    $("body").mLoading("hide");//关闭loading组件
+                                }
+                            });
+                        }
+
+                    }
+                    //获取门诊药品列表
+                    var retMedicineOrder = "";
+                    function listHospMedicine() {
+                        $("body").mLoading("show");//关闭loading组件
+                        $.ajax({
+                            url: config.rootUrl + "user/listMedicine.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                page: "1",
+                                rows: "1000"
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                //添加选项内容
+                                var info = data.info;
+                                //收款账户
+                                for (var i in info) {
+                                    var dataJson = JSON.stringify(info[i]);
+                                    var _option = "<option value='" + info[i].mId + "' data-json='" + dataJson + "'>" + info[i].medicineName+" ￥"+info[i].salePrice+"</option>";
+                                    retMedicineOrder += _option;
+                                }
+                                $(".medicine")[0].innerHTML = retMedicineOrder;
+                                $('.item').val("").select2({
+                                    placeholder: "请选择药品"
+                                });
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    }
+                    $('#doctorId').on("select2:close", function () {
+                        var doctorId = $(this).val();
+                        getlistPresc(doctorId);
+                    })
+                    // 获取协定方
+                    function getlistPresc(doctorId) {
+                        var listPresc = $(".listPresc");
+                        var hospId=$("#hospId").val();
+                        listPresc[0].innerHTML = "";
+                        $.ajax({
+                            url: config.rootUrl + "user/listPresc.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                hospId: hospId || 1,
+                                doctorId: doctorId || 1,
+                                page: 1,
+                                rows: 666,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var info = data.info;
+                                for (var i in info) {
+                                    var dataJson = JSON.parse(info[i].prescDetail);
+                                    dataJson.push({price: info[i].price});
+                                    dataJson = JSON.stringify(dataJson);
+                                    var _option = "<option value='" + dataJson + "'>" + info[i].prescName+"（￥"+info[i].price +"）"+ "</option>";
+                                    listPresc.append(_option);
+                                }
+                                $('#listPresc').val("").select2({
+                                    placeholder: "请选择补方"
+                                });
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                        });
+                    }
+                    //获取基本数据
+                    getBaseData();
+                    // 获取医生数据
+                    getDoctor();
+                    // 获取协定方数据
+                    getlistPresc();
+                    // 重构药品序号
+                    function medText() {
+                        var _item = $(".medText");
+                        for (var i = 1; i <= _item.length; i++) {
+                            $(".medText")[i - 1].innerText = "药品" + i;
+                        }
+                    }
+                    $("#listPresc").on("select2:close", function () {
+                        calc()
+                    })
+                    var _counter = 1;
+                    var medMoney = {};
+                    var type={typeName:"草药",type:"caoyao"};
+                    $("#medicine").delegate(".tianjia", "click", function () {
+                        if ($(this).attr("disabled") == "disabled") {
+                            return;
+                        } else {
+                            setDom(type)
+                        }
+                    })
+
+                    //删除药品
+                    $("#medicine").delegate(".del", "click", function () {
+                        var _id = $(this).parents(".itemFlag").attr("class").split(" ")[1].split("itemBox")[1];
+                        var len = $(".medText").length;
+                        $("#medicine")[0].removeChild($('.itemBox' + _id + '')[0]);
+                        delete medMoney["allMoney" + _id];
+                        delete medMoney["json" + _id];
+                        delete medMoney["num" + _id];
+                        delete medMoney["mId" + _id];
+                        delete medMoney["msId" + _id];
+                        delete medMoney["salePrice" + _id];
+                        delete medMoney["selectMed" + _id];
+                        delete medMoney["medicineStock" + _id];
+                        delete medMoney["type" + _id];
+                        medText();
+                        calc();
+                        if (len == "1") {
+                            setDom(type);
+                        }
+                    })
+                    setDom(type);
+                    // 增加药品
+                    function setDom(data) {
+                        if(data.type=="fenji"){
+                                var _medMon='<input type="number"   disabled="disabled"  maxlength="30" class="form-control medMoney_fenji"  placeholder="价格">';
+                        }else{
+                            _medMon='<input type="number"   disabled="disabled"  maxlength="30" class="form-control medMoney"  placeholder="价格">';
+                        }
+                        var _html = '<div class="itemFlag itemBox' + _counter + '"><hr><label class="col-sm-2 control-label medText" style="color:green;">药品</label>' +
+                            '<div class="input-group col-sm-10 medBox">' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">价格</p>' +_medMon +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">药品</p>' +
+                            '<select class="selectMed' + _counter + ' item"   style="width:100%" title="药品">' +
+                            '<optgroup label="请选择药品" class="medicine">' + retMedicineOrder + '</optgroup>' +
+                            '</select>' +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">类型</p>' +
+                            '<select class="type' + _counter + '" style="width:100%" title="类型">' +
+                            '<optgroup label="请选择药品类型" class="medicine">' +
+                            '<option value="caoyao">草药</option>'+
+                            '<option value="tangyao">汤药</option>'+
+                            '<option value="fenji">粉剂</option>'+
+                            '</optgroup>' +
+                            '</select>' +
+                            '</div>' +
+                            '<div class="col-sm-3" style="display: none;">' +
+                            '<p class="lable">药厂</p>' +
+                            '<input type="text" id="medSup' + _counter + '"  maxlength="30" class="form-control" disabled="disabled">' +
+                            '</div>' +
+                            '<div class="col-sm-3" style="display: none;">' +
+                            '<p class="lable">单价</p>' +
+                            '<input type="number" id="salePrice' + _counter + '"  maxlength="30" class="form-control" disabled="disabled">' +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">每日用量</p>' +
+                            '<input type="text" id="num' + _counter + '"  maxlength="30"  class="form-control" placeholder="每日用量">' +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">添药</p>' +
+                            '<div class="btn btn-primary tianjia form-control"><span class="icon fa fa-plus-circle"> </span> 增加</div>' +
+                            '</div>' +
+                            '<div class="col-sm-2">' +
+                            '<p class="lable">删除</p>' +
+                            '<div class="btn btn-danger del form-control"><span class="icon fa fa-delicious"> </span> 删除</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                        $("#medicine").append(_html);
+                        // 重置下拉框
+                        $('.selectMed' + _counter).val("").select2({
+                            placeholder: "请选择药品"
+                        });
+                        $('.type' + _counter).val(data.type).select2({
+                            placeholder: "请选择药品类型"
+                        });
+                        $('.type' + _counter).on("select2:close", function () {
+                            var _id = $(this).attr("class").split(" ")[0].split("type")[1];
+                            var typeName=$(this).find("option:selected").text();
+                            var _type=$(this).val();
+                            type={typeName:typeName,type:_type}
+                            medMoney["type" + _id] = _type;
+                            var day=$("#days").val();
+                            var _json = $('.selectMed' + _id).find("option:selected").attr("data-json");
+                            if(_json){
+                                _json = JSON.parse(_json);
+                                var salePrice = _json.salePrice;
+                            }else{
+                                if(type.type=="fenji"){
+                                    $(this).parents(".medBox").find(".medMoney").removeClass("medMoney").addClass("medMoney_fenji");
+                                }else{
+                                    $(this).parents(".medBox").find(".medMoney_fenji").removeClass("medMoney_fenji").addClass("medMoney");
+                                }
+                                return;
+                            }
+                            if(type.type=="fenji"){
+                                $(this).parents(".medBox").find(".medMoney").removeClass("medMoney").addClass("medMoney_fenji");
+                                if($("#num"+_id).val()!=""){
+                                    var num=$("#num"+_id).val();
+                                    _need=_need=salePrice*num;
+                                    _need=_need.toFixed(2);
+                                    $(this).parents(".medBox").find(".medMoney_fenji").val(_need);
+                                }
+                            }else{
+                                $(this).parents(".medBox").find(".medMoney_fenji").removeClass("medMoney_fenji").addClass("medMoney");
+                                if($("#num"+_id).val()!=""){
+                                    var num=$("#num"+_id).val();
+                                    _need=salePrice*day*num;
+                                    _need=_need.toFixed(2);
+                                    $(this).parents(".medBox").find(".medMoney").val(_need);
+                                }
+                            }
+                        })
+                        medText()
+                        $('.selectMed' + _counter).on("select2:close", function () {
+                            var _id = $(this).attr("class").split(" ")[0].split("selectMed")[1];
+                            var _type=$('.type' + _id).val();
+                            $("#num" + _id).val("");
+                            $(this).parents(".medBox").find(".medMoney").val("");
+                            var _json = $(this).find("option:selected").attr("data-json");
+                            medMoney["json" + _id] = _json;
+                            _json = JSON.parse(_json);
+                            var salePrice = _json.salePrice;
+                            var _mId = _json.mId;
+                            var _msId = _json.msId;
+                            var _selectMed = _json.medicineName;
+                            var _medicineStock = _json.medicineStock;
+                            // 十八反十九畏
+                            for (var i = 0; i <= all.length; i++) {
+                                if (all[i] == _selectMed) {
+                                    if (_selectMed == "甘草" || _selectMed == "甘遂" || _selectMed == "大戟" || _selectMed == "海藻" || _selectMed == "芫花") {
+                                        for (var j = 1; j <= _counter; j++) {
+                                            var _med = medMoney["selectMed" + j];
+                                            if (_med != _med && _med == "甘遂" || _med == "大戟" || _med == "甘草" || _med == "海藻" || _med == "芫花") {
+                                                alert("药品中含有反药：" + _selectMed + _med + "请选择是否删除一种？");
+                                            }
+                                        }
+                                    }
+                                    if (_selectMed == "乌头" || _selectMed == "草乌" || _selectMed == "黑顺片" || _selectMed == "附子" || _selectMed == "白附子" || _selectMed == "黑附子" || _selectMed == "制附子") {
+                                        for (var j = 1; j <= _counter; j++) {
+                                            var _med = medMoney["selectMed" + j];
+                                            if (_med == "贝母" || _med == "瓜蒌" || _med == "半夏" || _med == "清半夏" || _med == "白蔹" || _med == "白芨") {
+                                                alert("药品中含有反药：" + _selectMed + _med + "请选择是否删除一种？");
+                                            }
+                                        }
+                                    }
+                                    if (_selectMed == "藜芦" || _selectMed == "人参" || _selectMed == "沙参" || _selectMed == "丹参" || _selectMed == "南沙参" || _selectMed == "北沙参" || _selectMed == "玄参" || _selectMed == "元参" || _selectMed == "细辛" || _selectMed == "苦参" || _selectMed == "芍药" || _selectMed == "白芍药" || _selectMed == "赤芍药" || _selectMed == "白芍" || _selectMed == "赤芍") {
+                                        for (var j = 1; j <= _counter; j++) {
+                                            var _med = medMoney["selectMed" + j];
+                                            if (_med != _selectMed && _med == "藜芦" || _med == "人参" || _med == "沙参" || _med == "丹参" || _med == "南沙参" || _med == "北沙参" || _med == "玄参" || _med == "元参" || _med == "细辛" || _med == "苦参" || _med == "芍药" || _med == "白芍药" || _med == "赤芍药" || _med == "白芍" || _med == "赤芍") {
+                                                alert("药品中含有反药：" + _selectMed + _med + "请选择是否删除一种？");
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                            medMoney["selectMed" + _id] = _selectMed;
+                            medMoney["mId" + _id] = _mId;
+                            medMoney["msId" + _id] = _msId;
+                            medMoney["type" + _id] = _type;
+                            $('#salePrice' + _id).val(salePrice);
+                            medMoney["salePrice" + _id] = salePrice;
+                            medMoney["medicineStock" + _id] = _medicineStock;
+                            calc();
+                        })
+                        $("#num" + _counter).on("input", function () {
+                            var _id = $(this).attr("id").split(" ")[0].split("num")[1];
+                            check("#num" + _id);
+                            var _days = $("#days").val()||30;
+                            var _giveDay = $("#giveDay").val()||0;
+                            // var _all_day=Number(_days)+Number(_giveDay);
+                            var medicineStock = medMoney["medicineStock" + _id];
+                            medMoney["num" + _id] = $(this).val();
+                            if (medMoney["num" + _id] * _days > medicineStock) {
+                                $(this).css({"border-color": "red"});
+                            } else {
+                                $(this).css({"border-color": "green"});
+                            }
+                            if($(this).parents(".medBox").find(".medMoney").length==1){
+                                var allMoney = medMoney["salePrice" + _id] * medMoney["num" + _id] * _days;
+                                allMoney = allMoney.toFixed(2);
+                                medMoney["allMoney" + _id] = allMoney;
+                                $(this).parents(".medBox").find(".medMoney").val(allMoney);
+                            }else if($(this).parents(".medBox").find(".medMoney_fenji").length==1){
+                                var allMoney = medMoney["salePrice" + _id] * medMoney["num" + _id];
+                                allMoney = allMoney.toFixed(2);
+                                medMoney["allMoney" + _id] = allMoney;
+                                $(this).parents(".medBox").find(".medMoney_fenji").val(allMoney);
+                            }
+                            calc();
+                        })
+                        ++_counter;
+                    }
+
+                    $("#discount").on("input", function () {
+                        check("#discount");
+                        var discount = $("#discount").val();
+                        if (discount > 10 || discount <= 0) {
+                            alert("折扣请填写1-10之间的数值！");
+                            $("#discount").val("");
+                            $("#discount").focus();
+                        }
+                        calc();
+                    })
+                    $("#days").on("input", function () {
+                        calcAllMoney();
+                    })
+                    /*$("#giveDay").on("input", function () {
+                        calcAllMoney();
+                    })*/
+                    function calcAllMoney() {
+                        var _days = $("#days").val()||30;
+                        var _giveDay = $("#giveDay").val()||0;
+                        // var _all_day=Number(_days)+Number(_giveDay);
+                        check("#days");
+                        for (var i = 1; i < _counter; i++) {
+                            var medicineStock = medMoney["medicineStock" + i];
+                            var num = $("#num" + i).val();
+                            var salePrice = $("#salePrice" + i).val();
+                            var allMoney = (_days * num * salePrice).toFixed(2);
+                            if ("allMoney" + i in medMoney) {
+                                medMoney["allMoney" + i] = allMoney;
+                            }
+                            $("#num" + i).parents(".medBox").find(".medMoney").val(allMoney);
+                            if (allMoney > medicineStock) {
+                                $("#num" + i).css({"border-color": "red"});
+                                $(this).css({"border-color": "red"});
+                            } else {
+                                $("#num" + i).css({"border-color": "green"});
+                                $(this).css({"border-color": "green"});
+                            }
+                        }
+                        calc();
+                    }
+
+                    $("#decoctMoney").on("input", function () {
+                        check("#decoctMoney");
+                        calc();
+                    })
+                    $("#paidMoney").on("input", function () {
+                        check("#paidMoney");
+                    })
+                    $("#unpayMoney").on("input", function () {
+                        check("#unpayMoney");
+                    })
+                    $(".submit").on("click", function () {
+                        var paidMoney = $("#paidMoney ").val();
+                        var unpayMoney = $("#unpayMoney ").val();
+                        if (paidMoney == "" || unpayMoney == "" || unpayMoney < 0 || paidMoney < 0) {
+                            alert("请正确填写!");
+                        } else {
+                            $("#re_dreceive").modal('hide');
+                            $(".reBox").css('display', "block");
+                            $(".received").text(paidMoney);
+                            $(".dreceive").text(unpayMoney);
+                        }
+                    })
+
+
+                    function check(id) {
+                        var obj = $(id)[0];
+                        obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
+                        obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+                        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+                        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d\d\d\d).*$/, '$1$2.$3');//只能输入五个小数
+                        if (obj.value.indexOf(".") < 0 && obj.value != "") {//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+                            obj.value = parseFloat(obj.value);
+                        }
+                    }
+
+                    //计算总价和折扣价
+                    function calc() {
+                        var medMoneys = $(".medMoney");
+                        var medMoneys_fenji = $(".medMoney_fenji");
+                        var _days = $("#days").val()||30;
+                        var allCount = 0;
+                        var moneys = 0;
+                        var discount = $("#discount").val() || 10;
+                        discount = discount / 10;
+                        var decoctMoney = $("#decoctMoney").val() || 0;
+                        for (var i = 0; i < medMoneys.length; i++) {
+                            allCount += Number(medMoneys[i].value);
+                        }
+                        for (var i = 0; i < medMoneys_fenji.length; i++) {
+                            allCount += Number(medMoneys_fenji[i].value);
+                        }
+                        var listPresc = $("#listPresc").val();
+                        if (listPresc) {
+                            for (var i = 0; i < listPresc.length; i++) {
+                                var price = JSON.parse(listPresc[i]);
+                                price = price[price.length - 1].price;
+                                moneys += Number(price)
+                            }
+                        }
+                        var _temp = allCount + Number(decoctMoney) + Number(moneys) * _days;
+                        $("#oldMoney").val(_temp);
+                        var discountMoney = ((discount * allCount) + Number(decoctMoney) + Number(moneys) * _days).toFixed(2);
+                        $("#discountMoney").val(discountMoney);
+                    }
+
+                    $("#type").on("select2:close", function () {
+                        var val = $(this).val();
+                        $(".reBox").css('display', "none");
+                        if (val == "paidAndDreceive") {
+                            $("#re_dreceive").modal();
+                        }
+                    })
+                    $(".saveBtn").on("click", function () {
+                        $("body").mLoading("show");
+                        var hospId=$("#hospId").val();
+                        var patientName = $("#patientName").val();
+                        if (patientName == "") {
+                            alert("请填写患者名字！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        var meds = $(".medMoney");
+                        for (var i = 0; i < meds.length; i++) {
+                            if ($(meds[i]).val() == "" || $(meds[i]).val() == "0") {
+                                alert("药品信息录入不完全，请仔细检查！");
+                                $("body").mLoading("hide");//关闭loading组件
+                                return;
+                            }
+                        }
+                        var sex = $("#sex").val();
+                        var patientName = $("#patientName").val();
+                        var dId = $("#dId").val();
+                        var doctorId = $("#doctorId").val();
+                        var _days = $("#days").val()||30;
+                        var _giveDay = $("#giveDay").val()||0;
+                        var illness = $("#illness").val();
+                        var paidMoney = $("#paidMoney ").val();
+                        var unpayMoney = $("#unpayMoney ").val();
+                        var decoctMoney = $("#decoctMoney").val();
+                        var type = $("#type ").val();
+                        var discount = $("#discount ").val() / 10;
+                        var oldMoney = $("#oldMoney ").val();
+                        oldMoney=Number(oldMoney).toFixed(2);
+                        var discountMoney = $("#discountMoney ").val();
+                        discountMoney=Number(discountMoney).toFixed(2);
+                        //药品详情
+                        //草药
+                        var detail = [];
+                        // 汤药
+                        var decoction = [];
+                        // 粉剂
+                        var powder = [];
+                        // 总成本
+                        var medicineCost = 0;
+                        // 草药成本
+                        var herbalCost  = 0;
+                        // 汤药成本
+                        var decoctionCost = 0;
+                        // 粉剂成本
+                        var powderCost = 0;
+                        // 草药售价
+                        var herbalMoney  = 0;
+                        // 汤药售价
+                        var decoctionMoney = 0;
+                        // 粉剂售价
+                        var powderMoney = 0;
+                        for (var i in medMoney) {
+                            if (typeof medMoney[i] == "string" && i.indexOf("json") == "0") {
+                                var item = i.split("json")[1];
+                                var json_data = JSON.parse(medMoney["json"+item]);
+                                switch (medMoney["type" + item]){
+                                    case "caoyao":
+                                        herbalCost += json_data.buyPrice*medMoney["num" + item];
+                                        herbalMoney += json_data.salePrice*medMoney["num" + item];
+                                        json_data.medMoney = medMoney["allMoney" + item];
+                                        json_data.grams = medMoney["num" + item];
+                                        detail.push(json_data);
+                                        break;
+                                    case "tangyao":
+                                        decoctionCost += json_data.buyPrice*medMoney["num" + item];
+                                        decoctionMoney += json_data.salePrice*medMoney["num" + item];
+                                        json_data.medMoney = medMoney["allMoney" + item];
+                                        json_data.grams = medMoney["num" + item];
+                                        decoction.push(json_data);
+                                        break;
+                                    case "fenji":
+                                        powderCost += json_data.buyPrice*medMoney["num" + item];
+                                        powderMoney += json_data.salePrice*medMoney["num" + item];
+                                        json_data.medMoney = medMoney["allMoney" + item];
+                                        json_data.grams = medMoney["num" + item];
+                                        powder.push(json_data);
+                                        break;
+                                }
+                            }
+                        }
+                        //协定方归为草药
+                        var listPresc = $("#listPresc").val();
+                        if(listPresc){
+                            for (var i = 0; i < listPresc.length; i++) {
+                                var _data = JSON.parse(listPresc[i]);
+                                for (var j = 0; j < _data.length - 1; j++) {
+                                    herbalCost += _data[j].buyPrice*_data[j].grams;
+                                    herbalMoney += _data[j].salePrice*_data[j].grams;
+                                    _data[j].medMoney = _data[j].medMoney * days;
+                                    detail.push(_data[j])
+                                }
+                            }
+                        }
+                        // 解决精度问题
+                        medicineCost = (herbalCost+decoctionCost+powderCost).toFixed(2);
+                        herbalMoney=herbalMoney.toFixed(2);
+                        decoctionMoney=decoctionMoney.toFixed(2);
+                        powderMoney=powderMoney.toFixed(2);
+
+                        herbalCost=herbalCost.toFixed(2);
+                        decoctionCost=decoctionCost.toFixed(2);
+                        powderCost=powderCost.toFixed(2);
+                        if (detail.length == "0") {
+                            alert("至少需要添加一种药！");
+                            $("body").mLoading("hide");//关闭loading组件
+                            return;
+                        }
+                        /*在这里调用上传接口*/
+                        $.ajax({
+                            url: config.rootUrl + "user/addMedcineRecord.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                patientName: patientName,
+
+                                illness: illness || "",
+                                dId: dId,
+                                hospId: hospId,
+                                sex: sex,isSimple: 1,
+                                doctorId: doctorId,
+                                days: _days,
+                                giveDay: _giveDay,
+                                type: type,
+                                discount: discount || 1,
+                                herbalCost: herbalCost,
+                                herbalMoney: herbalMoney,
+                                decoctionCost: decoctionCost,
+                                decoctionMoney: decoctionMoney,
+                                powderCost: powderCost,
+                                powderMoney: powderMoney,
+                                medicineCost: medicineCost,
+                                oldMoney: oldMoney,
+                                unpayMoney: unpayMoney || "",
+                                paidMoney: paidMoney || "",
+                                discountMoney: discountMoney,
+                                decoctMoney: decoctMoney,
+                                detail: JSON.stringify(detail),
+                                decoction: JSON.stringify(decoction),
+                                powder: JSON.stringify(powder),
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                alert(data.msg);
+                                if (data.code == "1") {
+                                    window.location.reload()
+                                }
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    })
+
+                })
+            </script>
+</body>
+
+</html>

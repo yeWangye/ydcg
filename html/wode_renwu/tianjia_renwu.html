@@ -127,7 +127,7 @@
 							</div>
 							<div><span class="tips">1:时间选择可点击小时,分钟分开选择.</span></div>
 							<div class="desctiption">
-								<span class="tips">2:时间段必须大于10分钟小于2小时,留信息不做限制,全天可设置</span>
+								<span class="tips">2:时间段必须大于10分钟小于2小时,留信息和自定义任务不做限制,全天可设置,</span>
 							</div>
 							<div class="desctiption">
 								<span class="">二:任务名称:</span><span class="taskName tips"></span>
@@ -329,13 +329,14 @@
 							var maxTime = 2 * 60;
 							var startStamp = (starTime.split(":")[0] * 60 - 0) + (starTime.split(":")[1] - 0);
 							var endStamp = (endTime.split(":")[0] * 60 - 0) + (endTime.split(":")[1] - 0);
-							if(taskType=="patient"){
-								return true;
-							}
 							if(startStamp > endStamp) {
 								alert("开始时间不能大于结束时间!");
 								return false;
-							} else if(endStamp - startStamp < minTime) {
+							}else if(taskType=="patient"){
+								return true;
+							} else if(!taskId||taskId=="0"){
+								return true;
+							}else if(endStamp - startStamp < minTime) {
 								alert("时间间隔最少为10分钟!");
 								return false;
 							} else if(endStamp - startStamp > maxTime) {

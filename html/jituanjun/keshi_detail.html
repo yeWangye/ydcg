@@ -36,7 +36,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>集团军</li>
+								<li>科室业绩</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -196,7 +196,14 @@
 							var departId = window.location.search.split("departId=")[1].split("&")[0];
 							var title = window.location.search.split("title=")[1].split("&")[0];
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
-
+                            if(search.split("starTime=")[1]) {
+                                var starTime=search.split("starTime=")[1].split("&")[0];
+                                starTime=decodeURI(starTime);
+                            }
+                            if(search.split("endTime=")[1]) {
+                                var endTime=search.split("endTime=")[1].split("&")[0];
+                                endTime=decodeURI(endTime);
+                            }
 						}
 						$('.table tbody').on('click', '.goDetail', function(e) {
 							e.stopPropagation();
@@ -213,7 +220,9 @@
 								userId: session_login.info.userId,
 								departId: departId,
 								page: "1",
-								rows: "10"
+								rows: "10",
+                                starTime: starTime,
+                                endTime: endTime,
 							},
 							async: true,
 							type: 'post',
@@ -278,6 +287,8 @@
 												departId: departId,
 												page: api.getCurrent(),
 												rows: "10",
+                                                starTime: starTime,
+                                                endTime: endTime,
 											},
 											async: true,
 											type: "post",

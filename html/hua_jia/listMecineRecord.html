@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>处方单</li>
+                        </ol>
+
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title"><span style="color:red;">处方单管理</span></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+                                <div class="card-header">
+                                        <div class="card-title col-xs-4">
+                                            <div class="title"><button class="btn btn-primary dai_shenhe">1:待审核</button></div>
+                                        </div>
+                                        <div class="card-title col-xs-4">
+                                            <div class="title"><button class="btn btn-success tonguo_shenhe">2:审核通过</button></div>
+                                        </div>
+                                        <div class="card-title col-xs-4">
+                                            <div class="title"><button class="btn btn-danger wei_shenhe">3:审核未通过</button></div>
+                                        </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>患者姓名</th>
+                                            <th>添加人</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="add_yao" tabindex="-2" role="dialog" aria-labelledby="addKeshiModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">添加药品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group col-xs-12">
+                            <div class="col-xs-3">
+                                <lable for="departName"
+                                       style="height:38px;line-height: 38px;width:100%;color:red;font-size: 18px;">药品名称：
+                                </lable>
+                            </div>
+                            <input type="text" id="medicineName" class="col-xs-5">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary save">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                <div class="wrapper">
+                    <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                    Copyright. 期待更多
+                    <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                    <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+                </div>
+            </footer>
+            <div>
+                <!-- Javascript Libs -->
+                <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+                <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+                <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+                <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+                <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+                <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+                <script src="../../lib/js/jquery.pagination.js"></script>
+                <!-- Javascript -->
+                <script type="text/javascript" src="../../js/app.js"></script>
+                <script src="../../js/dateFormat.js"></script>
+                <script type="text/javascript" src="../../js/theming.js"></script>
+                <script type="text/javascript" src="../../js/themings.js"></script>
+                <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+                <script src="../../js/config.js"></script>
+                <script src="../../js/uploadImg.js"></script>
+                <script src="../../js/session_expire.js"></script>
+                <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".dai_shenhe").on("click",function(){
+                            doAjax("verify");
+                        });
+                        $(".wei_shenhe").on("click",function(){
+                            doAjax("notverify");
+                        });
+                        $(".tonguo_shenhe").on("click",function(){
+                            doAjax("verified");
+                        });
+                        var memberId;
+                        // 通过
+                        $('.table tbody').on('click', 'button.pass', function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var mrId = $(this).parents("tr").attr("data-mrId");
+                            if (confirm("确认通过?")) {
+                                $("body").mLoading("hide");
+                                $.ajax({
+                                    url: config.rootUrl + "user/verifyMedRecord.do",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        mrId: mrId,
+                                        isPass:"1",
+                                    },
+                                    success: function (data) {
+                                        if (data.code == 1) {
+                                            alert("成功!");
+                                            window.location.reload();
+                                        } else {
+                                            alert(data.msg);
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("发生错误!");
+                                    }
+                                })
+                            }
+                        });
+                        // 不通过
+                        $('.table tbody').on('click', 'button.notPass', function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var mrId = $(this).parents("tr").attr("data-mrId");
+                            if (confirm("确认不通过?")) {
+                                $("body").mLoading("hide");
+                                $.ajax({
+                                    url: config.rootUrl + "user/verifyMedRecord.do",
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        mrId: mrId,
+                                        isPass:"2",
+                                    },
+                                    success: function (data) {
+                                        if (data.code == 1) {
+                                            alert("成功!");
+                                            window.location.reload();
+                                        } else {
+                                            alert(data.msg);
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("发生错误!");
+                                    }
+                                })
+                            }
+                        });
+                        $('.table tbody').on('click', '.goDetail', function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var mrId = $(this).parents("tr").attr("data-mrId");
+                            window.location.href="medRecordDetail.html?mrId="+mrId;
+                        });
+                        $('.add_yao').on('click', function(e) {
+                            $('#add_yao').modal();
+                        });
+                        doAjax("verify");
+                        function doAjax(sta) {
+                            $(".table tbody")[0].innerHTML = "";
+                            $.ajax({
+                                url: config.rootUrl + "user/listMecineRecord.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    memberId: memberId||session_login.info.userId,
+                                    status: sta,
+                                    page: "1",
+                                    rows: "15"
+                                },
+                                async: true,
+                                type: 'post',
+                                success: function (data) {
+                                    console.log(data);
+                                    var info = data.info;
+                                    if(info.length=="0"){
+                                        alert("没有数据");
+                                    }
+                                    var pageCount = data.pageCount;
+                                    var tbody = $(".table tbody")[0];
+                                    for(var i = 0; i < info.length; i++) {
+                                        if(info[i].verifyTime){
+                                            var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s');
+                                        }else{
+                                            verifyTime="";
+                                        }
+                                        var _dom=" <button  class='btn btn-success pass' type='button'> 通过 </button>"+
+                                            " <button  class='btn btn-danger notPass' type='button'> 不通过 </button>";
+                                        tbody.innerHTML += "<tr data-mrId='" + info[i].mrId + "' style='cursor:pointer'>" +
+                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                            "<td class='goDetail'>" +_dom+
+                                            "</td>" +
+                                            "</tr>";
+                                    }
+                                    //添加选项内容
+                                    $('.M-box').pagination({
+                                        pageCount: pageCount,
+                                        showData: 10,
+                                        jump: true,
+                                        coping: true,
+                                        homePage: '首页',
+                                        endPage: '末页',
+                                        prevContent: '上页',
+                                        nextContent: '下页',
+                                        callback: function (api) {
+                                            $.ajax({
+                                                url: config.rootUrl + "user/listMecineRecord.do",
+                                                data: {
+                                                    deviceToken: "html5",
+                                                    deviceType: "html5",
+                                                    userId: session_login.info.userId,
+                                                    memberId: memberId||session_login.info.userId,
+                                                    status: sta,
+                                                    page:api.getCurrent(),
+                                                    rows: "15"
+                                                },
+                                                async: true,
+                                                type: "post",
+                                                success: function (data) {
+                                                    var info = data.info;
+                                                    console.log(data);
+                                                    var tbody = $(".table tbody")[0];
+                                                    tbody.innerHTML = "";
+                                                    //添加选项盒子
+                                                    for(var i = 0; i < info.length; i++) {
+                                                        if(info[i].verifyTime){
+                                                            var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s');
+                                                        }else{
+                                                            verifyTime="";
+                                                        }
+                                                        var _dom=" <button  class='btn btn-success pass' type='button'> 通过 </button>"+
+                                                            " <button  class='btn btn-danger notPass' type='button'> 不通过 </button>";
+                                                        tbody.innerHTML += "<tr data-mrId='" + info[i].mrId + "' style='cursor:pointer'>" +
+                                                            "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                            "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                            "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                            "<td class='goDetail'>" +_dom+
+                                                            "</td>" +
+                                                            "</tr>";
+                                                    }
+                                                },
+                                                error: function () {
+                                                    alert("网络错误");
+
+                                                }
+                                            })
+                                        }
+
+                                    });
+
+                                },
+                                error: function (xhr, type, errorThrown) {
+                                    alert('网络异常，请稍后再试！');
+                                },
+                                complete: function () {
+                                    $('select').select2();
+                                }
+                            });
+                        }
+
+                    })
+                </script>
+</body>
+
+</html>

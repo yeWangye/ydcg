@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>信息管理</li>
+                            <li class="active">待审信息</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee
+                            style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i
+                                                    class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i
+                                                    class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i
+                                                    class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <div class="page-title">
+                            <span class="title">战区头像口号设置</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detailBox">
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <div class="card-title">
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="slogan" class="col-sm-2 control-label">战区口号</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control col-sm-5"  id="slogan" placeholder="请输入战区口号"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">战区头像</label>
+                                            <div class="col-sm-10">
+                                                <div class="col-sm-3 col-xs-3  col-sm-offset-1 col-xs-offset-1">
+                                                    <input type="file" name="f1" style="display: none;" />
+                                                    <img src="../../img/addphoto.png" class="f1" style="width:100%;cursor: pointer;" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="form-group saveBox">
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary btn-lg save" style="width:100%"> <span class="saveText">保存</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".f1").on("click", function(e) {
+                    e.preventDefault();
+                    $("input:file[name=f1]").trigger("click");
+                })
+                var input1 = $("input:file[name=f1]")[0]; //获取选择图片的input元素
+                //这边是判断本浏览器是否支持这个API。
+                if(typeof FileReader === 'undefined') {
+                    alert("浏览器版本过低，请先更新您的浏览器~");
+                    input1.setAttribute('disabled', 'disabled');
+                } else {
+                    input1.addEventListener('change', readFile1, false);
+                    //如果支持就监听改变事件，一旦改变了就运行readFile函数。
+                }
+                function readFile1() {
+                    var file = this.files[0]; //获取file对象
+                    //判断file的类型是不是图片类型。
+                    if(!/image\/\w+/.test(file.type)) {
+                        alert("请上传一张图片~");
+                        return false;
+                    }
+                    var reader = new FileReader(); //声明一个FileReader实例
+                    reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件
+                    //最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片
+                    reader.onload = function(e) {
+                        uploadImg(this.result);
+                    }
+                }
+                //上传图片
+                function uploadImg(imgPath) {
+                    $("body").mLoading("show");
+                    var image = new Image();
+                    image.src = imgPath;
+                    image.onload = function() {
+                        var imgData = getBase64Image(image);
+                        /*在这里调用上传接口*/
+                        $.ajax({
+                            url: config.rootUrl + "user/saveImageUrl.do",
+                            data: {
+                                headImage: imgData
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function(data) {
+                                $(".f1").attr("src", data.realPath);
+                                $(".f1").attr("data-src", data.absolutePath);
+                                console.log(data);
+                            },
+                            error: function(xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
+                }
+
+                $('.save').on('click', function (e) {
+                    var slogan=$("#slogan").val(),
+                    teamImage= $(".f1").attr("data-src");
+                    $("body").mLoading("show");
+                    $.ajax({
+                        url: config.rootUrl + "user/perfectTeam.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            teamId:session_login.info.teamId,
+                            slogan:slogan,
+                            teamImage:teamImage,
+                            groupId:session_login.info.groupId,
+                        },
+                        async: true,
+                        type: "post",
+                        success: function(data) {
+                            alert(data.msg);
+                            window.location.href="../index.html";
+                        },
+                        error: function() {
+                            alert("网络错误");
+                        },
+                        complete: function() {
+                            $("body").mLoading("hide"); //关闭loading组件
+                        }
+                    })
+                });
+
+
+            })
+        </script>
+
+</body>
+
+</html>

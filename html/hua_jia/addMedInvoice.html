@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        #medicine span {
+            font-size: 14px;
+        }
+
+        .item {
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .date {
+            text-align: right;
+        }
+
+        .flag {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+            <div class="container-fluid" style="text-align: center;">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-expand-toggle">
+                        <i class="fa fa-bars icon"></i>
+                    </button>
+                    <ol class="breadcrumb navbar-breadcrumb">
+                        <li>处方单详情</li>
+                    </ol>
+
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                        <i class="fa fa-times icon"></i>
+                    </button>
+                    <li class="dropdown danger">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                class=" totalMsg"></span></a>
+                    </li>
+                    <li class="dropdown profile">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeInDown">
+                            <li class="profile-img">
+                            </li>
+                            <li>
+                                <div class="profile-info">
+                                    <h4 class="username"></h4>
+                                    <p style="color: red;"><span class="role"></span> ←→ <span
+                                            class="teamName"></span></p>
+                                    <div class="btn-group margin-bottom-2x" role="group">
+                                        <button type="button" class="btn btn-default headimg_exchange"><i
+                                                class="fa fa-user"></i> 更换头像
+                                        </button>
+                                        <button type="button" class="btn btn-default logout"><i
+                                                class="fa fa-sign-out"></i> 退出登陆
+                                        </button>
+                                        <input type="file" accept="image/*" style="display: none;"
+                                               name="headimg_exchange" id="headimg_exchange"/>
+
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="sidebar" class="side-menu sidebar-inverse">
+
+        </div>
+        <div class="container-fluid">
+            <div class="side-body">
+                <div class="page-title">
+                    <span class="title">发药单填写</span>
+                    <div class="description">请确定该药单属于本战区所有！</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="card" id="print-area">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                            class="fa fa-chevron-circle-left"></span>返回</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">发药门诊</label>
+                                        <div class="col-sm-3 col-xs-3">
+                                            <select id="selectSup" style="width:100%" title="门诊">
+                                                <optgroup label="门诊(不选默认划价门诊)" class="medicineSupplier">
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="keshi" class="col-sm-2 control-label">科室</label>
+                                            <div class="col-sm-3 col-xs-3">
+                                                <select id="keshi" style="width: 100%;" title="科室">
+                                                    <optgroup label="请选择科室" class="keshi">
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="receiveName" class="col-sm-2 control-label">收件人</label>
+                                        <div class="col-sm-10">
+                                            <div class="input-group">
+                                                <input type="text" id="receiveName" class="form-control" placeholder="请输入收件人姓名"
+                                                       aria-describedby="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="receivePhone" class="col-sm-2 control-label">联系电话</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" id="receivePhone" class="form-control" placeholder="请输入联系电话">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label  class="col-sm-2 control-label">收件人地址</label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+                                                <div class="col-sm-3 col-xs-3">
+                                                    <select name="input_province" id="input_province" class="form-control">
+                                                        <option value="">--请选择--</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-3">
+                                                    <select name="input_city" id="input_city" class="form-control">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-3 col-xs-3">
+                                                    <select name="input_area" id="input_area" class="form-control">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <textarea placeholder="详细地址" class="form-control" id="receiveStreet" style="width:100%"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="paidTime" class="col-sm-2 control-label">付款日期</label>
+                                        <div class="col-sm-5">
+                                            <input type="date" id="paidTime" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sendCount" class="col-sm-2 control-label">发药情况</label>
+                                        <div class="col-sm-3">
+                                            <input type="number" id="sendCount" class="form-control" placeholder="第几次发药">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="number" id="paidMoney" class="form-control" placeholder="已付多少（元）">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="number" id="unPaidMoney" class="form-control"  placeholder="到付多少（元）">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="payment" class="col-sm-2 control-label">邮寄方式</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="payment" class="form-control" placeholder="到付或者填写代付金额">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="remark" class="col-sm-2 control-label">备注</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="remark" placeholder="请输入备注信息	" rows="3"></textarea>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">发药</label>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-success btn-lg save" style="width:100%">确认发药</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="app-footer">
+        <div class="wrapper">
+            <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright.
+            期待更多
+            <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+            <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+        </div>
+    </footer>
+    <div>
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+        <script src="../../js/address.js"></script>
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+        <script type="text/javascript" src="../../js/getBaseData.js?"></script>
+        <!-- Javascript -->
+        <script type="text/javascript">
+            $(function () {
+                var search = window.location.search;
+                if (search != "" && search.split("mrId=")[1]) {
+                    var mrId = search.split("mrId=")[1].split("&")[0];
+                }
+                var sexNeed,dName,illness,detail,discountNeed,discountMoney,decoctMoney,medicineCost,patientName,doctorId,doctorName,hospName,hospId,
+                    decoction,decoctionCost,decoctionMoney,giveDay,herbalCost,herbalMoney,medicineCost,medicineMoney,powder,powderCost,powderMoney,type;
+                //获取门诊
+                var retSupplier = "";
+                function getmedicineSupplier() {
+                    if (sessionStorage.getItem("getHospital")) {
+                        var medicineSup = JSON.parse(sessionStorage.getItem("getHospital"));
+                        for (var i in medicineSup) {
+                            var _option = "<option value='" + medicineSup[i].hospId + "'>" + medicineSup[i].hospName + "</option>";
+                            retSupplier += _option;
+                        }
+                        $(".medicineSupplier")[0].innerHTML = retSupplier;
+                        $("#selectSup").val(hospId).select2({
+                            placeholder: "门诊(不选默认划价门诊)"
+                        });
+                    } else {
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/getHospital.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                //添加选项内容
+                                var info = data.info;
+                                sessionStorage.setItem("getHospital", JSON.stringify(info));
+                                //收款账户
+                                for (var i in info) {
+                                    var _option = "<option value='" + info[i].hospId + "'>" + info[i].hospName + "</option>";
+                                    retSupplier += _option;
+                                }
+                                $(".medicineSupplier")[0].innerHTML = retSupplier;
+                                $("#selectSup").val(hospId).select2({
+                                    placeholder: "门诊(不选默认划价门诊)"
+                                });
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('发生错误！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    }
+                }
+                //选择门诊
+                $('#selectSup').on("select2:close", function () {
+                    hospId = $(this).val();
+                    hospName =$(this).find("option:selected").text();
+                    console.log(hospId)
+                    console.log(hospName)
+                })
+                //获取科室
+                getDepart();
+                function getDepart() {
+                    $.ajax({
+                        url: config.rootUrl + "user/getDepart.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                        },
+                        async: true,
+                        type: 'post',
+                        success: function(data) {
+                            console.log(data)
+                            //添加选项盒子
+                            var keshi = $(".keshi");
+                            //添加选项内容
+                            var info = data.info;
+                            for(var i in info) {
+                                var _option = document.createElement("option");
+                                _option.value = info[i].departId;
+                                _option.text = info[i].departName;
+                                keshi.append(_option);
+                            }
+                        },
+                        error: function(xhr, type, errorThrown) {
+                            alert('网络异常，请稍后再试！');
+                        },
+                        complete: function() {
+                            $('#keshi').val("").select2({
+                                placeholder: "请选择科室"
+                            });
+                        }
+                    });
+                }
+                //三级联动省市区选择框
+                var html = "";
+                $("#input_city").append(html);
+                $("#input_area").append(html);
+                $.each(pdata, function(idx, item) {
+                    if(parseInt(item.level) == 0) {
+                        html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                    }
+                });
+                $("#input_province").append(html);
+                $("#input_province").change(function() {
+                    if($(this).val() == "") return;
+                    $("#input_city option").remove();
+                    $("#input_area option").remove();
+                    var code = $(this).find("option:selected").attr("exid");
+                    code = code.substring(0, 2);
+                    var html = "<option value=''>--请选择--</option>";
+                    $("#input_area").append(html);
+                    $.each(pdata, function(idx, item) {
+                        if(parseInt(item.level) == 1 && code == item.code.substring(0, 2)) {
+                            html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                        }
+                    });
+                    $("#input_city").append(html);
+                });
+
+                $("#input_city").change(function() {
+                    if($(this).val() == "") return;
+                    $("#input_area option").remove();
+                    var code = $(this).find("option:selected").attr("exid");
+                    code = code.substring(0, 4);
+                    var html = "<option value=''>--请选择--</option>";
+                    $.each(pdata, function(idx, item) {
+                        if(parseInt(item.level) == 2 && code == item.code.substring(0, 4)) {
+                            html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                        }
+                    });
+                    $("#input_area").append(html);
+                });
+                //三级联动结束
+                //请求划价详情
+                $.ajax({
+                    url: config.rootUrl + "user/medRecordDetail.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        mrId: mrId,
+                    },
+                    async: true,
+                    type: "post",
+                    success: function (data) {
+                        var info = data.info;
+                        var tbody = $(".table tbody")[0];
+                        //添加选项盒子
+                        hospId=info.hospId;
+                        hospName=info.hospName;
+                        sexNeed=info.sex;
+                        doctorId=info.doctorId;
+                        doctorName=info.doctorName;
+                        dName=info.dName;
+                        illness=info.illness;
+                        detail=info.detail;
+                        discountNeed=info.discount;
+                        discountMoney=info.discountMoney||info.oldMoney;
+                        decoctMoney=info.decoctMoney;
+                        medicineCost=info.medicineCost;
+                        patientName=info.patientName;
+                        decoction=info.decoction;
+                        decoctionCost=info.decoctionCost;
+                        decoctionMoney=info.decoctionMoney;
+                        giveDay=info.giveDay;
+                        herbalCost=info.herbalCost;
+                        herbalMoney=info.herbalMoney;
+                        medicineCost=info.medicineCost;
+                        medicineMoney=info.medicineMoney;
+                        powder=info.powder;
+                        powderCost=info.powderCost;
+                        powderMoney=info.powderMoney;
+                        type=info.type;
+                        getmedicineSupplier();
+                    },
+                    error: function () {
+                        alert("发生错误");
+                    }
+                });
+                $(".save").on("click",function () {
+                    var departId=$("#keshi").val();
+                    var departName=$("#keshi").find("option:selected").text();
+                    var sendCount=$("#sendCount").val();
+                    var remark=$("#remark").val();
+                    var paidMoney=$("#paidMoney").val();
+                    var unPaidMoney=$("#unPaidMoney").val();
+                    var paidTime=$("#paidTime").val();
+                    var payment=$("#payment").val();
+                    var receiveProvince=$("#input_province").val();
+                    var receiveCity=$("#input_city").val();
+                    var receiveArea=$("#input_area").val();
+                    var receiveStreet=$("#receiveStreet").val();
+                    var receiveName=$("#receiveName").val();
+                    var receivePhone=$("#receivePhone").val();
+                    var sendId=session_login.info.userId;
+                    // var sendName=session_login.info.realName;
+                    if(departId==""||sendCount==""||paidMoney==""||unPaidMoney==""||paidTime==""||payment==""||receiveProvince==""||receiveCity==""||receiveArea==""||receiveStreet==""||receiveName==""||receivePhone==""){
+                        alert("除备注外所有信息皆为必填项，请仔细检查信息！");
+                        return;
+                    }
+                    var auditor="";
+                    var auditId="";
+                    $("body").mLoading("show");
+                    $.ajax({
+                        url: config.rootUrl + "user/addMedInvoice.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            isSimple: 1,
+                            hospId: hospId,
+                            hospName: hospName,
+                            doctorId:doctorId,
+                            doctorName:doctorName,
+                            departId: departId,
+                            departName: departName,
+                            sendCount: sendCount,
+                            patientName:patientName,
+                            remark:remark,
+                            paidMoney:paidMoney,
+                            unPaidMoney:unPaidMoney,
+                            paidTime:paidTime,
+                            payment:payment,
+                            receiveProvince:receiveProvince,
+                            receiveCity:receiveCity,
+                            receiveArea:receiveArea,
+                            receiveStreet:receiveStreet,
+                            receivePhone:receivePhone,
+                            receiveName:receiveName,
+                            sendId:sendId,
+
+                            decoction:decoction,
+                            decoctionCost:decoctionCost,
+                            decoctionMoney:decoctionMoney,
+                            giveDay:giveDay,
+                            herbalCost:herbalCost,
+                            herbalMoney:herbalMoney,
+                            medicineCost:medicineCost,
+                            medicineMoney:medicineMoney,
+                            powder:powder,
+                            powderCost:powderCost,
+                            powderMoney:powderMoney,
+                            type:type,
+                            // sendName:sendName,
+                            auditor:auditor,
+                            auditId:auditId,
+
+                            sex:sexNeed,
+                            dName:dName,
+                            illness:illness,
+                            detail:detail,
+                            discount:discountNeed,
+                            discountMoney:discountMoney,
+                            decoctMoney:decoctMoney,
+                            medicineCost:medicineCost,
+                        },
+                        async: true,
+                        type: 'post',
+                        success: function (data) {
+                            if (data.code == "1") {
+                                alert(data.msg);
+                                window.history.go(-1);
+                                // window.location.reload();
+                            }
+                        },
+                        error: function (xhr, type, errorThrown) {
+                            alert('发生错误！');
+                            console.log(xhr + errorThrown);
+                        },
+                        complete: function () {
+                            $("body").mLoading("hide");//关闭loading组件
+                        }
+                    });
+                })
+            })
+        </script>
+</body>
+
+</html>

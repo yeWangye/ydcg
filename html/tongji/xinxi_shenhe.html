@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>统计</li>
+                            <li class="active">信息提现审核</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+                                            <button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+                                            <input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">审核留信息提现</span>
+                        <div class="description">
+                            <sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">统计</span>查看审核的信息提现信息!</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header col-xs-12" style="text-align: center;">
+                                    <div class="card-title col-xs-3">
+                                        <div class="title back" style="display: none;"><span><a onclick="window.history.go(-1);" style="color:darkblue"><span class="fa fa-chevron-circle-left">返回</span></a></span></div>
+                                    </div>
+                                    <div class="card-title col-xs-3">
+                                        <div class="title"><button class="btn btn-primary dai_shenhe">1:待审核</button></div>
+                                    </div>
+                                    <div class="card-title col-xs-3">
+                                        <div class="title"><button class="btn btn-success tonguo_shenhe">2:审核通过</button></div>
+                                    </div>
+                                    <div class="card-title col-xs-3">
+                                        <div class="title"><button class="btn btn-danger wei_shenhe">3:审核未通过</button></div>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>用户名</th>
+                                            <th>头像</th>
+                                            <th>提现金额</th>
+                                            <th>状态</th>
+                                            <th>创建时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+            <script src="../../lib/js/jquery.pagination.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    var search=window.location.search;
+                    if(search != ""&&search.split("fromWhere=")[1]){
+                        $(".back").css("display","block");
+                    }
+                    $('.table tbody').on('click', '.goDetail', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var memberId = $(this).parents('tr').attr("data-memberId");
+                        window.location.href = "../xinxi_guanli/xinxi_hongbao.html?memberId=" + memberId;
+                    });
+                    $(".dai_shenhe").on("click",function(){
+                        doAction("verify");
+                    });
+                    $(".wei_shenhe").on("click",function(){
+                        doAction("notverify");
+                    });
+                    $(".tonguo_shenhe").on("click",function(){
+                        doAction("transfer");
+                    });
+                    $(".dataSearch").on("click",function(){
+                        doAction(gloableSta);
+                    });
+
+                    $('.table tbody').on('click', 'button.recive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核通过这条提现申请?")) {
+                            var sdId = $(this).parents('tr').attr("data-sdId");
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/verifyWithdraw.do",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    sdId: sdId,
+                                    isPass: "1",
+                                    flag: "2",
+                                },
+                                success: function(data) {
+                                    if(data.code == 1) {
+                                        alert("审核完成!");
+                                        window.location.reload();
+                                    } else {
+                                        alert(data.msg);
+                                    }
+                                },
+                                error: function() {
+                                    alert("发生错误了,请检查你的网络!");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+                        }
+                    });
+                    $('.table tbody').on('click', 'button.noRecive', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if(confirm("确认审核不通过这条提现申请?")) {
+                            var sdId = $(this).parents('tr').attr("data-sdId");
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/verifyWithdraw.do",
+                                type: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    sdId: sdId,
+                                    isPass: "2",
+                                    flag: "2",
+                                },
+                                success: function(data) {
+                                    if(data.code == 1) {
+                                        alert("审核完成!");
+                                        window.location.reload();
+                                    } else {
+                                        alert(data.msg);
+                                    }
+
+                                },
+                                error: function() {
+                                    alert("发生错误了,请检查你的网络!");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+
+                        }
+
+                    });
+                    doAction("verify");
+                    var gloableSta;
+                    function doAction(sta){
+                        gloableSta=sta;
+                        /* var startTime=$("#begainTime").val();
+                         var endTime=$("#endTime").val();*/
+                        $(".table tbody")[0].innerHTML="";
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/listPatientAward.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                memberId: session_login.info.userId,
+                                status: sta,
+                                page: "1",
+                                rows: "15",
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function(data) {
+
+                                var info = data.info;
+                                var pageCount = data.pageCount;
+                                var tbody = $(".table tbody")[0];
+                                if(info.length == 0) {
+                                    alert("没有信息!");
+                                    return;
+                                }
+                                //添加选项盒子
+                                for(var i = 0; i < info.length; i++) {
+                                    if(info[i].status == "verify") {
+                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                    }
+                                    if(info[i].status == "transfer") {
+                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                    }
+                                    if(info[i].status == "notverify") {
+                                        status = "<span style='color:red;'>审核未通过</span>";
+                                    }
+                                    if(sta=="verify"){
+                                        var _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                            " <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+                                    }else if(sta=="notverify"){
+                                        _dom="";
+                                    }else if(sta=="transfer"){
+                                        _dom="";
+                                    }
+                                    tbody.innerHTML += "<tr data-detailId='" + info[i].sdId + "' data-memberId='" + info[i].memberId + "' data-sdId='" + info[i].sdId + "'  style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                        "<td class='goDetail'>" + info[i].userName  + "</td>" +
+                                        "<td class='goDetail'>"+
+                                        "<img style='max-width:50px;' src='"+info[i].headImage+"' ></td>"+
+                                        "<td class='goDetail'>" + info[i].money + "</td>" +
+                                        "<td class='goDetail'>" + status + "</td>" +
+                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                        "<td class='goDetail'>" + _dom + "</td>" +
+                                        "</tr>";
+                                }
+                                //添加选项内容
+                                $('.M-box').pagination({
+                                    pageCount: pageCount,
+                                    showData: 10,
+                                    jump: true,
+                                    coping: true,
+                                    homePage: '首页',
+                                    endPage: '末页',
+                                    prevContent: '上页',
+                                    nextContent: '下页',
+                                    callback: function(api) {
+                                        $("body").mLoading("show");
+                                        $.ajax({
+                                            url: config.rootUrl + "user/listAchieveAward.do",
+                                            data: {
+                                                deviceToken: "html5",
+                                                deviceType: "html5",
+                                                userId: session_login.info.userId,
+                                                memberId: session_login.info.userId,
+                                                status: sta,
+                                                page: api.getCurrent(),
+                                                rows: "15",
+                                            },
+                                            async: true,
+                                            type: "post",
+                                            success: function(data) {
+                                                var info = data.info;
+                                                console.log(data);
+                                                var tbody = $(".table tbody")[0];
+                                                tbody.innerHTML = "";
+                                                for(var i = 0; i < info.length; i++) {
+                                                    if(info[i].status == "verify") {
+                                                        var status = "<span style='color:darkgray;'>待审核</span>";
+                                                    }
+                                                    if(info[i].status == "transfer") {
+                                                        status = "<span style='color:#6cf;'>审核通过</span>";
+                                                    }
+                                                    if(info[i].status == "notverify") {
+                                                        status = "<span style='color:red;'>审核未通过</span>";
+                                                    }
+                                                    if(sta=="verify"){
+                                                        var _dom="<button  class='btn btn-success recive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-plus-square-o'></i> 通过 </button> " +
+                                                            " <button  class='btn btn-danger noRecive' type='button' data-rid='" + info[i].recordId + "'><i class='fa fa-minus-square-o'></i> 不通过 </button>";
+
+                                                    }else if(sta=="notverify"){
+                                                        _dom="";
+                                                    }else if(sta=="transfer"){
+                                                        _dom="";
+                                                    }
+                                                    tbody.innerHTML += "<tr data-detailId='" + info[i].sdId + "' data-memberId='" + info[i].memberId + "' data-sdId='" + info[i].sdId + "'  style='cursor:pointer'>" +
+                                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].userName  + "</td>" +
+                                                        "<td class='goDetail'>"+
+                                                        "<img style='max-width:50px;' src='"+info[i].headImage+"' ></td>"+
+                                                        "<td class='goDetail'>" + info[i].money + "</td>" +
+                                                        "<td class='goDetail'>" + status + "</td>" +
+                                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                        "<td class='goDetail'>" + _dom + "</td>" +
+                                                        "</tr>";
+                                                }
+                                            },
+                                            error: function() {
+                                                alert("网络错误");
+
+                                            },
+                                            complete: function() {
+                                                $("body").mLoading("hide"); //关闭loading组件
+                                            }
+                                        })
+                                    }
+
+                                });
+                            },
+                            error: function(xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
+
+                })
+            </script>
+</body>
+
+</html>

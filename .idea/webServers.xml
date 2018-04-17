@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a9b2b801-6821-4090-9ddc-861e84ae80cd" name="localhost" url="http://127.0.0.1">
+        <fileTransfer port="0" mountedRoot="C:\Users\ljz1997\Documents\HBuilderProjects\ydcg" accessType="MOUNT" />
+      </webServer>
+      <webServer id="b0ebdae2-4f07-4da8-aecd-d22d782594a8" name="local" url="http://192.168.0.15">
+        <fileTransfer port="0" mountedRoot="C:\Users\ljz1997\Documents\HBuilderProjects\ydcg" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

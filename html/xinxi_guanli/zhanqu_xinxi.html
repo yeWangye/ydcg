@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <link href="../../lib/css/SimpleCanleder.css"rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cxcalendar.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        input{
+            margin:0;
+        }
+        .select2-container--default .select2-results>.select2-results__options{
+            max-height: 500px;
+        }
+        .iconBox{
+            position: relative;
+            margin: 4px 5px 0 0;
+            padding: 0 19px 0 4px;
+            max-width: 100%;
+            white-space: nowrap;
+            /*overflow: hidden;*/
+            text-overflow: ellipsis;
+            border: 1px solid #e8e8e8;
+            height: 38px;
+            line-height: 38px;
+            color: #666;
+            text-decoration: none;
+        }
+        .iconBox:hover{
+            border-color: #f40;
+        }
+        .patientName,.appointName,.collect,.level,.member,.sta,.pageBox,.starTime,.finishTime{
+            display: none;
+        }
+        .selectBox input{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            float: none;
+            margin: 0 5px;
+            width: 60%;
+            height: 100%;
+            line-height: 38px;
+            text-align: left;
+            background: #fff;
+            /*border: 1px solid #ebebeb;*/
+            outline: none;
+            color: #bdbdbd;
+            font-size: 14px;
+        }
+        .pay_time{
+            width:80%!important;
+        }
+        .icon-btn-x{
+            color: red;
+            cursor: pointer;
+            /* position: absolute; */
+            /* right: 0px; */
+            border: 1px solid red;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .select2-results{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .lable{
+            color:blue;
+        }
+        .cxcalendar .date_hd{
+            height: inherit;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                           <li>信息回访</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+                                            <button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+                                            <input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title">信息回访</span>
+                        <div class="description">
+                            <span class="tips">筛选条件:</span>根据情况自行添加<span class="tips">需要参与筛选的条目!</span>
+                            <br>
+                            <span class="tips">默认显示:</span>默认显示<span class="tips">最近30天之内的数据!</span>
+                            <br>
+                            <a onclick='window.history.go(-1);' style='color:darkblue;display: none' class="title back"><span class='fa fa-chevron-circle-left'>返回</span></a>
+                        </div>
+                        <div>
+                            <lable style="color:blue;">筛选条件:</lable>
+                            <select id="select"  style="width:25%" title="筛选" aria-describedby="basic-addon1">
+                                <optgroup label="请选择筛选条件">
+                                    <option value="status">状态</option>
+                                    <option value="patientName">患者姓名</option>
+                                    <option value="appointName">预约人</option>
+                                    <option value="starTime">开始时间</option>
+                                    <option value="finishTime">结束时间</option>
+                                    <option value="isCollect">收藏</option>
+                                    <option value="level">级别</option>
+                                    <option value="page">单页显示数</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header col-xs-12" style="text-align: center;">
+                                    <div class="card-title col-xs-4 selectBox">
+                                        <a class="sta iconBox" data-obj="status" style="max-width: 100%;">
+                                            <span class="lable">审核状态：</span>
+                                            <select id="sta" style="width:60%;" title="状态" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择状态">
+                                                    <option value="deal">已成交（用药中）</option>
+                                                    <option value="verified">审核通过</option>
+                                                    <option value="quit">已放弃</option>
+                                                    <option value="visit">未回访</option>
+                                                    <option value="visited">已回访</option>
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="patientName iconBox"  data-obj="patientName">
+                                            <span class="lable">姓名：</span>
+                                            <input class="patient_name" value="" type="text">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="appointName iconBox"  data-obj="appointName">
+                                            <span class="lable">预约人：</span>
+                                            <input class="appoint_name" value="" type="text">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="starTime iconBox"  data-obj="starTime">
+                                            <span class="lable">开始时间：</span>
+                                            <input name="mydate" id="star_time" type="text"
+                                                   class="star_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="finishTime iconBox"  data-obj="finishTime">
+                                            <span class="lable">结束时间：</span>
+                                            <input name="mydate2" type="text"
+                                                   class="end_time input_cxcalendar">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="collect iconBox" data-obj="collect" style="max-width: 100%;">
+                                            <span class="lable">是否收藏：</span>
+                                            <select id="collect" style="width:60%;" title="收藏状态" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择是否收藏">
+                                                    <option value="1">是</option>
+                                                    <option value="0">否</option>
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="level iconBox" data-obj="level" style="max-width: 100%;">
+                                            <span class="lable">级别：</span>
+                                            <select id="level" style="width:60%;" title="级别" aria-describedby="basic-addon1">
+                                                <optgroup label="请选择重要级别">
+                                                    <option value="3">非常重要</option>
+                                                    <option value="2">很重要</option>
+                                                    <option value="1">重要</option>
+                                                    <option value="0">一般</option>
+                                                </optgroup>
+                                            </select>
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                        <a class="pageBox iconBox"  data-obj="page">
+                                            <span class="lable">显示数：</span>
+                                            <input class="page"  type="number" placeholder="最多显示500" min="1" max="500">
+                                            <span class="icon-btn-x">删除</span>
+                                        </a>
+                                    </div>
+                                    <div class="card-title col-xs-5">
+                                        <div class="title"><button class="btn btn-success searchBtn" style="border:1px solid;border-radius: 20px;width:100%;">查询</button></div>
+                                    </div>
+                                    <!--<div class="card-title col-xs-3">
+                                        <button type="submit" onclick="method5('tableExcel','name','通过科室业绩.xls')" class="btn btn-primary" style="float:right;"><a id="dlink" href="" style="display: none;"></a><i class="fa fa-download"></i> 导出表格
+                                        </button>
+                                    </div>-->
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%" id="tableExcel">
+                                        <thead>
+                                        <tr>
+                                            <th>预约人</th>
+                                            <th>患者姓名</th>
+                                            <th>状态</th>
+                                            <th>创建时间</th>
+                                            <th>审核时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fadeInDown" id="hui_fang" tabindex="-1" role="dialog" aria-labelledby="jibie">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="daysLevel">设置多少天回访提醒？</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form v-show="cancel">
+                            <div class="form-group" style="text-align: center;">
+                                <label  class="control-label">天数</label>
+                                <input type="number"  id="huifang" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="text-align:center;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary huifangSave">设置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fadeInDown" id="ji_bie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="levelLabel">设置级别</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form v-show="cancel">
+                            <div class="form-group" style="text-align: center;">
+                                <label  class="control-label">级别</label>
+                                <select id="levelSelect"  title="级别" aria-describedby="basic-addon1">
+                                    <optgroup label="请选择级别" class="doctor">
+                                        <option value="0">一般</option>
+                                        <option value="1">重要</option>
+                                        <option value="2">很重要</option>
+                                        <option value="3">非常重要</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="text-align:center;">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary levelSave">设置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script src="../../lib/js/calendar.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+            <script src="../../lib/js/jquery.pagination.js"></script>
+
+
+            <!--<script src="../../lib/js/DatePicker.js"></script>-->
+            <script src="../../lib/js/SimpleCanleder.js"></script>
+
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js"></script>
+            <script type="text/javascript" src="../../js/excel.js"></script>
+            <!--<script type="text/javascript" src="cache.js"></script>-->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('.input_cxcalendar').each(function () {
+                        var a = new Calendar({
+                            targetCls: $(this),
+                            type: 'yyyy-mm-dd HH:MM:SS',
+                            wday: 2
+                        }, function (val) {
+                            console.log(val);
+                        });
+                    });
+                    $("#ji_bie").on("shown.bs.modal", function(){
+                        $('#levelSelect').select2({dropdownParent:$("#ji_bie"),val:""});
+                    })
+                    var json_data={};
+                    var search = window.location.search;
+                    if(search != "") {
+                        var status = search.split("status=")[1].split("&")[0];
+                        var memberId = search.split("memberId=")[1].split("&")[0];
+                        var type = search.split("type=")[1].split("&")[0];
+                        var  isRank=1;
+                        $(".back").css({"display":"block"});
+                        var page;
+                        json_data.status=status;
+                        json_data.memberId=memberId;
+                        json_data.type=type;
+                        var title = search.split("title=")[1].split("&")[0];
+                        var beginTime = search.split("beginTime=")[1].split("&")[0];
+                        $(".star_time").val(decodeURI(beginTime));
+                        var finishTime = search.split("finishTime=")[1].split("&")[0];
+                        $(".end_time").val(decodeURI(finishTime));
+                    }
+                    $('select').select2({"val":""});
+                    $("#select").select2({
+                        placeholder: "请选择筛选条件"
+                    });
+                    $("#sta").select2({
+                        placeholder: "请选择审核状态"
+                    });
+                    $("#team").select2({
+                        placeholder: "请选择战区"
+                    });
+                    $("#depart").select2({
+                        placeholder: "请选择科室"
+                    });
+                    $("#member").select2({
+                        placeholder: "请搜索组员"
+                    });
+                    $("#hosp").select2({
+                        placeholder: "请选择门诊"
+                    });
+                    $("#treat").select2({
+                        placeholder: "请选择就诊方式"
+                    });
+                    $("#doctor").select2({
+                        placeholder: "请选择就诊方式"
+                    });
+                    $("#select").on("select2:close", function(e) {
+                        var val = $(this).val();
+                        switch(val){
+                            case "patientName":
+                                $(".patientName").css("display","block");
+                                if(!json_data.patientName){
+                                    json_data.patientName="";
+                                    $(".patient_name").val("");
+                                }
+                                break;
+                            case "appointName":
+                                $(".appointName").css("display","block");
+                                if(!json_data.appointName){
+                                    json_data.appointName="";
+                                    $(".appoint_name").val("");
+                                }
+                                break;
+                            case "starTime":
+                                $(".starTime").css("display","block");
+                                if(!json_data.starTime){
+                                    json_data.starTime="";
+                                    $(".star_time").val("");
+                                }
+                                break;
+                            case "finishTime":
+                                $(".finishTime").css("display","block");
+                                if(!json_data.finishTime){
+                                    json_data.finishTime="";
+                                    $(".end_time").val("");
+                                }
+                                break;
+                            case "level":
+                                $(".level").css("display","block");
+                                if(!json_data.level){
+                                    json_data.level="";
+                                    $('#level').select2("val", "");
+                                }
+                                break;
+                            case "isCollect":
+                                $(".collect").css("display","block");
+                                if(!json_data.collect){
+                                    json_data.collect="";
+                                    $('#collect').select2("val", "");
+                                }
+                                break;
+                            case "page":
+                                $(".pageBox").css("display","block");
+                                if(!json_data.page){
+                                    json_data.page="";
+                                    $(".page").val("");
+                                }
+                                break;
+                            case "status":
+                                $(".sta").css("display","block");
+                                if(!json_data.status){
+                                    json_data.status="";
+                                    $('#sta').select2("val", "");
+                                }
+                                break;
+                        }
+                    });
+                    $(".icon-btn-x").on("click",function(){
+                        $(this).parents("a").css("display","none");
+                        var json_obj=$(this).parents("a").attr("data-obj");
+                        if(json_obj=="starTime"){
+                            $(".star_time").val("");
+                        }
+                        if(json_obj=="finishTime"){
+                            $(".end_time").val("");
+                        }
+                        delete json_data[json_obj];
+                    });
+                    // 患者
+                    $(".patient_name").on("blur",function(){
+                        var patient_name=$(this).val();
+                        json_data.patientName=patient_name;
+                    });
+                    // 预约人
+                    $(".appoint_name").on("blur",function(){
+                        var appoint_name=$(this).val();
+                        json_data.appointName=appoint_name;
+                    });
+                    // 收藏
+                    $("#collect").on("select2:close",function(){
+                        var collect=$(this).val();
+                        json_data.collect=collect;
+                    });
+                    // 级别
+                    $("#level").on("select2:close",function(){
+                        var level=$(this).val();
+                        json_data.level=level;
+                    });
+                    // 组员
+                    $("#member").on("select2:close",function(){
+                        var member=$(this).val();
+                        json_data.memberId=member;
+                    });
+                    //页数
+                    $(".page").on("blur",function(){
+                        var page=$(this).val();
+                        json_data.page=page;
+                    });
+                    $("#sta").on("select2:close",function(){
+                        var sta=$(this).val();
+                        json_data.status=sta;
+                    });
+                    // 状态
+                    $(".searchBtn").on("click",function(){
+                        console.log(json_data);
+                        doAction(json_data);
+                    });
+                    doAction(json_data);
+                    function doAction(json_data){
+                        var starTime=$(".star_time").val();
+                        if(starTime==""){
+                            var d1 = new Date();
+                            var d2 = new Date(d1);
+                            d2.setDate(d1.getDate()-300);
+                            starTime = new Date(d2).format('yyyy-MM-dd hh:mm:ss');
+                        }
+                        var finishTime=$(".end_time").val();
+                        if(finishTime==""){
+                            finishTime = new Date().format("yyyy-MM-dd hh:mm:ss").replace(/\//g, "-");
+                        }
+                        var sta=json_data.status||"verified";
+                        $(".table tbody")[0].innerHTML="";
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/getListPatient.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+
+                                appointName:json_data.appointName||"",
+                                teamId:session_login.info.teamId,
+                                patientName:json_data.patientName||"",
+                                level:json_data.level||"",
+                                isCollect:json_data.collect||"",
+                                starTime:starTime,
+                                endTime:finishTime,
+                                status:sta,
+                                page: page||1,
+                                rows: json_data.page||"25",
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function(data) {
+                                var info = data.info;
+                                var pageCount = data.pageCount;
+                                $(".total").text(data.departMoney);
+                                var tbody = $(".table tbody")[0];
+                                if(info.length == 0) {
+                                    alert("没有数据!");
+                                    return;
+                                }
+                                var paidMoneySum=0;
+                                //添加选项盒子
+                                for(var i = 0; i < info.length; i++) {
+                                    if(info[i].status == "verify") {
+                                        var status = "<span style='color:#ffaab4;'>待审核</span>";
+                                    }
+                                    if(info[i].status == "verified") {
+                                        var status = "<span style='color:#6cf;'>审核通过</span>";
+                                    }
+                                    if(info[i].status == "notverify") {
+                                        var status = "<span style='color:red;'>审核未通过</span>";
+                                    }
+                                    if(info[i].status == "quit") {
+                                        var status = "<span style='color:red;'>放弃</span>";
+                                    }
+                                    if(info[i].status == "visit") {
+                                        var status = "<span style='color:blue;'>跟踪</span>";
+                                    }
+                                    if(info[i].status == "visited") {
+                                        var status = "<span style='color:blue;'>已回访</span>";
+                                    }
+                                    if(info[i].status == "deal") {
+                                        var status = "<span style='color:green;'>已成交</span>";
+                                    }
+                                    var _dom="<button  class='btn btn-success cheng_jiao' type='button' data-patientId='" + info[i].patientId + "' >立即成交 </button> " +
+                                        " <button  class='btn btn-primary shou_cang' type='button' data-patientId='" + info[i].patientId + "'> 收藏 </button>"+
+                                        " <button  class='btn btn-default ping_lun' type='button' data-patientId='" + info[i].patientId + "'> 评论 </button>"+
+                                        " <button  class='btn btn-primary ji_bie' type='button' data-patientId='" + info[i].patientId + "'> 设置级别 </button>"+
+                                        " <button  class='btn btn-danger hui_fang' type='button' data-patientId='" + info[i].patientId + "'> 设置回访 </button>";
+                                    tbody.innerHTML += "<tr data-patientId='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                        "<td class='goDetail'>" + status + "</td>" +
+                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                        "<td class='goDetail'>" + new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                        "<td class='goDetail'>" + _dom + "</td>" +
+                                        "</tr>";
+                                }
+                                //添加选项内容
+                                $('.M-box').pagination({
+                                    pageCount: pageCount,
+                                    showData: 10,
+                                    jump: true,
+                                    coping: true,
+                                    homePage: '首页',
+                                    endPage: '末页',
+                                    prevContent: '上页',
+                                    nextContent: '下页',
+                                    current:page,
+                                    callback: function(api) {
+                                        $("body").mLoading("show");
+                                        $.ajax({
+                                            url: config.rootUrl + "user/getListPatient.do",
+                                            data: {
+                                                deviceToken: "html5",
+                                                deviceType: "html5",
+                                                userId: session_login.info.userId,
+
+                                                appointName:json_data.appointName||"",
+                                                teamId:session_login.info.teamId,
+                                                patientName:json_data.patientName||"",
+                                                level:json_data.level||"",
+                                                isCollect:json_data.collect||"",
+                                                starTime:starTime,
+                                                endTime:finishTime,
+                                                status:sta,
+                                                page: api.getCurrent()||1,
+                                                rows: json_data.page||"25",
+                                            },
+                                            async: true,
+                                            type: "post",
+                                            success: function(data) {
+                                                var info = data.info;
+                                                console.log(data);
+                                                var tbody = $(".table tbody")[0];
+                                                tbody.innerHTML = "";
+                                                var paidMoneySum=0;
+                                                for(var i = 0; i < info.length; i++) {
+                                                    if(info[i].status == "verify") {
+                                                        var status = "<span style='color:#ffaab4;'>待审核</span>";
+                                                    }
+                                                    if(info[i].status == "verified") {
+                                                        var status = "<span style='color:#6cf;'>审核通过</span>";
+                                                    }
+                                                    if(info[i].status == "notverify") {
+                                                        var status = "<span style='color:red;'>审核未通过</span>";
+                                                    }
+                                                    if(info[i].status == "quit") {
+                                                        var status = "<span style='color:red;'>放弃</span>";
+                                                    }
+                                                    if(info[i].status == "visit") {
+                                                        var status = "<span style='color:blue;'>跟踪</span>";
+                                                    }
+                                                    if(info[i].status == "visited") {
+                                                        var status = "<span style='color:blue;'>已回访</span>";
+                                                    }
+                                                    if(info[i].status == "deal") {
+                                                        var status = "<span style='color:green;'>已成交</span>";
+                                                    }
+                                                    var _dom="<button  class='btn btn-success cheng_jiao' type='button' data-patientId='" + info[i].patientId + "' >立即成交 </button> " +
+                                                        " <button  class='btn btn-primary shou_cang' type='button' data-patientId='" + info[i].patientId + "'> 收藏 </button>"+
+                                                        " <button  class='btn btn-default ping_lun' type='button' data-patientId='" + info[i].patientId + "'> 评论 </button>"+
+                                                        " <button  class='btn btn-primary ji_bie' type='button' data-patientId='" + info[i].patientId + "'> 设置级别 </button>"+
+                                                        " <button  class='btn btn-danger hui_fang' type='button' data-patientId='" + info[i].patientId + "'> 设置回访 </button>";
+                                                    tbody.innerHTML += "<tr data-patientId='" + info[i].patientId + "' data-title='" + info[i].patientName + "'  style='cursor:pointer'>" +
+                                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                        "<td class='goDetail'>" + status + "</td>" +
+                                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                        "<td class='goDetail'>" + new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                        "<td class='goDetail'>" + _dom + "</td>" +
+                                                        "</tr>";
+                                                }
+                                            },
+                                            error: function() {
+                                                alert("网络错误");
+
+                                            },
+                                            complete: function() {
+                                                $("body").mLoading("hide"); //关闭loading组件
+                                            }
+                                        })
+                                    }
+                                });
+                            },
+                            error: function(xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        });
+                    }
+                    $('.table tbody').on('click', '.ji_bie', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        $('#ji_bie').modal('show');
+                    });
+                    $('.table tbody').on('click', '.hui_fang', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var patientId = $(this).parents('tr').attr("data-patientId");
+                        $("#hui_fang").modal("show");
+                    });
+                    function addAppointPatient(json_data) {
+                        $("body").mLoading("show");
+                        $.ajax({
+                            url: config.rootUrl + "user/addAppointPatient.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+
+                                appointName:json_data.appointName||"",
+                                teamId:session_login.info.teamId,
+                                patientName:json_data.patientName||"",
+                                level:json_data.level||"",
+                                isCollect:json_data.collect||"",
+                                starTime:starTime,
+                                endTime:finishTime,
+                                status:sta,
+                                page: api.getCurrent()||1,
+                                rows: json_data.page||"25",
+                            },
+                            async: true,
+                            type: "post",
+                            success: function(data) {
+                                var info = data.info;
+                                console.log(data);
+                            },
+                            error: function() {
+                                alert("发生错误");
+                            },
+                            complete: function() {
+                                $("body").mLoading("hide"); //关闭loading组件
+                            }
+                        })
+                    }
+                })
+            </script>
+</body>
+
+</html>

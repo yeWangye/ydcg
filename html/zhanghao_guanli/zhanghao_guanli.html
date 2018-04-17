@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>一定成功业绩管理</title>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+		<!-- CSS Libs -->
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/basic.min.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/dropzone.min.css">
+		<!-- CSS App -->
+		<link rel="stylesheet" type="text/css" href="../../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+	</head>
+	<style>
+		.input-group-addon {
+			color: red;
+		}
+		
+		.alert-warning {
+			text-align: center;
+			margin-left: 25%;
+			position: absolute;
+			top: 50%;
+			z-index: 9999;
+		}
+		
+		.dropzone {
+			border: 2px dashed #0087F7;
+			border-radius: 5px;
+			background: white;
+		}
+	</style>
+
+	<body class="flat-blue">
+		<div class="app-container">
+			<div class="row content-container">
+				<nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+					<div class="container-fluid" style="text-align: center;">
+						<div class="navbar-header">
+							<button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+							<ol class="breadcrumb navbar-breadcrumb">
+								<li>账号管理</li>
+							</ol>
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+						</div>
+						<marquee style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+						<ul class="nav navbar-nav navbar-right">
+							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="title">
+										通知 <span class="badge pull-right">0</span>
+									</li>
+									<li class="message">
+										没有新的通知
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown danger">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i><span class=" totalMsg"></span></a>
+								<ul class="dropdown-menu danger  animated fadeInDown">
+									<li class="title">
+										提示 <span class="badge pull-right totalMsg"></span>
+									</li>
+									<li>
+										<ul class="list-group notifications">
+											<a href="../yeji_guanli/yeji_dai_shenhe.html">
+												<li class="list-group-item">
+													<span class="badge dai_shen_yeji">0</span> <i class="fa fa-exclamation-circle icon"></i> 待审核业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/zuyuan_yeji.html">
+												<li class="list-group-item">
+													<span class="badge success zuyuan_yeji">0</span> <i class="fa fa-check icon"></i> 组员业绩
+												</li>
+											</a>
+											<a href="../yeji_guanli/yeji.html">
+												<li class="list-group-item">
+													<span class="badge danger wode_yeji">0</span> <i class="fa fa-comments icon"></i> 我的业绩
+												</li>
+											</a>
+											<a href="#">
+												<li class="list-group-item message">
+													敬请期待...
+												</li>
+											</a>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown profile">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+								<ul class="dropdown-menu animated fadeInDown">
+									<li class="profile-img">
+										<img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+									</li>
+									<li>
+										<div class="profile-info">
+											<h4 class="username">测试</h4>
+											<p style="color: red;"><span class="role"></span> ←→ <span class="teamName"></span></p>
+											<div class="btn-group margin-bottom-2x" role="group">
+												<button type="button" class="btn btn-default headimg_exchange"><i class="fa fa-user"></i> 更换头像</button>
+												<button type="button" class="btn btn-default logout"><i class="fa fa-sign-out"></i> 退出登陆</button>
+												<input type="file" accept="image/*" style="display: none;" name="headimg_exchange" id="headimg_exchange" />
+
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div id="sidebar" class="side-menu sidebar-inverse">
+
+				</div>
+				<div class="container-fluid">
+					<div class="side-body">
+						<div class="page-title">
+							<span class="title">账号添加</span>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="card">
+									<div class="card-header">
+										<div class="card-title">
+											<div class="title"><button class="btn btn-primary" onclick="window.location.href='zhanghao_list.html'">账号列表</button></div>
+										</div>
+									</div>
+									<div class="card-body">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="userName" class="col-sm-2 control-label">账户</label>
+												<div class="col-sm-3">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必选项</span>
+														<input type="text" id="userName" class="form-control" placeholder="请输入账号">
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="password" class="col-sm-2 control-label">账户密码</label>
+												<div class="col-sm-3">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必选项</span>
+														<input type="text" id="password" class="form-control" placeholder="请输入密码">
+													</div>
+												</div>
+											</div>
+											<div class="form-group isSelfBox">
+												<label for="type" class="col-sm-2 control-label">账户类型</label>
+												<div class="col-sm-3">
+													<div class="input-group">
+														<span class="input-group-addon" id=""><i>*</i>必选项</span>
+														<input type="text" id="type" class="form-control" placeholder="例如微信.QQ.微博等">
+													</div>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<div class="col-sm-12">
+													<button type="button" class="btn btn-primary btn-lg save" style="width:100%">保存</button>
+												</div>
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--提示框-->
+			<!--<div class="alert alert-warning alert-dismissible fade in" role="alert">
+      			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      			<strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+   			 </div>-->
+			<!--loading-->
+			<div id="target" class="loading">
+				<div class="loading-overlay">
+					<p class="loading-spinner">
+						<span class="loading-icon"></span>
+						<span class="loading-text">加载中...</span>
+					</p>
+				</div>
+			</div>
+			<footer class="app-footer">
+				<div class="wrapper">
+					<span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017 Copyright. 期待更多
+					<a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+					<a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+				</div>
+			</footer>
+			<div>
+				<!-- Javascript Libs -->
+				<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+				<script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+				<script src="../../lib/js/dropzone.min.js"></script>
+
+				<!-- Javascript -->
+				<script src="../../js/address.js"></script>
+				<script type="text/javascript" src="../../js/app.js"></script>
+				<script type="text/javascript" src="../../js/theming.js"></script>
+				<script type="text/javascript" src="../../js/themings.js"></script>
+
+				<script src="../../js/config.js"></script>
+				<script src="../../js/uploadImg.js"></script>
+				<script src="../../js/session_expire.js"></script>
+				<script type="text/javascript" src="../../js/personal_msg.js"></script>
+				
+				<script type="text/javascript">
+					$(function() {
+						var search = window.location.search;
+						if(search != "") {
+							
+						}
+
+						//提交事件绑定
+						$(".save").on("click", function() {
+							
+							var userName = $("#userName").val();
+							if(userName == "") {
+								alert("请输入账号");
+								return;
+							}
+						
+							var password =  $("#password").val();
+                            var parent= /^[a-zA-Z0-9_]{1,}$/;
+							if(password == "") {
+								alert("请填写密码!");
+								return;
+							}
+                            if(!parent.test(password))
+                            {
+                                alert("密码只能填写英文字母数字和下划线!");
+                                return;
+                            }
+							//3:类型
+							var type=$("#type").val();
+							/*if(images_url == "") {
+								alert("必须添加至少一张图");
+								return;
+							}*/
+							$("body").mLoading("show");
+							$.ajax({
+									url: config.rootUrl + "user/addAccount.do",
+									data: {
+										deviceToken: "html5",
+										deviceType: "html5",
+										userId: session_login.info.userId,
+
+										userName:userName,
+										password:password,
+										type:type,
+									},
+									async: true,
+									type: 'post',
+									success: function(data) {
+										if(data.code == "1") {
+											alert(data.msg);
+											window.location.reload();
+										} else {
+											alert(data.msg);
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										alert('网络异常，请稍后再试！');
+										console.log(xhr + errorThrown);
+									},
+									complete: function() {
+										$("body").mLoading("hide");
+									}
+								});
+
+						})
+					})
+				</script>
+				<!-- Javascript -->
+	</body>
+
+</html>

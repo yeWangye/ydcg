@@ -12,16 +12,21 @@
 		<!--Key:italent-login-css;Versions:1;Note:css;-->
 		<link href="//st-web.tita.com/titacn/tita/italent-login/styles/all_concat-1709131018.min.css" rel="stylesheet" />
 		<!--Key:italent-login-css end-->
+		<link rel="stylesheet" type="text/css" href="../lib/css/jquery.mloading.css">
 
 	</head>
-
+	<style>
+		#login-box{
+			background-color: rgba(255, 255, 255, 0.52);
+		}
+	</style>
 	<body>
 
 		<div class="container">
 			<!-- bg cover start-->
 			<div class="bg-wrap">
 				<!--<img class="hide-img"  src="img/tita-bg1-v3_h.jpg">-->
-				<div class="bg-cover fide-in" style="background-image: url('../img/tita-bg1-v3_h.jpg');  background-size: cover;"></div>
+				<div class="bg-cover fide-in" style="background-image: url('../img/tita-bg1-v3_h.bak.jpg');  background-size: cover;"></div>
 			</div>
 			<!--bg cover end-->
 			<!--login box start-->
@@ -90,14 +95,17 @@
 
 		<!--login box end-->
 		<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
-
+		<script type="text/javascript" src="../lib/js/jquery.mloading.js"></script>
 		<script src="../js/config.js"></script>
 		<script type="text/javascript">
-			
+			/*if(localStorage.getItem("yi_ding_cheng_gong_loginInfo")||sessionStorage.getItem("yi_ding_cheng_gong_loginInfo")){
+				window.location.href="index.html";
+			}*/
 			$(".login-btn").on("click", function() {
 				if($("#login_username").val() != "" && $("#login_password").val() != "") {
 					var userName = $("#login_username").val();
 					var password = $("#login_password").val();
+                    $("body").mLoading("show");
 					$.ajax({
 						type: "post",
 						url: config.rootUrl + "user/clientlogin.do",
@@ -119,7 +127,12 @@
 								}else{
 									sessionStorage.setItem("yi_ding_cheng_gong_loginInfo", JSON.stringify(data));
 								}
-								window.location.href="index.html";
+                                if(data.info.roleId=="7"||data.info.roleId=="8"){
+                                    $(".error").addClass("active");
+                                    $(".error-msg").text("该账号为划价系统账号，请登陆一定成功账号！");
+                                }else{
+                                    window.location.href="index.html";
+                                }
 							} else {
 								$(".error").addClass("active");
 								$(".error-msg").text(data.msg);
@@ -128,8 +141,10 @@
 						error: function(data) {
 							$(".error").addClass("active");
 							$(".error-msg").text(data.msg);
-						}
-
+						},
+                        complete: function() {
+                            $("body").mLoading("hide"); //关闭loading组件
+                        }
 					});
 				} else {
 					$(".error").addClass("active");

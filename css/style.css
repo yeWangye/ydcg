@@ -11,6 +11,8 @@ body {
   outline: none; }
 .tips{
 	color:red;font-size: 20px;font-weight: 800;}
+.tip_blue{font-size:18px;color: blue;}
+.tip_green{font-size:18px;color: green;}
 .row > [class*="col-"] {
   margin-bottom: 25px; }
 
@@ -487,7 +489,7 @@ a:hover {
 .btn {
   margin-top: 5px;
   margin-bottom: 5px;
-  border-radius: 1px;
+  /*border-radius: 1px;*/
   border-width: 1px;
   font-family: 'Roboto Condensed', sans-serif; }
 

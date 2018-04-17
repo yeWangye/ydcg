@@ -19,11 +19,33 @@
 		<link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
 		<link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
-
+		<link rel="stylesheet" href="../../css/cxcalendar.css">
+		<link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
 		<!-- CSS App -->
 		<link rel="stylesheet" type="text/css" href="../../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
 		<link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+		<style>
+			* {
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+
+			.card .card-header .card-title {
+				padding: 0;
+				float: left;
+			}
+
+			.input {
+				margin: 0;
+				float: inherit;
+				width: auto;
+			}
+			.card-title .title{
+				font-size: 18px;
+			}
+		</style>
 	</head>
 
 	<body class="flat-blue">
@@ -36,7 +58,7 @@
                             <i class="fa fa-bars icon"></i>
                         </button>
 							<ol class="breadcrumb navbar-breadcrumb">
-								<li>集团军</li>
+								<li>科室业绩</li>
 							</ol>
 							<button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                             <i class="fa fa-th icon"></i>
@@ -121,31 +143,41 @@
 						<div class="page-title">
 							<span class="title">科室总业绩</span>
 							<div class="description">
-								<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">科室</span>总业绩!,默认展现当月,搜索时只提取月份,<span class="tips">日期自动忽略!</span></div>
+								<sapn class="tips">操作提示:</sapn>当前获取到的是<span class="tips">科室</span>总业绩!,默认展现当天</div>
 						</div>
 						<div class="row">
 							<div class="col-xs-12 detail">
 								<div class="card">
+									<div class="card-title">
+										<div class="title"></div>
+									</div>
 									<div class="card-header">
-										<div class="card-title">
-											<div class="title"></div>
+										<div class="card-title col-sm-4 col-xs-6">
+											<lable>开始时间</lable>
+											<input name="mydate" id="starTime" type="text" style="width:200px;"
+												   class="input_cxcalendar">
 										</div>
-										<div class="card-title" style="float:right;text-align: center;">
+										<div class="card-title col-sm-4 col-xs-6">
+											<lable>结束时间</lable>
+											<input name="mydate2" type="text" id="endTime" style="width:200px;"
+												   class="input_cxcalendar">
+										</div>
+										<div class="card-title  col-sm-4 col-xs-2">
+											<button class="btn btn-success dataSearch"
+													style="color:white;width:100px;border:1px solid;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;">
+												查询
+											</button>
+										</div>
 
-											<div class=""><button class="btn btn-success dataSearch" style="color:white;">根据月份查询</button></div>
-										</div>
-										<div class="card-title" style="float:right;text-align: center;">
-											<input type="date" name="searchTime" id="searchTime" style="width:100%;">
-										</div>
 									</div>
 									<div class="card-body">
+										<p class="tips">共：<span class="total"></span></p>
 										<table class="table table-striped" cellspacing="0" width="100%">
 											<thead>
 												<tr>
 													<th>科室</th>
 													<th>成本</th>
 													<th>开药金额</th>
-													<th class="tips">汇总</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -168,7 +200,8 @@
 			</footer>
 			<div>
 				<!-- Javascript Libs -->
-				<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+				<script src="../../lib/js/jquery-1.9.1.js"></script>
+				<script src="../../lib/js/calendar.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
@@ -177,9 +210,7 @@
 				<script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
 				<script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/ace.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/mode-html.js"></script>
-				<script type="text/javascript" src="../../lib/js/ace/theme-github.js"></script>
+				<script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
 
 				<script src="../../lib/js/jquery.pagination.js"></script>
 
@@ -199,129 +230,50 @@
 
 				<script>
 					$(document).ready(function() {
+                        $('.input_cxcalendar').each(function () {
+                            var a = new Calendar({
+                                targetCls: $(this),
+                                type: 'yyyy-mm-dd HH:MM:SS',
+                                wday: 2
+                            }, function (val) {
+                                console.log(val);
+                            });
+                        });
 						var search = window.location.search;
 						if(search.split("teamId=")[1]) {
 							var teamId = search.split("teamId=")[1].split("&")[0];
 							var title = search.split("title=")[1].split("&")[0];
 							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
-
 						} else {
-							var teamId = session_login.info.teamId;
-							var title = session_login.info.realName;
-							$(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
-
+							 teamId = session_login.info.teamId;
+							 title = session_login.info.realName;
+							// $(".card-title .title").html("<a onclick='window.history.go(-1);' style='color:darkblue'><span class='fa fa-chevron-circle-left'>返回<----</span> " + decodeURI(title) + "</a>");
 						}
-						if(search.split("searchTime=")[1]) {
-							var searchTime=search.split("searchTime=")[1].split("&")[0];
-							$("#searchTime").val(searchTime);
-						}else{
-							var searchTime = new Date().format("yyyy-MM-dd").replace(/\//g,"-");
-							$("#searchTime").val(searchTime);
-						}
+                        if(search.split("starTime=")[1]) {
+                            var starTime=search.split("starTime=")[1].split("&")[0];
+                            $("#starTime").val(decodeURI(starTime));
+                        }
+                        if(search.split("endTime=")[1]) {
+                            var endTime=search.split("endTime=")[1].split("&")[0];
+                            $("#endTime").val(decodeURI(endTime));
+                        }
 						$(".dataSearch").on("click", function() {
 							dateSearch();
 						})
 						$('.table tbody').on('click', '.goDetail', function(e) {
 							e.stopPropagation();
 							e.preventDefault();
+                            var starTime = $("#starTime").val();
+                            var endTime = $("#endTime").val();
 							var departId = $(this).parents('tr').attr("data-departId");
 							var title = $(this).parents('tr').attr("data-title");
-							window.location.href = "keshi_detail.html?departId=" + departId + "&title=" + title;
+							window.location.href = "keshi_detail.html?departId=" + departId + "&title=" + title+"&starTime="+starTime+"&endTime="+endTime;
 						});
-						$.ajax({
-							url: config.rootUrl + "user/treatGroupByDepart.do",
-							data: {
-								deviceToken: "html5",
-								deviceType: "html5",
-								userId: session_login.info.userId,
-								teamId: teamId,
-								page: "1",
-								rows: "10",
-								searchTime: searchTime,
-
-							},
-							async: true,
-							type: 'post',
-							success: function(data) {
-								if(data.code == 1) {
-									var info = data.info;
-									var pageCount = data.pageCount;
-									var tbody = $(".table tbody")[0];
-									if(info.length == 0) {
-										alert(searchTime + "没有业绩了!");
-
-									}
-									//添加选项盒子
-									for(var i = 0; i < info.length; i++) {
-										tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "' style='cursor:pointer'>" +
-											"<td class='goDetail'>" + info[i].departName + "</td>" +
-											"<td class='goDetail'>" + info[i].costFee + "</td>" +
-											"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
-											"<td class='tips goDetail'>" + data.allMoney + "</td>" +
-											"</tr>";
-									}
-								}
-
-								//添加选项盒子
-								$('.M-box').pagination({
-									pageCount: pageCount,
-									showData: 10,
-									jump: true,
-									coping: true,
-									homePage: '首页',
-									endPage: '末页',
-									prevContent: '上页',
-									nextContent: '下页',
-									callback: function(api) {
-										$.ajax({
-											url: config.rootUrl + "user/treatGroupByDepart.do",
-											data: {
-												deviceToken: "html5",
-												deviceType: "html5",
-												userId: session_login.info.userId,
-
-												departId: departId,
-												page: api.getCurrent(),
-												rows: "10",
-												searchTime: searchTime,
-											},
-											async: true,
-											type: "post",
-											success: function(data) {
-												var info = data.info;
-												var tbody = $(".table tbody")[0];
-												tbody.innerHTML = "";
-												//添加选项盒子
-												for(var i = 0; i < info.length; i++) {
-													tbody.innerHTML += "<tr data-departId='" + info[i].departId + "' data-title='" + info[i].departName + "' style='cursor:pointer'>" +
-														"<td class='goDetail'>" + info[i].departName + "</td>" +
-														"<td class='goDetail'>" + info[i].costFee + "</td>" +
-														"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
-														"<td class='tips goDetail'>" + data.allMoney + "</td>" +
-														"</tr>";
-												}
-											},
-											error: function() {
-												alert("网络错误");
-
-											}
-										})
-									}
-
-								});
-							},
-							error: function(xhr, type, errorThrown) {
-								alert('网络异常，请稍后再试！');
-							},
-
-						});
-
+                        dateSearch();
 						function dateSearch() {
 							$(".table tbody")[0].innerHTML = "";
-							searchTime = $("#searchTime").val();
-							if(search === "") {
-								alert("日期格式不正确!");
-							}
+                            var starTime = $("#starTime").val();
+                            var endTime = $("#endTime").val();
 							$.ajax({
 								url: config.rootUrl + "user/treatGroupByDepart.do",
 								data: {
@@ -331,19 +283,20 @@
 									teamId: teamId,
 									page: "1",
 									rows: "10",
-									searchTime: searchTime,
-
+                                    starTime: starTime,
+                                    endTime: endTime,
+                                    // searchTime:searchTime,
 								},
 								async: true,
 								type: 'post',
 								success: function(data) {
 									if(data.code == 1) {
 										var info = data.info;
-										var pageCount = data.pageCount;
+                                        $(".total").text(data.allMoney);
+                                        var pageCount = data.pageCount;
 										var tbody = $(".table tbody")[0];
 										if(info.length == 0) {
-											alert(searchTime + "没有业绩了!");
-
+											alert("没有数据!");
 										}
 										//添加选项盒子
 										for(var i = 0; i < info.length; i++) {
@@ -351,11 +304,9 @@
 												"<td class='goDetail'>" + info[i].departName + "</td>" +
 												"<td class='goDetail'>" + info[i].costFee + "</td>" +
 												"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
-												"<td class='goDetail tips'>" + data.allMoney + "</td>" +
 												"</tr>";
 										}
 									}
-
 									//添加选项盒子
 									$('.M-box').pagination({
 										pageCount: pageCount,
@@ -374,10 +325,11 @@
 													deviceType: "html5",
 													userId: session_login.info.userId,
 
-													searchTime: searchTime,
 													departId: departId,
 													page: api.getCurrent(),
 													rows: "10",
+                                                    starTime: starTime,
+                                                    endTime: endTime,
 
 												},
 												async: true,
@@ -385,6 +337,7 @@
 												success: function(data) {
 													var info = data.info;
 													var tbody = $(".table tbody")[0];
+													$(".total").text(data.allMoney);
 													tbody.innerHTML = "";
 													//添加选项盒子
 													for(var i = 0; i < info.length; i++) {
@@ -392,7 +345,6 @@
 															"<td class='goDetail'>" + info[i].departName + "</td>" +
 															"<td class='goDetail'>" + info[i].costFee + "</td>" +
 															"<td class='goDetail'>" + info[i].totalMoney + "</td>" +
-															"<td class='goDetail tips'>" + data.allMoney + "</td>" +
 															"</tr>";
 													}
 												},

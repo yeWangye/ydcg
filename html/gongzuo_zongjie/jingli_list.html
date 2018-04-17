@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>一定成功</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        h3 {
+            color: #fc4118;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>信息管理</li>
+                            <li class="active">待审信息</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <marquee
+                            style="line-height: 60px;width: 50%;display: inline-block;font-size: 20px;color: purple;"></marquee>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    通知 <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    没有新的通知
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    提示 <span class="badge pull-right totalMsg"></span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="../yeji_guanli/yeji_dai_shenhe.html">
+                                            <li class="list-group-item">
+                                                <span class="badge dai_shen_yeji">0</span> <i
+                                                    class="fa fa-exclamation-circle icon"></i> 待审核业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/zuyuan_yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge success zuyuan_yeji">0</span> <i
+                                                    class="fa fa-check icon"></i> 组员业绩
+                                            </li>
+                                        </a>
+                                        <a href="../yeji_guanli/yeji.html">
+                                            <li class="list-group-item">
+                                                <span class="badge danger wode_yeji">0</span> <i
+                                                    class="fa fa-comments icon"></i> 我的业绩
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                敬请期待...
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <div class="page-title">
+                            <span class="title">工作总结详情</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 detail">
+                            <div class="card">
+                                <div class="card-header">
+
+                                    <div class="card-title">
+                                        <div class="title">
+                                            <a onclick="window.history.go(-1);" style="color:darkblue"><span
+                                                    class="fa fa-chevron-circle-left"></span> 返回</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>姓名</th>
+                                            <th>用户名</th>
+                                            <th>创建时间</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+
+        <!-- Javascript Libs -->
+        <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var search = window.location.search;
+                if (search && search.split("wsId=")[1]) {
+                    var wsId = search.split("wsId=")[1].split("&")[0];
+                }
+                $('.table tbody').on('click', '.goDetail', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var msId=$(this).parent("tr").attr("data-msId");
+                    window.location.href="jingli_detail.html?msId="+msId;
+
+                });
+                $("body").mLoading("show");
+                $.ajax({
+                    url: config.rootUrl + "user/managerWorkSummary.do",
+                    data: {
+                        deviceToken: "html5",
+                        deviceType: "html5",
+                        userId: session_login.info.userId,
+                        page: 1,
+                        rows: "10",
+                    },
+                    async: true,
+                    type: "post",
+                    success: function (data) {
+                        var info = data.info;
+                        var tbody = $(".table tbody")[0];
+                        var pageCount = data.pageCount;
+                        if (data.code == "1") {
+                            for(i=0;i<info.length;i++){
+                                tbody.innerHTML += "<tr data-msId='" + info[i].msId + "' style='cursor:pointer'>" +
+                                    "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                    "<td class='goDetail'>" + info[i].userName + "</td>" +
+                                    "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                    "</tr>";
+                            }
+
+                        }
+                        //添加选项内容
+                        $('.M-box').pagination({
+                            pageCount: pageCount,
+                            showData: 10,
+                            jump: true,
+                            coping: true,
+                            homePage: '首页',
+                            endPage: '末页',
+                            prevContent: '上页',
+                            nextContent: '下页',
+                            callback: function (api) {
+                                $.ajax({
+                                    url: config.rootUrl + "user/managerWorkSummary.do",
+                                    data: {
+                                        deviceToken: "html5",
+                                        deviceType: "html5",
+                                        userId: session_login.info.userId,
+                                        page: api.getCurrent(),
+                                        rows: "10",
+                                    },
+                                    async: true,
+                                    type: "post",
+                                    success: function (data) {
+                                        var info = data.info;
+                                        var tbody = $(".table tbody")[0];
+                                        tbody.innerHTML = "";
+                                        //添加选项盒子
+                                        if (data.code == "1") {
+                                            for(i=0;i<info.length;i++){
+                                                tbody.innerHTML += "<tr data-msId='" + info[i].msId + "' style='cursor:pointer'>" +
+                                                    "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                    "<td class='goDetail'>" + info[i].userName + "</td>" +
+                                                    "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                    "</tr>";
+                                            }
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("网络错误");
+
+                                    }
+                                })
+                            }
+                        });
+
+                    },
+                    error: function () {
+                        alert("发生错误了!");
+                    },
+                    complete: function () {
+                        $("body").mLoading("hide"); //关闭loading组件
+                    }
+                })
+            })
+        </script>
+
+</body>
+
+</html>

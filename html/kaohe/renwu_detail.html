@@ -229,14 +229,14 @@
 					$(document).ready(function() {
 						var search = window.location.search;
 						if(search != "") {
-							var teamTaskId = window.location.search.split("teamTaskId=")[1].split("&")[0];
-							var teamId = window.location.search.split("teamId=")[1].split("&")[0];
-							var starTime = window.location.search.split("starTime=")[1].split("&")[0];
-							var endTime = window.location.search.split("endTime=")[1].split("&")[0];
-							var taskName = window.location.search.split("taskName=")[1].split("&")[0];
-							var taskNum = window.location.search.split("taskNum=")[1].split("&")[0];
-							var taskType = window.location.search.split("taskType=")[1].split("&")[0];
-							var searchTime = window.location.search.split("searchTime=")[1].split("&")[0];
+							var teamTaskId = search.split("teamTaskId=")[1].split("&")[0];
+							var teamId = search.split("teamId=")[1].split("&")[0];
+							var starTime = search.split("starTime=")[1].split("&")[0];
+							var endTime = search.split("endTime=")[1].split("&")[0];
+							var taskName = search.split("taskName=")[1].split("&")[0];
+							var taskNum = search.split("taskNum=")[1].split("&")[0];
+							var taskType = search.split("taskType=")[1].split("&")[0];
+							var searchTime = search.split("searchTime=")[1].split("&")[0];
 
 							$(".taskName").text(decodeURI(taskName));
 							$(".taskNum").text(taskNum);
@@ -261,6 +261,33 @@
 							}
 
 						});
+                        $('.table tbody').on('click', '.delrow', function(e) {
+                            $("body").mLoading("show"); //关闭loading组件
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var tdId = $(this).parents("tr").attr("data-tdId");
+                            $.ajax({
+                                url: config.rootUrl + "user/delDailyTask.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                    tdId: tdId,
+                                },
+                                async: true,
+                                type: "post",
+                                success: function(data) {
+                                   alert(data.msg);
+                                   window.location.reload();
+                                },
+                                error: function() {
+                                    alert("网络错误");
+                                },
+                                complete: function() {
+                                    $("body").mLoading("hide"); //关闭loading组件
+                                }
+                            })
+                        });
 						$.ajax({
 							url: config.rootUrl + "user/listPartyMember.do",
 							data: {
@@ -302,18 +329,36 @@
 										} else {
 											var _dom2 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
 										}
+										if(session_login.info.userName=="scss10002"){
+                                           var deleteEle= "<button  class='btn btn-danger delrow' type='button'><i class='fa fa-remove'> 删除 </i></button>";
 
-										tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
-											"<td class='goDetail'>" + userInfo[i].realName + "</td>" +
-											"<td class='goDetail'>" + userInfo[i].userName + "</td>" +
-											"<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
-											"<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
-											"<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
-											"<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
-											"<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
-											"<td class='goDetail'>" + _dom1 + "</td>" +
-											"<td class='goDetail'>" + _dom2 + "</td>" +
-											"</tr>";
+                                            tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+                                                "<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+                                                "<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+                                                "<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+                                                "<td class='goDetail'>" + _dom1 + "</td>" +
+                                                "<td class='goDetail'>" + _dom2 + "</td>" +
+                                                "<td class='goDetail'>" + deleteEle + "</td>" +
+                                                "</tr>";
+										}else{
+                                            tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+                                                "<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+                                                "<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+                                                "<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+                                                "<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+                                                "<td class='goDetail'>" + _dom1 + "</td>" +
+                                                "<td class='goDetail'>" + _dom2 + "</td>" +
+
+                                                "</tr>";
+										}
+
 									}
 								} else {
 									alert(data.msg);
@@ -368,17 +413,34 @@
 														} else {
 															var _dom2 = "<span style='color:green' class='fa fa-lightbulb-o fa-2x'>";
 														}
-														tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "' data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
-															"<td class='goDetail'>" + userInfo[i].realName + "</td>" +
-															"<td class='goDetail'>" + userInfo[i].userName + "</td>" +
-															"<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
-															"<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
-															"<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
-															"<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
-															"<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
-															"<td class='goDetail'>" + _dom1 + "</td>" +
-															"<td class='goDetail'>" + _dom2 + "</td>" +
-															"</tr>";
+                                                        if(session_login.info.userName=="scss10002"){
+                                                            var deleteEle= "<button  class='btn btn-danger delrow' type='button'><i class='fa fa-remove'> 删除 </i></button>";
+                                                            tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+                                                                "<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+                                                                "<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+                                                                "<td class='goDetail'>" + _dom1 + "</td>" +
+                                                                "<td class='goDetail'>" + _dom2 + "</td>" +
+                                                                "<td class='goDetail'>" + deleteEle + "</td>" +
+                                                                "</tr>";
+                                                        }else{
+                                                            tbody.innerHTML += "<tr data-mid='" + userInfo[i].memberId + "'  data-tdId='" + userInfo[i].tdId + "' data-title='" + userInfo[i].realName + "'  style='cursor:pointer'>" +
+                                                                "<td class='goDetail'>" + userInfo[i].realName + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].userName + "</td>" +
+                                                                "<td class='goDetail'><img style='max-width:50px;' src=" + userInfo[i].headImage + "></td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].taskNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].teamTaskNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].finishNum + "</td>" +
+                                                                "<td class='goDetail'>" + userInfo[i].extraNum + "</td>" +
+                                                                "<td class='goDetail'>" + _dom1 + "</td>" +
+                                                                "<td class='goDetail'>" + _dom2 + "</td>" +
+
+                                                                "</tr>";
+                                                        }
 													}
 												} else {
 													alert(data.msg);

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        input.input_cxcalendar{
+            height: 28px;
+        }
+
+        input.select2-search__field{
+            margin: 0;
+            float: inherit;
+            width: auto;
+            height: inherit;
+            line-height: inherit;
+        }
+
+        .card-title .title {
+            font-size: 18px;
+        }
+        .lable {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 12px;
+            padding-top: 10px;
+        }
+
+        .cxcalendar .date_hd {
+            height: inherit;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>划价记录</li>
+                        </ol>
+
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title"><span style="color:red;">划价记录</span></span>
+                        <div class="tips">注意事项：如果处方单是在门诊划价的，不是个人划价没有记录的可以选取对应门诊进行发药，<br>并且确保该处方单是属于自己的患者！</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title col-sm-3 col-xs-6 input">
+                                        <lable>门诊</lable>
+                                        <select id="selectSup"  style="width:100%" title="药厂">
+                                            <optgroup label="请选择药厂" class="medicineSupplier">
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="card-title col-xs-3" style="float: right;">
+                                        <a class="btn btn-danger" href="listMedInvoice.html">发药记录<span
+                                                class="fa fa-chevron-circle-right"></span></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>患者姓名</th>
+                                            <th>添加人</th>
+                                            <th>创建时间</th>
+                                            <th>发药</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+        <div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+            <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+
+            <script src="../../lib/js/jquery.pagination.js"></script>
+            <!-- Javascript -->
+            <script type="text/javascript" src="../../js/app.js"></script>
+            <script src="../../js/dateFormat.js"></script>
+            <script type="text/javascript" src="../../js/theming.js"></script>
+            <script type="text/javascript" src="../../js/themings.js"></script>
+
+            <script src="../../js/config.js"></script>
+            <script src="../../js/uploadImg.js"></script>
+            <script src="../../js/session_expire.js"></script>
+            <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var search = window.location.search;
+                    var memberId;
+                    var hospId;
+                    $('.table tbody').on('click', '.goDetail', function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var mrId = $(this).parents("tr").attr("data-mrId");
+                        window.location.href="addMedInvoice.html?mrId="+mrId;
+                    });
+                    //获取门诊
+                    var retSupplier="";
+                    getmedicineSupplier();
+                    function getmedicineSupplier() {
+                        if (sessionStorage.getItem("getHospital")) {
+                            var medicineSup = JSON.parse(sessionStorage.getItem("getHospital"));
+                            for(var i in medicineSup) {
+                                var _option = "<option value='"+medicineSup[i].hospId+"'>"+medicineSup[i].hospName+"</option>";
+                                retSupplier+=_option;
+                            }
+                            $(".medicineSupplier")[0].innerHTML=retSupplier;
+                            $("#selectSup").val("").select2({
+                                placeholder: "请选择门诊"
+                            });
+                        } else {
+                            $("body").mLoading("show");
+                            $.ajax({
+                                url: config.rootUrl + "user/getHospital.do",
+                                data: {
+                                    deviceToken: "html5",
+                                    deviceType: "html5",
+                                    userId: session_login.info.userId,
+                                },
+                                async: true,
+                                type: 'post',
+                                success: function(data) {
+                                    //添加选项内容
+                                    var info = data.info;
+                                    sessionStorage.setItem("getHospital", JSON.stringify(info));
+                                    //收款账户
+                                    for(var i in info) {
+                                        var _option = "<option value='"+info[i].hospId+"'>"+info[i].hospName+"</option>";
+                                        retSupplier+=_option;
+                                    }
+                                    $(".medicineSupplier")[0].innerHTML=retSupplier;
+                                    $("#selectSup").val("").select2({
+                                        placeholder: "请选择门诊"
+                                    });
+                                },
+                                error: function(xhr, type, errorThrown) {
+                                    alert('发生错误！');
+                                },
+                                complete:function(){
+                                    $("body").mLoading("hide");//关闭loading组件
+                                }
+                            });
+                        }
+                    }
+                    //选择门诊
+                    $('#selectSup').on("select2:close", function () {
+                        hospId = $(this).val();
+                        doAjax("verified");
+                    })
+                    $('.save').on('click', function (e) {
+                        var medicineName = $("#medicineName").val();
+                        $.ajax({
+                            url: config.rootUrl + "user/addMedicine.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                medicineName: medicineName,
+                            },
+                            async: true,
+                            type: "post",
+                            success: function (data) {
+                                alert(data.msg);
+                                window.location.reload();
+                            },
+                            error: function () {
+                                alert("发生错误");
+                            },
+                        })
+                    });
+
+                    doAjax("verified");
+                    function doAjax(sta) {
+                        $("body").mLoading("show");
+                        $(".table tbody")[0].innerHTML = "";
+                        $.ajax({
+                            url: config.rootUrl + "user/listMecineRecord.do",
+                            data: {
+                                deviceToken: "html5",
+                                deviceType: "html5",
+                                userId: session_login.info.userId,
+                                memberId: memberId||session_login.info.userId,
+                                hospId:hospId||session_login.info.hospId,
+                                status: "",
+                                isSimple: 1,
+                                page: "1",
+                                rows: "10"
+                            },
+                            async: true,
+                            type: 'post',
+                            success: function (data) {
+                                var _counter=1;
+                                var info = data.info;
+                                if(info.length=="0"){
+                                    alert("没有数据");
+                                }
+                                var pageCount = data.pageCount;
+                                var tbody = $(".table tbody")[0];
+                                for(var i = 0; i < info.length; i++) {
+                                    if(info[i].verifyTime){
+                                        var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s');
+                                    }else{
+                                        verifyTime="";
+                                    }
+                                    var _dom="<button class='btn btn-success see'>发药</button>";
+                                    tbody.innerHTML += "<tr data-mrId='" + info[i].mrId + "' style='cursor:pointer'>" +
+                                        "<td class='goDetail'>" + _counter +"</td>" +
+                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                        "<td class='goDetail'>" +_dom+
+                                        "</td>" +
+                                        "</tr>";
+                                    _counter++;
+                                }
+                                //添加选项内容
+                                $('.M-box').pagination({
+                                    pageCount: pageCount,
+                                    showData: 10,
+                                    jump: true,
+                                    coping: true,
+                                    homePage: '首页',
+                                    endPage: '末页',
+                                    prevContent: '上页',
+                                    nextContent: '下页',
+                                    callback: function (api) {
+                                        $("body").mLoading("show");
+                                        $.ajax({
+                                            url: config.rootUrl + "user/listMecineRecord.do",
+                                            data: {
+                                                deviceToken: "html5",
+                                                deviceType: "html5",
+                                                userId: session_login.info.userId,
+                                                memberId: memberId||session_login.info.userId,
+                                                hospId: hospId||session_login.info.hospId,
+                                                status: "",
+                                                isSimple: 1,
+                                                page:api.getCurrent(),
+                                                rows: "10"
+                                            },
+                                            async: true,
+                                            type: "post",
+                                            success: function (data) {
+                                                var info = data.info;
+                                                _counter=(api.getCurrent()-1)*15;
+                                                if(info.length=="0"){
+                                                    alert("没有数据");
+                                                }
+                                                var tbody = $(".table tbody")[0];
+                                                tbody.innerHTML = "";
+                                                //添加选项盒子
+                                                for(var i = 0; i < info.length; i++) {
+                                                    _counter++;
+                                                    if(info[i].verifyTime){
+                                                        var verifyTime=new Date(info[i].verifyTime).format('yyyy-MM-dd h:m:s');
+                                                    }else{
+                                                        verifyTime="";
+                                                    }
+                                                    var _dom="<button class='btn btn-success see'>发药</button>";
+                                                    tbody.innerHTML += "<tr data-mrId='" + info[i].mrId + "' style='cursor:pointer'>" +
+                                                        "<td class='goDetail'>" + _counter +"</td>" +
+                                                        "<td class='goDetail'>" + info[i].patientName + "</td>" +
+                                                        "<td class='goDetail'>" + info[i].realName + "</td>" +
+                                                        "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                                        "<td class='goDetail'>" +_dom+
+                                                        "</td>" +
+                                                        "</tr>";
+                                                }
+                                            },
+                                            error: function () {
+                                                alert("网络错误");
+                                            },
+                                            complete: function () {
+                                                $("body").mLoading("hide");//关闭loading组件
+                                            }
+                                        })
+                                    }
+
+                                });
+
+                            },
+                            error: function (xhr, type, errorThrown) {
+                                alert('网络异常，请稍后再试！');
+                            },
+                            complete: function () {
+                                $("body").mLoading("hide");//关闭loading组件
+                            }
+                        });
+                    }
+
+                })
+            </script>
+</body>
+
+</html>

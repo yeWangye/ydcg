@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>划价系统</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/pagination.css">
+    <link rel="stylesheet" href="../../css/cxcalendar.css">
+    <link rel="stylesheet" type="text/css" href="../../lib/css/jquery.mloading.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-blue.css">
+    <link rel="stylesheet" type="text/css" href="../../css/themes/flat-green.css">
+    <style>
+        * {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        .card .card-header .card-title {
+            padding: 0;
+            float: left;
+        }
+
+        .input {
+            margin: 0;
+            float: inherit;
+            width: auto;
+        }
+
+        .card-title .title {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body class="flat-blue">
+<div class="app-container">
+    <div class="row content-container">
+        <div class="row content-container">
+            <nav id="navbar" class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid" style="text-align: center;">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li>进药记录</li>
+                        </ol>
+
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-star-half-o"></i><span
+                                    class=" totalMsg"></span></a>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><span class="username"></span> <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username"></h4>
+                                        <p style="color: red;"><span class="role"></span> ←→ <span
+                                                class="teamName"></span></p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default headimg_exchange"><i
+                                                    class="fa fa-user"></i> 更换头像
+                                            </button>
+                                            <button type="button" class="btn btn-default logout"><i
+                                                    class="fa fa-sign-out"></i> 退出登陆
+                                            </button>
+                                            <input type="file" accept="image/*" style="display: none;"
+                                                   name="headimg_exchange" id="headimg_exchange"/>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div id="sidebar" class="side-menu sidebar-inverse">
+
+            </div>
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="side-body">
+                    <div class="page-title">
+                        <span class="title"><span style="color:red;">进药记录</span></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title col-sm-4 col-xs-6">
+                                        <lable>开始时间</lable>
+                                        <input name="mydate" id="starTime" type="text" style="width:200px;"
+                                               class="input_cxcalendar">
+                                    </div>
+                                    <div class="card-title col-sm-4 col-xs-6">
+                                        <lable>结束时间</lable>
+                                        <input name="mydate2" type="text" id="endTime" style="width:200px;"
+                                               class="input_cxcalendar">
+                                    </div>
+                                    <div class="card-title  col-sm-4 col-xs-2">
+                                        <button class="btn btn-success dataSearch"
+                                                style="color:white;width:100px;border:1px solid;-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;">
+                                            查询
+                                        </button>
+                                    </div>
+                                    <div class="card-title back" style="display: none;">
+                                        <a class="btn btn-primary" onclick="window.history.go(-1)"><span
+                                                class="fa fa-chevron-circle-left"></span>返回</a>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th>序号</th>
+                                            <th>进药方</th>
+                                            <th>金额</th>
+                                            <th>创建时间</th>
+                                            <th>查看</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="M-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="verify" tabindex="-2" role="dialog" aria-labelledby="addKeshiModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">结账</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group col-xs-12">
+                            <div class="col-xs-3">
+                                <lable for="paidMoney"
+                                       style="height:38px;line-height: 38px;width:100%;color:red;font-size: 18px;">金额：
+                                </lable>
+                            </div>
+                            <input type="number" id="paidMoney" class="col-xs-5">
+                            <input type="hidden" class="hrId">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary save">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="app-footer">
+            <div class="wrapper">
+                <span class="pull-right">1.0 <a href="#"><i class="fa fa-long-arrow-up"></i></a></span> © 2017
+                Copyright. 期待更多
+                <a href="http://http://www.bj11ss.com/" target="_blank" title="医来伸手">顺昌盛世</a>
+                <a href="http://www.bj11ss.com/" title="医来伸手" target="_blank">----医来伸手</a>
+            </div>
+        </footer>
+
+        <!-- Javascript Libs -->
+        <script src="../../lib/js/jquery-1.9.1.js"></script>
+        <script src="../../lib/js/calendar.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/Chart.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/bootstrap-switch.min.js"></script>
+
+        <script type="text/javascript" src="../../lib/js/jquery.matchHeight-min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/select2.full.min.js"></script>
+        <script type="text/javascript" src="../../lib/js/jquery.mloading.js"></script>
+        <script src="../../lib/js/jquery.pagination.js"></script>
+        <!-- Javascript -->
+        <script type="text/javascript" src="../../js/app.js"></script>
+        <script src="../../js/dateFormat.js"></script>
+        <script type="text/javascript" src="../../js/theming.js"></script>
+        <script type="text/javascript" src="../../js/themings.js"></script>
+
+        <script src="../../js/config.js"></script>
+        <script src="../../js/uploadImg.js"></script>
+        <script src="../../js/session_expire.js"></script>
+        <script type="text/javascript" src="../../js/personal_msg.js?"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var search = window.location.search;
+                if (search != "" && search.split("fromWhere")[1]) {
+                    $(".back").css("display", "block");
+                    $(".huajia").css("display", "none");
+                }
+                $('.input_cxcalendar').each(function () {
+                    var a = new Calendar({
+                        targetCls: $(this),
+                        type: 'yyyy-mm-dd HH:MM:SS',
+                        wday: 2
+                    }, function (val) {
+                        console.log(val);
+                    });
+                });
+                $('.table tbody').on('click', '.goDetail', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var hrId = $(this).parents("tr").attr("data-hrId");
+                    window.location.href = "hospRecordDetail.html?hrId=" + hrId;
+                });
+                $('.table tbody').on('click', '.verifyList', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var hrId = $(this).parents("tr").attr("data-hrId");
+                    window.location.href = "checkHospRecord.html?hrId=" + hrId;
+                });
+                $('.table tbody').on('click', '.verify', function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var hrId = $(this).parents("tr").attr("data-hrId");
+                    $(".hrId").val(hrId);
+                    $('#verify').modal();
+                });
+                $('.save').on('click', function (e) {
+                    var hrId = $(".hrId").val();
+                    var paidMoney = $("#paidMoney").val();
+                    var addTime=new Date().format("yyyy-MM-dd hh:mm:ss");
+                    $("body").mLoading("hide");
+                    $.ajax({
+                        url: config.rootUrl + "user/verifyHospRecord.do",
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            hrId: hrId,
+                            paidMoney: paidMoney,
+                            addTime: addTime,
+                        },
+                        success: function (data) {
+                            if (data.code == 1) {
+                                alert(data.msg);
+                                window.location.reload();
+                            } else {
+                                alert(data.msg);
+                            }
+                        },
+                        error: function () {
+                            alert("发生错误!");
+                        },
+                        complete: function () {
+                            $("body").mLoading("hide");//关闭loading组件
+                        }
+                    })
+                });
+                $(".dataSearch").on("click",function () {
+                    doAjax();
+                })
+                doAjax();
+                function doAjax() {
+                    $("body").mLoading("show");
+                    $(".table tbody")[0].innerHTML="";
+                    var starTime=$("#starTime").val();
+                    if(starTime==""){
+                        var d1 = new Date();
+                        var d2 = new Date(d1);
+                        d2.setDate(d1.getDate()-7);
+                        starTime = new Date(d2).format('yyyy-MM-dd hh:mm:ss') ;
+                        $("#starTime").val(starTime);
+                    }
+                    var endTime=$("#endTime").val();
+                    if(endTime==""){
+                        endTime = new Date().format("yyyy-MM-dd hh:mm:ss").replace(/\//g, "-");
+                        $("#endTime").val(endTime);
+                    }
+                    $.ajax({
+                        url: config.rootUrl + "user/listHospRecord.do",
+                        data: {
+                            deviceToken: "html5",
+                            deviceType: "html5",
+                            userId: session_login.info.userId,
+                            hospId: session_login.info.hospId,
+                            starTime: starTime,
+                            endTime: endTime,
+                            page: "1",
+                            rows: "10"
+                        },
+                        async: true,
+                        type: 'post',
+                        success: function (data) {
+                            var _counter = 1;
+                            var info = data.info;
+                            if (info.length == "0") {
+                                alert("没有数据");
+                            }
+                            var pageCount = data.pageCount;
+                            var tbody = $(".table tbody")[0];
+                            for (var i = 0; i < info.length; i++) {
+                                var _dom = "<button class='btn btn-primary goDetail'> 查看 </button> "+
+                                    " <button class='btn btn-success verify'> 结账 </button> "+
+                                    " <button class='btn btn-danger verifyList'> 结账记录 </button> ";
+                                tbody.innerHTML += "<tr data-hrId='" + info[i].hrId + "' style='cursor:pointer'>" +
+                                    "<td class='goDetail'>" + _counter + "</td>" +
+                                    "<td class='goDetail'>" + info[i].hospName + "</td>" +
+                                    "<td class='goDetail'>" + info[i].money + "</td>" +
+                                    "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd h:m:s') + "</td>" +
+                                    "<td class='goDetail'>" + _dom +
+                                    "</td>" +
+                                    "</tr>";
+                                _counter++;
+                            }
+                            //添加选项内容
+                            $('.M-box').pagination({
+                                pageCount: pageCount,
+                                showData: 10,
+                                jump: true,
+                                coping: true,
+                                homePage: '首页',
+                                endPage: '末页',
+                                prevContent: '上页',
+                                nextContent: '下页',
+                                callback: function (api) {
+                                    $("body").mLoading("show");
+                                    $.ajax({
+                                        url: config.rootUrl + "user/listHospRecord.do",
+                                        data: {
+                                            deviceToken: "html5",
+                                            deviceType: "html5",
+                                            userId: session_login.info.userId,
+                                            hospId: session_login.info.hospId,
+                                            starTime: starTime,
+                                            endTime: endTime,
+                                            page: api.getCurrent(),
+                                            rows: "10"
+                                        },
+                                        async: true,
+                                        type: "post",
+                                        success: function (data) {
+                                            var info = data.info;
+                                            _counter = (api.getCurrent() - 1) * 10;
+                                            if (info.length == "0") {
+                                                alert("没有数据");
+                                            }
+                                            var tbody = $(".table tbody")[0];
+                                            tbody.innerHTML = "";
+                                            //添加选项盒子
+                                            for (var i = 0; i < info.length; i++) {
+                                                _counter++;
+                                                var _dom = "<button class='btn btn-primary goDetail'> 查看 </button> "+
+                                                    " <button class='btn btn-success verify'> 结账 </button> "+
+                                                    " <button class='btn btn-danger verifyList'> 结账记录 </button> ";
+                                                tbody.innerHTML += "<tr data-hrId='" + info[i].hrId + "' style='cursor:pointer'>" +
+                                                    "<td class='goDetail'>" + _counter + "</td>" +
+                                                    "<td class='goDetail'>" + info[i].hospName + "</td>" +
+                                                    "<td class='goDetail'>" + info[i].money + "</td>" +
+                                                    "<td class='goDetail'>" + new Date(info[i].createTime).format('yyyy-MM-dd hh:mm:ss') + "</td>" +
+                                                    "<td class='goDetail'>" + _dom +
+                                                    "</td>" +
+                                                    "</tr>";
+                                            }
+                                        },
+                                        error: function () {
+                                            alert("网络错误");
+
+                                        },
+                                        complete: function() {
+                                            $("body").mLoading("hide"); //关闭loading组件
+                                        }
+                                    })
+                                }
+
+                            });
+
+                        },
+                        error: function (xhr, type, errorThrown) {
+                            alert('网络异常，请稍后再试！');
+                        },
+                        complete: function() {
+                            $("body").mLoading("hide"); //关闭loading组件
+                        }
+                    });
+                }
+
+            })
+        </script>
+</body>
+
+</html>
