@@ -705,6 +705,12 @@
                                 </div>
                             </div>
                         </li>
+                        <!-- Dropdown-->
+                        <li class="panel panel-default dropdown" >
+                        	<a  href="unBling/unBundling.html">
+                                <span class="icon fa fa-slack"></span><span class="title">解绑微信</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -1037,6 +1043,7 @@
         }
         //鉴权
         var roleId = session_login.info.roleId;
+        console.log(roleId)
         if (roleId == "1") {
             $(".zuyuan_yeji").parent().css("display", "none");
             $("#component-example ul").children("li").eq("1").css("display", "none");
@@ -1069,6 +1076,7 @@
         }
         if (roleId != "3") {
             $(".shezhi_renwu").css("display", "none");
+            
         }
 
         if (roleId != "4") {
